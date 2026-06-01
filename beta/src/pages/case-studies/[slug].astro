@@ -58,7 +58,13 @@ const { Content } = await render(study);
   .a-case-study-detail__inner {
     max-width: 680px;
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    padding: 0 var(--space-3xl);
+  }
+
+  @media (max-width: 768px) {
+    .a-case-study-detail__inner {
+      padding: 0 var(--space-lg);
+    }
   }
 
   .a-case-study-detail__back {
