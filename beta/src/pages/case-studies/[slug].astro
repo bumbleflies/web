@@ -21,7 +21,8 @@ const { Content } = await render(study);
   <Nav slot="nav">
     <LangToggle slot="lang" />
   </Nav>
-  <article class="a-case-study-detail bf-container">
+  <article class="a-case-study-detail">
+    <div class="a-case-study-detail__inner">
       <a href="/case-studies" class="a-case-study-detail__back">← Alle Fallstudien</a>
 
       <header class="a-case-study-detail__header">
@@ -41,6 +42,7 @@ const { Content } = await render(study);
         <blockquote>"{study.data.quote}"</blockquote>
       </aside>
 
+    </div>
       <div class="a-case-study-detail__cta">
         <a href="mailto:info@bumbleflies.de" class="bf-cta">Erstes Gespräch buchen</a>
       </div>
@@ -51,6 +53,12 @@ const { Content } = await render(study);
 <style>
   .a-case-study-detail {
     padding: var(--space-4xl) 0;
+  }
+
+  .a-case-study-detail__inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
   }
 
   .a-case-study-detail__back {
