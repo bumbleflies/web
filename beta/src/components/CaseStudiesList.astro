@@ -16,7 +16,7 @@ const caseStudies = await getCollection('case-studies', ({ data }) => data.publi
             company={study.data.company}
             service={study.data.service}
             quote={study.data.quote}
-            slug={study.slug}
+            slug={study.id || study.slug}
           />
         ))
       ) : (
@@ -28,8 +28,8 @@ const caseStudies = await getCollection('case-studies', ({ data }) => data.publi
 
 <style>
   .a-case-studies-list {
-    padding: var(--spacing-xl) 0;
-    background: #fafafa;
+    padding: var(--space-xl) 0;
+    background: transparent;
   }
 
   .a-case-studies-list__heading {

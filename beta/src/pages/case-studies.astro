@@ -35,44 +35,44 @@ import LangToggle from '../components/LangToggle.astro';
 
 <style>
   .a-case-studies-hero {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #f5f1e8 0%, #faf7f0 100%);
+    padding: var(--space-4xl) 0;
+    background: var(--paper);
   }
 
   .a-case-studies-hero__heading {
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: var(--text-6xl);
     margin: 0 0 1rem 0;
     color: var(--ink);
   }
 
   .a-case-studies-hero__subheading {
-    font-size: 1.25rem;
-    color: #666;
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
     max-width: 600px;
     margin: 0;
   }
 
   .a-case-studies-cta {
-    padding: 4rem 0;
+    padding: var(--space-4xl) 0;
     text-align: center;
-    background: #f5f1e8;
+    background: var(--paper); border-top: 1px solid var(--rule);
   }
 
   .a-case-studies-cta h2 {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: var(--text-3xl);
     margin-bottom: 2rem;
     color: var(--ink);
   }
 
   @media (max-width: 768px) {
     .a-case-studies-hero {
-      padding: 2rem 0;
+      padding: var(--space-2xl) 0;
     }
 
     .a-case-studies-hero__heading {
-      font-size: 1.75rem;
+      font-size: var(--text-2xl);
     }
 
     .a-case-studies-hero__subheading {
@@ -80,7 +80,7 @@ import LangToggle from '../components/LangToggle.astro';
     }
 
     .a-case-studies-cta h2 {
-      font-size: 1.5rem;
+      font-size: var(--text-xl);
     }
   }
 </style>
