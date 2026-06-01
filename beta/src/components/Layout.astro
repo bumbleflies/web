@@ -35,11 +35,21 @@ const { title, lang = 'DE' } = Astro.props;
       }
     </script>
   </head>
-  <body>
+  <body class="bf-body">
     <slot name="nav" />
-    <main>
+    <main class="bf-main">
       <slot />
     </main>
     <slot name="footer" />
+    <style>
+      .bf-body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .bf-main {
+        flex-grow: 1;
+      }
+    </style>
   </body>
 </html>

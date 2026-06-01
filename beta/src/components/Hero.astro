@@ -344,12 +344,33 @@ const content = lang === 'DE'
   @media (max-width: 480px) {
     .a-hero__engagement-packages {
       grid-template-columns: 1fr;
-      gap: var(--space-lg);
+      gap: var(--space-2xl);
+      text-align: center;
     }
 
     .a-hero__package {
       border-right: none;
       padding-right: 0;
+      padding-bottom: var(--space-xl);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .a-hero__package:last-child {
+      border-bottom: none;
+    }
+
+    .a-hero__package-header {
+      justify-content: center;
+    }
+
+    .a-hero__package-cta {
+      align-self: center;
+    }
+
+    .a-hero__package-outcome {
+      font-size: var(--text-lg);
+      max-width: 320px;
+      margin: 0 auto;
     }
   }
 </style>

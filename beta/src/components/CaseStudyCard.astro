@@ -24,13 +24,18 @@ const { title, company, service, quote, slug } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    padding: 0;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    border-left: 3px solid var(--accent);
-    padding-left: var(--space-md);
+    padding: var(--space-xl);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--accent);
     min-height: 100%;
+    transition: transform var(--duration-fast) var(--easing-default), border-color var(--duration-fast) var(--easing-default);
+  }
+
+  .a-case-study-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
   }
 
   .a-case-study-card__title {
