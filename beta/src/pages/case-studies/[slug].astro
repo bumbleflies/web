@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../components/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
@@ -14,13 +14,15 @@ export async function getStaticPaths() {
 }
 
 const { study } = Astro.props;
+const { Content } = await render(study);
 ---
 
 <Layout title={study.data.title}>
   <Nav slot="nav">
     <LangToggle slot="lang" />
   </Nav>
-  <article class="a-case-study-detail bf-container">
+  <article class="a-case-study-detail">
+    <div class="a-case-study-detail__inner">
       <a href="/case-studies" class="a-case-study-detail__back">← Alle Fallstudien</a>
 
       <header class="a-case-study-detail__header">
@@ -33,13 +35,14 @@ const { study } = Astro.props;
       </header>
 
       <div class="a-case-study-detail__content">
-        {study.body && <Fragment set:html={study.body} />}
+        <Content />
       </div>
 
       <aside class="a-case-study-detail__quote">
         <blockquote>"{study.data.quote}"</blockquote>
       </aside>
 
+    </div>
       <div class="a-case-study-detail__cta">
         <a href="mailto:info@bumbleflies.de" class="bf-cta">Erstes Gespräch buchen</a>
       </div>
@@ -49,85 +52,98 @@ const { study } = Astro.props;
 
 <style>
   .a-case-study-detail {
-    padding: var(--spacing-xl) var(--space-3xl);
+    padding: var(--space-4xl) 0;
+  }
+
+  .a-case-study-detail__inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 var(--space-3xl);
+  }
+
+  @media (max-width: 768px) {
+    .a-case-study-detail__inner {
+      padding: 0 var(--space-lg);
+    }
   }
 
   .a-case-study-detail__back {
     display: inline-block;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--space-xl);
     color: var(--accent);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9375rem;
-    transition: opacity 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    transition: opacity var(--duration-fast) var(--easing-default);
   }
 
   .a-case-study-detail__back:hover {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 
   .a-case-study-detail__header {
-    margin-bottom: var(--spacing-xl);
-    padding-bottom: var(--spacing-lg);
-    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: var(--space-3xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--rule);
   }
 
   .a-case-study-detail__title {
     font-family: var(--font-display);
-    font-size: 3rem;
-    line-height: 1.1;
-    margin: 0 0 var(--spacing-md) 0;
+    font-size: var(--text-6xl);
+    line-height: var(--lh-tight);
+    margin: 0 0 var(--space-md) 0;
     color: var(--ink);
   }
 
   .a-case-study-detail__company {
-    font-family: var(--font-body);
-    font-size: 1.125rem;
-    color: #666;
-    margin: 0 0 var(--spacing-md) 0;
-    font-weight: 500;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-2xl);
+    color: var(--ink-soft);
+    margin: 0 0 var(--space-sm) 0;
   }
 
   .a-case-study-detail__service {
     display: inline-block;
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
+    font-size: var(--text-xs);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 0.375rem 0.875rem;
+    letter-spacing: var(--ls-widest);
+    padding: var(--space-xs) var(--space-sm);
     background: var(--accent);
     color: white;
-    border-radius: 0;
-    margin-bottom: var(--spacing-md);
-    font-weight: 600;
+    margin-bottom: var(--space-md);
   }
 
   .a-case-study-detail__duration {
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    color: #999;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ink-soft);
     margin: 0;
   }
 
   .a-case-study-detail__content {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: var(--spacing-xl);
-    color: #333;
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    line-height: var(--lh-body);
+    margin-bottom: var(--space-3xl);
+    color: var(--ink);
+    max-width: 680px;
   }
 
   .a-case-study-detail__content :global(h2) {
     font-family: var(--font-display);
-    font-size: 1.75rem;
-    line-height: 1.2;
-    margin-top: var(--spacing-xl);
-    margin-bottom: var(--spacing-md);
+    font-size: var(--text-3xl);
+    line-height: var(--lh-snug);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
     color: var(--ink);
   }
 
   .a-case-study-detail__content :global(p) {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--space-lg);
   }
 
   .a-case-study-detail__content :global(strong) {
@@ -137,24 +153,55 @@ const { study } = Astro.props;
 
   .a-case-study-detail__content :global(ul),
   .a-case-study-detail__content :global(ol) {
-    margin: var(--spacing-lg) 0;
-    padding-left: 2rem;
+    margin: var(--space-lg) 0;
+    padding-left: var(--space-xl);
   }
 
   .a-case-study-detail__content :global(li) {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-sm);
   }
 
   .a-case-study-detail__quote {
-    padding: var(--spacing-lg);
-    background: #faf7f0;
+    padding: var(--space-2xl);
+    background: var(--paper);
+    border-left: 4px solid var(--accent);
+    margin: var(--space-3xl) 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-2xl);
+    line-height: var(--lh-loose);
+    color: var(--ink);
+  }
+
+  @media (max-width: 768px) {
+    .a-case-study-detail {
+      padding: var(--space-2xl) 0;
+    }
+
+    .a-case-study-detail__title {
+      font-size: var(--text-4xl);
+    }
+
+    .a-case-study-detail__company {
+      font-size: var(--text-xl);
+    }
+
+    .a-case-study-detail__content {
+      font-size: var(--text-base);
+    }
+
+    .a-case-study-detail__quote {
+      padding: var(--space-xl);
+      font-size: var(--text-xl);
+    }
+  }
     border-left: 3px solid var(--accent);
-    margin: var(--spacing-xl) 0;
+    margin: var(--space-xl) 0;
     font-style: italic;
     font-size: 1.125rem;
     line-height: 1.6;
     color: #333;
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
   }
 
   .a-case-study-detail__quote blockquote {
@@ -163,12 +210,12 @@ const { study } = Astro.props;
 
   .a-case-study-detail__cta {
     text-align: center;
-    margin: var(--spacing-xl) 0;
+    margin: var(--space-xl) 0;
   }
 
   @media (max-width: 768px) {
     .a-case-study-detail {
-      padding: var(--spacing-lg) 0;
+      padding: var(--space-lg) 0;
     }
 
     .a-case-study-detail__title {
@@ -177,7 +224,7 @@ const { study } = Astro.props;
 
     .a-case-study-detail__quote {
       font-size: 1rem;
-      padding: var(--spacing-md);
+      padding: var(--space-md);
     }
   }
 </style>

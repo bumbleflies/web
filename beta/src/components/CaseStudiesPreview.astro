@@ -29,7 +29,7 @@ const featured = allCases.slice(0, 4);
           company={study.data.company}
           service={study.data.service}
           quote={study.data.quote}
-          slug={study.slug}
+          slug={study.id || study.slug}
         />
       ))}
     </div>
@@ -50,10 +50,10 @@ const featured = allCases.slice(0, 4);
   .a-case-studies-preview__eyebrow {
     display: block;
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
+    font-size: var(--text-xs);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #999;
+    letter-spacing: var(--ls-widest);
+    color: var(--ink-soft);
     margin-bottom: var(--space-md);
     font-weight: 600;
   }

@@ -64,14 +64,28 @@ const label = lang === 'DE' ? 'Vertrauen von' : 'Trusted by';
     }
 
     .bf-client {
-      padding: var(--space-2xl) var(--space-lg);
+      padding: var(--space-xl) var(--space-lg);
       font-size: 18px;
+    }
+    
+    .bf-client:nth-child(2n) {
+      border-right: none;
     }
   }
 
   @media (max-width: 480px) {
     .bf-clientwall {
       grid-template-columns: 1fr;
+    }
+    
+    .bf-client {
+      padding: var(--space-lg) var(--space-md);
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+    }
+    
+    .bf-client:last-child {
+      border-bottom: none;
     }
   }
 </style>
