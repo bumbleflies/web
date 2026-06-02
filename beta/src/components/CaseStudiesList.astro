@@ -7,7 +7,6 @@ const caseStudies = await getCollection('case-studies', ({ data }) => data.publi
 
 <section class="a-case-studies-list">
   <div class="bf-container">
-    <h2 class="a-case-studies-list__heading">Track Record</h2>
     <div class="a-case-studies-list__grid">
       {caseStudies.length > 0 ? (
         caseStudies.map(study => (
@@ -32,13 +31,6 @@ const caseStudies = await getCollection('case-studies', ({ data }) => data.publi
     background: transparent;
   }
 
-  .a-case-studies-list__heading {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    color: var(--ink);
-  }
-
   .a-case-studies-list__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -53,10 +45,6 @@ const caseStudies = await getCollection('case-studies', ({ data }) => data.publi
   }
 
   @media (max-width: 768px) {
-    .a-case-studies-list__heading {
-      font-size: 1.5rem;
-    }
-
     .a-case-studies-list__grid {
       grid-template-columns: 1fr;
     }
