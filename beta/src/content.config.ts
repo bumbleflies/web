@@ -12,6 +12,10 @@ const caseStudies = defineCollection({
     outcome: z.string(),
     quote: z.string(),
     image: z.string().optional(),
+    whyItWorked: z.string().optional(),
+    realOutcome: z.string().optional(),
+    whatWeDid: z.string().optional(),
+    results: z.string().optional(),
     published: z.boolean().default(true),
   }),
 });
