@@ -1,0 +1,165 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  ageGroup: string;
+  duration: string;
+  price: string;
+  image: string;
+  slug: string;
+}
+
+const { name, description, ageGroup, duration, price, image, slug } = Astro.props;
+---
+
+<article class="bf-program-card">
+  <div class="bf-program-card__image-wrapper">
+    {image ? (
+      <img src={image} alt={name} class="bf-program-card__image" />
+    ) : (
+      <div class="bf-img-slot">
+        <span>Image</span>
+      </div>
+    )}
+  </div>
+
+  <div class="bf-program-card__content">
+    <h3 class="bf-program-card__title">{name}</h3>
+    <p class="bf-program-card__description">{description}</p>
+
+    <div class="bf-program-card__meta">
+      <span class="bf-program-card__meta-item">
+        👥 {ageGroup}
+      </span>
+      <span class="bf-program-card__meta-item">
+        ⏱️ {duration}
+      </span>
+    </div>
+  </div>
+
+  <footer class="bf-program-card__footer">
+    <div class="bf-program-card__price">{price}</div>
+    <a href={`/programs/${slug}`} class="bf-cta">Mehr Infos</a>
+  </footer>
+</article>
+
+<style>
+  .bf-program-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow var(--duration-normal), transform var(--duration-normal);
+    height: 100%;
+  }
+
+  .bf-program-card:hover {
+    box-shadow: 0 8px 24px rgba(26, 23, 20, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .bf-program-card__image-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .bf-program-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .bf-program-card__content {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    flex-grow: 1;
+  }
+
+  .bf-program-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: var(--lh-snug);
+    letter-spacing: -0.02em;
+    margin: 0;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .bf-program-card__description {
+    font-size: var(--text-sm);
+    line-height: var(--lh-generous);
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .bf-program-card__meta {
+    display: flex;
+    gap: var(--space-lg);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    margin-top: var(--space-sm);
+  }
+
+  .bf-program-card__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .bf-program-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-xl);
+    border-top: 1px solid var(--rule);
+    gap: var(--space-md);
+  }
+
+  .bf-program-card__price {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  @media (max-width: 768px) {
+    .bf-program-card__image-wrapper {
+      height: 180px;
+    }
+
+    .bf-program-card__footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-md);
+    }
+
+    .bf-program-card__content {
+      padding: var(--space-lg);
+    }
+
+    .bf-program-card__footer {
+      padding: var(--space-lg);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bf-program-card__content {
+      padding: var(--space-md);
+    }
+
+    .bf-program-card__footer {
+      padding: var(--space-md);
+    }
+
+    .bf-program-card__title {
+      font-size: var(--text-xl);
+    }
+  }
+</style>
