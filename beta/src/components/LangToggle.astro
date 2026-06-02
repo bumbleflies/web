@@ -7,67 +7,63 @@ interface Props {
 const { lang, id = 'lang-toggle' } = Astro.props;
 ---
 
-<div class="bf-lang" role="group" aria-label="Language">
-  <button
-    class={`lang-btn ${lang === 'DE' ? 'is-active' : ''}`}
-    data-lang="DE"
-    aria-pressed={lang === 'DE'}
-  >
-    DE
-  </button>
-  <button
-    class={`lang-btn ${lang === 'EN' ? 'is-active' : ''}`}
-    data-lang="EN"
-    aria-pressed={lang === 'EN'}
-  >
-    EN
-  </button>
-</div>
+<button
+  class="bf-lang"
+  aria-label={`Switch to ${lang === 'DE' ? 'English' : 'Deutsch'}`}
+  title={`Switch to ${lang === 'DE' ? 'English' : 'Deutsch'}`}
+>
+  <span class="lang-display">{lang === 'DE' ? 'EN' : 'DE'}</span>
+</button>
 
 <script>
-  const buttons = document.querySelectorAll('.lang-btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.getAttribute('data-lang');
+  const toggle = document.querySelector('.bf-lang');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
       const path = window.location.pathname;
+      const isEnglish = path.startsWith('/en');
 
-      if (lang === 'EN') {
-        window.location.href = path === '/' ? '/en/' : '/en' + path;
-      } else {
+      if (isEnglish) {
+        // Switch to German
         window.location.href = path.replace(/^\/en/, '') || '/';
+      } else {
+        // Switch to English
+        window.location.href = path === '/' ? '/en/' : '/en' + path;
       }
     });
-  });
+  }
 </script>
 
 <style>
   .bf-lang {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    background: transparent;
     border: 1px solid var(--rule);
     border-radius: var(--radius-full);
-    padding: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
     font-size: var(--text-xs);
     font-family: var(--font-mono);
     text-transform: uppercase;
     letter-spacing: var(--ls-wide);
-  }
-
-  .lang-btn {
-    background: transparent;
-    border: 0;
     color: var(--ink-soft);
-    padding: var(--space-xs) 9px;
-    border-radius: var(--radius-full);
-    font-size: var(--text-xs);
-    font-family: var(--font-mono);
-    text-transform: uppercase;
     cursor: pointer;
     transition: all var(--duration-fast);
+    min-width: 44px;
+    min-height: 44px;
+    border: none;
   }
 
-  .lang-btn.is-active {
-    background: var(--ink);
+  .bf-lang:hover {
+    background: var(--ink-soft);
     color: var(--paper);
+  }
+
+  .bf-lang:active {
+    opacity: 0.8;
+  }
+
+  .lang-display {
+    display: block;
   }
 </style>
