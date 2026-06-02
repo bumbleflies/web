@@ -80,7 +80,7 @@ cd _purge
 ### Directory Layout
 
 ```
-bumbleflies.github.io/
+web/
 ├── _pages/                 # Markdown pages (in _pages/, NOT root)
 ├── _layouts/               # Page templates (default, standard, compose, google-form, redirect)
 ├── _includes/              # Reusable template components (header, footer, team.html, etc.)

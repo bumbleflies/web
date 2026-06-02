@@ -122,7 +122,7 @@ e16d38b - fix: resolve content collection loading issue
 
 ## Technical Details
 
-**Repository:** https://github.com/bumbleflies/bumbleflies.github.io  
+**Repository:** https://github.com/bumbleflies/web  
 **Branch:** `feature/bumbleflies-redesign`  
 **Build Command:** `npm run build`  
 **Dev Server:** `npm run dev` (localhost:4321)  

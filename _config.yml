@@ -15,7 +15,7 @@ exclude_from_localizations: ["assets", "favicon.ico"]
 # Build settings
 theme: jekyll-agency
 
-repository: bumbleflies/bumbleflies.github.io
+repository: bumbleflies/web
 
 include: ['_pages']
 
