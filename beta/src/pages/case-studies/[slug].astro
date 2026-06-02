@@ -21,54 +21,98 @@ const { Content } = await render(study);
   <Nav slot="nav">
     <LangToggle slot="lang" />
   </Nav>
-  <article class="a-case-study-detail">
-    <div class="a-case-study-detail__inner">
-      <a href="/case-studies" class="a-case-study-detail__back">← Alle Fallstudien</a>
+  <article class="cs-detail">
+    <main class="cs-detail__page">
+      <a href="/case-studies" class="cs-detail__breadcrumb">← Alle Fallstudien</a>
 
-      <header class="a-case-study-detail__header">
-        <h1 class="a-case-study-detail__title">{study.data.title}</h1>
-        <p class="a-case-study-detail__company">{study.data.company}</p>
-        <span class="a-case-study-detail__service">{study.data.service}</span>
-        {study.data.duration && (
-          <p class="a-case-study-detail__duration">{study.data.duration}</p>
-        )}
+      <header class="cs-detail__header">
+        <div class="cs-detail__header-left">
+          <h1 class="cs-detail__title">{study.data.title}</h1>
+        </div>
+        <div class="cs-detail__header-right">
+          <span class="cs-detail__badge">{study.data.service}</span>
+          {study.data.duration && (
+            <p class="cs-detail__duration">{study.data.duration}</p>
+          )}
+        </div>
       </header>
 
-      <div class="a-case-study-detail__content">
+      {(study.data.whyItWorked || study.data.realOutcome) && (
+        <section class="cs-detail__intro">
+          <div class="cs-detail__intro-summary">
+            {study.data.whyItWorked && (
+              <p class="cs-detail__intro-block">
+                <span class="cs-detail__label">Why It Worked</span>
+                <Fragment set:html={study.data.whyItWorked} />
+              </p>
+            )}
+            {study.data.realOutcome && (
+              <p class="cs-detail__intro-block">
+                <span class="cs-detail__label">The Real Outcome</span>
+                <Fragment set:html={study.data.realOutcome} />
+              </p>
+            )}
+          </div>
+        </section>
+      )}
+
+      <div class="cs-detail__content">
         <Content />
       </div>
 
-      <aside class="a-case-study-detail__quote">
-        <blockquote>"{study.data.quote}"</blockquote>
-      </aside>
+      {(study.data.whatWeDid || study.data.results) && (
+        <div class="cs-detail__two-col">
+          {study.data.whatWeDid && (
+            <section class="cs-detail__col-section">
+              <h2 class="cs-detail__section-head">What We Did</h2>
+              <Fragment set:html={study.data.whatWeDid} />
+            </section>
+          )}
+          {study.data.results && (
+            <section class="cs-detail__col-section">
+              <h2 class="cs-detail__section-head">Results</h2>
+              <Fragment set:html={study.data.results} />
+            </section>
+          )}
+        </div>
+      )}
 
-    </div>
-      <div class="a-case-study-detail__cta">
-        <a href="mailto:info@bumbleflies.de" class="bf-cta">Erstes Gespräch buchen</a>
+      {study.data.quote && (
+        <aside class="cs-detail__quote">
+          <blockquote>{study.data.quote}</blockquote>
+        </aside>
+      )}
+
+      <div class="cs-detail__cta">
+        <a href="mailto:info@bumbleflies.de" class="cs-detail__button">Erstes Gespräch buchen</a>
       </div>
-    </article>
+    </main>
+  </article>
   <Footer slot="footer" />
 </Layout>
 
 <style>
-  .a-case-study-detail {
-    padding: var(--space-4xl) 0;
+  .cs-detail {
+    padding: 0;
   }
 
-  .a-case-study-detail__inner {
+  .cs-detail__page {
     max-width: 1240px;
     margin: 0 auto;
     padding: 0 var(--space-3xl);
   }
 
   @media (max-width: 768px) {
-    .a-case-study-detail__inner {
+    .cs-detail__page {
       padding: 0 var(--space-lg);
     }
   }
 
-  .a-case-study-detail__back {
-    display: inline-block;
+  .cs-detail__breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 30px;
     margin-bottom: var(--space-xl);
     color: var(--accent);
     text-decoration: none;
@@ -79,88 +123,138 @@ const { Content } = await render(study);
     transition: opacity var(--duration-fast) var(--easing-default);
   }
 
-  .a-case-study-detail__back:hover {
+  .cs-detail__breadcrumb:hover {
     opacity: 0.7;
   }
 
-  .a-case-study-detail__header {
+  /* Header: title on left, badge + dates on right */
+  .cs-detail__header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 64px;
+    align-items: start;
     margin-bottom: var(--space-3xl);
     padding-bottom: var(--space-xl);
     border-bottom: 1px solid var(--rule);
   }
 
-  .a-case-study-detail__title {
+  .cs-detail__title {
     font-family: var(--font-display);
     font-size: var(--text-6xl);
     line-height: var(--lh-tight);
-    margin: 0 0 var(--space-md) 0;
+    margin: 0;
     color: var(--ink);
   }
 
-  .a-case-study-detail__company {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: var(--text-2xl);
-    color: var(--ink-soft);
-    margin: 0 0 var(--space-sm) 0;
+  .cs-detail__header-right {
+    padding-top: 16px;
+    text-align: right;
+    white-space: nowrap;
   }
 
-  .a-case-study-detail__service {
+  /* Badge and duration */
+  .cs-detail__badge {
     display: inline-block;
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     text-transform: uppercase;
-    letter-spacing: var(--ls-widest);
+    letter-spacing: var(--ls-wider);
     padding: var(--space-xs) var(--space-sm);
     background: var(--accent);
     color: white;
     margin-bottom: var(--space-md);
+    white-space: nowrap;
   }
 
-  .a-case-study-detail__duration {
+  .cs-detail__duration {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--ink-soft);
     margin: 0;
   }
 
-  .a-case-study-detail__content {
-    font-family: var(--font-sans);
-    font-size: var(--text-lg);
-    line-height: var(--lh-body);
+  /* Intro/Summary Section */
+  .cs-detail__intro {
     margin-bottom: var(--space-3xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cs-detail__intro-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl) var(--space-3xl);
+  }
+
+  .cs-detail__intro-block {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  .cs-detail__intro-block strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .cs-detail__intro-block em {
+    font-style: italic;
     color: var(--ink);
   }
 
-  .a-case-study-detail__content :global(h2) {
+  .cs-detail__label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 7px;
+  }
+
+  /* Content */
+  .cs-detail__content {
+    margin-bottom: var(--space-3xl);
+    margin-top: var(--space-3xl);
+  }
+
+  .cs-detail__content :global(h2) {
     font-family: var(--font-display);
     font-size: var(--text-3xl);
     line-height: var(--lh-snug);
-    margin-top: var(--space-2xl);
-    margin-bottom: var(--space-md);
+    margin: 0 0 var(--space-md);
     color: var(--ink);
   }
 
-  .a-case-study-detail__content :global(p) {
-    margin-bottom: var(--space-lg);
+  .cs-detail__content :global(h2:first-of-type) {
+    margin-top: 0;
   }
 
-  .a-case-study-detail__content :global(strong) {
+  .cs-detail__content :global(p) {
+    margin-bottom: var(--space-lg);
+    color: var(--ink);
+  }
+
+  .cs-detail__content :global(strong) {
     color: var(--ink);
     font-weight: 600;
   }
 
-  .a-case-study-detail__content :global(ul),
-  .a-case-study-detail__content :global(ol) {
+  .cs-detail__content :global(em) {
+    font-style: italic;
+  }
+
+  .cs-detail__content :global(ul),
+  .cs-detail__content :global(ol) {
     margin: var(--space-lg) 0;
     padding-left: var(--space-xl);
   }
 
-  .a-case-study-detail__content :global(li) {
+  .cs-detail__content :global(li) {
     margin-bottom: var(--space-sm);
   }
 
-  .a-case-study-detail__quote {
+  /* Quote */
+  .cs-detail__quote {
     padding: var(--space-2xl);
     background: var(--paper);
     border-left: 4px solid var(--accent);
@@ -172,35 +266,103 @@ const { Content } = await render(study);
     color: var(--ink);
   }
 
-  .a-case-study-detail__quote blockquote {
+  .cs-detail__quote blockquote {
     margin: 0;
   }
 
-  .a-case-study-detail__cta {
+  /* CTA */
+  .cs-detail__cta {
     text-align: center;
     margin: var(--space-xl) 0;
   }
 
-  @media (max-width: 768px) {
-    .a-case-study-detail {
-      padding: var(--space-lg) 0;
+  .cs-detail__button {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wider);
+    color: var(--bg);
+    background: var(--ink);
+    text-decoration: none;
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-full);
+    transition: transform var(--duration-fast) var(--easing-default), background var(--duration-fast) var(--easing-default);
+  }
+
+  .cs-detail__button:hover {
+    transform: translateY(-2px);
+    background: var(--accent);
+  }
+
+  /* Two-column section: What We Did | Results */
+  .cs-detail__two-col {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: var(--space-3xl) var(--space-4xl);
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-3xl);
+  }
+
+  .cs-detail__col-section {
+    margin: 0;
+  }
+
+  .cs-detail__section-head {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    line-height: var(--lh-snug);
+    margin: 0 0 var(--space-md);
+    color: var(--ink);
+  }
+
+  .cs-detail__col-section :global(p) {
+    margin-bottom: var(--space-lg);
+    color: var(--ink);
+  }
+
+  .cs-detail__col-section :global(strong) {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .cs-detail__col-section :global(em) {
+    font-style: italic;
+  }
+
+  .cs-detail__col-section :global(ul) {
+    margin: var(--space-lg) 0;
+    padding-left: var(--space-xl);
+  }
+
+  .cs-detail__col-section :global(li) {
+    margin-bottom: var(--space-sm);
+    color: var(--ink);
+  }
+
+  .cs-detail__col-section :global(.phase-label) {
+    margin: var(--space-lg) 0 var(--space-md);
+  }
+
+  /* Responsive */
+  @media (max-width: 880px) {
+    .cs-detail__header {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
     }
 
-    .a-case-study-detail__title {
-      font-size: 1.875rem;
+    .cs-detail__header-right {
+      text-align: left;
+      padding-top: 0;
     }
 
-    .a-case-study-detail__company {
-      font-size: var(--text-xl);
+    .cs-detail__intro-summary {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
     }
 
-    .a-case-study-detail__content {
-      font-size: var(--text-base);
-    }
-
-    .a-case-study-detail__quote {
-      font-size: 1rem;
-      padding: var(--space-md);
+    .cs-detail__two-col {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
     }
   }
 </style>

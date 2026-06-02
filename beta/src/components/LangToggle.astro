@@ -30,11 +30,23 @@ const { lang, id = 'lang-toggle' } = Astro.props;
     btn.addEventListener('click', () => {
       const lang = btn.getAttribute('data-lang');
       const path = window.location.pathname;
+      const isEnglish = path.startsWith('/en');
+      const isActive = (lang === 'EN' && isEnglish) || (lang === 'DE' && !isEnglish);
 
-      if (lang === 'EN') {
-        window.location.href = path === '/' ? '/en/' : '/en' + path;
+      if (isActive) {
+        // Active button: toggle to other language
+        if (isEnglish) {
+          window.location.href = path.replace(/^\/en/, '') || '/';
+        } else {
+          window.location.href = path === '/' ? '/en/' : '/en' + path;
+        }
       } else {
-        window.location.href = path.replace(/^\/en/, '') || '/';
+        // Inactive button: navigate to that language
+        if (lang === 'EN') {
+          window.location.href = path === '/' ? '/en/' : '/en' + path;
+        } else {
+          window.location.href = path.replace(/^\/en/, '') || '/';
+        }
       }
     });
   });
