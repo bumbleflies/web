@@ -1,6 +1,6 @@
-# This workflow builds the Astro-based beta site as a Docker image.
-# It only runs on the master branch and pushes the 'beta' tag to the registry.
-name: Build Astro Beta Image
+# This workflow builds the Astro site as a Docker image for production.
+# It runs on the master branch and pushes the 'www' tag to the registry.
+name: Build Astro Production Image
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - master
     paths:
       - beta/**
-      - .github/workflows/build-beta.yml
+      - .github/workflows/build-www.yml
   workflow_dispatch:
 
 env:
@@ -41,7 +41,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=beta
+            type=raw,value=www
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v7
