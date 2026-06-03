@@ -1,134 +1,178 @@
-# Bumbleflies homepage
-made possible with
-- [jekyll](https://jekyllrb.com/)
-- [agency-theme](https://github.com/raviriley/agency-jekyll-theme)
+# Bumbleflies Homepage
 
-## Build
-### Install bundles
+Modern static site built with:
+- [Astro 6.x](https://astro.build/)
+- [React 19](https://react.dev/) components
+- [TypeScript](https://www.typescriptlang.org/)
+
+**Note:** The legacy Jekyll site is archived at [archive.bumbleflies.de](https://archive.bumbleflies.de).
+
+## Quick Start
+
+### Install dependencies
+
 ```bash
-bundle install
+cd beta
+npm install
 ```
 
-#### PermissionError
+### Development server
 
-When using bundler 2.4.x, the silent permission upgrade feature got removed and bundler can't write to its cache anymore: https://github.com/rubygems/rubygems/issues/6272 
-```text
-Retrying download gem from https://rubygems.org/ due to error (4/4): Bundler::PermissionError There was an error while trying to write to `/var/lib/gems/3.1.0/cache/ffi-1.15.5.gem`. It is likely that you need to grant write permissions for that path.
-````
-to fix this, create a user writable directory like so
 ```bash
-mkdir ~/.gems_cache
-bundle config path ~/.gems_cache
+npm run dev
 ```
 
-### Build site
+Runs at `http://localhost:3000` with hot module reloading.
+
+### Build for production
+
 ```bash
-bundle exec jekyll build
-```
-### Serve locally
-```bash
-bundle exec jekyll serve
+npm run build
 ```
 
-### Purge css and font
-```bash
-cd _purge
-./purge.sh
-```
-new font awesome tags must be added to [purge-fa.py](_purge/purge-fa.py)
-## Conventions
-### Location of markdown files
-Pages are located in [_pages](_pages) directory
+Outputs static site to `beta/dist/`.
 
-### Template construction
-Every page needs to have at least
+### Preview production build locally
+
+```bash
+npm run preview
 ```
+
+## Project Structure
+
+```
+beta/
+├── src/
+│   ├── components/          # Reusable Astro & React components
+│   │   ├── Layout.astro    # Main page layout wrapper
+│   │   ├── Nav.astro       # Navigation bar
+│   │   ├── Footer.astro    # Footer
+│   │   ├── Hero.astro      # Hero sections
+│   │   ├── ServicePillar.astro
+│   │   ├── TeamCard.astro
+│   │   ├── CaseStudyCard.astro
+│   │   └── ...             # Other feature components
+│   ├── pages/              # Route-based pages
+│   │   ├── index.astro     # Homepage
+│   │   ├── [slug].astro    # Dynamic routes
+│   │   └── ...
+│   ├── content/            # Content collections (structured data)
+│   │   ├── case-studies/   # Case study content & metadata
+│   │   └── config.ts       # Content collection schemas
+│   ├── styles/             # Global CSS and component styles
+│   └── layouts/            # Reusable page layouts
+├── public/                 # Static assets (images, fonts, etc.)
+├── astro.config.mjs        # Astro configuration
+├── tsconfig.json           # TypeScript configuration
+└── package.json            # Dependencies & scripts
+```
+
+## Development Workflow
+
+### Creating a New Page
+
+1. Create a file in `src/pages/` (e.g., `src/pages/about.astro`)
+2. Use the `Layout` component to wrap content:
+   ```astro
+   ---
+   import Layout from '../components/Layout.astro';
+   ---
+
+   <Layout title="About Us">
+     <h1>About Bumbleflies</h1>
+     <!-- Page content -->
+   </Layout>
+   ```
+
+### Creating Components
+
+Components go in `src/components/`. They can be:
+- **Astro components** (`.astro`) — Server-side rendered, zero JavaScript by default
+- **React components** (`.tsx`) — Interactive client-side components
+
+```astro
+// src/components/MyComponent.astro
 ---
-layout: <layout>
-namespace: <name>
-permalink: <url-name>
-permalink_en: <url-name>
-nav_highlight: <navigation title to highlight (referencing i18n-key)>
-title: <page title (referencing i18n-key)>
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
 ---
+
+<div class="component">
+  <h2>{title}</h2>
+  <slot />
+</div>
+
+<style>
+  .component {
+    padding: 1rem;
+  }
+</style>
 ```
-- `layout` is the [template](_layouts) to be used to render the page
-- `namespace` is used to resolve translated url when used with `{% tl <namespace> %}`
-- `permalink` and `permalink_en` denote the url-names of the site in different languages
-- `nav_highlight` references the same i18n-key which is used in [navigation](_data/navigation.yml) in order to highlight when the page is selected
-- `title` is the i18n-key to resolve the title
 
-### i18n
-The page uses i18n in languages defined in [_config.yml](_config.yml) and resolves key by looking them up in [_i18n directory](_i18n).
-#### Translate keys
-Key are resolved using
-```markdown
-{% t key.to.look.up %}
-```
-usually, keys aren't resolved directly from i18n files, but from page variables. 
+### Content Collections
 
-##### Example
-Given you have a markdown file like this
+Case studies and other content are managed as **Astro Content Collections** for type-safe structured data.
 
-`index.md`
-```markdown
+**Case Studies:**
+- Location: `src/content/case-studies/`
+- Schema defined in: `src/content/config.ts`
+- Access in components via `getCollection()`:
+
+```astro
 ---
-layout: default
-title: pages.home.title
-----
+import { getCollection } from 'astro:content';
+
+const caseStudies = await getCollection('case-studies');
+---
+
+{caseStudies.map(study => (
+  <CaseStudyCard study={study} />
+))}
 ```
 
-and your translation file contains a structure like this
+## Testing
 
-`en.yml`
-```markdown
-pages:
-  home:
-    title: My Home
+Run tests with:
+
+```bash
+npm run test
 ```
 
-in order to translate the title for example in the title, you have to use the translation function like so
+Tests use [Vitest](https://vitest.dev/) with React Testing Library for component testing.
 
-`_layouts/default.html`
-```html
-<title>{% page.title %}</title>
-```
-In such a way, the `default`template can be used for all pages, which specify a title i18n-key
+## Styling
 
-#### Chaining
-This comes with some limitations: this statement cannot be used in order to chain variables, linke for example
-```markdown
-{% t key.to.look.up | markdownify %}
-```
-This will produce an error like
+- Global styles: `src/styles/`
+- Component-scoped styles: Use `<style>` blocks in `.astro` and `.tsx` files
+- Responsive design: Mobile-first approach with Astro's built-in viewport control
 
-    Missing i18n key: key.to.look.up | markdownify
-    Using translation '' from default language: de
-    Liquid Exception: no implicit conversion of nil into String in /_layouts/<layout>.html
-In order to fix this, you need to use the `capture` function
-```markdown
-{% capture translated_content %}{% t key.to.look.up %}{% endcapture %}
-{{ translated_content | markdownify }}
-```
-### Navigation
-The navigation is constructed from [navigation template file](_data/navigation.yml), also containing i18n lookup keys.
+## Deployment
 
-## Next Event
+The site is deployed to production via GitHub Actions when changes are pushed to `main`.
 
-The information text for the next event can be found in the [i18n folder](_i18n) in the `next.md` file
+See `.github/workflows/` for deployment configuration.
 
-## Background image
-Background images are tricky: they are introduced via CSS, which means they are accessible by simply putting a css-class attribute to the item. But for generating the code, it's a mess.
-The process of adding a new image to a page is as follows:
-1. Add a new yaml-entry for the image to [the yaml style file](_data/style.yml)
-   - `accceu-image: "/assets/img/accceu-header.webp"`
-2. Transform this yaml variable into a scss variable in the [bumble.scss preprocessor](assets/css/bumble.scss)
-   - `$accceu-image: "{{ site.data.style.accceu-image }}";`
-3. Create a new style definition in [the header images scss](_sass/_header_images.scss)
-   - `  &.accceu-image {
-    background-image: url("#{$accceu-image}");
-  }`
-4. (optional) Add a preload entry to [the head html](_includes/head.html)
-   - `<link rel="preload" as="image" href="{{ site.data.style.accceu-image }}" type="image/webp">`
-5. Now you're ready to use the image class in your templates
-   - `header: image-class: accceu-image`
+## Performance
+
+- **Zero JavaScript by default** — Astro components are server-rendered
+- **Partial hydration** — Only interactive React components ship JavaScript
+- **Image optimization** — Use Astro's `<Image>` component for automatic optimization
+- **Static generation** — All pages pre-rendered for instant load times
+
+## Useful Commands
+
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Start dev server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run test` | Run tests |
+
+## Learn More
+
+- [Astro Documentation](https://docs.astro.build/)
+- [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/)
+- [Astro Islands Architecture](https://docs.astro.build/en/concepts/islands/)
