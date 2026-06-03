@@ -29,6 +29,18 @@
     "image": {
       "type": "string"
     },
+    "whyItWorked": {
+      "type": "string"
+    },
+    "realOutcome": {
+      "type": "string"
+    },
+    "whatWeDid": {
+      "type": "string"
+    },
+    "results": {
+      "type": "string"
+    },
     "published": {
       "default": true,
       "type": "boolean"
