@@ -227,14 +227,20 @@ jobs:
           git push origin --tags || true
 
       - name: 📤 Trigger webhook deployment
-        if: secrets.WEBSITE_HOOK_URL != null
         run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" -X POST ${{ secrets.WEBSITE_HOOK_URL }}/${{ secrets.WEBSITE_HOOK_SECRET }})
-          if [ "$response" -ne 200 ]; then
-            echo "⚠️  Deployment webhook returned $response (may not be critical)"
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "ℹ️  No webhook configured, skipping webhook trigger"
           else
-            echo "✅ Deployment webhook triggered successfully"
+            response=$(curl -s -o /dev/null -w "%{http_code}" -X POST $WEBHOOK_URL/$WEBHOOK_SECRET)
+            if [ "$response" -ne 200 ]; then
+              echo "⚠️  Deployment webhook returned $response (may not be critical)"
+            else
+              echo "✅ Deployment webhook triggered successfully"
+            fi
           fi
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBSITE_HOOK_URL }}
+          WEBHOOK_SECRET: ${{ secrets.WEBSITE_HOOK_SECRET }}
 
       - name: ✅ Deployment complete
         run: |
