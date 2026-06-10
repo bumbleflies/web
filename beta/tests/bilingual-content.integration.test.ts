@@ -26,6 +26,8 @@ function extractSpotCheckContent(filePath: string, lang: 'DE' | 'EN'): string | 
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const lines = fileContent.split('\n');
 
+  let longestString = '';
+
   // Find the content object - DE files have "DE: {" inside Record, EN files start with "const content:"
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -34,7 +36,7 @@ function extractSpotCheckContent(filePath: string, lang: 'DE' | 'EN'): string | 
     const isENMarker = lang === 'EN' && line.includes('const content:') && !line.includes('Record');
 
     if (isDEMarker || isENMarker) {
-      // Look for first substantial string in this block
+      // Extract all strings in this language block and find the longest
       for (let j = i + 1; j < Math.min(i + 50, lines.length); j++) {
         const contentLine = lines[j];
 
@@ -43,19 +45,33 @@ function extractSpotCheckContent(filePath: string, lang: 'DE' | 'EN'): string | 
           break;
         }
 
-        // Extract string values - grab first meaningful one (>15 chars)
+        // Extract all string values
         const match = contentLine.match(/['""]([^'"]+)['"]/);
         if (match) {
           const extractedText = match[1].trim();
-          if (extractedText.length > 15) {
-            return extractedText;
+          // Keep track of the longest non-generic string
+          if (extractedText.length > longestString.length && extractedText.length > 15) {
+            longestString = extractedText;
           }
         }
       }
+      break;
     }
   }
 
-  return null;
+  // Normalize for HTML matching
+  // Remove trailing ellipsis which might not render exactly the same
+  longestString = longestString.replace(/\s*\.\.\.\s*$/g, '');
+
+  // If string contains '&', find a good split point before it
+  // since '&' becomes '&amp;' in HTML and breaks substring matching
+  const ampIndex = longestString.indexOf('&');
+  if (ampIndex > 20) {
+    // Use content up to the ampersand (it will be more stable)
+    longestString = longestString.substring(0, ampIndex).trim();
+  }
+
+  return longestString || null;
 }
 
 // Discover all page files and create test pairs
