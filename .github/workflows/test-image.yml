@@ -1,0 +1,80 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Test Docker Image
+
+on:
+  workflow_call:
+
+env:
+  REGISTRY: docker.io
+  IMAGE_NAME: bumblecode/web
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Pull image
+        run: docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:www
+
+      - name: Test health
+        run: |
+          echo "Starting container..."
+          docker run --rm --detach --name test_container \
+            -p 8080:80 \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:www
+
+          echo "Checking health status..."
+          for i in {1..10}; do
+            status=$(docker inspect --format='{{.State.Health.Status}}' test_container 2>/dev/null || echo "none")
+            echo "Attempt $i: $status"
+            if [ "$status" = "healthy" ]; then
+              echo "✅ Container is healthy"
+              break
+            fi
+            [ $i -lt 10 ] && sleep 6
+          done
+
+          final_status=$(docker inspect --format='{{.State.Health.Status}}' test_container 2>/dev/null || echo "none")
+          if [ "$final_status" != "healthy" ]; then
+            echo "❌ Container unhealthy"
+            docker logs test_container || true
+            docker stop test_container || true
+            exit 1
+          fi
+
+      - name: Test endpoints
+        run: |
+          echo "Testing endpoints..."
+
+          for page in "" about services why-we; do
+            url="http://localhost:8080${page:+/$page}"
+            if curl -sf "$url" > /dev/null; then
+              echo "✅ $url"
+            else
+              echo "❌ $url"
+              exit 1
+            fi
+          done
+
+          for page in about services why-we; do
+            if curl -sf "http://localhost:8080/en/$page" > /dev/null; then
+              echo "✅ /en/$page"
+            else
+              echo "❌ /en/$page"
+              exit 1
+            fi
+          done
+
+      - name: Cleanup
+        if: always()
+        run: docker stop test_container 2>/dev/null || true

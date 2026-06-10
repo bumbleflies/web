@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'beta/**'
+      - '.github/workflows/**'
+  pull_request:
+    branches:
+      - '*'
+    paths:
+      - 'beta/**'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+
+  build:
+    name: Build
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+
+  test-image:
+    name: Test Image
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    uses: ./.github/workflows/test-image.yml
