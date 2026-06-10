@@ -234,7 +234,7 @@ jobs:
           git push origin --tags || true
 
       - name: 📤 Trigger webhook deployment
-        if: secrets.WEBSITE_HOOK_URL != ''
+        if: secrets.WEBSITE_HOOK_URL != null
         run: |
           response=$(curl -s -o /dev/null -w "%{http_code}" -X POST ${{ secrets.WEBSITE_HOOK_URL }}/${{ secrets.WEBSITE_HOOK_SECRET }})
           if [ "$response" -ne 200 ]; then
