@@ -50,13 +50,8 @@ const contentData = {
             <h2 class="a-how-we-work-column__title" data-de={deContent.problemTitle} data-en={enContent.problemTitle}>
               {deContent.problemTitle}
             </h2>
-            <ul class="a-how-we-work-bullets" data-lang="DE" data-bullets={JSON.stringify({DE: deContent.problemBullets, EN: enContent.problemBullets})}>
+            <ul class="a-how-we-work-bullets" data-bullets={JSON.stringify({DE: deContent.problemBullets, EN: enContent.problemBullets})}>
               {deContent.problemBullets.map((bullet) => (
-                <li>{bullet}</li>
-              ))}
-            </ul>
-            <ul class="a-how-we-work-bullets hidden" data-lang="EN" data-bullets={JSON.stringify({DE: deContent.problemBullets, EN: enContent.problemBullets})}>
-              {enContent.problemBullets.map((bullet) => (
                 <li>{bullet}</li>
               ))}
             </ul>
@@ -66,13 +61,8 @@ const contentData = {
             <h2 class="a-how-we-work-column__title" data-de={deContent.solutionTitle} data-en={enContent.solutionTitle}>
               {deContent.solutionTitle}
             </h2>
-            <ul class="a-how-we-work-bullets" data-lang="DE" data-bullets={JSON.stringify({DE: deContent.solutionBullets, EN: enContent.solutionBullets})}>
+            <ul class="a-how-we-work-bullets" data-bullets={JSON.stringify({DE: deContent.solutionBullets, EN: enContent.solutionBullets})}>
               {deContent.solutionBullets.map((bullet) => (
-                <li>{bullet}</li>
-              ))}
-            </ul>
-            <ul class="a-how-we-work-bullets hidden" data-lang="EN" data-bullets={JSON.stringify({DE: deContent.solutionBullets, EN: enContent.solutionBullets})}>
-              {enContent.solutionBullets.map((bullet) => (
                 <li>{bullet}</li>
               ))}
             </ul>
@@ -163,10 +153,6 @@ const contentData = {
     left: 0;
     color: var(--accent);
     font-weight: 600;
-  }
-
-  .hidden {
-    display: none;
   }
 
   @media (max-width: 768px) {
