@@ -28,13 +28,11 @@ jobs:
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     uses: ./.github/workflows/build.yml
-    secrets:
-      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+    secrets: inherit
 
   test-image:
     name: Test Image
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     uses: ./.github/workflows/test-image.yml
-    secrets:
-      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+    secrets: inherit
