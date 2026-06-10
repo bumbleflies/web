@@ -8,7 +8,7 @@ on:
       - master
     paths:
       - 'beta/**'
-      - '.github/workflows/**'
+      - '.github/workflows/ci.yml'
   pull_request:
     branches:
       - '*'
@@ -28,11 +28,13 @@ jobs:
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     uses: ./.github/workflows/build.yml
-    secrets: inherit
+    secrets:
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
   test-image:
     name: Test Image
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     uses: ./.github/workflows/test-image.yml
-    secrets: inherit
+    secrets:
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
