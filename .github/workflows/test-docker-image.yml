@@ -3,27 +3,19 @@
 name: 🐳🧪 Test Docker Image
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - "Build Astro Production Image"
+    types:
+      - completed
     branches:
       - master
-    paths:
-      - 'beta/Dockerfile'
-      - 'beta/nginx.conf'
-      - 'beta/src/**'
-      - 'beta/package*.json'
-      - '.github/workflows/test-docker-image.yml'
-  pull_request:
-    paths:
-      - 'beta/Dockerfile'
-      - 'beta/nginx.conf'
-      - 'beta/src/**'
-      - 'beta/package*.json'
 
 permissions:
   contents: read
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout code
