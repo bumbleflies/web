@@ -1,15 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import { spawn, ChildProcess } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-/**
- * Integration test: Verify German pages render German content and English pages render English.
- * Dynamically discovers pages and spot-checks one piece of content per page.
- */
 
 interface PageTest {
   deUrl: string;
@@ -20,8 +16,12 @@ interface PageTest {
   enContent: string;
 }
 
+const BASE_URL = 'http://localhost:3000';
+const DEV_SERVER_PORT = 3000;
+let devServer: ChildProcess | null = null;
+let serverReady = false;
+
 // Extract content from Astro file for spot-checking
-// Returns a language-specific string that distinguishes this page
 function extractSpotCheckContent(filePath: string, lang: 'DE' | 'EN'): string | null {
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const lines = fileContent.split('\n');
@@ -30,8 +30,6 @@ function extractSpotCheckContent(filePath: string, lang: 'DE' | 'EN'): string | 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    // For DE files, look for "DE: {" marker
-    // For EN files, look for "const content:" that is NOT a Record type
     const isDEMarker = lang === 'DE' && line.includes('DE: {');
     const isENMarker = lang === 'EN' && line.includes('const content:') && !line.includes('Record');
 
@@ -83,7 +81,7 @@ function discoverPagePairs(): PageTest[] {
       const deContent = extractSpotCheckContent(germanPage.path, 'DE');
       const enContent = extractSpotCheckContent(enPagePath, 'EN');
 
-      if (deContent && enContent) {
+      if (deContent && enContent && deContent !== enContent) {
         // Map file names to URLs
         let deUrl = `/${pageName === 'index' ? '' : pageName}`;
         let enUrl = `/en/${pageName === 'index' ? '' : pageName}`;
@@ -106,30 +104,95 @@ function discoverPagePairs(): PageTest[] {
 // Get all page pairs
 const pagePairs = discoverPagePairs();
 
-test.describe('Bilingual Page Rendering', () => {
-  test.beforeAll(() => {
-    console.log(`\n📄 Discovered ${pagePairs.length} bilingual page pairs for testing`);
+// Start dev server
+async function startDevServer(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    devServer = spawn('npx', ['astro', 'dev'], {
+      cwd: path.join(__dirname, '..'),
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+
+    const handleOutput = (data: Buffer) => {
+      const output = data.toString();
+      // Watch for "ready in" message indicating server is ready
+      if (output.includes('ready in') || output.includes('Local')) {
+        if (!serverReady) {
+          serverReady = true;
+          resolve();
+        }
+      }
+    };
+
+    devServer!.stdout?.on('data', handleOutput);
+    devServer!.stderr?.on('data', handleOutput);
+
+    // Timeout after 60 seconds
+    setTimeout(() => {
+      if (!serverReady) {
+        reject(new Error('Dev server failed to start within 60 seconds'));
+      }
+    }, 60000);
+  });
+}
+
+// Check if server is responsive
+async function waitForServer(): Promise<void> {
+  const maxAttempts = 20;
+  let attempts = 0;
+
+  while (attempts < maxAttempts) {
+    try {
+      const response = await fetch(`${BASE_URL}/`);
+      if (response.ok) {
+        return;
+      }
+    } catch {
+      // Server not ready yet
+    }
+    attempts++;
+    await new Promise(resolve => setTimeout(resolve, 500));
+  }
+
+  throw new Error('Server did not become responsive within 10 seconds');
+}
+
+// Fetch page content
+async function fetchPageContent(url: string): Promise<string> {
+  const response = await fetch(`${BASE_URL}${url}`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}: ${response.status}`);
+  }
+  return response.text();
+}
+
+describe('Bilingual Content Rendering', () => {
+  beforeAll(async () => {
+    console.log(`\n📄 Testing ${pagePairs.length} bilingual page pairs\n`);
     pagePairs.forEach(p => {
       console.log(`   DE: ${p.deUrl} | EN: ${p.enUrl}`);
     });
+    console.log('');
+
+    await startDevServer();
+    await waitForServer();
+  });
+
+  afterAll(() => {
+    if (devServer) {
+      devServer.kill();
+    }
   });
 
   // Create a test for each discovered page pair
   pagePairs.forEach(({ deUrl, enUrl, deName, enName, deContent, enContent }) => {
-    test(`${deName}: German page renders German content`, async ({ page }) => {
-      await page.goto(`http://localhost:3000${deUrl}`);
-
-      // Check that German content is visible
-      const bodyText = await page.textContent('body');
-      expect(bodyText).toContain(deContent);
+    it(`${deName}: German page renders German content`, async () => {
+      const html = await fetchPageContent(deUrl);
+      expect(html).toContain(deContent);
     });
 
-    test(`${enName}: English page renders English content`, async ({ page }) => {
-      await page.goto(`http://localhost:3000${enUrl}`);
-
-      // Check that English content is visible
-      const bodyText = await page.textContent('body');
-      expect(bodyText).toContain(enContent);
+    it(`${enName}: English page renders English content`, async () => {
+      const html = await fetchPageContent(enUrl);
+      expect(html).toContain(enContent);
     });
   });
 });

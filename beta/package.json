@@ -7,9 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "vitest run",
-    "test:e2e": "playwright test",
-    "test:e2e:headed": "HEADED=1 playwright test",
-    "test:e2e:debug": "playwright test --debug"
+    "test:integration": "vitest run tests/bilingual-content.integration.test.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
