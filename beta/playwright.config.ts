@@ -19,6 +19,13 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         headless: !process.env.HEADED,
+        launchArgs: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-gpu',
+          '--disable-dev-shm-usage',
+        ],
+        executablePath: '/usr/bin/google-chrome',
       },
     },
   ],
@@ -27,6 +34,8 @@ export default defineConfig({
     command: 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120000,
+    timeout: 120 * 1000,
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
 });
