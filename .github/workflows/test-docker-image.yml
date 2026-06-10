@@ -1,0 +1,131 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: 🐳🧪 Test Docker Image
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'beta/Dockerfile'
+      - 'beta/nginx.conf'
+      - 'beta/src/**'
+      - 'beta/package*.json'
+      - '.github/workflows/test-docker-image.yml'
+  pull_request:
+    paths:
+      - 'beta/Dockerfile'
+      - 'beta/nginx.conf'
+      - 'beta/src/**'
+      - 'beta/package*.json'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🏗️ Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./beta
+          push: false
+          load: true
+          tags: bumbleflies-web:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: 🐳🧪 Test Docker image health
+        run: |
+          echo "Starting container..."
+          docker run --rm --detach --name test_container \
+            -p 8080:80 \
+            bumbleflies-web:test
+
+          echo "Checking health status..."
+          for i in {1..10}; do
+            status=$(docker inspect --format='{{.State.Health.Status}}' test_container 2>/dev/null || echo "none")
+            echo "Attempt $i: Health status = $status"
+
+            if [ "$status" = "healthy" ]; then
+              echo "✅ Container is healthy!"
+              break
+            fi
+
+            if [ $i -lt 10 ]; then
+              sleep 6
+            fi
+          done
+
+          # Check final status
+          final_status=$(docker inspect --format='{{.State.Health.Status}}' test_container 2>/dev/null || echo "none")
+          if [ "$final_status" != "healthy" ]; then
+            echo "❌ Container did not become healthy after 10 attempts."
+            echo "Container logs:"
+            docker logs test_container || true
+            docker stop test_container || true
+            exit 1
+          fi
+
+      - name: 🌐 Test HTTP endpoint
+        run: |
+          echo "Testing HTTP endpoint..."
+
+          # Wait for server to respond
+          for i in {1..5}; do
+            if curl -s -f http://localhost:8080/ > /dev/null; then
+              echo "✅ HTTP endpoint responding"
+              break
+            fi
+            echo "Attempt $i: waiting for endpoint..."
+            sleep 2
+          done
+
+          # Test that homepage loads
+          response=$(curl -s -w "\n%{http_code}" http://localhost:8080/)
+          http_code=$(echo "$response" | tail -n1)
+          content=$(echo "$response" | head -n-1)
+
+          if [ "$http_code" = "200" ]; then
+            echo "✅ Homepage returns 200 OK"
+          else
+            echo "❌ Homepage returned $http_code"
+            exit 1
+          fi
+
+          # Test that German content is present
+          if echo "$content" | grep -q "bumbleflies"; then
+            echo "✅ German content found"
+          else
+            echo "❌ German content not found"
+            exit 1
+          fi
+
+          # Test that German pages are accessible
+          if curl -s -f http://localhost:8080/about > /dev/null; then
+            echo "✅ /about page is accessible"
+          else
+            echo "❌ /about page not found"
+            exit 1
+          fi
+
+          # Test that English pages are accessible
+          if curl -s -f http://localhost:8080/en/about > /dev/null; then
+            echo "✅ /en/about page is accessible"
+          else
+            echo "❌ /en/about page not found"
+            exit 1
+          fi
+
+      - name: 🧹 Cleanup
+        if: always()
+        run: |
+          docker stop test_container 2>/dev/null || true
+          docker rm test_container 2>/dev/null || true
