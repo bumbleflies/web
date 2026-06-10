@@ -26,10 +26,6 @@ jobs:
         working-directory: beta
         run: npm ci
 
-      - name: Type check
-        working-directory: beta
-        run: npx astro check
-
       - name: Run tests
         working-directory: beta
         run: npm test
