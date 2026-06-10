@@ -35,3 +35,4 @@ jobs:
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     uses: ./.github/workflows/test-image.yml
+    secrets: inherit
