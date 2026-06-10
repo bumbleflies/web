@@ -5,6 +5,14 @@ import ServiceCard from '../components/ServiceCard.astro';
 import CTAStrip from '../components/CTAStrip.astro';
 import Footer from '../components/Footer.astro';
 
+interface Service {
+  number: string;
+  title: string;
+  tag: string;
+  description: string;
+  bullets: string[];
+}
+
 interface ContentSet {
   pageTitle: string;
   heroHeading: string;
@@ -12,16 +20,14 @@ interface ContentSet {
   ctaHeading: string;
   ctaBody: string;
   ctaText: string;
-  services: Array<{
-    number: string;
-    title: string;
-    tag: string;
-    description: string;
-    bullets: string[];
-  }>;
 }
 
-const content: Record<'DE' | 'EN', ContentSet> = {
+interface ServiceContent {
+  DE: ContentSet & { services: Service[] };
+  EN: ContentSet & { services: Service[] };
+}
+
+const content: ServiceContent = {
   DE: {
     pageTitle: 'Services',
     heroHeading: 'Unsere Services',
@@ -148,12 +154,6 @@ const content: Record<'DE' | 'EN', ContentSet> = {
 let lang: 'DE' | 'EN' = 'DE';
 const deContent = content.DE;
 const enContent = content.EN;
-
-// Serialize services for client-side rendering
-const servicesData = {
-  DE: deContent.services,
-  EN: enContent.services
-};
 ---
 
 <Layout title={deContent.pageTitle}>
@@ -174,7 +174,7 @@ const servicesData = {
 
     <section class="a-services-grid bf-section">
       <div class="bf-container">
-        <div class="a-services-grid__inner" data-services={JSON.stringify(servicesData)}>
+        <div class="a-services-grid__inner" data-services={JSON.stringify({ DE: content.DE.services, EN: content.EN.services })}>
           {deContent.services.map((service, index) => (
             <ServiceCard
               number={service.number}
@@ -182,20 +182,7 @@ const servicesData = {
               tag={service.tag}
               description={service.description}
               bullets={service.bullets}
-              data-lang="DE"
               data-service-id={index}
-            />
-          ))}
-          {enContent.services.map((service, index) => (
-            <ServiceCard
-              number={service.number}
-              title={service.title}
-              tag={service.tag}
-              description={service.description}
-              bullets={service.bullets}
-              data-lang="EN"
-              data-service-id={index}
-              class="hidden"
             />
           ))}
         </div>
@@ -241,10 +228,6 @@ const servicesData = {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-  }
-
-  .a-service-card.hidden {
-    display: none;
   }
 
   .cta-emphasis {
