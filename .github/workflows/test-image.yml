@@ -4,12 +4,8 @@ name: Test Docker Image
 
 on:
   workflow_call:
-    secrets:
-      DOCKER_TOKEN:
-        required: false
 
 env:
-  REGISTRY: docker.io
   IMAGE_NAME: bumblecode/web
 
 permissions:
@@ -19,22 +15,21 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Log in to Registry
-        uses: docker/login-action@v3
+      - name: Download image artifact
+        uses: actions/download-artifact@v4
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          name: docker-image
+          path: /tmp
 
-      - name: Pull image
-        run: docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:www
+      - name: Load image
+        run: docker load --input /tmp/image.tar
 
       - name: Test health
         run: |
           echo "Starting container..."
           docker run --rm --detach --name test_container \
             -p 8080:80 \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:www
+            docker.io/${{ env.IMAGE_NAME }}:www
 
           echo "Checking health status..."
           for i in {1..10}; do

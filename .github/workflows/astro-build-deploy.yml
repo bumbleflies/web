@@ -39,16 +39,9 @@ jobs:
     uses: ./.github/workflows/test-image.yml
     secrets: inherit
 
-  deploy-stage:
-    name: Deploy to Staging
-    needs: test-unit
-    if: always()
-    secrets: inherit
-    uses: ./.github/workflows/part_deploy_stage.yml
-
-  deploy-live:
-    name: Deploy to Production
+  deploy-docker:
+    name: Deploy to Docker Registry
     needs: [build, test-unit, test-image]
     if: github.ref == 'refs/heads/master' && success()
     secrets: inherit
-    uses: ./.github/workflows/part_deploy_live.yml
+    uses: ./.github/workflows/part_deploy_astro.yml
