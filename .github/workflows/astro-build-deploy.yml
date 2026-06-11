@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Astro Build & Deploy
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'beta/**'
+      - '.github/workflows/*.yml'
+  pull_request:
+    branches:
+      - '*'
+    paths:
+      - 'beta/**'
+      - '.github/workflows/*.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: "astro-deploy"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Docker Image
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+
+  test-unit:
+    name: Unit Tests
+    uses: ./.github/workflows/test.yml
+
+  test-image:
+    name: Docker Image Health Check
+    needs: build
+    uses: ./.github/workflows/test-image.yml
+    secrets: inherit
+
+  deploy-docker:
+    name: Deploy to Docker Registry
+    needs: [build, test-unit, test-image]
+    if: github.ref == 'refs/heads/master' && success()
+    secrets: inherit
+    uses: ./.github/workflows/part_deploy_astro.yml
