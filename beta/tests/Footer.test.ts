@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { getFooterContent } from '../src/lib/footerContent';
 
 describe('Footer Component Logic', () => {
   it('should render the correct current year', () => {
@@ -7,14 +8,45 @@ describe('Footer Component Logic', () => {
   });
 
   it('should provide DE content when lang is DE', () => {
-    const lang = 'DE';
-    const content = lang === 'DE' ? { legal: ['Impressum', 'Datenschutz'] } : { legal: ['Imprint', 'Privacy'] };
+    const content = getFooterContent('DE');
     expect(content.legal[0]).toBe('Impressum');
   });
 
   it('should provide EN content when lang is EN', () => {
-    const lang = 'EN';
-    const content = lang === 'DE' ? { legal: ['Impressum', 'Datenschutz'] } : { legal: ['Imprint', 'Privacy'] };
+    const content = getFooterContent('EN');
     expect(content.legal[0]).toBe('Imprint');
+  });
+
+  describe('Contact Links', () => {
+    it('should have valid contact link URLs', () => {
+      const items = getFooterContent('DE').contact.items;
+      const byLabel = (label: string) => items.find((i) => i.label === label)!;
+
+      // Validate email format
+      expect(byLabel('info@bumbleflies.de').href).toMatch(
+        /^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      );
+
+      // Validate HTTPS URLs and their specific destinations
+      expect(byLabel('LinkedIn').href).toBe('https://de.linkedin.com/company/bumbleflies');
+      expect(byLabel('Mastodon').href).toBe('https://social.bumbleflies.de');
+      expect(byLabel('GitHub').href).toBe('https://github.com/bumbleflies');
+
+      for (const label of ['LinkedIn', 'Mastodon', 'GitHub']) {
+        expect(byLabel(label).href).toMatch(/^https:\/\//);
+      }
+    });
+
+    it('should expose the same contact items for both DE and EN', () => {
+      const expected = [
+        { label: 'info@bumbleflies.de', href: 'mailto:info@bumbleflies.de' },
+        { label: 'LinkedIn', href: 'https://de.linkedin.com/company/bumbleflies' },
+        { label: 'Mastodon', href: 'https://social.bumbleflies.de' },
+        { label: 'GitHub', href: 'https://github.com/bumbleflies' },
+      ];
+
+      expect(getFooterContent('DE').contact.items).toEqual(expected);
+      expect(getFooterContent('EN').contact.items).toEqual(expected);
+    });
   });
 });
