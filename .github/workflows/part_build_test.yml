@@ -12,7 +12,7 @@ jobs:
       - name: 💎 setup ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.4.9"
+          ruby-version: "3.4.10"
       - name: 🔨 install dependencies & build site
         uses: limjh16/jekyll-action-ts@v2
         with:
