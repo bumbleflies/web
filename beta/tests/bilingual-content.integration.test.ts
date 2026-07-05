@@ -123,9 +123,17 @@ const pagePairs = discoverPagePairs();
 // Start dev server
 async function startDevServer(): Promise<void> {
   return new Promise((resolve, reject) => {
+    // Astro's dev server skips registering its page-serving middleware when
+    // `process.env.VITEST` is set (see astro's vite-plugin-astro-server), which
+    // would make every route return 404. Since we run a *real* dev server as a
+    // child process here, strip VITEST from its environment so pages render.
+    const devServerEnv = { ...process.env };
+    delete devServerEnv.VITEST;
+
     devServer = spawn('npx', ['astro', 'dev'], {
       cwd: path.join(__dirname, '..'),
       stdio: ['ignore', 'pipe', 'pipe'],
+      env: devServerEnv,
     });
 
     const handleOutput = (data: Buffer) => {
