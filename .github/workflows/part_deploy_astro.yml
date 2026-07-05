@@ -18,6 +18,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: astro-live
+      url: https://bumbleflies.de
     steps:
       - name: Download image artifact
         uses: actions/download-artifact@v8
