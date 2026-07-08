@@ -7,9 +7,11 @@ interface Props {
   price: string;
   image: string;
   slug: string;
+  lang?: 'DE' | 'EN';
 }
 
-const { name, description, ageGroup, duration, price, image, slug } = Astro.props;
+const { name, description, ageGroup, duration, price, image, slug, lang = 'DE' } = Astro.props;
+const detailHref = lang === 'DE' ? '/services' : '/en/services';
 ---
 
 <article class="bf-program-card">
@@ -39,7 +41,7 @@ const { name, description, ageGroup, duration, price, image, slug } = Astro.prop
 
   <footer class="bf-program-card__footer">
     <div class="bf-program-card__price">{price}</div>
-    <a href={`/programs/${slug}`} class="bf-cta">Mehr Infos</a>
+    <a href={detailHref} class="bf-cta">Mehr Infos</a>
   </footer>
 </article>
 

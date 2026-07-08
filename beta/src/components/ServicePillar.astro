@@ -16,6 +16,7 @@ interface Props {
 
 const { number, title, tag, description, bullets, formats, learnMoreLabel, lang = 'DE' } = Astro.props;
 const label = learnMoreLabel || (lang === 'DE' ? 'Mehr erfahren →' : 'Learn more →');
+const learnMoreHref = lang === 'DE' ? '/services' : '/en/services';
 ---
 
 <article class="a-service">
@@ -38,7 +39,7 @@ const label = learnMoreLabel || (lang === 'DE' ? 'Mehr erfahren →' : 'Learn mo
     ))}
   </ul>
 
-  <a href="#" class="a-service__link">{label}</a>
+  <a href={learnMoreHref} class="a-service__link">{label}</a>
 </article>
 
 <style>

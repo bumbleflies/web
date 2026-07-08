@@ -7,10 +7,15 @@ export interface ContactItem {
 
 export interface FooterContent {
   about: string;
-  services: { title: string; items: string[] };
-  learn: { title: string; items: string[] };
+  services: { title: string; items: LinkItem[] };
+  learn: { title: string; items: LinkItem[] };
   contact: { title: string; items: ContactItem[] };
   legal: string[];
+}
+
+interface LinkItem {
+  label: string;
+  href: string;
 }
 
 const contactItems: ContactItem[] = [
@@ -21,20 +26,53 @@ const contactItems: ContactItem[] = [
 ];
 
 export function getFooterContent(lang: Lang): FooterContent {
+  const servicesHref = lang === 'DE' ? '/services' : '/en/services';
   return lang === 'DE'
     ? {
         about:
           'Eine kleine Werkstatt aus Facilitator:innen, KI-Consultants und Entwickler:innen. Remote-first, vor Ort wenn\'s zählt.',
-        services: { title: 'Leistungen', items: ['Facilitation (remote, hybrid, vor Ort)', 'AI Consulting', 'App Development', 'Coaching & Handover'] },
-        learn: { title: 'Lernen', items: ['FaST-Training', 'GPT-Training', 'AI-Literacy', 'Open Space Checkliste'] },
+        services: {
+          title: 'Leistungen',
+          items: [
+            { label: 'Facilitation (remote, hybrid, vor Ort)', href: servicesHref },
+            { label: 'AI Consulting', href: servicesHref },
+            { label: 'App Development', href: servicesHref },
+            { label: 'Coaching & Handover', href: servicesHref },
+          ],
+        },
+        learn: {
+          title: 'Lernen',
+          items: [
+            { label: 'FaST-Training', href: servicesHref },
+            { label: 'GPT-Training', href: servicesHref },
+            { label: 'AI-Literacy', href: servicesHref },
+            { label: 'Open Space Checkliste', href: servicesHref },
+          ],
+        },
         contact: { title: 'Kontakt', items: contactItems },
         legal: ['Impressum', 'Datenschutz'],
       }
     : {
         about:
           'A small workshop of facilitators, AI consultants and developers. Remote-first, on-site when it matters.',
-        services: { title: 'Services', items: ['Facilitation (remote, hybrid, on-site)', 'AI Consulting', 'App Development', 'Coaching & Handover'] },
-        learn: { title: 'Learn', items: ['FaST Training', 'GPT Training', 'AI Literacy', 'Open Space Checklist'] },
+        services: {
+          title: 'Services',
+          items: [
+            { label: 'Facilitation (remote, hybrid, on-site)', href: servicesHref },
+            { label: 'AI Consulting', href: servicesHref },
+            { label: 'App Development', href: servicesHref },
+            { label: 'Coaching & Handover', href: servicesHref },
+          ],
+        },
+        learn: {
+          title: 'Learn',
+          items: [
+            { label: 'FaST Training', href: servicesHref },
+            { label: 'GPT Training', href: servicesHref },
+            { label: 'AI Literacy', href: servicesHref },
+            { label: 'Open Space Checklist', href: servicesHref },
+          ],
+        },
         contact: { title: 'Contact', items: contactItems },
         legal: ['Imprint', 'Privacy'],
       };
