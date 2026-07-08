@@ -5,8 +5,8 @@ FROM node:24-slim AS builder
 
 WORKDIR /build
 
-# Copy package files
-COPY package*.json ./
+# Copy package files (.npmrc carries legacy-peer-deps for npm ci)
+COPY package*.json .npmrc ./
 
 # Install dependencies
 RUN npm ci
