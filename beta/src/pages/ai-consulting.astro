@@ -46,14 +46,6 @@ let lang: 'DE' | 'EN' = 'DE';
     </div>
   </section>
 
-  <section class="a-ai-intro bf-section">
-    <div class="bf-container">
-      <p class="a-ai-intro__text" data-de={deContent.intro} data-en={enContent.intro}>
-        {deContent.intro}
-      </p>
-    </div>
-  </section>
-
   <section class="a-ai-steps bf-section">
     <div class="bf-container">
       <h2 class="a-ai-steps__heading" data-de="Unser Weg: Conversation to Code" data-en="Our path: Conversation to Code">
@@ -159,20 +151,9 @@ let lang: 'DE' | 'EN' = 'DE';
     max-width: 650px;
     margin: 0;
   }
-  .a-ai-intro {
-    padding: 0 0 4rem;
-  }
-  .a-ai-intro__text {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    color: var(--ink);
-    max-width: 700px;
-    margin: 0;
-    white-space: pre-line;
-  }
   .a-ai-steps {
     padding: 4rem 0;
-    background: var(--paper);
+    background: var(--bg);
   }
   .a-ai-steps__heading {
     font-family: var(--font-display);
@@ -211,6 +192,7 @@ let lang: 'DE' | 'EN' = 'DE';
   }
   .a-ai-services {
     padding: 4rem 0;
+    background: var(--paper);
   }
   .a-ai-services__heading {
     font-family: var(--font-display);
@@ -242,14 +224,13 @@ let lang: 'DE' | 'EN' = 'DE';
   }
   .a-ai-quote {
     padding: 4rem 0;
-    background: var(--paper);
+    background: var(--bg);
     text-align: center;
   }
   @media (max-width: 768px) {
     .a-ai-hero { padding: 2.5rem 0; }
     .a-ai-hero__heading { font-size: 2rem; }
     .a-ai-hero__subheading { font-size: 1rem; }
-    .a-ai-intro { padding: 0 0 2.5rem; }
     .a-ai-steps { padding: 2.5rem 0; }
     .a-ai-steps__heading { font-size: 1.5rem; }
     .a-ai-steps__grid { grid-template-columns: 1fr; gap: 1.5rem; }
