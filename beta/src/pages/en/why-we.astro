@@ -67,7 +67,14 @@ const content: ContentSet = {
 let lang: 'DE' | 'EN' = 'EN';
 ---
 
-<Layout title={content.pageTitle}>
+<Layout
+  title={content.pageTitle}
+  description="Why bumbleflies? Integrated, not fragmented. Meet our team and learn why we're different. Conversation to Code."
+  canonical="https://bumbleflies.de/en/why-we"
+  lang={lang}
+  dePath="/why-we"
+  enPath="/en/why-we"
+>
   <div slot="nav">
     <Nav lang={lang} />
   </div>

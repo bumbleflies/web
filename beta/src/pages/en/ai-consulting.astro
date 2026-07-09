@@ -1,0 +1,240 @@
+---
+import Layout from '../../components/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Quote from '../../components/Quote.astro';
+import CTAStrip from '../../components/CTAStrip.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const enPages = await getCollection('pages', ({ id }) => id === 'en/ai-consulting');
+
+if (!enPages[0]) {
+  throw new Error('EN AI Consulting content not found in collection');
+}
+
+const content = enPages[0].data;
+
+const lang: 'DE' | 'EN' = 'EN';
+---
+
+<Layout
+  title={content.title}
+  description="From the first conversation to a working AI solution. We help you not just understand AI, but deploy it — Conversation to Code in days, not months."
+  canonical="https://bumbleflies.de/en/ai-consulting"
+  lang={lang}
+  dePath="/ai-consulting"
+  enPath="/en/ai-consulting"
+>
+  <div slot="nav">
+    <Nav lang={lang} />
+  </div>
+
+  <section class="a-ai-hero">
+    <div class="bf-container">
+      <p class="a-ai-hero__label">AI Consulting</p>
+      <h1 class="a-ai-hero__heading">{content.heading}</h1>
+      <p class="a-ai-hero__subheading">{content.subheading}</p>
+    </div>
+  </section>
+
+  <section class="a-ai-intro bf-section">
+    <div class="bf-container">
+      <p class="a-ai-intro__text">{content.intro}</p>
+    </div>
+  </section>
+
+  <section class="a-ai-steps bf-section">
+    <div class="bf-container">
+      <h2 class="a-ai-steps__heading">Our path: Conversation to Code</h2>
+      <div class="a-ai-steps__grid">
+        {content.steps?.map((step) => (
+          <div class="a-ai-step">
+            <span class="a-ai-step__number">{step.number}</span>
+            <h3 class="a-ai-step__title">{step.title}</h3>
+            <p class="a-ai-step__desc">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="a-ai-services bf-section">
+    <div class="bf-container">
+      <h2 class="a-ai-services__heading">What we do for you</h2>
+      <div class="a-ai-services__grid">
+        <div class="a-ai-service-card">
+          <h3>AI Strategy & Roadmap</h3>
+          <p>Where are you? Where do you want to go? We develop a tailored AI strategy with clear milestones.</p>
+        </div>
+        <div class="a-ai-service-card">
+          <h3>Technology Assessment</h3>
+          <p>Which AI technologies fit your stack? LLMs, embeddings, agents — we evaluate what actually works.</p>
+        </div>
+        <div class="a-ai-service-card">
+          <h3>Make-vs-Buy Decisions</h3>
+          <p>Save expensive custom development for standard problems. We honestly tell you whether to buy, rent or build yourself.</p>
+        </div>
+        <div class="a-ai-service-card">
+          <h3>Pilot Support & Coaching</h3>
+          <p>From first prototype to production readiness. We support your team so the pilot doesn't end up in a drawer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="a-ai-quote bf-section">
+    <div class="bf-container">
+      <Quote
+        text={content.quote ?? ''}
+        cite={content.quoteCite ?? ''}
+        lang={lang}
+      />
+    </div>
+  </section>
+
+  <CTAStrip
+    heading={content.ctaHeading}
+    headingEm={content.ctaHeading_em}
+    body={content.ctaBody}
+    ctaText={content.ctaText}
+    lang={lang}
+  />
+
+  <div slot="footer">
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .a-ai-hero {
+    padding: 4rem 0;
+    background: var(--paper);
+  }
+  .a-ai-hero__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+  .a-ai-hero__heading {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    margin: 0 0 1rem;
+    color: var(--ink);
+    max-width: 800px;
+  }
+  .a-ai-hero__subheading {
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    max-width: 650px;
+    margin: 0;
+  }
+  .a-ai-intro {
+    padding: 0 0 4rem;
+  }
+  .a-ai-intro__text {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 700px;
+    margin: 0;
+    white-space: pre-line;
+  }
+  .a-ai-steps {
+    padding: 4rem 0;
+    background: var(--paper);
+  }
+  .a-ai-steps__heading {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin: 0 0 2.5rem;
+    color: var(--ink);
+  }
+  .a-ai-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .a-ai-step {
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--bg);
+  }
+  .a-ai-step__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .a-ai-step__title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    margin: 0.5rem 0 0.75rem;
+    color: var(--ink);
+  }
+  .a-ai-step__desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .a-ai-services {
+    padding: 4rem 0;
+  }
+  .a-ai-services__heading {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin: 0 0 2.5rem;
+    color: var(--ink);
+  }
+  .a-ai-services__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .a-ai-service-card {
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+  }
+  .a-ai-service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin: 0 0 0.75rem;
+    color: var(--ink);
+  }
+  .a-ai-service-card p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .a-ai-quote {
+    padding: 4rem 0;
+    background: var(--paper);
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .a-ai-hero { padding: 2.5rem 0; }
+    .a-ai-hero__heading { font-size: 2rem; }
+    .a-ai-hero__subheading { font-size: 1rem; }
+    .a-ai-intro { padding: 0 0 2.5rem; }
+    .a-ai-steps { padding: 2.5rem 0; }
+    .a-ai-steps__heading { font-size: 1.5rem; }
+    .a-ai-steps__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .a-ai-services { padding: 2.5rem 0; }
+    .a-ai-services__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .a-ai-services__heading { font-size: 1.5rem; }
+    .a-ai-quote { padding: 2.5rem 0; }
+  }
+  @media (max-width: 480px) {
+    .a-ai-hero { padding: 1.5rem 0; }
+    .a-ai-hero__heading { font-size: 1.5rem; }
+    .a-ai-steps { padding: 1.5rem 0; }
+    .a-ai-services { padding: 1.5rem 0; }
+    .a-ai-quote { padding: 1.5rem 0; }
+  }
+</style>

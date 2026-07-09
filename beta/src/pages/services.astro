@@ -156,7 +156,14 @@ const deContent = content.DE;
 const enContent = content.EN;
 ---
 
-<Layout title={deContent.pageTitle}>
+<Layout
+  title={deContent.pageTitle}
+  description="Unsere Services: Talk (Facilitation), Decide (AI Consulting), Build & Embed (App Development) — oder die ganze Reise. Conversation to Code."
+  canonical="https://bumbleflies.de/services"
+  lang={lang}
+  dePath="/services"
+  enPath="/en/services"
+>
   <div slot="nav">
     <Nav lang={lang} />
   </div>
@@ -182,6 +189,7 @@ const enContent = content.EN;
               tag={service.tag}
               description={service.description}
               bullets={service.bullets}
+              href={service.number === '02' ? '/ai-consulting' : undefined}
               data-service-id={index}
             />
           ))}

@@ -5,13 +5,15 @@ interface Props {
   tag: string;
   description: string;
   bullets: string[];
+  href?: string;
 }
 
-const { number, title, tag, description, bullets } = Astro.props;
+const { number, title, tag, description, bullets, href } = Astro.props;
 const attrs = Astro.props;
 ---
 
 <article class="a-service-card" data-lang={attrs['data-lang']} data-service-id={attrs['data-service-id']}>
+  {href && <a href={href} class="a-service-card__overlay" aria-label={title}></a>}
   <div class="a-service-card__header">
     <span class="a-service-card__number">{number}</span>
     <h3 class="a-service-card__title">{title}</h3>
@@ -38,11 +40,31 @@ const attrs = Astro.props;
     border: 1px solid var(--rule);
     border-radius: 0.5rem;
     transition: transform var(--duration-normal), box-shadow var(--duration-normal);
+    position: relative;
   }
 
   .a-service-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(26, 23, 20, 0.1);
+  }
+
+  .a-service-card__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: 0.5rem;
+  }
+
+  .a-service-card__overlay:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .a-service-card__title,
+  .a-service-card__description,
+  .a-service-card__bullets {
+    position: relative;
+    z-index: 2;
   }
 
   .a-service-card__header {

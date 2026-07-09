@@ -51,7 +51,14 @@ const deContent = content.DE;
 const enContent = content.EN;
 ---
 
-<Layout title={deContent.pageTitle}>
+<Layout
+  title={deContent.pageTitle}
+  description="Lerne das Team hinter bumbleflies kennen. Christoph, Christian und Sebastian — drei Köpfe, eine Mission: Conversation to Code."
+  canonical="https://bumbleflies.de/about"
+  lang={lang}
+  dePath="/about"
+  enPath="/en/about"
+>
   <div slot="nav">
     <Nav lang={lang} />
   </div>

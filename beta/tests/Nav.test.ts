@@ -5,12 +5,13 @@ describe('Nav Component Logic', () => {
     const lang = 'DE';
     const navItems = [
       { label: 'Facilitation · AI · Software', href: '/services' },
+      { label: 'AI Consulting', href: '/ai-consulting' },
       { label: 'remote, hybrid & vor Ort', href: '/how-we-work' },
       { label: 'Warum · Wir', href: '/why-we' },
     ];
     
     expect(lang).toBe('DE');
-    expect(navItems.length).toBe(3);
+    expect(navItems.length).toBe(4);
     expect(navItems[0].href).toBe('/services');
   });
 
@@ -18,12 +19,13 @@ describe('Nav Component Logic', () => {
     const lang = 'EN';
     const navItems = [
       { label: 'Facilitation · AI · Software', href: '/en/services' },
+      { label: 'AI Consulting', href: '/en/ai-consulting' },
       { label: 'remote, hybrid & on-site', href: '/en/how-we-work' },
       { label: 'Why · We', href: '/en/why-we' },
     ];
     
     expect(lang).toBe('EN');
-    expect(navItems.length).toBe(3);
+    expect(navItems.length).toBe(4);
     expect(navItems[0].href).toContain('/en/');
   });
 
