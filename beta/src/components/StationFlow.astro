@@ -36,7 +36,11 @@ const { eyebrow, heading, stations, lang = 'DE' } = Astro.props;
               {station.href ? <a href={station.href} class="a-flow-subtitle-link">{station.subtitle}</a> : station.subtitle}
             </span>
             <h3 class="a-flow-title">
-              {station.href ? <a href={station.href} class="a-flow-title-link">{station.title}</a> : station.title}
+              {station.href ? (
+                <a href={station.href} class="a-flow-title-link">
+                  {station.title}<span class="a-flow-title-arrow" aria-hidden="true">↗</span>
+                </a>
+              ) : station.title}
             </h3>
           </div>
           <div class="a-flow-desc">
@@ -173,6 +177,19 @@ const { eyebrow, heading, stations, lang = 'DE' } = Astro.props;
   .a-flow-subtitle-link:hover,
   .a-flow-title-link:hover {
     color: var(--accent);
+  }
+
+  .a-flow-title-arrow {
+    display: inline-block;
+    margin-left: 0.2em;
+    font-size: 0.6em;
+    vertical-align: 0.35em;
+    color: var(--accent);
+    transition: transform var(--duration-fast);
+  }
+
+  .a-flow-title-link:hover .a-flow-title-arrow {
+    transform: translate(2px, -2px);
   }
 
   @media (max-width: 768px) {

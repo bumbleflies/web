@@ -1,10 +1,7 @@
 title: AI Consulting — From Conversation to Code
 published: true
 heading: AI consulting that delivers.
-subheading: From the first conversation to a working AI solution. We help you not just understand AI, but deploy it.
-intro: |
-  Most AI consulting ends with a PowerPoint deck. We end with working software.
-  Our promise: From Conversation to Code. You tell us your problem. We develop the strategy. And then we build.
+subheading: From the first conversation to a running AI solution. Others hand you a slide deck — we hand you working software.
 steps:
   - number: "01"
     title: Understand

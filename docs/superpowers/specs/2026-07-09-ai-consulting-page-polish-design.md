@@ -33,9 +33,10 @@ by hardening the parser). Keep copy genuine and match the site-wide structure.
 - Hero becomes **eyebrow + heading + one intro paragraph** on `--paper`, mirroring
   `how-we-work.astro`. The intro paragraph replaces the thinner subheading.
 - Restore clean `--paper` / `--bg` alternation across the remaining sections
-  (hero → steps → services → quote) so none look collapsed.
-- Replace the page's hardcoded `3rem` / `4rem` / `1.25rem` values with the site's
-  `--space-*` / `--text-*` design tokens.
+  (hero `paper` → steps `bg` → services `paper` → quote `bg`) so none look collapsed.
+- **Keep** the hero's hardcoded `4rem` / `3rem` / `1.25rem` values: the sibling
+  `how-we-work.astro` uses the identical hardcoded values in its scoped styles, so these
+  already match the site. Converting to tokens would make the page *less* consistent, not more.
 
 ### B. Copy — genuine, distinct from the quote
 Two-sentence hero intro (matches the terse editorial voice; drops the "Die meisten…" echo):

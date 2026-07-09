@@ -1,10 +1,7 @@
 title: AI Consulting — From Conversation to Code
 published: true
 heading: KI-Beratung, die liefert.
-subheading: Vom ersten Gespräch zur laufenden KI-Lösung. Wir helfen dir, KI nicht nur zu verstehen, sondern einzusetzen.
-intro: |
-  Die meisten KI-Beratungen enden mit einer PowerPoint. Wir enden mit funktionierender Software.
-  Unser Versprechen: From Conversation to Code. Du erzählst uns dein Problem. Wir entwickeln die Strategie. Und dann bauen wir.
+subheading: Vom ersten Gespräch zur laufenden KI-Lösung. Andere liefern eine PowerPoint — wir liefern funktionierende Software.
 steps:
   - number: "01"
     title: Verstehen

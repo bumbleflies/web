@@ -6,9 +6,10 @@ interface Props {
   description: string;
   bullets: string[];
   href?: string;
+  ctaLabel?: string;
 }
 
-const { number, title, tag, description, bullets, href } = Astro.props;
+const { number, title, tag, description, bullets, href, ctaLabel } = Astro.props;
 const attrs = Astro.props;
 ---
 
@@ -28,6 +29,12 @@ const attrs = Astro.props;
       <li>{bullet}</li>
     ))}
   </ul>
+
+  {href && ctaLabel && (
+    <span class="a-service-card__cta">
+      {ctaLabel}<span class="a-service-card__cta-arrow" aria-hidden="true">↗</span>
+    </span>
+  )}
 </article>
 
 <style>
@@ -134,6 +141,26 @@ const attrs = Astro.props;
     left: 0;
     color: var(--accent);
     font-weight: 600;
+  }
+
+  .a-service-card__cta {
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wide);
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .a-service-card__cta-arrow {
+    margin-left: 0.4em;
+    transition: transform var(--duration-normal);
+  }
+
+  .a-service-card:hover .a-service-card__cta-arrow {
+    transform: translate(2px, -2px);
   }
 
   @media (max-width: 768px) {
