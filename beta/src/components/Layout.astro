@@ -15,6 +15,8 @@ interface Props {
   noindex?: boolean;
   dePath?: string;
   enPath?: string;
+  /** Page-specific JSON-LD (e.g. Service, FAQPage), rendered in addition to the global Organization schema. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -26,7 +28,12 @@ const {
   noindex = false,
   dePath,
   enPath,
+  jsonLd: pageJsonLd,
 } = Astro.props;
+
+const pageSchemas = pageJsonLd
+  ? (Array.isArray(pageJsonLd) ? pageJsonLd : [pageJsonLd])
+  : [];
 
 const htmlLang = lang === 'DE' ? 'de' : 'en';
 
@@ -55,17 +62,31 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   "name": "bumbleflies",
   "url": SITE_URL,
   "description": DEFAULT_DESCRIPTION,
   "foundingDate": "2021",
-  "knowsAbout": ["Facilitation", "AI Consulting", "App Development"],
+  "email": "info@bumbleflies.de",
+  "knowsAbout": [
+    "AI Consulting",
+    "Agentic Software Development",
+    "Human-in-the-Loop AI",
+    "Facilitation",
+    "App Development",
+    "Conversation to Code"
+  ],
+  "areaServed": ["Munich", "Germany", "DACH"],
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Munich",
     "addressCountry": "DE"
-  }
+  },
+  "sameAs": [
+    "https://de.linkedin.com/company/bumbleflies",
+    "https://github.com/bumbleflies",
+    "https://social.bumbleflies.de"
+  ]
 });
 ---
 
@@ -102,6 +123,9 @@ const jsonLd = JSON.stringify({
     {deUrl && enUrl && <link rel="alternate" hreflang="x-default" href={deUrl} />}
 
     <script type="application/ld+json" set:html={jsonLd}></script>
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+    ))}
 
     <script is:inline>
       const theme = (() => {
