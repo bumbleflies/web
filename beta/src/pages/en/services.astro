@@ -86,7 +86,14 @@ const content: ContentSet = {
 const lang: 'DE' | 'EN' = 'EN';
 ---
 
-<Layout title={content.pageTitle}>
+<Layout
+  title={content.pageTitle}
+  description="Our services: Talk (Facilitation), Decide (AI Consulting), Build & Embed (App Development) — or the full journey. Conversation to Code."
+  canonical="https://bumbleflies.de/en/services"
+  lang={lang}
+  dePath="/services"
+  enPath="/en/services"
+>
   <div slot="nav">
     <Nav lang={lang} />
   </div>
@@ -112,6 +119,7 @@ const lang: 'DE' | 'EN' = 'EN';
               tag={service.tag}
               description={service.description}
               bullets={service.bullets}
+              href={index === 1 ? '/en/ai-consulting' : undefined}
             />
           ))}
         </div>

@@ -35,7 +35,14 @@ const content: ContentSet = {
 const lang: 'DE' | 'EN' = 'EN';
 ---
 
-<Layout title={content.pageTitle}>
+<Layout
+  title={content.pageTitle}
+  description="Meet the team behind bumbleflies. Christoph, Christian and Sebastian — three minds, one mission: Conversation to Code."
+  canonical="https://bumbleflies.de/en/about"
+  lang={lang}
+  dePath="/about"
+  enPath="/en/about"
+>
   <div slot="nav">
     <Nav lang={lang} />
   </div>

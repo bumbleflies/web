@@ -1,0 +1,26 @@
+title: AI Consulting — From Conversation to Code
+published: true
+heading: KI-Beratung, die liefert.
+subheading: Vom ersten Gespräch zur laufenden KI-Lösung. Wir helfen dir, KI nicht nur zu verstehen, sondern einzusetzen.
+intro: |
+  Die meisten KI-Beratungen enden mit einer PowerPoint. Wir enden mit funktionierender Software.
+  Unser Versprechen: From Conversation to Code. Du erzählst uns dein Problem. Wir entwickeln die Strategie. Und dann bauen wir.
+steps:
+  - number: "01"
+    title: Verstehen
+    description: Wir tauchen tief in dein Business ein. Welche Prozesse haben KI-Potential? Wo ist der ROI am größten? Was ist Hype, was ist real?
+  - number: "02"
+    title: Entscheiden
+    description: Gemeinsam priorisieren wir Use Cases, definieren eine Roadmap und entscheiden: Bauen, Kaufen oder Partner? Kein Bullshit, klare Empfehlung.
+  - number: "03"
+    title: Pilotieren
+    description: In 4–6 Wochen bauen wir einen funktionalen Prototypen. Keine Mockups, echte Software. Du siehst, wie KI in deinem Kontext wirkt.
+  - number: "04"
+    title: Skalieren
+    description: Der Pilot läuft? Dann rollen wir aus. Integration in deine Systeme, Training für dein Team, Begleitung bis zur Eigenständigkeit.
+quote: "Die meisten Probleme, die wir lösen, fangen als Gespräch an. Manche enden auch dort. Andere brauchen einen KI-Piloten. Wieder andere wollen gebaut werden. Wir machen alle drei."
+quoteCite: — Aus unserem Manifesto
+ctaHeading: Lass uns
+ctaHeading_em: reden.
+ctaBody: Schreib uns zwei Sätze zu deinem Thema. Wir antworten innerhalb von 24h mit einer Einschätzung, ob und wie KI helfen kann.
+ctaText: Erstes Gespräch vereinbaren

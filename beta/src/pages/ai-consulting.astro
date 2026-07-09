@@ -1,0 +1,268 @@
+---
+import Layout from '../components/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Quote from '../components/Quote.astro';
+import CTAStrip from '../components/CTAStrip.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const dePages = await getCollection('pages', ({ id }) => id === 'ai-consulting');
+const enPages = await getCollection('pages', ({ id }) => id === 'en/ai-consulting');
+
+const dePage = dePages[0];
+const enPage = enPages[0];
+
+if (!dePage || !enPage) {
+  throw new Error('AI Consulting content not found in collection');
+}
+
+const deContent = dePage.data;
+const enContent = enPage.data;
+
+let lang: 'DE' | 'EN' = 'DE';
+---
+
+<Layout
+  title={deContent.title}
+  description="Von der ersten Idee zur laufenden KI-Lösung. Wir helfen dir, KI nicht nur zu verstehen, sondern einzusetzen — Conversation to Code in Tagen, nicht Monaten."
+  canonical="https://bumbleflies.de/ai-consulting"
+  lang={lang}
+  dePath="/ai-consulting"
+  enPath="/en/ai-consulting"
+>
+  <div slot="nav">
+    <Nav lang={lang} />
+  </div>
+
+  <section class="a-ai-hero">
+    <div class="bf-container">
+      <p class="a-ai-hero__label" data-de="AI Consulting" data-en="AI Consulting">AI Consulting</p>
+      <h1 class="a-ai-hero__heading" data-de={deContent.heading} data-en={enContent.heading}>
+        {deContent.heading}
+      </h1>
+      <p class="a-ai-hero__subheading" data-de={deContent.subheading} data-en={enContent.subheading}>
+        {deContent.subheading}
+      </p>
+    </div>
+  </section>
+
+  <section class="a-ai-intro bf-section">
+    <div class="bf-container">
+      <p class="a-ai-intro__text" data-de={deContent.intro} data-en={enContent.intro}>
+        {deContent.intro}
+      </p>
+    </div>
+  </section>
+
+  <section class="a-ai-steps bf-section">
+    <div class="bf-container">
+      <h2 class="a-ai-steps__heading" data-de="Unser Weg: Conversation to Code" data-en="Our path: Conversation to Code">
+        Unser Weg: Conversation to Code
+      </h2>
+      <div class="a-ai-steps__grid" data-steps={JSON.stringify({ DE: deContent.steps, EN: enContent.steps })}>
+        {deContent.steps?.map((step) => {
+          const enStep = enContent.steps?.[deContent.steps?.indexOf(step) ?? 0];
+          return (
+            <div class="a-ai-step">
+              <span class="a-ai-step__number">{step.number}</span>
+              <h3 class="a-ai-step__title" data-de={step.title} data-en={enStep?.title}>{step.title}</h3>
+              <p class="a-ai-step__desc" data-de={step.description} data-en={enStep?.description}>{step.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="a-ai-services bf-section">
+    <div class="bf-container">
+      <h2 class="a-ai-services__heading" data-de="Was wir für dich tun" data-en="What we do for you">
+        Was wir für dich tun
+      </h2>
+      <div class="a-ai-services__grid">
+        <div class="a-ai-service-card">
+          <h3 data-de="KI-Strategie & Roadmap" data-en="AI Strategy & Roadmap">KI-Strategie & Roadmap</h3>
+          <p data-de="Wo steht ihr? Wo wollt ihr hin? Wir entwickeln eine maßgeschneiderte KI-Strategie mit klaren Meilensteinen." data-en="Where are you? Where do you want to go? We develop a tailored AI strategy with clear milestones.">
+            Wo steht ihr? Wo wollt ihr hin? Wir entwickeln eine maßgeschneiderte KI-Strategie mit klaren Meilensteinen.
+          </p>
+        </div>
+        <div class="a-ai-service-card">
+          <h3 data-de="Technology Assessment" data-en="Technology Assessment">Technology Assessment</h3>
+          <p data-de="Welche KI-Technologien passen zu eurem Stack? LLMs, Embeddings, Agents — wir bewerten, was wirklich hält." data-en="Which AI technologies fit your stack? LLMs, embeddings, agents — we evaluate what actually works.">
+            Welche KI-Technologien passen zu eurem Stack? LLMs, Embeddings, Agents — wir bewerten, was wirklich hält.
+          </p>
+        </div>
+        <div class="a-ai-service-card">
+          <h3 data-de="Make-vs-Buy Entscheidungen" data-en="Make-vs-Buy Decisions">Make-vs-Buy Entscheidungen</h3>
+          <p data-de="Spar dir teure Eigenentwicklungen für Standardprobleme. Wir sagen dir ehrlich, ob kaufen, mieten oder selber bauen der richtige Weg ist." data-en="Save expensive custom development for standard problems. We honestly tell you whether to buy, rent or build yourself.">
+            Spar dir teure Eigenentwicklungen für Standardprobleme. Wir sagen dir ehrlich, ob kaufen, mieten oder selber bauen der richtige Weg ist.
+          </p>
+        </div>
+        <div class="a-ai-service-card">
+          <h3 data-de="Pilotbegleitung & Coaching" data-en="Pilot Support & Coaching">Pilotbegleitung & Coaching</h3>
+          <p data-de="Vom ersten Prototypen bis zur Produktionsreife. Wir begleiten dein Team, damit der Pilot nicht in der Schublade landet." data-en="From first prototype to production readiness. We support your team so the pilot doesn't end up in a drawer.">
+            Vom ersten Prototypen bis zur Produktionsreife. Wir begleiten dein Team, damit der Pilot nicht in der Schublade landet.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="a-ai-quote bf-section">
+    <div class="bf-container">
+      <Quote
+        text={deContent.quote ?? ''}
+        cite={deContent.quoteCite ?? ''}
+        lang={lang}
+      />
+    </div>
+  </section>
+
+  <div data-de-cta={JSON.stringify({heading: deContent.ctaHeading, headingEm: deContent.ctaHeading_em, body: deContent.ctaBody, ctaText: deContent.ctaText})} data-en-cta={JSON.stringify({heading: enContent.ctaHeading, headingEm: enContent.ctaHeading_em, body: enContent.ctaBody, ctaText: enContent.ctaText})} class="bf-cta-container">
+    <CTAStrip
+      heading={deContent.ctaHeading}
+      headingEm={deContent.ctaHeading_em}
+      body={deContent.ctaBody}
+      ctaText={deContent.ctaText}
+      lang={lang}
+    />
+  </div>
+
+  <div slot="footer">
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .a-ai-hero {
+    padding: 4rem 0;
+    background: var(--paper);
+  }
+  .a-ai-hero__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+  .a-ai-hero__heading {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    margin: 0 0 1rem;
+    color: var(--ink);
+    max-width: 800px;
+  }
+  .a-ai-hero__subheading {
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    max-width: 650px;
+    margin: 0;
+  }
+  .a-ai-intro {
+    padding: 0 0 4rem;
+  }
+  .a-ai-intro__text {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 700px;
+    margin: 0;
+    white-space: pre-line;
+  }
+  .a-ai-steps {
+    padding: 4rem 0;
+    background: var(--paper);
+  }
+  .a-ai-steps__heading {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin: 0 0 2.5rem;
+    color: var(--ink);
+  }
+  .a-ai-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .a-ai-step {
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--bg);
+  }
+  .a-ai-step__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .a-ai-step__title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    margin: 0.5rem 0 0.75rem;
+    color: var(--ink);
+  }
+  .a-ai-step__desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .a-ai-services {
+    padding: 4rem 0;
+  }
+  .a-ai-services__heading {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin: 0 0 2.5rem;
+    color: var(--ink);
+  }
+  .a-ai-services__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .a-ai-service-card {
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+  }
+  .a-ai-service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin: 0 0 0.75rem;
+    color: var(--ink);
+  }
+  .a-ai-service-card p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .a-ai-quote {
+    padding: 4rem 0;
+    background: var(--paper);
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .a-ai-hero { padding: 2.5rem 0; }
+    .a-ai-hero__heading { font-size: 2rem; }
+    .a-ai-hero__subheading { font-size: 1rem; }
+    .a-ai-intro { padding: 0 0 2.5rem; }
+    .a-ai-steps { padding: 2.5rem 0; }
+    .a-ai-steps__heading { font-size: 1.5rem; }
+    .a-ai-steps__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .a-ai-services { padding: 2.5rem 0; }
+    .a-ai-services__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .a-ai-services__heading { font-size: 1.5rem; }
+    .a-ai-quote { padding: 2.5rem 0; }
+  }
+  @media (max-width: 480px) {
+    .a-ai-hero { padding: 1.5rem 0; }
+    .a-ai-hero__heading { font-size: 1.5rem; }
+    .a-ai-steps { padding: 1.5rem 0; }
+    .a-ai-services { padding: 1.5rem 0; }
+    .a-ai-quote { padding: 1.5rem 0; }
+  }
+</style>

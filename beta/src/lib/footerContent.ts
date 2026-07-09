@@ -26,7 +26,8 @@ const contactItems: ContactItem[] = [
 ];
 
 export function getFooterContent(lang: Lang): FooterContent {
-  const servicesHref = lang === 'DE' ? '/services' : '/en/services';
+  const aiConsultingHref = lang === 'DE' ? '/ai-consulting' : '/en/ai-consulting';
+const servicesHref = lang === 'DE' ? '/services' : '/en/services';
   return lang === 'DE'
     ? {
         about:
@@ -35,7 +36,7 @@ export function getFooterContent(lang: Lang): FooterContent {
           title: 'Leistungen',
           items: [
             { label: 'Facilitation (remote, hybrid, vor Ort)', href: servicesHref },
-            { label: 'AI Consulting', href: servicesHref },
+            { label: 'AI Consulting', href: aiConsultingHref },
             { label: 'App Development', href: servicesHref },
             { label: 'Coaching & Handover', href: servicesHref },
           ],
@@ -59,7 +60,7 @@ export function getFooterContent(lang: Lang): FooterContent {
           title: 'Services',
           items: [
             { label: 'Facilitation (remote, hybrid, on-site)', href: servicesHref },
-            { label: 'AI Consulting', href: servicesHref },
+            { label: 'AI Consulting', href: aiConsultingHref },
             { label: 'App Development', href: servicesHref },
             { label: 'Coaching & Handover', href: servicesHref },
           ],

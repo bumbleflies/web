@@ -39,6 +39,7 @@ const flow = {
       subtitle: 'AI Consulting',
       description: 'We bring your team up to speed on AI. Which use cases matter? Which are hype? What should be piloted first?',
       outputs: ['AI Readiness Assessment', 'Prioritised use-case list', 'Shared vocabulary on the team'],
+      href: '/en/ai-consulting',
     },
     {
       number: '03',
@@ -77,7 +78,14 @@ const ctaHeadingEm = 'on your plate?';
 const ctaBody = 'Send us two sentences. We respond within 24h with the proposal that fits — workshop, AI pilot, or the right tool.';
 ---
 
-<Layout title={data.title} lang={currentLang}>
+<Layout
+  title={data.title}
+  description="bumbleflies — Facilitation, AI Consulting, App Development. We take teams from idea to working software. Conversation to Code."
+  canonical="https://bumbleflies.de/en/"
+  lang={currentLang}
+  dePath="/"
+  enPath="/en/"
+>
   <Nav slot="nav" lang={currentLang} />
 
   <Hero lang={currentLang} />

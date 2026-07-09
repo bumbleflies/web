@@ -107,7 +107,14 @@ const deContent = content.DE;
 const enContent = content.EN;
 ---
 
-<Layout title={deContent.pageTitle}>
+<Layout
+  title={deContent.pageTitle}
+  description="Warum bumbleflies? Integriert, nicht fragmentiert. Lerne unser Team kennen und erfahre, warum wir anders ticken. Conversation to Code."
+  canonical="https://bumbleflies.de/why-we"
+  lang={lang}
+  dePath="/why-we"
+  enPath="/en/why-we"
+>
   <div slot="nav">
     <Nav lang={lang} />
   </div>

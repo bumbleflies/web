@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f5f1e8"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#e6dcc8"/>
+  <text x="80" y="260" font-family="Georgia, 'Times New Roman', serif" font-size="72" fill="#1a1a1a" font-weight="600">bumbleflies</text>
+  <text x="80" y="330" font-family="'Courier New', monospace" font-size="28" fill="#666666" letter-spacing="4">FROM CONVERSATION TO CODE</text>
+  <line x1="80" y1="370" x2="400" y2="370" stroke="#d4c9b0" stroke-width="2"/>
+  <text x="80" y="430" font-family="'Courier New', monospace" font-size="16" fill="#999999" letter-spacing="2">FACILITATION · AI CONSULTING · APP DEVELOPMENT</text>
+</svg>

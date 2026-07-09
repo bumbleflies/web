@@ -17,7 +17,14 @@ const content = enPages[0].data;
 const lang: 'DE' | 'EN' = 'EN';
 ---
 
-<Layout title={content.title}>
+<Layout
+  title={content.title}
+  description="Why bumbleflies? Because we don't just talk — we build. Conversation to Code — guaranteed."
+  canonical="https://bumbleflies.de/en/why-bumbleflies"
+  lang={lang}
+  dePath="/why-bumbleflies"
+  enPath="/en/why-bumbleflies"
+>
   <div slot="nav">
     <Nav lang={lang} />
   </div>

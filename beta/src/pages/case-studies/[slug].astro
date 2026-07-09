@@ -17,7 +17,13 @@ const { study } = Astro.props;
 const { Content } = await render(study);
 ---
 
-<Layout title={study.data.title}>
+<Layout
+  title={study.data.title}
+  description={study.data.outcome}
+  canonical={`https://bumbleflies.de/case-studies/${study.id}`}
+  lang="DE"
+  dePath={`/case-studies/${study.id}`}
+>
   <Nav slot="nav">
     <LangToggle slot="lang" />
   </Nav>
