@@ -28,9 +28,28 @@ const {
 } = Astro.props;
 
 const htmlLang = lang === 'DE' ? 'de' : 'en';
-const fullCanonical = canonical || `${SITE_URL}${dePath || ''}`;
-const deUrl = dePath ? `${SITE_URL}${dePath}` : undefined;
-const enUrl = enPath ? `${SITE_URL}${enPath}` : undefined;
+
+// The site is built with Astro's default directory format (trailing slash) and
+// the sitemap lists trailing-slash URLs. Normalise canonical/og:url/hreflang to
+// match the served URL so they don't point at a redirecting (301) address.
+function withTrailingSlash(url: string | undefined): string | undefined {
+  if (!url) return url;
+  try {
+    const u = new URL(url);
+    if (u.search || u.hash) return url; // leave query/hash URLs untouched
+    if (u.pathname === '' || u.pathname === '/') return `${u.origin}/`;
+    const lastSegment = u.pathname.split('/').pop() ?? '';
+    if (lastSegment.includes('.')) return url; // leave file URLs untouched
+    if (!u.pathname.endsWith('/')) u.pathname += '/';
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
+const fullCanonical = withTrailingSlash(canonical || `${SITE_URL}${dePath || ''}`);
+const deUrl = withTrailingSlash(dePath ? `${SITE_URL}${dePath}` : undefined);
+const enUrl = withTrailingSlash(enPath ? `${SITE_URL}${enPath}` : undefined);
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}`;
 
 const jsonLd = JSON.stringify({
