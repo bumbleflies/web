@@ -1,0 +1,66 @@
+---
+interface FaqItem {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  heading: string;
+  items: FaqItem[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+<section class="a-faq bf-section">
+  <div class="bf-container">
+    <h2 class="a-faq__heading">{heading}</h2>
+    <dl class="a-faq__list">
+      {items.map((item) => (
+        <div class="a-faq__item">
+          <dt class="a-faq__q">{item.q}</dt>
+          <dd class="a-faq__a">{item.a}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .a-faq {
+    padding: 4rem 0;
+    background: var(--paper);
+  }
+  .a-faq__heading {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin: 0 0 2.5rem;
+    color: var(--ink);
+  }
+  .a-faq__list {
+    margin: 0;
+    border-top: 1px solid var(--rule);
+    max-width: 820px;
+  }
+  .a-faq__item {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .a-faq__q {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--ink);
+    margin: 0 0 0.75rem;
+  }
+  .a-faq__a {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .a-faq { padding: 2.5rem 0; }
+    .a-faq__heading { font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .a-faq__q { font-size: 1.2rem; }
+  }
+</style>
