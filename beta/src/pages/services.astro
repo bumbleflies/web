@@ -189,7 +189,7 @@ const enContent = content.EN;
               tag={service.tag}
               description={service.description}
               bullets={service.bullets}
-              href={index === 1 ? '/ai-consulting' : undefined}
+              href={service.number === '02' ? '/ai-consulting' : undefined}
               data-service-id={index}
             />
           ))}
