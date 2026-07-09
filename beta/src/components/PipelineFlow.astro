@@ -18,62 +18,52 @@ const t = {
   },
 }[lang];
 
-// Each stage: short label lives in the SVG, title + description in the list below.
+// A connected process timeline (distinct from the card grids elsewhere on the
+// page): each stage is a numbered node on a rail with its caption hanging off.
 const stages = [
   {
-    n: '01', label: { DE: 'Issue', EN: 'Issue' },
-    title: { DE: 'Issue', EN: 'Issue' },
+    n: '01', title: { DE: 'Issue', EN: 'Issue' },
     desc: {
       DE: 'Ein Wunsch, Bug oder eine Idee wird als GitHub-Issue angelegt — in normaler Sprache.',
       EN: 'A wish, bug or idea is filed as a GitHub issue — in plain language.',
     },
   },
   {
-    n: '02', label: { DE: 'Triage', EN: 'Triage' },
-    title: { DE: 'Triage', EN: 'Triage' },
+    n: '02', title: { DE: 'Triage', EN: 'Triage' },
     desc: {
       DE: 'Ein autonomer Agent sichtet alle neuen Tickets und klassifiziert sie.',
       EN: 'An autonomous agent sweeps every new ticket and classifies it.',
     },
   },
   {
-    n: '03', label: { DE: 'Entscheidung', EN: 'Decision' }, human: true,
-    title: { DE: 'Entscheidung', EN: 'Decision' },
+    n: '03', title: { DE: 'Entscheidung', EN: 'Decision' }, human: true,
     desc: {
       DE: 'Ein Mensch prüft und entscheidet, was gebaut wird. Human-in-the-loop.',
       EN: 'A human reviews and decides what gets built. Human-in-the-loop.',
     },
   },
   {
-    n: '04', label: { DE: 'Build', EN: 'Build' },
-    title: { DE: 'Build', EN: 'Build' },
+    n: '04', title: { DE: 'Build', EN: 'Build' },
     desc: {
-      DE: 'Unser Orchestrierungs-Framework und opencode implementieren test-getrieben (TDD) — bis zum Pull Request.',
-      EN: 'Our orchestration framework and opencode implement it test-first (TDD) — up to a pull request.',
+      DE: 'Orchestrierungs-Framework und opencode implementieren test-getrieben — bis zum Pull Request.',
+      EN: 'Our orchestration framework and opencode implement it test-first — up to a pull request.',
     },
   },
   {
-    n: '05', label: { DE: 'Review', EN: 'Review' }, loop: true,
-    title: { DE: 'Review-Loop', EN: 'Review loop' },
+    n: '05', title: { DE: 'Review-Loop', EN: 'Review loop' }, loop: true,
     desc: {
       DE: 'Ein Review- und Test-Bot dreht Runden, bis alles grün und freigegeben ist.',
       EN: 'A review-and-test bot iterates until everything is green and approved.',
     },
   },
   {
-    n: '06', label: { DE: 'Merge', EN: 'Merge' },
-    title: { DE: 'Automerge', EN: 'Automerge' },
+    n: '06', title: { DE: 'Automerge', EN: 'Automerge' },
     desc: {
       DE: 'Dann wird automatisch gemerged und ausgeliefert.',
       EN: "Then it's merged and shipped automatically.",
     },
   },
 ];
-
-// SVG layout — 6 nodes evenly spaced on a 1120×200 canvas.
-const cx = [60, 260, 460, 660, 860, 1060];
-const cy = 84;
-const r = 36;
 ---
 
 <section class="a-pipeline bf-section">
@@ -82,38 +72,18 @@ const r = 36;
     <h2 class="a-pipeline__heading">{t.heading}</h2>
     <p class="a-pipeline__sub">{t.sub}</p>
 
-    <svg class="a-pipeline__diagram" viewBox="0 0 1120 200" role="img"
-      aria-label={lang === 'DE'
-        ? 'Ablauf: Issue, Triage, Entscheidung, Build, Review-Loop, Automerge'
-        : 'Flow: Issue, Triage, Decision, Build, Review loop, Automerge'}>
-      <defs>
-        <marker id="pf-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10" class="a-pipeline__arrowhead" />
-        </marker>
-      </defs>
-
-      {cx.slice(0, -1).map((x, i) => (
-        <line class="a-pipeline__connector" x1={x + r + 4} y1={cy} x2={cx[i + 1] - r - 8} y2={cy} marker-end="url(#pf-arrow)" />
-      ))}
-
-      {stages.map((s, i) => (
-        <g class={`a-pipeline__node ${s.human ? 'is-human' : ''}`}>
-          <circle cx={cx[i]} cy={cy} r={r} class="a-pipeline__node-circle" />
-          <text x={cx[i]} y={cy + 6} class="a-pipeline__node-num" text-anchor="middle">{s.n}</text>
-          <text x={cx[i]} y={cy + r + 26} class="a-pipeline__node-label" text-anchor="middle">{s.label[lang]}</text>
-          {s.loop && (
-            <text x={cx[i]} y={cy - r - 8} class="a-pipeline__loop" text-anchor="middle">↻</text>
-          )}
-        </g>
-      ))}
-    </svg>
-
-    <ol class="a-pipeline__steps">
+    <ol class="a-pipeline__flow">
+      <span class="a-pipeline__rail" aria-hidden="true"></span>
       {stages.map((s) => (
-        <li class={`a-pipeline__step ${s.human ? 'is-human' : ''}`}>
-          <span class="a-pipeline__step-num">{s.n}</span>
-          <h3 class="a-pipeline__step-title">{s.title[lang]}</h3>
-          <p class="a-pipeline__step-desc">{s.desc[lang]}</p>
+        <li class={`a-pipeline__stage ${s.human ? 'is-human' : ''} ${s.loop ? 'is-loop' : ''}`}>
+          <div class="a-pipeline__node">
+            {s.loop && <span class="a-pipeline__loop" aria-hidden="true">↻</span>}
+            <span class="a-pipeline__num">{s.n}</span>
+          </div>
+          <div class="a-pipeline__text">
+            <h3 class="a-pipeline__title">{s.title[lang]}</h3>
+            <p class="a-pipeline__desc">{s.desc[lang]}</p>
+          </div>
         </li>
       ))}
     </ol>
@@ -139,102 +109,124 @@ const r = 36;
     line-height: 1.6;
     color: var(--ink-soft);
     max-width: 720px;
-    margin: 0 0 3rem;
+    margin: 0 0 4rem;
   }
 
-  .a-pipeline__diagram {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-width: 1000px;
-    margin: 0 auto 3rem;
-  }
-  .a-pipeline__connector {
-    stroke: var(--rule);
-    stroke-width: 2;
-  }
-  .a-pipeline__arrowhead {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 1.6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .a-pipeline__node-circle {
-    fill: var(--paper);
-    stroke: var(--rule);
-    stroke-width: 1.5;
-  }
-  .a-pipeline__node.is-human .a-pipeline__node-circle {
-    fill: var(--accent);
-    stroke: var(--accent);
-  }
-  .a-pipeline__node-num {
-    font-family: var(--font-mono);
-    font-size: 22px;
-    font-weight: 600;
-    fill: var(--accent);
-  }
-  .a-pipeline__node.is-human .a-pipeline__node-num {
-    fill: var(--paper);
-  }
-  .a-pipeline__node-label {
-    font-family: var(--font-mono);
-    font-size: 15px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    fill: var(--ink-soft);
-  }
-  .a-pipeline__loop {
-    font-size: 30px;
-    fill: var(--accent);
-  }
-
-  .a-pipeline__steps {
+  /* ── Horizontal rail (desktop) ─────────────────────────────── */
+  .a-pipeline__flow {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 1.5rem;
+    position: relative;
   }
-  .a-pipeline__step {
-    padding: 1.5rem;
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    background: var(--paper);
+  /* the connecting line, running through the node centres */
+  .a-pipeline__rail {
+    position: absolute;
+    top: 32px;
+    left: calc(100% / 12);
+    right: calc(100% / 12);
+    height: 1.5px;
+    background: var(--rule);
+    z-index: 0;
   }
-  .a-pipeline__step.is-human {
+  .a-pipeline__stage {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .a-pipeline__node {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1.5px solid var(--rule);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+  .a-pipeline__stage.is-human .a-pipeline__node {
+    background: var(--accent);
     border-color: var(--accent);
   }
-  .a-pipeline__step-num {
+  .a-pipeline__num {
     font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    color: var(--accent);
+    font-size: var(--text-xl);
     font-weight: 600;
+    color: var(--accent);
   }
-  .a-pipeline__step-title {
+  .a-pipeline__stage.is-human .a-pipeline__num {
+    color: var(--paper);
+  }
+  .a-pipeline__loop {
+    position: absolute;
+    top: -1.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .a-pipeline__title {
     font-family: var(--font-display);
-    font-size: 1.35rem;
-    margin: 0.5rem 0 0.75rem;
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
     color: var(--ink);
   }
-  .a-pipeline__step-desc {
-    font-size: 0.95rem;
-    line-height: 1.55;
+  .a-pipeline__desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
     color: var(--ink-soft);
     margin: 0;
   }
 
-  @media (max-width: 900px) {
-    .a-pipeline__steps { grid-template-columns: repeat(2, 1fr); }
-  }
+  /* ── Vertical rail (mobile) ────────────────────────────────── */
   @media (max-width: 768px) {
     .a-pipeline { padding: 2.5rem 0; }
     .a-pipeline__heading { font-size: 1.5rem; }
-    .a-pipeline__sub { font-size: 1rem; margin-bottom: 2rem; }
-    /* On narrow screens the horizontal SVG gets too cramped; the list carries it. */
-    .a-pipeline__diagram { display: none; }
-    .a-pipeline__steps { grid-template-columns: 1fr; }
+    .a-pipeline__sub { font-size: 1rem; margin-bottom: 2.5rem; }
+
+    .a-pipeline__flow {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .a-pipeline__rail { display: none; }
+    .a-pipeline__stage {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+      gap: 1.25rem;
+      padding-bottom: 2rem;
+    }
+    /* vertical connector between nodes */
+    .a-pipeline__stage:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 31px;
+      top: 64px;
+      bottom: 0;
+      width: 1.5px;
+      background: var(--rule);
+      z-index: 0;
+    }
+    .a-pipeline__node {
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+    .a-pipeline__loop {
+      top: -0.5rem;
+      left: auto;
+      right: -0.5rem;
+      transform: none;
+      font-size: 1.25rem;
+    }
+    .a-pipeline__text { padding-top: 0.5rem; }
   }
 </style>
