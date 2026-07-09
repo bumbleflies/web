@@ -15,8 +15,8 @@ steps:
   - number: "04"
     title: Scale
     description: Pilot works? Then we roll out. Integration into your systems, training for your team, support until you're self-sufficient.
-quote: Most of the problems we solve start as a conversation. Some end there. Others need an AI pilot. Still others want to be built. We do all three.
-quoteCite: — From our manifesto
+quote: "Am I right in assuming you just type a feature request in plain text — and then agents kick off, implement it, open pull requests? I have this romantic notion that you're sitting on a real treasure here."
+quoteCite: — from a real customer inquiry
 ctaHeading: Let's
 ctaHeading_em: talk.
 ctaBody: Send us two sentences about your topic. We respond within 24h with an assessment of whether and how AI can help.

@@ -15,8 +15,8 @@ steps:
   - number: "04"
     title: Skalieren
     description: Der Pilot läuft? Dann rollen wir aus. Integration in deine Systeme, Training für dein Team, Begleitung bis zur Eigenständigkeit.
-quote: "Die meisten Probleme, die wir lösen, fangen als Gespräch an. Manche enden auch dort. Andere brauchen einen KI-Piloten. Wieder andere wollen gebaut werden. Wir machen alle drei."
-quoteCite: — Aus unserem Manifesto
+quote: "Gehe ich richtig in der Annahme, dass man Feature-Requests einfach textuell eingibt — und dann laufen Agents los, implementieren das, machen Pull-Requests? Ich habe die romantische Vorstellung, dass ihr da einen aktuellen Schatz habt."
+quoteCite: — aus einer echten Kundenanfrage
 ctaHeading: Lass uns
 ctaHeading_em: reden.
 ctaBody: Schreib uns zwei Sätze zu deinem Thema. Wir antworten innerhalb von 24h mit einer Einschätzung, ob und wie KI helfen kann.
