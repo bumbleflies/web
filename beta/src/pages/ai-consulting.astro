@@ -52,14 +52,14 @@ let lang: 'DE' | 'EN' = 'DE';
       <h2 class="a-ai-steps__heading" data-de="Unser Weg: Conversation to Code" data-en="Our path: Conversation to Code">
         Unser Weg: Conversation to Code
       </h2>
-      <div class="a-ai-steps__grid" data-steps={JSON.stringify({ DE: deContent.steps, EN: enContent.steps })}>
+      <div class="a-ai-steps__list" data-steps={JSON.stringify({ DE: deContent.steps, EN: enContent.steps })}>
         {deContent.steps?.map((step) => {
           const enStep = enContent.steps?.[deContent.steps?.indexOf(step) ?? 0];
           return (
-            <div class="a-ai-step">
-              <span class="a-ai-step__number">{step.number}</span>
-              <h3 class="a-ai-step__title" data-de={step.title} data-en={enStep?.title}>{step.title}</h3>
-              <p class="a-ai-step__desc" data-de={step.description} data-en={enStep?.description}>{step.description}</p>
+            <div class="a-ai-step-row">
+              <span class="a-ai-step-row__number">{step.number}</span>
+              <h3 class="a-ai-step-row__title" data-de={step.title} data-en={enStep?.title}>{step.title}</h3>
+              <p class="a-ai-step-row__desc" data-de={step.description} data-en={enStep?.description}>{step.description}</p>
             </div>
           );
         })}
@@ -164,32 +164,33 @@ let lang: 'DE' | 'EN' = 'DE';
     margin: 0 0 2.5rem;
     color: var(--ink);
   }
-  .a-ai-steps__grid {
+  .a-ai-steps__list {
+    border-top: 1px solid var(--rule);
+  }
+  .a-ai-step-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: 96px 1.2fr 2fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
   }
-  .a-ai-step {
-    padding: 1.5rem;
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    background: var(--bg);
-  }
-  .a-ai-step__number {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .a-ai-step__title {
+  .a-ai-step-row__number {
     font-family: var(--font-display);
-    font-size: 1.35rem;
-    margin: 0.5rem 0 0.75rem;
+    font-size: 2.75rem;
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .a-ai-step-row__title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    margin: 0;
     color: var(--ink);
   }
-  .a-ai-step__desc {
-    font-size: 0.95rem;
-    line-height: 1.55;
+  .a-ai-step-row__desc {
+    font-size: 1rem;
+    line-height: 1.6;
     color: var(--ink-soft);
     margin: 0;
   }
@@ -236,7 +237,14 @@ let lang: 'DE' | 'EN' = 'DE';
     .a-ai-hero__subheading { font-size: 1rem; }
     .a-ai-steps { padding: 2.5rem 0; }
     .a-ai-steps__heading { font-size: 1.5rem; }
-    .a-ai-steps__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .a-ai-step-row {
+      grid-template-columns: 64px 1fr;
+      gap: 0.5rem 1.25rem;
+      padding: 1.5rem 0;
+    }
+    .a-ai-step-row__number { font-size: 2rem; }
+    .a-ai-step-row__title { font-size: 1.35rem; grid-column: 2; }
+    .a-ai-step-row__desc { grid-column: 2; }
     .a-ai-services { padding: 2.5rem 0; }
     .a-ai-services__grid { grid-template-columns: 1fr; gap: 1.5rem; }
     .a-ai-services__heading { font-size: 1.5rem; }
