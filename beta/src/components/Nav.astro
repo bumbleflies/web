@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Mark from './Mark.astro';
 import LangToggle from './LangToggle.astro';
 import ThemeToggle from './ThemeToggle.astro';
@@ -11,7 +12,11 @@ interface Props {
 
 const { lang = 'DE', cta, ctaHref = 'mailto:info@bumbleflies.de' } = Astro.props;
 
-const navItems = lang === 'DE'
+// The Blog link only surfaces once at least one article is switched live
+// (published: true). Until then the series stays dark even after deploy.
+const hasBlog = (await getCollection('blog', ({ data }) => data.published)).length > 0;
+
+const baseItems = lang === 'DE'
   ? [
       { label: 'Facilitation · AI · Software', href: '/services' },
       { label: 'AI Consulting', href: '/ai-consulting' },
@@ -24,6 +29,15 @@ const navItems = lang === 'DE'
       { label: 'remote, hybrid & on-site', href: '/en/how-we-work' },
       { label: 'Why · We', href: '/en/why-we' },
     ];
+
+// Blog is DE-only for now; insert it after AI Consulting so it reads as proof of it.
+const navItems = hasBlog
+  ? [
+      ...baseItems.slice(0, 2),
+      { label: 'Field Notes', href: '/blog' },
+      ...baseItems.slice(2),
+    ]
+  : baseItems;
 
 const brandHref = lang === 'DE' ? '/' : '/en/';
 

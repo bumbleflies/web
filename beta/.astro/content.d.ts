@@ -85,6 +85,10 @@ declare module 'astro:content' {
 		entry: DataEntryMap[C][string],
 	): Promise<RenderResult>;
 
+	export function render<C extends keyof LiveContentConfig['collections']>(
+		entry: import('astro').LiveDataEntry<LiveLoaderDataType<C>>,
+	): Promise<RenderResult>;
+
 	export function reference<
 		C extends
 			| keyof DataEntryMap
@@ -120,7 +124,15 @@ declare module 'astro:content' {
 		: any;
 
 	type DataEntryMap = {
-		"case-studies": Record<string, {
+		"blog": Record<string, {
+  id: string;
+  body?: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"case-studies": Record<string, {
   id: string;
   body?: string;
   collection: "case-studies";

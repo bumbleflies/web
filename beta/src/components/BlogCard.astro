@@ -1,0 +1,106 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  category: string;
+  order: number;
+  readingTime?: string;
+  slug: string;
+}
+
+const { title, excerpt, category, order, readingTime, slug } = Astro.props;
+const partLabel = `Teil ${String(order).padStart(2, '0')}`;
+---
+
+<article class="a-blog-card">
+  <div class="a-blog-card__meta">
+    <span class="a-blog-card__part">{partLabel}</span>
+    <span class="a-blog-card__category">{category}</span>
+  </div>
+  <h3 class="a-blog-card__title">
+    <a href={`/blog/${slug}`}>{title}</a>
+  </h3>
+  <p class="a-blog-card__excerpt">{excerpt}</p>
+  <div class="a-blog-card__footer">
+    <a href={`/blog/${slug}`} class="bf-cta">
+      Lesen <span aria-hidden="true">→</span>
+    </a>
+    {readingTime && <span class="a-blog-card__time">{readingTime}</span>}
+  </div>
+</article>
+
+<style>
+  .a-blog-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-xl);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--accent);
+    min-height: 100%;
+    transition: transform var(--duration-fast) var(--easing-default), border-color var(--duration-fast) var(--easing-default);
+  }
+
+  .a-blog-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+
+  .a-blog-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wider);
+  }
+
+  .a-blog-card__part {
+    color: var(--accent);
+  }
+
+  .a-blog-card__category {
+    color: var(--ink-soft);
+  }
+
+  .a-blog-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: var(--lh-snug);
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .a-blog-card__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .a-blog-card__title a:hover {
+    color: var(--accent);
+  }
+
+  .a-blog-card__excerpt {
+    color: var(--ink-soft);
+    margin: 0;
+    flex-grow: 1;
+    line-height: var(--lh-body);
+  }
+
+  .a-blog-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+  }
+
+  .a-blog-card__time {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ink-soft);
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+
+const posts = (await getCollection('blog', ({ data }) => data.published))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="a-blog-list">
+  <div class="bf-container">
+    {posts.length > 0 ? (
+      <div class="a-blog-list__grid">
+        {posts.map(post => (
+          <BlogCard
+            title={post.data.title}
+            excerpt={post.data.excerpt}
+            category={post.data.category}
+            order={post.data.order}
+            readingTime={post.data.readingTime}
+            slug={post.id}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="a-blog-list__empty">Die Artikelserie erscheint in Kürze.</p>
+    )}
+  </div>
+</section>
+
+<style>
+  .a-blog-list {
+    padding: var(--space-xl) 0 var(--space-4xl);
+    background: transparent;
+  }
+
+  .a-blog-list__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .a-blog-list__empty {
+    text-align: center;
+    color: var(--ink-soft);
+    padding: 3rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .a-blog-list__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

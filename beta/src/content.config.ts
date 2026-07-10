@@ -20,6 +20,23 @@ const caseStudies = defineCollection({
   }),
 });
 
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    excerpt: z.string(),
+    category: z.string(),
+    // Series order — controls the reading sequence in the listing.
+    order: z.number(),
+    date: z.coerce.date(),
+    author: z.string().default('bumbleflies'),
+    readingTime: z.string().optional(),
+    // The per-article live switch: false = drafted & ready but not built/listed.
+    published: z.boolean().default(false),
+  }),
+});
+
 const testimonials = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/testimonials' }),
   schema: z.object({
@@ -48,4 +65,4 @@ const pages = defineCollection({
   schema: pagesSchemaCoerced,
 });
 
-export const collections = { 'case-studies': caseStudies, testimonials, team, pages };
+export const collections = { 'case-studies': caseStudies, blog, testimonials, team, pages };
