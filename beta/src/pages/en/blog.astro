@@ -1,20 +1,20 @@
 ---
-import Layout from '../components/Layout.astro';
-import Nav from '../components/Nav.astro';
-import BlogList from '../components/BlogList.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../../components/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import BlogList from '../../components/BlogList.astro';
+import Footer from '../../components/Footer.astro';
 
 // When the preview key is set at build time, pass it to BlogList so it renders
 // all posts (including drafts). Otherwise BlogList only shows published posts.
 const showDrafts = !!import.meta.env.PUBLIC_PREVIEW_KEY;
 
-const lang: 'DE' | 'EN' = 'DE';
+const lang: 'DE' | 'EN' = 'EN';
 ---
 
 <Layout
-  title="Field Notes — Wie wir KI-Agenten in Produktion bringen | bumbleflies"
-  description="Eine Artikelserie über ein echtes KI-Agenten-Betriebssystem in Produktion: autonome Claude-Code-Bots, Event-Automatisierung mit n8n, ein Skill-Marktplatz für Firmenwissen. Keine Folien — gebaute Software."
-  canonical="https://bumbleflies.de/blog"
+  title="Field Notes — How We Bring AI Agents to Production | bumbleflies"
+  description="An article series about a real AI agent operating system in production: autonomous Claude Code bots, n8n event automation, a skill marketplace for company knowledge. Not slides — built software."
+  canonical="https://bumbleflies.de/en/blog"
   lang={lang}
   dePath="/blog"
   enPath="/en/blog"
@@ -25,24 +25,21 @@ const lang: 'DE' | 'EN' = 'DE';
 
   <section class="a-blog-hero">
     <div class="bf-container">
-      <span class="a-blog-hero__kicker">Field Notes · KI-Serie</span>
-      <h1 class="a-blog-hero__heading">Wie wir KI-Agenten in Produktion bringen</h1>
+      <span class="a-blog-hero__kicker">Field Notes · AI Series</span>
+      <h1 class="a-blog-hero__heading">How We Bring AI Agents to Production</h1>
       <p class="a-blog-hero__subheading">
-        Kein Hype, kein Proof-of-Concept, der in der Schublade verschwindet. Eine Serie darüber,
-        wie wir für ein deutsches Legal-Tech-Unternehmen ein komplettes KI-Agenten-Betriebssystem
-        gebaut haben — autonome Bots, die Pull-Requests öffnen, während das Team schläft. Die
-        Geschichte, die Architektur und die Narben.
+        No hype, no proof-of-concept that disappears in a drawer. A series about how we built a complete AI agent operating system for a German legal-tech company — autonomous bots that open pull requests while the team sleeps. The story, the architecture, and the scars.
       </p>
     </div>
   </section>
 
-  <BlogList showDrafts={showDrafts} />
+  <BlogList showDrafts={showDrafts} lang="EN" />
 
   <section class="a-blog-cta">
     <div class="bf-container">
-      <h2>Sie haben die romantische Vorstellung, dass wir da einen Schatz haben?</h2>
-      <p>Haben wir. Schreiben Sie uns zwei Sätze zu Ihrem Thema — wir antworten mit einer ehrlichen Einschätzung.</p>
-      <a href="mailto:info@bumbleflies.de" class="bf-cta">Erstes Gespräch vereinbaren</a>
+      <h2>You have the romantic notion that we've got a treasure over there?</h2>
+      <p>We do. Send us two sentences about your topic — we'll reply with an honest assessment.</p>
+      <a href="mailto:info@bumbleflies.de" class="bf-cta">Book a first conversation</a>
     </div>
   </section>
 

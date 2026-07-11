@@ -21,13 +21,17 @@ const copy = lang === 'DE'
       body: 'Wir haben für ein deutsches Legal-Tech-Unternehmen ein komplettes KI-Agenten-Betriebssystem gebaut: autonome Bots, die Pull-Requests öffnen, ein Skill-Marktplatz für Firmenwissen, ein Cockpit, das den Tag plant. Kein Proof-of-Concept — Produktion. Wir schreiben es auf.',
       cta: 'Zur Artikelserie',
       readMore: 'Zum Auftakt',
+      blogPath: '/blog',
+      partLabel: 'Teil',
     }
   : {
       kicker: 'Field Notes · AI series',
       heading: 'The romantic notion is true — here is the treasure.',
-      body: 'We built a full AI-agent operating system for a German legal-tech company: autonomous bots that open pull requests, a skill marketplace for institutional knowledge, a cockpit that plans the day. Not a proof of concept — production. We write it up (in German).',
+      body: 'We built a full AI-agent operating system for a German legal-tech company: autonomous bots that open pull requests, a skill marketplace for institutional knowledge, a cockpit that plans the day. Not a proof of concept — production. We wrote it down.',
       cta: 'Read the series',
       readMore: 'Start here',
+      blogPath: '/en/blog',
+      partLabel: 'Part',
     };
 ---
 
@@ -39,16 +43,16 @@ const copy = lang === 'DE'
           <span class="fnt__kicker">{copy.kicker}</span>
           <h2 class="fnt__heading">{copy.heading}</h2>
           <p class="fnt__text">{copy.body}</p>
-          <a href="/blog" class="fnt__cta">{copy.cta} <span aria-hidden="true">→</span></a>
+          <a href={copy.blogPath} class="fnt__cta">{copy.cta} <span aria-hidden="true">→</span></a>
         </div>
         {lead && (
-          <a class="fnt__lead" href={`/blog/${lead.id}`}>
+          <a class="fnt__lead" href={`${copy.blogPath}/${lead.id}`}>
             {lead.data.image && (
               <span class="fnt__lead-cover">
                 <BlogCover image={lead.data.image} />
               </span>
             )}
-            <span class="fnt__lead-part">Teil {String(lead.data.order).padStart(2, '0')} · {copy.readMore}</span>
+            <span class="fnt__lead-part">{copy.partLabel} {String(lead.data.order).padStart(2, '0')} · {copy.readMore}</span>
             <span class="fnt__lead-title">{lead.data.title}</span>
             <span class="fnt__lead-excerpt">{lead.data.excerpt}</span>
           </a>

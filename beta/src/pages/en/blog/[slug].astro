@@ -1,10 +1,10 @@
 ---
 import { render } from 'astro:content';
-import { getAllBlogPosts } from '../../lib/blog';
-import Layout from '../../components/Layout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-import BlogCover from '../../components/BlogCover.astro';
+import { getAllBlogPosts } from '../../../lib/blog';
+import Layout from '../../../components/Layout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import BlogCover from '../../../components/BlogCover.astro';
 
 // Only draft articles when the preview key was NOT set at build time.
 // Set PUBLIC_PREVIEW_KEY=<key> in your deploy env to build draft pages
@@ -30,19 +30,19 @@ export async function getStaticPaths() {
 const { post, prev, next } = Astro.props;
 const isDraft = !post.data.published;
 const { Content } = await render(post);
-const dateLabel = post.data.date.toLocaleDateString('de-DE', {
+const dateLabel = post.data.date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
 });
 
-const lang: 'DE' | 'EN' = 'DE';
+const lang: 'DE' | 'EN' = 'EN';
 ---
 
 <Layout
   title={`${post.data.title} | bumbleflies`}
   description={post.data.description}
-  canonical={`https://bumbleflies.de/blog/${post.id}`}
+  canonical={`https://bumbleflies.de/en/blog/${post.id}`}
   lang={lang}
   dePath={`/blog/${post.id}`}
   enPath={`/en/blog/${post.id}`}
@@ -56,23 +56,23 @@ const lang: 'DE' | 'EN' = 'DE';
     {isDraft && (
       <div class="post__locked">
         <div class="bf-container post__locked-inner">
-          <span class="post__locked-tag">Entwurf</span>
-          <h1 class="post__locked-title">Dieser Artikel ist noch nicht veröffentlicht.</h1>
+          <span class="post__locked-tag">Draft</span>
+          <h1 class="post__locked-title">This article is not yet published.</h1>
           <p class="post__locked-text">
-            Er gehört zur Vorschau der Field-Notes-Serie. Öffne die Serie mit deinem
-            Vorschau-Link, um ihn zu lesen.
+            It's part of the Field Notes series preview. Open the series with your
+            preview link to read it.
           </p>
-          <a href="/blog" class="post__locked-link">← Zur Übersicht</a>
+          <a href="/en/blog" class="post__locked-link">← Back to overview</a>
         </div>
       </div>
     )}
     <main class="post__page">
-      <a href="/blog" class="post__breadcrumb">← Alle Artikel</a>
-      {isDraft && <span class="post__preview-tag">Vorschau</span>}
+      <a href="/en/blog" class="post__breadcrumb">← All articles</a>
+      {isDraft && <span class="post__preview-tag">Preview</span>}
 
       <header class="post__header">
         <div class="post__meta">
-          <span class="post__part">Teil {String(post.data.order).padStart(2, '0')}</span>
+          <span class="post__part">Part {String(post.data.order).padStart(2, '0')}</span>
           <span class="post__category">{post.data.category}</span>
         </div>
         <h1 class="post__title">{post.data.title}</h1>
@@ -102,22 +102,22 @@ const lang: 'DE' | 'EN' = 'DE';
 
       <nav class="post__pager">
         {prev ? (
-          <a href={`/blog/${prev.id}`} class="post__pager-link post__pager-link--prev">
-            <span class="post__pager-dir">← Vorheriger Teil</span>
+          <a href={`/en/blog/${prev.id}`} class="post__pager-link post__pager-link--prev">
+            <span class="post__pager-dir">← Previous part</span>
             <span class="post__pager-title">{prev.data.title}</span>
           </a>
         ) : <span />}
         {next ? (
-          <a href={`/blog/${next.id}`} class="post__pager-link post__pager-link--next">
-            <span class="post__pager-dir">Nächster Teil →</span>
+          <a href={`/en/blog/${next.id}`} class="post__pager-link post__pager-link--next">
+            <span class="post__pager-dir">Next part →</span>
             <span class="post__pager-title">{next.data.title}</span>
           </a>
         ) : <span />}
       </nav>
 
       <aside class="post__cta">
-        <p>Klingt nach einem Thema, das Sie auch bewegt?</p>
-        <a href="mailto:info@bumbleflies.de" class="post__button">Erstes Gespräch buchen</a>
+        <p>Sound like a topic that moves you too?</p>
+        <a href="mailto:info@bumbleflies.de" class="post__button">Book a first conversation</a>
       </aside>
     </main>
   </article>
