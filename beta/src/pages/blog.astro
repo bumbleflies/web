@@ -4,6 +4,10 @@ import Nav from '../components/Nav.astro';
 import BlogList from '../components/BlogList.astro';
 import Footer from '../components/Footer.astro';
 import LangToggle from '../components/LangToggle.astro';
+
+// When the preview key is set at build time, pass it to BlogList so it renders
+// all posts (including drafts). Otherwise BlogList only shows published posts.
+const showDrafts = !!import.meta.env.PUBLIC_PREVIEW_KEY;
 ---
 
 <Layout
@@ -30,7 +34,11 @@ import LangToggle from '../components/LangToggle.astro';
     </div>
   </section>
 
+<<<<<<< HEAD
+  <BlogList showDrafts={showDrafts} />
+=======
   <BlogList />
+>>>>>>> origin/master
 
   <section class="a-blog-cta">
     <div class="bf-container">

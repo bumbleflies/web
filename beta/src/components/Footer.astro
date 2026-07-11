@@ -1,6 +1,7 @@
 ---
 import Mark from './Mark.astro';
 import { getFooterContent } from '../lib/footerContent';
+import { getBlogPosts } from '../lib/blog';
 
 interface Props {
   lang?: 'DE' | 'EN';
@@ -9,6 +10,14 @@ interface Props {
 const { lang = 'DE' } = Astro.props;
 
 const content = getFooterContent(lang);
+
+// Only show the blog link when at least one post is published.
+const publishedPosts = await getBlogPosts();
+const hasBlog = publishedPosts.length > 0;
+const learnItems = content.learn.items.filter(item => {
+  if (item.href === '/blog') return hasBlog;
+  return true;
+});
 
 const year = new Date().getFullYear();
 ---
@@ -37,7 +46,7 @@ const year = new Date().getFullYear();
     <div class="bf-footer__col">
       <h3>{content.learn.title}</h3>
       <ul>
-        {content.learn.items.map((item) => (
+        {learnItems.map((item) => (
           <li key={item.label}><a href={item.href}>{item.label}</a></li>
         ))}
       </ul>
