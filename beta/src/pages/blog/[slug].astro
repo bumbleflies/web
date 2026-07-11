@@ -4,7 +4,6 @@ import { getAllBlogPosts } from '../../lib/blog';
 import Layout from '../../components/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import LangToggle from '../../components/LangToggle.astro';
 import BlogCover from '../../components/BlogCover.astro';
 
 // Only draft articles when the preview key was NOT set at build time.
@@ -36,20 +35,22 @@ const dateLabel = post.data.date.toLocaleDateString('de-DE', {
   month: 'long',
   day: 'numeric',
 });
+
+const lang: 'DE' | 'EN' = 'DE';
 ---
 
 <Layout
   title={`${post.data.title} | bumbleflies`}
   description={post.data.description}
   canonical={`https://bumbleflies.de/blog/${post.id}`}
-  lang="DE"
+  lang={lang}
   dePath={`/blog/${post.id}`}
   enPath={`/en/blog/${post.id}`}
   noindex={isDraft}
 >
-  <Nav slot="nav">
-    <LangToggle slot="lang" />
-  </Nav>
+  <div slot="nav">
+    <Nav lang={lang} />
+  </div>
 
   <article class="post" data-draft={isDraft ? '' : undefined}>
     {isDraft && (
