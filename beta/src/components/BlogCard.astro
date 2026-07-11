@@ -8,32 +8,36 @@ interface Props {
   slug: string;
   image?: string;
   draft?: boolean;
+  lang?: 'DE' | 'EN';
 }
 
 import BlogCover from './BlogCover.astro';
 
-const { title, excerpt, category, order, readingTime, slug, image, draft } = Astro.props;
-const partLabel = `Teil ${String(order).padStart(2, '0')}`;
+const { title, excerpt, category, order, readingTime, slug, image, draft, lang = 'DE' } = Astro.props;
+const partLabel = lang === 'EN' ? `Part ${String(order).padStart(2, '0')}` : `Teil ${String(order).padStart(2, '0')}`;
+const blogPath = lang === 'EN' ? `/en/blog/${slug}` : `/blog/${slug}`;
+const draftLabel = lang === 'EN' ? 'Preview' : 'Vorschau';
+const readLabel = lang === 'EN' ? 'Read' : 'Lesen';
 ---
 
 <article class="a-blog-card" data-draft={draft ? '' : undefined}>
   {image && (
-    <a class="a-blog-card__cover" href={`/blog/${slug}`} aria-hidden="true" tabindex="-1">
+    <a class="a-blog-card__cover" href={blogPath} aria-hidden="true" tabindex="-1">
       <BlogCover image={image} />
     </a>
   )}
   <div class="a-blog-card__meta">
     <span class="a-blog-card__part">{partLabel}</span>
     <span class="a-blog-card__category">{category}</span>
-    {draft && <span class="a-blog-card__draft">Vorschau</span>}
+    {draft && <span class="a-blog-card__draft">{draftLabel}</span>}
   </div>
   <h3 class="a-blog-card__title">
-    <a href={`/blog/${slug}`}>{title}</a>
+    <a href={blogPath}>{title}</a>
   </h3>
   <p class="a-blog-card__excerpt">{excerpt}</p>
   <div class="a-blog-card__footer">
-    <a href={`/blog/${slug}`} class="bf-cta">
-      Lesen <span aria-hidden="true">→</span>
+    <a href={blogPath} class="bf-cta">
+      {readLabel} <span aria-hidden="true">→</span>
     </a>
     {readingTime && <span class="a-blog-card__time">{readingTime}</span>}
   </div>

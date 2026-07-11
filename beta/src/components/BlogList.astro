@@ -4,9 +4,10 @@ import { getAllBlogPosts, getBlogPosts } from '../lib/blog';
 
 interface Props {
   showDrafts?: boolean;
+  lang?: 'DE' | 'EN';
 }
 
-const { showDrafts = false } = Astro.props;
+const { showDrafts = false, lang = 'DE' } = Astro.props;
 
 // When preview is unlocked, render all posts. Otherwise only published ones.
 const posts = showDrafts ? await getAllBlogPosts() : await getBlogPosts();
@@ -26,6 +27,7 @@ const publishedCount = posts.filter(p => p.data.published).length;
           slug={post.id}
           image={post.data.image}
           draft={!post.data.published}
+          lang={lang}
         />
       ))}
     </div>

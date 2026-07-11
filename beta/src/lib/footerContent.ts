@@ -69,7 +69,7 @@ const servicesHref = lang === 'DE' ? '/services' : '/en/services';
           title: 'Learn',
           items: [
             { label: 'FaST Training', href: servicesHref },
-            { label: 'Field Notes (AI series)', href: '/blog' },
+            { label: 'Field Notes (AI series)', href: '/en/blog' },
             { label: 'AI Literacy', href: servicesHref },
             { label: 'Open Space Checklist', href: servicesHref },
           ],
