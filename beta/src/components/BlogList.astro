@@ -1,27 +1,30 @@
 ---
 import BlogCard from './BlogCard.astro';
-import { getBlogPosts } from '../lib/blog';
+import { getAllBlogPosts } from '../lib/blog';
 
-const posts = await getBlogPosts();
+// Render every post so the magic preview link can reveal drafts client-side.
+// Draft cards are hidden by default (CSS) unless [data-preview="on"] is set.
+const posts = await getAllBlogPosts();
+const publishedCount = posts.filter(p => p.data.published).length;
 ---
 
 <section class="a-blog-list">
   <div class="bf-container">
-    {posts.length > 0 ? (
-      <div class="a-blog-list__grid">
-        {posts.map(post => (
-          <BlogCard
-            title={post.data.title}
-            excerpt={post.data.excerpt}
-            category={post.data.category}
-            order={post.data.order}
-            readingTime={post.data.readingTime}
-            slug={post.id}
-            image={post.data.image}
-          />
-        ))}
-      </div>
-    ) : (
+    <div class="a-blog-list__grid">
+      {posts.map(post => (
+        <BlogCard
+          title={post.data.title}
+          excerpt={post.data.excerpt}
+          category={post.data.category}
+          order={post.data.order}
+          readingTime={post.data.readingTime}
+          slug={post.id}
+          image={post.data.image}
+          draft={!post.data.published}
+        />
+      ))}
+    </div>
+    {publishedCount === 0 && (
       <p class="a-blog-list__empty">Die Artikelserie erscheint in Kürze.</p>
     )}
   </div>
@@ -43,6 +46,19 @@ const posts = await getBlogPosts();
     text-align: center;
     color: var(--ink-soft);
     padding: 3rem 0;
+  }
+
+  /* Draft cards are hidden until the magic preview key unlocks the session. */
+  :global(.a-blog-card[data-draft]) {
+    display: none;
+  }
+
+  :global([data-preview='on'] .a-blog-card[data-draft]) {
+    display: flex;
+  }
+
+  :global([data-preview='on']) .a-blog-list__empty {
+    display: none;
   }
 
   @media (max-width: 768px) {

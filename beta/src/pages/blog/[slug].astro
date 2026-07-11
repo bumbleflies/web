@@ -1,14 +1,17 @@
 ---
 import { render } from 'astro:content';
-import { getBlogPosts } from '../../lib/blog';
+import { getAllBlogPosts } from '../../lib/blog';
 import Layout from '../../components/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import LangToggle from '../../components/LangToggle.astro';
 import BlogCover from '../../components/BlogCover.astro';
 
+// Build every article — drafts included — so the magic preview link resolves in
+// production. Drafts are noindex'd and gated client-side (see the .post__locked
+// notice + [data-preview] cascade below).
 export async function getStaticPaths() {
-  const ordered = await getBlogPosts();
+  const ordered = await getAllBlogPosts();
   return ordered.map((post, i) => ({
     params: { slug: post.id },
     props: {
@@ -20,6 +23,7 @@ export async function getStaticPaths() {
 }
 
 const { post, prev, next } = Astro.props;
+const isDraft = !post.data.published;
 const { Content } = await render(post);
 const dateLabel = post.data.date.toLocaleDateString('de-DE', {
   year: 'numeric',
@@ -34,14 +38,29 @@ const dateLabel = post.data.date.toLocaleDateString('de-DE', {
   canonical={`https://bumbleflies.de/blog/${post.id}`}
   lang="DE"
   dePath={`/blog/${post.id}`}
+  noindex={isDraft}
 >
   <Nav slot="nav">
     <LangToggle slot="lang" />
   </Nav>
 
-  <article class="post">
+  <article class="post" data-draft={isDraft ? '' : undefined}>
+    {isDraft && (
+      <div class="post__locked">
+        <div class="bf-container post__locked-inner">
+          <span class="post__locked-tag">Entwurf</span>
+          <h1 class="post__locked-title">Dieser Artikel ist noch nicht veröffentlicht.</h1>
+          <p class="post__locked-text">
+            Er gehört zur Vorschau der Field-Notes-Serie. Öffne die Serie mit deinem
+            Vorschau-Link, um ihn zu lesen.
+          </p>
+          <a href="/blog" class="post__locked-link">← Zur Übersicht</a>
+        </div>
+      </div>
+    )}
     <main class="post__page">
       <a href="/blog" class="post__breadcrumb">← Alle Artikel</a>
+      {isDraft && <span class="post__preview-tag">Vorschau</span>}
 
       <header class="post__header">
         <div class="post__meta">
@@ -99,6 +118,64 @@ const dateLabel = post.data.date.toLocaleDateString('de-DE', {
 </Layout>
 
 <style>
+  /* Draft gating — the article body shows only when the magic preview key has
+     set [data-preview="on"] on <html> (see Layout's inline script). */
+  .post__locked { display: none; }
+  .post[data-draft] .post__locked { display: block; padding: var(--space-4xl) 0; }
+  :global(html[data-preview='on']) .post[data-draft] .post__locked { display: none; }
+
+  .post[data-draft] .post__page { display: none; }
+  :global(html[data-preview='on']) .post[data-draft] .post__page { display: block; }
+
+  .post__locked-inner { max-width: 760px; }
+
+  .post__locked-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+  }
+
+  .post__locked-title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    line-height: var(--lh-tight);
+    color: var(--ink);
+    margin: 0 0 var(--space-md);
+  }
+
+  .post__locked-text {
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    line-height: var(--lh-body);
+    max-width: 560px;
+    margin: 0 0 var(--space-lg);
+  }
+
+  .post__locked-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wide);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .post__preview-tag {
+    display: inline-block;
+    margin-left: var(--space-md);
+    padding: 2px 10px;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wide);
+    color: var(--accent);
+  }
+
   .post__page {
     max-width: 760px;
     margin: 0 auto;

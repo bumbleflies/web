@@ -7,15 +7,16 @@ interface Props {
   readingTime?: string;
   slug: string;
   image?: string;
+  draft?: boolean;
 }
 
 import BlogCover from './BlogCover.astro';
 
-const { title, excerpt, category, order, readingTime, slug, image } = Astro.props;
+const { title, excerpt, category, order, readingTime, slug, image, draft } = Astro.props;
 const partLabel = `Teil ${String(order).padStart(2, '0')}`;
 ---
 
-<article class="a-blog-card">
+<article class="a-blog-card" data-draft={draft ? '' : undefined}>
   {image && (
     <a class="a-blog-card__cover" href={`/blog/${slug}`} aria-hidden="true" tabindex="-1">
       <BlogCover image={image} />
@@ -24,6 +25,7 @@ const partLabel = `Teil ${String(order).padStart(2, '0')}`;
   <div class="a-blog-card__meta">
     <span class="a-blog-card__part">{partLabel}</span>
     <span class="a-blog-card__category">{category}</span>
+    {draft && <span class="a-blog-card__draft">Vorschau</span>}
   </div>
   <h3 class="a-blog-card__title">
     <a href={`/blog/${slug}`}>{title}</a>
@@ -80,6 +82,15 @@ const partLabel = `Teil ${String(order).padStart(2, '0')}`;
 
   .a-blog-card__category {
     color: var(--ink-soft);
+  }
+
+  .a-blog-card__draft {
+    margin-left: auto;
+    padding: 2px 8px;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-full);
+    color: var(--accent);
+    letter-spacing: var(--ls-wide);
   }
 
   .a-blog-card__title {

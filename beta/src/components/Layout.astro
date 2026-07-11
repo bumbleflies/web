@@ -1,5 +1,6 @@
 ---
 import '../styles/design-system.css';
+import { PREVIEW_KEY } from '../lib/blog';
 
 const SITE_URL = 'https://bumbleflies.de';
 const DEFAULT_DESCRIPTION = 'bumbleflies — Facilitation, AI Consulting, App Development. From Conversation to Code.';
@@ -119,6 +120,22 @@ const jsonLd = JSON.stringify({
       } else {
         document.documentElement.removeAttribute('data-theme');
       }
+    </script>
+
+    <script define:vars={{ previewKey: PREVIEW_KEY, isDev: import.meta.env.DEV }}>
+      // Unlock drafted articles when the magic preview key is present, and keep
+      // them unlocked for the rest of the session. Dev is always unlocked.
+      (function () {
+        try {
+          let unlocked = isDev || sessionStorage.getItem('bf-preview') === '1';
+          const param = new URLSearchParams(location.search).get('preview');
+          if (param !== null && param === previewKey) {
+            unlocked = true;
+            sessionStorage.setItem('bf-preview', '1');
+          }
+          if (unlocked) document.documentElement.setAttribute('data-preview', 'on');
+        } catch (e) {}
+      })();
     </script>
   </head>
   <body class="bf-body">
