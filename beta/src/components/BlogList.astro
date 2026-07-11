@@ -1,10 +1,15 @@
 ---
 import BlogCard from './BlogCard.astro';
-import { getAllBlogPosts } from '../lib/blog';
+import { getAllBlogPosts, getBlogPosts } from '../lib/blog';
 
-// Render every post so the magic preview link can reveal drafts client-side.
-// Draft cards are hidden by default (CSS) unless [data-preview="on"] is set.
-const posts = await getAllBlogPosts();
+interface Props {
+  showDrafts?: boolean;
+}
+
+const { showDrafts = false } = Astro.props;
+
+// When preview is unlocked, render all posts. Otherwise only published ones.
+const posts = showDrafts ? await getAllBlogPosts() : await getBlogPosts();
 const publishedCount = posts.filter(p => p.data.published).length;
 ---
 
@@ -24,7 +29,7 @@ const publishedCount = posts.filter(p => p.data.published).length;
         />
       ))}
     </div>
-    {publishedCount === 0 && (
+    {publishedCount === 0 && !showDrafts && (
       <p class="a-blog-list__empty">Die Artikelserie erscheint in Kürze.</p>
     )}
   </div>

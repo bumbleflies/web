@@ -7,17 +7,23 @@ import Footer from '../../components/Footer.astro';
 import LangToggle from '../../components/LangToggle.astro';
 import BlogCover from '../../components/BlogCover.astro';
 
-// Build every article — drafts included — so the magic preview link resolves in
-// production. Drafts are noindex'd and gated client-side (see the .post__locked
-// notice + [data-preview] cascade below).
+// Only draft articles when the preview key was NOT set at build time.
+// Set PUBLIC_PREVIEW_KEY=<key> in your deploy env to build draft pages
+// so the magic preview link (?preview=<key>) can reveal them client-side.
+// Without the env var, draft pages are skipped entirely at build time.
 export async function getStaticPaths() {
-  const ordered = await getAllBlogPosts();
-  return ordered.map((post, i) => ({
+  // In dev or when preview key is set, build all posts (drafts included).
+  // Otherwise, only build published posts.
+  const allPosts = import.meta.env.DEV || import.meta.env.PUBLIC_PREVIEW_KEY
+    ? await getAllBlogPosts()
+    : (await getAllBlogPosts()).filter(p => p.data.published);
+
+  return allPosts.map((post, i) => ({
     params: { slug: post.id },
     props: {
       post,
-      prev: ordered[i - 1] ?? null,
-      next: ordered[i + 1] ?? null,
+      prev: allPosts[i - 1] ?? null,
+      next: allPosts[i + 1] ?? null,
     },
   }));
 }
