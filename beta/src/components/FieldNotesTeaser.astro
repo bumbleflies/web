@@ -1,0 +1,156 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  lang?: 'DE' | 'EN';
+}
+
+const { lang = 'DE' } = Astro.props;
+
+// Only surface the teaser once at least one article is live — never link to an
+// empty blog. Mirrors the gating on the nav link.
+const posts = (await getCollection('blog', ({ data }) => data.published))
+  .sort((a, b) => a.data.order - b.data.order);
+const hasPosts = posts.length > 0;
+const lead = posts[0];
+
+const copy = lang === 'DE'
+  ? {
+      kicker: 'Field Notes · KI-Serie',
+      heading: 'Die romantische Vorstellung stimmt — hier ist der Schatz.',
+      body: 'Wir haben für ein deutsches Legal-Tech-Unternehmen ein komplettes KI-Agenten-Betriebssystem gebaut: autonome Bots, die Pull-Requests öffnen, ein Skill-Marktplatz für Firmenwissen, ein Cockpit, das den Tag plant. Kein Proof-of-Concept — Produktion. Wir schreiben es auf.',
+      cta: 'Zur Artikelserie',
+      readMore: 'Zum Auftakt',
+    }
+  : {
+      kicker: 'Field Notes · AI series',
+      heading: 'The romantic notion is true — here is the treasure.',
+      body: 'We built a full AI-agent operating system for a German legal-tech company: autonomous bots that open pull requests, a skill marketplace for institutional knowledge, a cockpit that plans the day. Not a proof of concept — production. We write it up (in German).',
+      cta: 'Read the series',
+      readMore: 'Start here',
+    };
+---
+
+{hasPosts && (
+  <section class="fnt bf-section">
+    <div class="bf-container">
+      <div class="fnt__card">
+        <div class="fnt__body">
+          <span class="fnt__kicker">{copy.kicker}</span>
+          <h2 class="fnt__heading">{copy.heading}</h2>
+          <p class="fnt__text">{copy.body}</p>
+          <a href="/blog" class="fnt__cta">{copy.cta} <span aria-hidden="true">→</span></a>
+        </div>
+        {lead && (
+          <a class="fnt__lead" href={`/blog/${lead.id}`}>
+            <span class="fnt__lead-part">Teil {String(lead.data.order).padStart(2, '0')} · {copy.readMore}</span>
+            <span class="fnt__lead-title">{lead.data.title}</span>
+            <span class="fnt__lead-excerpt">{lead.data.excerpt}</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .fnt {
+    padding: var(--space-3xl) 0;
+    background: var(--bg);
+  }
+
+  .fnt__card {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+    padding: var(--space-2xl);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-sm);
+    background: var(--paper);
+  }
+
+  .fnt__kicker {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+  }
+
+  .fnt__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    line-height: var(--lh-snug);
+    margin: 0 0 var(--space-md);
+    color: var(--ink);
+  }
+
+  .fnt__text {
+    color: var(--ink-soft);
+    line-height: var(--lh-body);
+    margin: 0 0 var(--space-lg);
+  }
+
+  .fnt__cta {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .fnt__cta:hover { opacity: 0.7; }
+
+  .fnt__lead {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-xl);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    text-decoration: none;
+    transition: border-color var(--duration-fast) var(--easing-default), transform var(--duration-fast) var(--easing-default);
+  }
+
+  .fnt__lead:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  .fnt__lead-part {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wider);
+    color: var(--accent);
+  }
+
+  .fnt__lead-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--ink);
+    line-height: var(--lh-snug);
+  }
+
+  .fnt__lead-excerpt {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    line-height: var(--lh-body);
+  }
+
+  @media (max-width: 768px) {
+    .fnt { padding: var(--space-2xl) 0; }
+    .fnt__card {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      padding: var(--space-xl);
+    }
+    .fnt__heading { font-size: var(--text-2xl); }
+  }
+</style>

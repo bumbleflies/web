@@ -4,6 +4,7 @@ import Nav from '../components/Nav.astro';
 import Quote from '../components/Quote.astro';
 import CTAStrip from '../components/CTAStrip.astro';
 import PipelineFlow from '../components/PipelineFlow.astro';
+import FieldNotesTeaser from '../components/FieldNotesTeaser.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
@@ -112,6 +113,8 @@ let lang: 'DE' | 'EN' = 'DE';
       />
     </div>
   </section>
+
+  <FieldNotesTeaser lang={lang} />
 
   <div data-de-cta={JSON.stringify({heading: deContent.ctaHeading, headingEm: deContent.ctaHeading_em, body: deContent.ctaBody, ctaText: deContent.ctaText})} data-en-cta={JSON.stringify({heading: enContent.ctaHeading, headingEm: enContent.ctaHeading_em, body: enContent.ctaBody, ctaText: enContent.ctaText})} class="bf-cta-container">
     <CTAStrip

@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Quote from '../../components/Quote.astro';
 import CTAStrip from '../../components/CTAStrip.astro';
 import PipelineFlow from '../../components/PipelineFlow.astro';
+import FieldNotesTeaser from '../../components/FieldNotesTeaser.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
@@ -88,6 +89,8 @@ const lang: 'DE' | 'EN' = 'EN';
       />
     </div>
   </section>
+
+  <FieldNotesTeaser lang={lang} />
 
   <CTAStrip
     heading={content.ctaHeading}
