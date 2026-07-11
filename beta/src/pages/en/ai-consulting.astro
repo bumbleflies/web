@@ -5,6 +5,7 @@ import Quote from '../../components/Quote.astro';
 import CTAStrip from '../../components/CTAStrip.astro';
 import PipelineFlow from '../../components/PipelineFlow.astro';
 import FieldNotesTeaser from '../../components/FieldNotesTeaser.astro';
+import Faq from '../../components/Faq.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
@@ -17,15 +18,63 @@ if (!enPages[0]) {
 const content = enPages[0].data;
 
 const lang: 'DE' | 'EN' = 'EN';
+
+const pageTitle = 'Agentic Software Development & AI Consulting | bumbleflies';
+const pageDescription = 'We build your software with autonomous AI agents and human-in-the-loop — from ticket to release. AI consulting that delivers: from Conversation to Code.';
+
+const faqItems = [
+  {
+    q: 'Can AI implement feature requests on its own?',
+    a: 'Yes. A GitHub issue written in plain language becomes a finished pull request via autonomous agents — test-first (TDD), with a review-and-test loop until approval and automerge.',
+  },
+  {
+    q: 'How does a human stay in control (human-in-the-loop)?',
+    a: 'A human decides what gets built. Agents handle the implementation; a review-and-test bot iterates until everything is green. You set the direction, a human stays at the wheel.',
+  },
+  {
+    q: 'What does "From Conversation to Code" mean?',
+    a: 'From the first conversation through strategy to running software: we understand, decide, pilot and scale — real software, not slideware.',
+  },
+  {
+    q: 'How fast is a working prototype?',
+    a: 'In 4–6 weeks we build a functional prototype. No mockups, real software — in your context.',
+  },
+  {
+    q: 'Which tools do you use?',
+    a: 'GitHub for issues and pull requests, our own orchestration framework and opencode for implementation, test-first (TDD), with an automated review-and-test loop.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'AI Consulting & Agentic Software Development',
+  name: 'AI Consulting & Agentic Software Development',
+  description: pageDescription,
+  provider: { '@type': 'Organization', name: 'bumbleflies', url: 'https://bumbleflies.de' },
+  areaServed: ['Munich', 'Germany', 'DACH'],
+  url: 'https://bumbleflies.de/en/ai-consulting/',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
 ---
 
 <Layout
-  title={content.title}
-  description="From the first conversation to a running AI solution. We help you not just understand AI, but deploy it — Conversation to Code in days, not months."
+  title={pageTitle}
+  description={pageDescription}
   canonical="https://bumbleflies.de/en/ai-consulting"
   lang={lang}
   dePath="/ai-consulting"
   enPath="/en/ai-consulting"
+  jsonLd={[serviceSchema, faqSchema]}
 >
   <div slot="nav">
     <Nav lang={lang} />
@@ -33,7 +82,7 @@ const lang: 'DE' | 'EN' = 'EN';
 
   <section class="a-ai-hero">
     <div class="bf-container">
-      <p class="a-ai-hero__label">AI Consulting</p>
+      <p class="a-ai-hero__label">AI Consulting · Agentic Development</p>
       <h1 class="a-ai-hero__heading">{content.heading}</h1>
       <p class="a-ai-hero__subheading">{content.subheading}</p>
     </div>
@@ -79,6 +128,8 @@ const lang: 'DE' | 'EN' = 'EN';
   </section>
 
   <PipelineFlow lang={lang} />
+
+  <Faq heading="Frequently asked questions" items={faqItems} />
 
   <section class="a-ai-quote bf-section">
     <div class="bf-container">
@@ -205,7 +256,7 @@ const lang: 'DE' | 'EN' = 'EN';
   }
   .a-ai-quote {
     padding: 4rem 0;
-    background: var(--paper);
+    background: var(--bg);
     text-align: center;
   }
   @media (max-width: 768px) {

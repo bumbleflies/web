@@ -5,6 +5,7 @@ import Quote from '../components/Quote.astro';
 import CTAStrip from '../components/CTAStrip.astro';
 import PipelineFlow from '../components/PipelineFlow.astro';
 import FieldNotesTeaser from '../components/FieldNotesTeaser.astro';
+import Faq from '../components/Faq.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
@@ -22,15 +23,63 @@ const deContent = dePage.data;
 const enContent = enPage.data;
 
 let lang: 'DE' | 'EN' = 'DE';
+
+const pageTitle = 'Agentische Softwareentwicklung & KI-Beratung | bumbleflies';
+const pageDescription = 'Wir bauen deine Software mit autonomen KI-Agenten und Human-in-the-Loop — vom Ticket zum Release. KI-Beratung, die liefert: From Conversation to Code.';
+
+const faqItems = [
+  {
+    q: 'Kann KI Feature-Requests selbstständig umsetzen?',
+    a: 'Ja. Aus einem GitHub-Issue in normaler Sprache wird über autonome Agenten ein fertiger Pull Request — test-getrieben (TDD), mit einem Review- und Test-Loop bis zur Freigabe und Automerge.',
+  },
+  {
+    q: 'Wie bleibt der Mensch in Kontrolle (Human-in-the-Loop)?',
+    a: 'Ein Mensch entscheidet, was gebaut wird. Die Agents übernehmen die Umsetzung; ein Review- und Test-Bot dreht Runden, bis alles grün ist. Du gibst die Richtung vor, ein Mensch bleibt am Steuer.',
+  },
+  {
+    q: 'Was bedeutet „From Conversation to Code"?',
+    a: 'Vom ersten Gespräch über die Strategie bis zur laufenden Software: Wir verstehen, entscheiden, pilotieren und skalieren — echte Software statt PowerPoint.',
+  },
+  {
+    q: 'Wie schnell steht ein funktionierender Prototyp?',
+    a: 'In 4–6 Wochen bauen wir einen funktionalen Prototypen. Keine Mockups, echte Software — in deinem Kontext.',
+  },
+  {
+    q: 'Mit welchen Tools arbeitet ihr?',
+    a: 'GitHub für Issues und Pull Requests, ein eigenes Orchestrierungs-Framework und opencode für die Umsetzung, test-getrieben (TDD), mit automatisiertem Review- und Test-Loop.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'AI Consulting & Agentic Software Development',
+  name: 'KI-Beratung & agentische Softwareentwicklung',
+  description: pageDescription,
+  provider: { '@type': 'Organization', name: 'bumbleflies', url: 'https://bumbleflies.de' },
+  areaServed: ['Munich', 'Germany', 'DACH'],
+  url: 'https://bumbleflies.de/ai-consulting/',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
 ---
 
 <Layout
-  title={deContent.title}
-  description="Vom ersten Gespräch zur laufenden KI-Lösung. Wir helfen dir, KI nicht nur zu verstehen, sondern einzusetzen — Conversation to Code in Tagen, nicht Monaten."
+  title={pageTitle}
+  description={pageDescription}
   canonical="https://bumbleflies.de/ai-consulting"
   lang={lang}
   dePath="/ai-consulting"
   enPath="/en/ai-consulting"
+  jsonLd={[serviceSchema, faqSchema]}
 >
   <div slot="nav">
     <Nav lang={lang} />
@@ -38,7 +87,7 @@ let lang: 'DE' | 'EN' = 'DE';
 
   <section class="a-ai-hero">
     <div class="bf-container">
-      <p class="a-ai-hero__label" data-de="AI Consulting" data-en="AI Consulting">AI Consulting</p>
+      <p class="a-ai-hero__label" data-de="KI-Beratung · Agentische Entwicklung" data-en="AI Consulting · Agentic Development">KI-Beratung · Agentische Entwicklung</p>
       <h1 class="a-ai-hero__heading" data-de={deContent.heading} data-en={enContent.heading}>
         {deContent.heading}
       </h1>
@@ -103,6 +152,8 @@ let lang: 'DE' | 'EN' = 'DE';
   </section>
 
   <PipelineFlow lang={lang} />
+
+  <Faq heading="Häufige Fragen" items={faqItems} />
 
   <section class="a-ai-quote bf-section">
     <div class="bf-container">
@@ -231,7 +282,7 @@ let lang: 'DE' | 'EN' = 'DE';
   }
   .a-ai-quote {
     padding: 4rem 0;
-    background: var(--paper);
+    background: var(--bg);
     text-align: center;
   }
   @media (max-width: 768px) {
