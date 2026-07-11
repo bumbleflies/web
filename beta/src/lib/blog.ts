@@ -5,7 +5,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
  * reveal drafted articles for the rest of the browser session. Override at
  * build time with the PUBLIC_PREVIEW_KEY env var.
  */
-export const PREVIEW_KEY = import.meta.env.PUBLIC_PREVIEW_KEY || 'feldnotizen-vorschau';
+export const PREVIEW_KEY = import.meta.env.PUBLIC_PREVIEW_KEY || 'bumble-field-notes';
 
 const byOrder = (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
   a.data.order - b.data.order;
