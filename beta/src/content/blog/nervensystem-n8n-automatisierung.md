@@ -3,6 +3,7 @@ title: "Das Nervensystem: Event-Automatisierung — und wie man ein Sprachmodell
 description: "Wie ein always-on Automatisierungslayer aus Support-Mails klassifizierte Tickets macht, und der mehrstufige Datenschutz-Filter, der das beste Beispiel für 'vertraue dem Modell nicht, verifiziere mit Code' ist."
 excerpt: "24 Workflows, knapp 700 Verarbeitungsschritte, kein Mensch in der Schleife. Ein selbstlernender Ticket-Router und ein Datenschutz-Filter, der das Sprachmodell schreiben lässt — aber ihm kein Wort glaubt."
 category: "Automatisierung"
+image: "/images/blog/nervensystem-n8n-automatisierung.svg"
 order: 3
 date: 2026-07-15
 readingTime: "9 Min."

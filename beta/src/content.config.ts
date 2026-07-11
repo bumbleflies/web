@@ -27,6 +27,8 @@ const blog = defineCollection({
     description: z.string(),
     excerpt: z.string(),
     category: z.string(),
+    // Teaser/cover image (concrete-scene SVG in /public/images/blog/<slug>.svg).
+    image: z.string().optional(),
     // Series order — controls the reading sequence in the listing.
     order: z.number(),
     date: z.coerce.date(),

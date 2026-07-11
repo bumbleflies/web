@@ -3,6 +3,7 @@ title: "Die zwei Ebenen, auf denen alles läuft: Zustand und Interaktion"
 description: "Warum ein ganzes KI-Agenten-System über zwei Standard-SaaS-Tools koordiniert statt über eigene Microservices — und was das über robuste Agenten-Architektur verrät."
 excerpt: "Das Projektmanagement-Tool ist der Speicher der Wahrheit und die Zündung. Der Team-Chat ist die Interaktions- und Transportschicht. Agenten koordinieren sich über dauerhafte Artefakte, nicht über direkte Aufrufe."
 category: "Architektur"
+image: "/images/blog/zwei-ebenen-zustand-und-interaktion.svg"
 order: 2
 date: 2026-07-12
 readingTime: "8 Min."

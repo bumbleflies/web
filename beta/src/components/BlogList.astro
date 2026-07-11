@@ -1,9 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import BlogCard from './BlogCard.astro';
+import { getBlogPosts } from '../lib/blog';
 
-const posts = (await getCollection('blog', ({ data }) => data.published))
-  .sort((a, b) => a.data.order - b.data.order);
+const posts = await getBlogPosts();
 ---
 
 <section class="a-blog-list">
@@ -18,6 +17,7 @@ const posts = (await getCollection('blog', ({ data }) => data.published))
             order={post.data.order}
             readingTime={post.data.readingTime}
             slug={post.id}
+            image={post.data.image}
           />
         ))}
       </div>

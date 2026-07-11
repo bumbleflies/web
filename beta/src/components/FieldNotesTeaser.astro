@@ -1,5 +1,6 @@
 ---
-import { getCollection } from 'astro:content';
+import BlogCover from './BlogCover.astro';
+import { getBlogPosts } from '../lib/blog';
 
 interface Props {
   lang?: 'DE' | 'EN';
@@ -9,8 +10,7 @@ const { lang = 'DE' } = Astro.props;
 
 // Only surface the teaser once at least one article is live — never link to an
 // empty blog. Mirrors the gating on the nav link.
-const posts = (await getCollection('blog', ({ data }) => data.published))
-  .sort((a, b) => a.data.order - b.data.order);
+const posts = await getBlogPosts();
 const hasPosts = posts.length > 0;
 const lead = posts[0];
 
@@ -43,6 +43,11 @@ const copy = lang === 'DE'
         </div>
         {lead && (
           <a class="fnt__lead" href={`/blog/${lead.id}`}>
+            {lead.data.image && (
+              <span class="fnt__lead-cover">
+                <BlogCover image={lead.data.image} />
+              </span>
+            )}
             <span class="fnt__lead-part">Teil {String(lead.data.order).padStart(2, '0')} · {copy.readMore}</span>
             <span class="fnt__lead-title">{lead.data.title}</span>
             <span class="fnt__lead-excerpt">{lead.data.excerpt}</span>
@@ -121,6 +126,13 @@ const copy = lang === 'DE'
   .fnt__lead:hover {
     border-color: var(--accent);
     transform: translateY(-3px);
+  }
+
+  .fnt__lead-cover {
+    display: block;
+    margin: calc(-1 * var(--space-xl)) calc(-1 * var(--space-xl)) var(--space-xs);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    overflow: hidden;
   }
 
   .fnt__lead-part {

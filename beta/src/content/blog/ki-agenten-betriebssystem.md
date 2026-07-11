@@ -3,6 +3,7 @@ title: "Ein KI-Agenten-Betriebssystem für ein Legal-Tech-Unternehmen"
 description: "Nicht 'wir haben KI gekauft', sondern 'wir haben unsere eigenen Betriebsabläufe in Code übersetzt, den ein Sprachmodell komponiert'. Die Landkarte eines echten Agenten-Systems in Produktion."
 excerpt: "Vier Agenten-Schichten auf zwei Fundament-Ebenen. Autonome Bots, die Pull-Requests öffnen, ein Skill-Marktplatz für Firmenwissen, ein Cockpit, das den Tag plant. So sieht KI aus, wenn sie nicht in der Demo endet."
 category: "Überblick"
+image: "/images/blog/ki-agenten-betriebssystem.svg"
 order: 1
 date: 2026-07-10
 readingTime: "9 Min."

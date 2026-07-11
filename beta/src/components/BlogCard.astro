@@ -6,13 +6,21 @@ interface Props {
   order: number;
   readingTime?: string;
   slug: string;
+  image?: string;
 }
 
-const { title, excerpt, category, order, readingTime, slug } = Astro.props;
+import BlogCover from './BlogCover.astro';
+
+const { title, excerpt, category, order, readingTime, slug, image } = Astro.props;
 const partLabel = `Teil ${String(order).padStart(2, '0')}`;
 ---
 
 <article class="a-blog-card">
+  {image && (
+    <a class="a-blog-card__cover" href={`/blog/${slug}`} aria-hidden="true" tabindex="-1">
+      <BlogCover image={image} />
+    </a>
+  )}
   <div class="a-blog-card__meta">
     <span class="a-blog-card__part">{partLabel}</span>
     <span class="a-blog-card__category">{category}</span>
@@ -46,6 +54,14 @@ const partLabel = `Teil ${String(order).padStart(2, '0')}`;
   .a-blog-card:hover {
     transform: translateY(-4px);
     border-color: var(--accent);
+  }
+
+  /* Full-bleed cover: pull to the card's padding-box edges, round the top corners. */
+  .a-blog-card__cover {
+    display: block;
+    margin: calc(-1 * var(--space-xl)) calc(-1 * var(--space-xl)) 0;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    overflow: hidden;
   }
 
   .a-blog-card__meta {

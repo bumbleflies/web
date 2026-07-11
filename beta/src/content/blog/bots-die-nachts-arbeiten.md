@@ -3,6 +3,7 @@ title: "Bots, die arbeiten, während du schläfst: Claude Code als autonomer Dae
 description: "Vier autonome Bots, die einen Team-Chat beobachten, Code implementieren, Pull-Requests öffnen und Hotfixes ausrollen — und die Narben, die jede einzelne Schutzmaßnahme erklären."
 excerpt: "Ein Wort im Chat weckt einen Bot. Er implementiert, öffnet einen PR, meldet sich zurück. Vier Personas aus einem Bausatz. Und die Nacht, in der ein Bot für mehrere hundert Euro Tokens verbrannte."
 category: "Autonomie"
+image: "/images/blog/bots-die-nachts-arbeiten.svg"
 order: 5
 date: 2026-07-22
 readingTime: "10 Min."

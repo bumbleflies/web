@@ -3,6 +3,7 @@ title: "Skills als Apps: ein Plugin-Marktplatz für Firmenwissen"
 description: "Ein interner App-Store für KI-Tooling: der Marktplatz ist der Store, jedes Plugin eine App, jeder Skill ein Feature. Und die eine Regel, die alles zusammenhält — Modell-Urteil plus deterministisches Skript."
 excerpt: "11 Plugins, 53 Skills, die per natürlicher Sprache aktiviert werden. Derselbe Code läuft für den Menschen am Laptop, den Bot im Container und die CI. Wie man Firmenwissen versioniert statt kopiert."
 category: "Plattform"
+image: "/images/blog/skills-als-apps-plugin-marktplatz.svg"
 order: 4
 date: 2026-07-18
 readingTime: "8 Min."

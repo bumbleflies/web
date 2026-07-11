@@ -3,6 +3,7 @@ title: "Ein Cockpit für einen Menschen: den eigenen Tag mit zehn Agenten orches
 description: "Zehn parallele Scanner, die aus Mail, Chat, Tickets, Kalender und sogar der eigenen KI-Historie einen priorisierten Tagesplan machen — mit zwei Versprechen: nichts geht verloren, nichts bleibt stecken."
 excerpt: "Die persönliche Seite des Stacks. Ein Meta-Agent, der zehn Quellen scannt, jeden losen Faden gegen die Tickets abgleicht und jede Aufgabe eine Nachricht davon entfernt macht, erledigt zu sein."
 category: "Produktivität"
+image: "/images/blog/cockpit-tag-mit-zehn-agenten.svg"
 order: 6
 date: 2026-07-25
 readingTime: "8 Min."

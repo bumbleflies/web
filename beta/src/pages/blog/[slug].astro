@@ -1,13 +1,14 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getBlogPosts } from '../../lib/blog';
 import Layout from '../../components/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import LangToggle from '../../components/LangToggle.astro';
+import BlogCover from '../../components/BlogCover.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => data.published);
-  const ordered = [...posts].sort((a, b) => a.data.order - b.data.order);
+  const ordered = await getBlogPosts();
   return ordered.map((post, i) => ({
     params: { slug: post.id },
     props: {
@@ -61,6 +62,12 @@ const dateLabel = post.data.date.toLocaleDateString('de-DE', {
           )}
         </div>
       </header>
+
+      {post.data.image && (
+        <figure class="post__cover">
+          <BlogCover image={post.data.image} />
+        </figure>
+      )}
 
       <div class="post__content">
         <Content />
@@ -164,6 +171,13 @@ const dateLabel = post.data.date.toLocaleDateString('de-DE', {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--ink-soft);
+  }
+
+  .post__cover {
+    margin: 0 0 var(--space-3xl);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
   }
 
   /* Article body */
