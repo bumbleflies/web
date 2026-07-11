@@ -1,0 +1,40 @@
+---
+/**
+ * Theme-aware teaser cover. Renders the dark scene by default under
+ * [data-theme="dark"] and the warm "-light" variant otherwise. Uses
+ * background-image so the browser only fetches the theme-correct SVG.
+ * The light path is derived from the dark one: <slug>.svg -> <slug>-light.svg.
+ */
+interface Props {
+  image: string;
+  class?: string;
+}
+
+const { image, class: className } = Astro.props;
+const lightImage = image.replace(/\.svg$/, '-light.svg');
+---
+
+<div
+  class:list={['a-cover', className]}
+  aria-hidden="true"
+  style={`--cover-dark:url('${image}');--cover-light:url('${lightImage}')`}
+>
+</div>
+
+<style>
+  .a-cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #f3ecdb;
+    background-image: var(--cover-light);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  :global([data-theme='dark']) .a-cover {
+    background-color: #0e0b08;
+    background-image: var(--cover-dark);
+  }
+</style>

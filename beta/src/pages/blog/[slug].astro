@@ -1,0 +1,431 @@
+---
+import { render } from 'astro:content';
+import { getAllBlogPosts } from '../../lib/blog';
+import Layout from '../../components/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import LangToggle from '../../components/LangToggle.astro';
+import BlogCover from '../../components/BlogCover.astro';
+
+// Build every article — drafts included — so the magic preview link resolves in
+// production. Drafts are noindex'd and gated client-side (see the .post__locked
+// notice + [data-preview] cascade below).
+export async function getStaticPaths() {
+  const ordered = await getAllBlogPosts();
+  return ordered.map((post, i) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      prev: ordered[i - 1] ?? null,
+      next: ordered[i + 1] ?? null,
+    },
+  }));
+}
+
+const { post, prev, next } = Astro.props;
+const isDraft = !post.data.published;
+const { Content } = await render(post);
+const dateLabel = post.data.date.toLocaleDateString('de-DE', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout
+  title={`${post.data.title} | bumbleflies`}
+  description={post.data.description}
+  canonical={`https://bumbleflies.de/blog/${post.id}`}
+  lang="DE"
+  dePath={`/blog/${post.id}`}
+  noindex={isDraft}
+>
+  <Nav slot="nav">
+    <LangToggle slot="lang" />
+  </Nav>
+
+  <article class="post" data-draft={isDraft ? '' : undefined}>
+    {isDraft && (
+      <div class="post__locked">
+        <div class="bf-container post__locked-inner">
+          <span class="post__locked-tag">Entwurf</span>
+          <h1 class="post__locked-title">Dieser Artikel ist noch nicht veröffentlicht.</h1>
+          <p class="post__locked-text">
+            Er gehört zur Vorschau der Field-Notes-Serie. Öffne die Serie mit deinem
+            Vorschau-Link, um ihn zu lesen.
+          </p>
+          <a href="/blog" class="post__locked-link">← Zur Übersicht</a>
+        </div>
+      </div>
+    )}
+    <main class="post__page">
+      <a href="/blog" class="post__breadcrumb">← Alle Artikel</a>
+      {isDraft && <span class="post__preview-tag">Vorschau</span>}
+
+      <header class="post__header">
+        <div class="post__meta">
+          <span class="post__part">Teil {String(post.data.order).padStart(2, '0')}</span>
+          <span class="post__category">{post.data.category}</span>
+        </div>
+        <h1 class="post__title">{post.data.title}</h1>
+        <p class="post__lead">{post.data.description}</p>
+        <div class="post__byline">
+          <span>{post.data.author}</span>
+          <span aria-hidden="true">·</span>
+          <time datetime={post.data.date.toISOString()}>{dateLabel}</time>
+          {post.data.readingTime && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>{post.data.readingTime}</span>
+            </>
+          )}
+        </div>
+      </header>
+
+      {post.data.image && (
+        <figure class="post__cover">
+          <BlogCover image={post.data.image} />
+        </figure>
+      )}
+
+      <div class="post__content">
+        <Content />
+      </div>
+
+      <nav class="post__pager">
+        {prev ? (
+          <a href={`/blog/${prev.id}`} class="post__pager-link post__pager-link--prev">
+            <span class="post__pager-dir">← Vorheriger Teil</span>
+            <span class="post__pager-title">{prev.data.title}</span>
+          </a>
+        ) : <span />}
+        {next ? (
+          <a href={`/blog/${next.id}`} class="post__pager-link post__pager-link--next">
+            <span class="post__pager-dir">Nächster Teil →</span>
+            <span class="post__pager-title">{next.data.title}</span>
+          </a>
+        ) : <span />}
+      </nav>
+
+      <aside class="post__cta">
+        <p>Klingt nach einem Thema, das Sie auch bewegt?</p>
+        <a href="mailto:info@bumbleflies.de" class="post__button">Erstes Gespräch buchen</a>
+      </aside>
+    </main>
+  </article>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  /* Draft gating — the article body shows only when the magic preview key has
+     set [data-preview="on"] on <html> (see Layout's inline script). */
+  .post__locked { display: none; }
+  .post[data-draft] .post__locked { display: block; padding: var(--space-4xl) 0; }
+  :global(html[data-preview='on']) .post[data-draft] .post__locked { display: none; }
+
+  .post[data-draft] .post__page { display: none; }
+  :global(html[data-preview='on']) .post[data-draft] .post__page { display: block; }
+
+  .post__locked-inner { max-width: 760px; }
+
+  .post__locked-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+  }
+
+  .post__locked-title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    line-height: var(--lh-tight);
+    color: var(--ink);
+    margin: 0 0 var(--space-md);
+  }
+
+  .post__locked-text {
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    line-height: var(--lh-body);
+    max-width: 560px;
+    margin: 0 0 var(--space-lg);
+  }
+
+  .post__locked-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wide);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .post__preview-tag {
+    display: inline-block;
+    margin-left: var(--space-md);
+    padding: 2px 10px;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wide);
+    color: var(--accent);
+  }
+
+  .post__page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--space-3xl);
+  }
+
+  @media (max-width: 768px) {
+    .post__page {
+      padding: 0 var(--space-lg);
+    }
+  }
+
+  .post__breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 30px;
+    margin-bottom: var(--space-xl);
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    transition: opacity var(--duration-fast) var(--easing-default);
+  }
+
+  .post__breadcrumb:hover {
+    opacity: 0.7;
+  }
+
+  .post__header {
+    margin-bottom: var(--space-3xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .post__meta {
+    display: flex;
+    gap: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wider);
+    margin-bottom: var(--space-md);
+  }
+
+  .post__part { color: var(--accent); }
+  .post__category { color: var(--ink-soft); }
+
+  .post__title {
+    font-family: var(--font-display);
+    font-size: var(--text-5xl);
+    line-height: var(--lh-tight);
+    margin: 0 0 var(--space-lg);
+    color: var(--ink);
+  }
+
+  .post__lead {
+    font-size: var(--text-lg);
+    line-height: var(--lh-body);
+    color: var(--ink-soft);
+    margin: 0 0 var(--space-lg);
+  }
+
+  .post__byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ink-soft);
+  }
+
+  .post__cover {
+    margin: 0 0 var(--space-3xl);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  /* Article body */
+  .post__content {
+    margin-bottom: var(--space-4xl);
+    font-size: var(--text-lg);
+    line-height: var(--lh-loose);
+    color: var(--ink);
+  }
+
+  .post__content :global(h2) {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    line-height: var(--lh-snug);
+    margin: var(--space-3xl) 0 var(--space-md);
+    color: var(--ink);
+  }
+
+  .post__content :global(h3) {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    margin: var(--space-2xl) 0 var(--space-sm);
+    color: var(--ink);
+  }
+
+  .post__content :global(p) {
+    margin: 0 0 var(--space-lg);
+  }
+
+  .post__content :global(a) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .post__content :global(strong) {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .post__content :global(em) { font-style: italic; }
+
+  .post__content :global(ul),
+  .post__content :global(ol) {
+    margin: var(--space-lg) 0;
+    padding-left: var(--space-xl);
+  }
+
+  .post__content :global(li) {
+    margin-bottom: var(--space-sm);
+  }
+
+  .post__content :global(blockquote) {
+    margin: var(--space-2xl) 0;
+    padding: var(--space-lg) var(--space-xl);
+    border-left: 4px solid var(--accent);
+    background: var(--paper);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-xl);
+    line-height: var(--lh-loose);
+    color: var(--ink);
+  }
+
+  .post__content :global(blockquote p) { margin: 0; }
+
+  .post__content :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--paper);
+    padding: 0.15em 0.4em;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--rule);
+  }
+
+  .post__content :global(pre) {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    padding: var(--space-lg);
+    overflow-x: auto;
+    margin: var(--space-lg) 0;
+  }
+
+  .post__content :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .post__content :global(hr) {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: var(--space-3xl) 0;
+  }
+
+  /* Prev/next pager */
+  .post__pager {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin: var(--space-3xl) 0;
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--rule);
+  }
+
+  .post__pager-link {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-decoration: none;
+    padding: var(--space-lg);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--duration-fast) var(--easing-default);
+  }
+
+  .post__pager-link:hover { border-color: var(--accent); }
+  .post__pager-link--next { text-align: right; }
+
+  .post__pager-dir {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wider);
+    color: var(--accent);
+  }
+
+  .post__pager-title {
+    color: var(--ink);
+    font-size: var(--text-sm);
+  }
+
+  /* CTA */
+  .post__cta {
+    text-align: center;
+    margin: var(--space-4xl) 0;
+    padding: var(--space-2xl);
+    background: var(--paper);
+    border-radius: var(--radius-sm);
+  }
+
+  .post__cta p {
+    color: var(--ink);
+    margin: 0 0 var(--space-lg);
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+  }
+
+  .post__button {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wider);
+    color: var(--bg);
+    background: var(--ink);
+    text-decoration: none;
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-full);
+    transition: transform var(--duration-fast) var(--easing-default), background var(--duration-fast) var(--easing-default);
+  }
+
+  .post__button:hover {
+    transform: translateY(-2px);
+    background: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .post__title { font-size: var(--text-3xl); }
+    .post__content { font-size: 1rem; }
+    .post__pager { grid-template-columns: 1fr; }
+    .post__pager-link--next { text-align: left; }
+  }
+</style>

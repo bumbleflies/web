@@ -1,13 +1,11 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
+# Legacy Jekyll site (archived at archive.bumbleflies.de).
+# DISABLED from automatic runs: the production site is built and deployed by
+# astro-build-deploy.yml. Jekyll swept in the Astro content under beta/ and its
+# old multiple-languages plugin fails on it, so this pipeline is manual-only.
+# Re-enable by restoring the push/pull_request triggers below.
 name: Build & Deploy
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-  pull_request:
-    branches:
-      - "*"
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
