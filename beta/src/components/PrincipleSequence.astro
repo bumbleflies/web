@@ -1,0 +1,217 @@
+---
+// beta/src/components/PrincipleSequence.astro
+interface Principle {
+  number: string;
+  title: string;
+  quote: string;
+  image: string;
+}
+
+interface Props {
+  principles: Principle[];
+  exitHref: string;
+  lang?: 'DE' | 'EN';
+}
+
+const { principles, exitHref, lang = 'DE' } = Astro.props;
+const eyebrowLabel = lang === 'DE' ? 'OPEN SPACE PRINZIPIEN' : 'OPEN SPACE PRINCIPLES';
+const total = principles.length;
+const prevLabel = lang === 'DE' ? 'Vorheriges Prinzip' : 'Previous principle';
+const nextLabel = lang === 'DE' ? 'Nächstes Prinzip' : 'Next principle';
+const exitLabel = lang === 'DE' ? 'Sequenz schließen' : 'Close sequence';
+---
+
+<section class="bf-principle-sequence" data-total={total}>
+  <div class="bf-principle-sequence__viewport">
+    {principles.map((p, index) => (
+      <div class={`bf-principle-sequence__slide${index === 0 ? ' is-active' : ''}`} data-index={index}>
+        <div class="bf-principle-sequence__eyebrow">
+          {eyebrowLabel} · {p.title} · {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+        </div>
+        <div class="bf-principle-sequence__frame">
+          <img src={p.image} alt={p.quote} loading={index === 0 ? 'eager' : 'lazy'} />
+        </div>
+      </div>
+    ))}
+
+    <button type="button" class="bf-principle-sequence__prev" aria-label={prevLabel}>‹</button>
+    <button type="button" class="bf-principle-sequence__next" aria-label={nextLabel}>›</button>
+    <a href={exitHref} class="bf-principle-sequence__exit" aria-label={exitLabel}>✕</a>
+
+    <div class="bf-principle-sequence__dots" role="tablist">
+      {principles.map((p, index) => (
+        <button
+          type="button"
+          class="bf-principle-sequence__dot"
+          data-index={index}
+          aria-label={p.title}
+          aria-current={index === 0 ? 'true' : 'false'}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .bf-principle-sequence__viewport {
+    position: relative;
+    min-height: 100vh;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  .bf-principle-sequence__slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    padding: var(--space-2xl);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .bf-principle-sequence__slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .bf-principle-sequence__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+  }
+
+  .bf-principle-sequence__frame {
+    background: #f5f1e8;
+    padding: var(--space-sm);
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(26, 23, 20, 0.15);
+    max-width: min(420px, 80vw);
+  }
+
+  .bf-principle-sequence__frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+  }
+
+  .bf-principle-sequence__prev,
+  .bf-principle-sequence__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: var(--space-md);
+    z-index: 2;
+  }
+
+  .bf-principle-sequence__prev { left: var(--space-md); }
+  .bf-principle-sequence__next { right: var(--space-md); }
+
+  .bf-principle-sequence__prev:hover,
+  .bf-principle-sequence__next:hover {
+    color: var(--accent);
+  }
+
+  .bf-principle-sequence__exit {
+    position: absolute;
+    top: var(--space-lg);
+    right: var(--space-lg);
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    color: var(--ink-soft);
+    text-decoration: none;
+    z-index: 2;
+  }
+
+  .bf-principle-sequence__exit:hover {
+    color: var(--accent);
+  }
+
+  .bf-principle-sequence__dots {
+    position: absolute;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--space-xs);
+    z-index: 2;
+  }
+
+  .bf-principle-sequence__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    border: none;
+    background: var(--rule);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .bf-principle-sequence__dot[aria-current="true"] {
+    background: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .bf-principle-sequence__frame {
+      max-width: 90vw;
+    }
+  }
+</style>
+
+<script>
+  import { clampIndex, nextIndex, prevIndex, resolveSwipe } from '../lib/sequenceNav';
+
+  const root = document.querySelector<HTMLElement>('.bf-principle-sequence');
+
+  if (root) {
+    const total = Number(root.dataset.total ?? '0');
+    const viewport = root.querySelector<HTMLElement>('.bf-principle-sequence__viewport');
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('.bf-principle-sequence__slide'));
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('.bf-principle-sequence__dot'));
+    const prevBtn = root.querySelector<HTMLButtonElement>('.bf-principle-sequence__prev');
+    const nextBtn = root.querySelector<HTMLButtonElement>('.bf-principle-sequence__next');
+
+    let current = 0;
+
+    function goTo(index: number) {
+      current = clampIndex(index, total);
+      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
+      dots.forEach((dot, i) => dot.setAttribute('aria-current', i === current ? 'true' : 'false'));
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(prevIndex(current, total)));
+    nextBtn?.addEventListener('click', () => goTo(nextIndex(current, total)));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    root.setAttribute('tabindex', '0');
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') goTo(nextIndex(current, total));
+      if (e.key === 'ArrowLeft') goTo(prevIndex(current, total));
+    });
+
+    let touchStartX = 0;
+    viewport?.addEventListener('touchstart', (e: TouchEvent) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    viewport?.addEventListener('touchend', (e: TouchEvent) => {
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      const direction = resolveSwipe(deltaX);
+      if (direction === 'next') goTo(nextIndex(current, total));
+      if (direction === 'prev') goTo(prevIndex(current, total));
+    }, { passive: true });
+  }
+</script>
