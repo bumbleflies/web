@@ -191,6 +191,7 @@ const enContent = content.EN;
               bullets={service.bullets}
               href={service.number === '02' ? '/ai-consulting' : undefined}
               ctaLabel="Mehr erfahren"
+              footnoteLink={service.number === '01' ? { label: 'Die Philosophie dahinter →', href: '/open-space' } : undefined}
               data-service-id={index}
             />
           ))}

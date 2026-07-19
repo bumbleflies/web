@@ -1,0 +1,35 @@
+title: Open Space Prinzipien
+published: true
+eyebrow: Open Space
+heading: 5 Prinzipien und ein Gesetz
+principles:
+  - number: 01
+    title: Prinzip 1
+    quote: Wer auch immer kommt, es sind die richtigen
+    image: /images/open-space/de/principle-1.jpg
+  - number: 02
+    title: Prinzip 2
+    quote: Was auch immer passiert, ist das einzige was passieren konnte
+    image: /images/open-space/de/principle-2.jpg
+  - number: 03
+    title: Prinzip 3
+    quote: Es beginnt, wenn die Zeit reif ist
+    image: /images/open-space/de/principle-3.jpg
+  - number: 04
+    title: Prinzip 4
+    quote: Es ist vorbei, wenn es vorbei ist
+    image: /images/open-space/de/principle-4.jpg
+  - number: 05
+    title: Prinzip 5
+    quote: Wo auch immer es passiert, ist der richtige Ort
+    image: /images/open-space/de/principle-5.jpg
+  - number: 06
+    title: Gesetz der Mobilität
+    quote: Wann immer du dich an einem Ort befindest, an dem du weder lernst noch etwas beitragen kannst, bewege dich dorthin, wo du das kannst
+    image: /images/open-space/de/law.jpg
+
+---
+
+## Open Space Prinzipien
+
+Die Philosophie hinter jeder Open Space Facilitation von bumbleflies.

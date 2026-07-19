@@ -81,6 +81,18 @@ export const pagesSchemaCoerced = z.object({
     )
     .optional(),
 
+  // For the Open Space principles sequence page
+  principles: z
+    .array(
+      z.object({
+        number: z.string(),
+        title: z.string(),
+        quote: z.string(),
+        image: z.string(),
+      }),
+    )
+    .optional(),
+
   // For comparison/why pages
   comparisonRows: z
     .array(
