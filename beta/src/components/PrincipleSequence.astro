@@ -29,8 +29,9 @@ const exitLabel = lang === 'DE' ? 'Sequenz schließen' : 'Close sequence';
           {eyebrowLabel} · {p.title} · {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
         </div>
         <div class="bf-principle-sequence__frame">
-          <img src={p.image} alt={p.quote} loading={index === 0 ? 'eager' : 'lazy'} />
+          <img src={p.image} alt="" loading={index === 0 ? 'eager' : 'lazy'} />
         </div>
+        <p class="bf-principle-sequence__quote">{p.quote}</p>
       </div>
     ))}
 
@@ -101,6 +102,17 @@ const exitLabel = lang === 'DE' ? 'Sequenz schließen' : 'Close sequence';
     width: 100%;
     height: auto;
     border-radius: 2px;
+  }
+
+  .bf-principle-sequence__quote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-2xl);
+    line-height: var(--lh-body);
+    color: var(--ink);
+    text-align: center;
+    max-width: min(420px, 80vw);
+    margin: 0;
   }
 
   .bf-principle-sequence__prev,
