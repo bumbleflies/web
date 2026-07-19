@@ -7,9 +7,10 @@ interface Props {
   bullets: string[];
   href?: string;
   ctaLabel?: string;
+  footnoteLink?: { label: string; href: string };
 }
 
-const { number, title, tag, description, bullets, href, ctaLabel } = Astro.props;
+const { number, title, tag, description, bullets, href, ctaLabel, footnoteLink } = Astro.props;
 const attrs = Astro.props;
 ---
 
@@ -34,6 +35,12 @@ const attrs = Astro.props;
     <span class="a-service-card__cta">
       {ctaLabel}<span class="a-service-card__cta-arrow" aria-hidden="true">↗</span>
     </span>
+  )}
+
+  {footnoteLink && (
+    <a href={footnoteLink.href} class="a-service-card__footnote-link">
+      {footnoteLink.label}
+    </a>
   )}
 </article>
 
@@ -161,6 +168,18 @@ const attrs = Astro.props;
 
   .a-service-card:hover .a-service-card__cta-arrow {
     transform: translate(2px, -2px);
+  }
+
+  .a-service-card__footnote-link {
+    position: relative;
+    z-index: 2;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .a-service-card__footnote-link:hover {
+    text-decoration: underline;
   }
 
   @media (max-width: 768px) {

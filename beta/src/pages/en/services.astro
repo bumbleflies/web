@@ -121,6 +121,7 @@ const lang: 'DE' | 'EN' = 'EN';
               bullets={service.bullets}
               href={service.number === '02' ? '/en/ai-consulting' : undefined}
               ctaLabel="Learn more"
+              footnoteLink={service.number === '01' ? { label: 'See the philosophy →', href: '/en/open-space' } : undefined}
             />
           ))}
         </div>

@@ -49,4 +49,20 @@ describe('Footer Component Logic', () => {
       expect(getFooterContent('EN').contact.items).toEqual(expected);
     });
   });
+
+  describe('Learn Links', () => {
+    it('should link to the Open Space principles page (DE)', () => {
+      const item = getFooterContent('DE').learn.items.find(
+        (i) => i.label === 'Open Space Prinzipien',
+      );
+      expect(item?.href).toBe('/open-space');
+    });
+
+    it('should link to the Open Space principles page (EN)', () => {
+      const item = getFooterContent('EN').learn.items.find(
+        (i) => i.label === 'Open Space Principles',
+      );
+      expect(item?.href).toBe('/en/open-space');
+    });
+  });
 });

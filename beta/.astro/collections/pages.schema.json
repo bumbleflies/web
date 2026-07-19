@@ -95,6 +95,32 @@
         ]
       }
     },
+    "principles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "quote": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "number",
+          "title",
+          "quote",
+          "image"
+        ]
+      }
+    },
     "comparisonRows": {
       "type": "array",
       "items": {
