@@ -85,12 +85,14 @@ Each with a `principles` array of 6 objects: `number`, `title`, `quote`, `image`
 `/images/open-space/...`). The 6th entry (the Law) is just the last item in the same array —
 no separate field needed.
 
-**Clarification (the principle text is baked into the image, not re-rendered as HTML):**
-each illustration already has its hand-lettered principle text drawn into the artwork —
-there's no separate on-page heading duplicating that text. `quote` is used as the image's
-`alt` attribute (accessibility/SEO, since baked-in image text isn't crawlable or
-screen-reader visible); `title` is the short label used for the eyebrow and dot
-`aria-label`s (e.g. "Principle 1", "Law of Mobility"), not shown as a heading.
+**Clarification (revised during Task 3 review — quote is rendered as visible text):**
+each illustration also has its principle text hand-lettered into the artwork, but `quote`
+is additionally rendered as real, visible on-page text (not just baked into the image) —
+more robust if an image fails to load, better for text-scaling/SEO, and avoids relying on
+`alt` text to carry primary content. Since the quote is now duplicated as real text, the
+`<img>`'s `alt` becomes decorative (`alt=""`) rather than reusing `quote` — screen readers
+should not announce the same sentence twice. `title` is the short label used for the
+eyebrow and dot `aria-label`s (e.g. "Principle 1", "Law of Mobility"), not shown as a heading.
 
 **Schema change** in `beta/lib/astro-loaders.ts`: add a `principles` field to
 `pagesSchemaCoerced`, mirroring the shape of the existing `steps` field plus an `image`
