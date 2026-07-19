@@ -1,0 +1,43 @@
+---
+import Layout from '../../components/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import PrincipleSequence from '../../components/PrincipleSequence.astro';
+import CTAStrip from '../../components/CTAStrip.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const pageContent = await getCollection('pages', ({ id }) => id === 'en/open-space');
+const page = pageContent[0];
+
+if (!page) {
+  throw new Error('EN Open Space principles content not found in collection');
+}
+
+const principles = page.data.principles ?? [];
+const currentLang: 'DE' | 'EN' = 'EN';
+---
+
+<Layout
+  title="Open Space Principles — bumbleflies"
+  description="The 5 principles and the Law of Mobility of Open Space Technology — the philosophy behind every Open Space bumbleflies facilitates."
+  canonical="https://bumbleflies.de/en/open-space"
+  lang={currentLang}
+  dePath="/open-space"
+  enPath="/en/open-space"
+>
+  <Nav slot="nav" lang={currentLang} />
+
+  <PrincipleSequence principles={principles} exitHref="#open-space-end" lang={currentLang} />
+
+  <div id="open-space-end">
+    <CTAStrip
+      heading="Ready for"
+      headingEm="your Open Space?"
+      body="Send us two sentences. We respond within 24h with the proposal that fits."
+      ctaText="Book a first call"
+      lang={currentLang}
+    />
+  </div>
+
+  <Footer slot="footer" lang={currentLang} />
+</Layout>
