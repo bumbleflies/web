@@ -14,13 +14,11 @@ const { lang = 'DE', cta, ctaHref = 'mailto:info@bumbleflies.de' } = Astro.props
 const navItems = lang === 'DE'
   ? [
       { label: 'Facilitation · AI · Software', href: '/services' },
-      { label: 'AI Consulting', href: '/ai-consulting' },
       { label: 'remote, hybrid & vor Ort', href: '/how-we-work' },
       { label: 'Warum · Wir', href: '/why-we' },
     ]
   : [
       { label: 'Facilitation · AI · Software', href: '/en/services' },
-      { label: 'AI Consulting', href: '/en/ai-consulting' },
       { label: 'remote, hybrid & on-site', href: '/en/how-we-work' },
       { label: 'Why · We', href: '/en/why-we' },
     ];
@@ -120,6 +118,19 @@ const ctaLabel = cta || (lang === 'DE' ? 'Schreib uns' : 'Get in touch');
     flex-shrink: 0;
   }
 
+  /*
+   * .bf-nav__links uses white-space: nowrap so its min-content width equals
+   * its full rendered width — flex-shrink can't reduce it below that. Once
+   * brand + links + right no longer fit on one nowrap row, the row overflows
+   * the viewport instead of shrinking, so links must hide before that point
+   * rather than at the generic mobile breakpoint alone.
+   */
+  @media (max-width: 1300px) {
+    .bf-nav__links {
+      display: none;
+    }
+  }
+
   @media (max-width: 768px) {
     .bf-nav {
       padding: 16px 0;
@@ -130,10 +141,6 @@ const ctaLabel = cta || (lang === 'DE' ? 'Schreib uns' : 'Get in touch');
       gap: var(--space-lg);
       flex-wrap: wrap;
       justify-content: flex-start;
-    }
-
-    .bf-nav__links {
-      display: none;
     }
   }
 </style>
