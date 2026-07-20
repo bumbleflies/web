@@ -2,7 +2,7 @@
 name: "Sebastian Keller"
 role: "Founder & Product Strategy"
 bio: "Digital strategist and organizational designer. Sebastian shapes how bumbleflies' services fit together and ensures every engagement creates lasting impact, not just deliverables."
-image: ""
+image: "/images/team/sebastian.webp"
 order: 2
 ---
 

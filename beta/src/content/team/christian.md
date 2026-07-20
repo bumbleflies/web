@@ -2,7 +2,7 @@
 name: "Christian Dähn"
 role: "Founder & Content Strategy"
 bio: "Facilitator, speaker, and organizational psychologist with 15+ years helping teams find their voice. From workshops to AI strategy to custom tooling — Christian believes transformation starts with good conversation."
-image: ""
+image: "/images/team/christian.webp"
 order: 1
 ---
 

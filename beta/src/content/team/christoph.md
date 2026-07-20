@@ -2,7 +2,7 @@
 name: "Christoph Kämpfe"
 role: "Founder & Engineering Lead"
 bio: "Full-stack engineer and product builder. Christoph turns workshop insights into production tools. He believes great internal tooling and custom software are force multipliers for organizational change."
-image: ""
+image: "/images/team/christoph.webp"
 order: 3
 ---
 
