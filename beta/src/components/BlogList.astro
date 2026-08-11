@@ -10,7 +10,7 @@ interface Props {
 const { showDrafts = false, lang = 'DE' } = Astro.props;
 
 // When preview is unlocked, render all posts. Otherwise only published ones.
-const posts = showDrafts ? await getAllBlogPosts() : await getBlogPosts();
+const posts = showDrafts ? await getAllBlogPosts(lang) : await getBlogPosts(lang);
 const publishedCount = posts.filter(p => p.data.published).length;
 ---
 

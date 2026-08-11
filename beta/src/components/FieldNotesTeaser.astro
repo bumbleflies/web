@@ -10,7 +10,7 @@ const { lang = 'DE' } = Astro.props;
 
 // Only surface the teaser once at least one article is live — never link to an
 // empty blog. Mirrors the gating on the nav link.
-const posts = await getBlogPosts();
+const posts = await getBlogPosts(lang);
 const hasPosts = posts.length > 0;
 const lead = posts[0];
 

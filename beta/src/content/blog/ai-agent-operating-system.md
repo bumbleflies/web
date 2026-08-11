@@ -8,6 +8,7 @@ order: 1
 date: 2026-07-10
 readingTime: "9 min"
 published: false
+lang: "EN"
 ---
 
 The most common question companies ask us about AI goes something like this:

@@ -8,6 +8,7 @@ order: 6
 date: 2026-07-25
 readingTime: "8 Min."
 published: false
+lang: "DE"
 ---
 
 Die bisherigen Artikel handelten von Systemen, die für viele arbeiten: das Nervensystem, der Marktplatz, die autonomen Bots. Dieser letzte Teil dreht die Perspektive um. Er handelt von einem einzelnen Menschen und der Frage, die jeder Wissensarbeiter jeden Morgen hat: *Was ist heute eigentlich wichtig — und was habe ich vergessen?*

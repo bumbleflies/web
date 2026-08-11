@@ -8,6 +8,7 @@ order: 4
 date: 2026-07-18
 readingTime: "8 Min."
 published: false
+lang: "DE"
 ---
 
 Jedes Unternehmen hat Verfahren, die im Kopf einzelner Leute stecken. Wie man ein Feature von der Idee bis zum Pull-Request bringt. Wie man einen Kunden von einem Altsystem migriert. Wie man einen Hotfix ausrollt, ohne die Produktion umzuwerfen. Dieses Wissen wird normalerweise mündlich weitergegeben, in veralteten Wiki-Seiten begraben oder von Person zu Person kopiert — jedes Mal ein bisschen anders.

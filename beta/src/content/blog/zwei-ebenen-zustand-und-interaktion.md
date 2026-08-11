@@ -8,6 +8,7 @@ order: 2
 date: 2026-07-12
 readingTime: "8 Min."
 published: false
+lang: "DE"
 ---
 
 Wenn man ein System aus autonomen Agenten baut, ist die verführerischste Idee, sie direkt miteinander reden zu lassen. Bot A ruft eine API von Bot B auf, der schickt eine Nachricht an Dienst C. Nach ein paar Wochen hat man ein Geflecht aus Direktaufrufen, das niemand mehr überblickt, das bei jedem Neustart Zustand verliert und das man nicht nachvollziehen kann, wenn nachts etwas schiefgeht.

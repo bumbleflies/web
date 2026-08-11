@@ -8,6 +8,7 @@ order: 3
 date: 2026-07-15
 readingTime: "9 Min."
 published: false
+lang: "DE"
 ---
 
 Wenn die zwei Fundament-Ebenen — Tickets und Chat — das Skelett des Systems sind, dann ist die Automatisierungsschicht das Nervensystem: immer wach, ereignisgetrieben, ohne Menschen in der Schleife. Sie reagiert auf jede Veränderung an einem Ticket und steuert daraus die anderen Systeme.

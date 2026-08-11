@@ -8,6 +8,7 @@ order: 4
 date: 2026-07-18
 readingTime: "8 min"
 published: false
+lang: "EN"
 ---
 
 Every company has procedures living in individual people's heads. How to take a feature from idea to pull request. How to migrate a client from a legacy system. How to roll out a hotfix without breaking production. This knowledge is normally passed on orally, buried in outdated wiki pages, or copied from person to person — each time a little different.

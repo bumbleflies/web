@@ -8,6 +8,7 @@ order: 2
 date: 2026-07-12
 readingTime: "8 min"
 published: false
+lang: "EN"
 ---
 
 When you build a system of autonomous agents, the most tempting idea is to have them talk directly to each other. Bot A calls an API from Bot B, which sends a message to Service C. After a few weeks, you have a web of direct calls that nobody can keep track of, that loses state on every restart, and that you can't trace when something goes wrong at night.

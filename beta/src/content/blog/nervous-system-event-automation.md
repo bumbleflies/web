@@ -8,6 +8,7 @@ order: 3
 date: 2026-07-15
 readingTime: "9 min"
 published: false
+lang: "EN"
 ---
 
 If the two foundation levels — tickets and chat — are the skeleton of the system, then the automation layer is the nervous system: always awake, event-driven, no human in the loop. It reacts to every change in a ticket and controls the other systems from there.
