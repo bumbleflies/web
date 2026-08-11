@@ -36,6 +36,8 @@ const blog = defineCollection({
     readingTime: z.string().optional(),
     // The per-article live switch: false = drafted & ready but not built/listed.
     published: z.boolean().default(false),
+    // Which language route (/blog vs /en/blog) this article belongs to.
+    lang: z.enum(['DE', 'EN']),
   }),
 });
 

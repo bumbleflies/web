@@ -8,6 +8,7 @@ order: 5
 date: 2026-07-22
 readingTime: "10 Min."
 published: false
+lang: "DE"
 ---
 
 Das ist der Artikel, auf den die eingangs zitierte Kundenfrage wirklich zielte: *„Man gibt Feature-Requests textuell ein — und dann laufen Agents los, implementieren das, machen Pull-Requests?"*

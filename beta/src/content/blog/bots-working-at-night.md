@@ -8,6 +8,7 @@ order: 5
 date: 2026-07-22
 readingTime: "10 min"
 published: false
+lang: "EN"
 ---
 
 This is the article the client quote at the start was really aiming at: *"You type in feature requests as text — and then agents go off, implement them, open pull requests?"*

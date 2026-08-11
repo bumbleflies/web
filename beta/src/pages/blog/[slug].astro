@@ -13,9 +13,16 @@ import BlogCover from '../../components/BlogCover.astro';
 export async function getStaticPaths() {
   // In dev or when preview key is set, build all posts (drafts included).
   // Otherwise, only build published posts.
-  const allPosts = import.meta.env.DEV || import.meta.env.PUBLIC_PREVIEW_KEY
-    ? await getAllBlogPosts()
-    : (await getAllBlogPosts()).filter(p => p.data.published);
+  const showDrafts = import.meta.env.DEV || import.meta.env.PUBLIC_PREVIEW_KEY;
+  const allPosts = showDrafts
+    ? await getAllBlogPosts('DE')
+    : (await getAllBlogPosts('DE')).filter(p => p.data.published);
+
+  // The EN counterpart of each article shares its `order` value — content
+  // authoring keeps the two language tracks in lockstep on that field.
+  const enPosts = showDrafts
+    ? await getAllBlogPosts('EN')
+    : (await getAllBlogPosts('EN')).filter(p => p.data.published);
 
   return allPosts.map((post, i) => ({
     params: { slug: post.id },
@@ -23,11 +30,12 @@ export async function getStaticPaths() {
       post,
       prev: allPosts[i - 1] ?? null,
       next: allPosts[i + 1] ?? null,
+      translationSlug: enPosts.find(p => p.data.order === post.data.order)?.id ?? null,
     },
   }));
 }
 
-const { post, prev, next } = Astro.props;
+const { post, prev, next, translationSlug } = Astro.props;
 const isDraft = !post.data.published;
 const { Content } = await render(post);
 const dateLabel = post.data.date.toLocaleDateString('de-DE', {
@@ -45,7 +53,7 @@ const lang: 'DE' | 'EN' = 'DE';
   canonical={`https://bumbleflies.de/blog/${post.id}`}
   lang={lang}
   dePath={`/blog/${post.id}`}
-  enPath={`/en/blog/${post.id}`}
+  enPath={translationSlug ? `/en/blog/${translationSlug}` : undefined}
   noindex={isDraft}
 >
   <div slot="nav">

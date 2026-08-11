@@ -8,6 +8,7 @@ order: 1
 date: 2026-07-10
 readingTime: "9 Min."
 published: false
+lang: "DE"
 ---
 
 Die häufigste Frage, die uns Unternehmen zum Thema KI stellen, klingt ungefähr so:

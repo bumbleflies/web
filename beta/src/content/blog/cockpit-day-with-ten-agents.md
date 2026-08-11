@@ -8,6 +8,7 @@ order: 6
 date: 2026-07-25
 readingTime: "8 min"
 published: false
+lang: "EN"
 ---
 
 The previous articles were about systems that work for many: the nervous system, the marketplace, the autonomous bots. This final part turns the perspective around. It's about a single human and the question every knowledge worker has every morning: *what's actually important today — and what did I forget?*
