@@ -5,6 +5,7 @@ import Layout from '../../components/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import BlogCover from '../../components/BlogCover.astro';
+import ShareLinks from '../../components/ShareLinks.astro';
 
 // Only draft articles when the preview key was NOT set at build time.
 // Set PUBLIC_PREVIEW_KEY=<key> in your deploy env to build draft pages
@@ -45,16 +46,36 @@ const dateLabel = post.data.date.toLocaleDateString('de-DE', {
 });
 
 const lang: 'DE' | 'EN' = 'DE';
+const canonicalUrl = `https://bumbleflies.de/blog/${post.id}`;
+// Rasterized PNG twin of the SVG teaser cover — social crawlers don't render SVG og:images.
+const ogImage = post.data.image?.replace('/images/blog/', '/images/blog/og/').replace(/\.svg$/, '.png');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  ...(ogImage && { image: `https://bumbleflies.de${ogImage}` }),
+  author: { '@type': 'Organization', name: 'bumbleflies' },
+  publisher: { '@type': 'Organization', name: 'bumbleflies' },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+};
 ---
 
 <Layout
   title={`${post.data.title} | bumbleflies`}
   description={post.data.description}
-  canonical={`https://bumbleflies.de/blog/${post.id}`}
+  ogImage={ogImage}
+  ogImageWidth={1200}
+  ogImageHeight={675}
+  ogImageAlt={post.data.title}
+  canonical={canonicalUrl}
   lang={lang}
   dePath={`/blog/${post.id}`}
   enPath={translationSlug ? `/en/blog/${translationSlug}` : undefined}
   noindex={isDraft}
+  jsonLd={jsonLd}
 >
   <div slot="nav">
     <Nav lang={lang} />
@@ -96,6 +117,7 @@ const lang: 'DE' | 'EN' = 'DE';
             </>
           )}
         </div>
+        <ShareLinks url={canonicalUrl} lang={lang} />
       </header>
 
       {post.data.image && (

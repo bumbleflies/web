@@ -1,0 +1,102 @@
+---
+interface Props {
+  url: string;
+  lang: 'DE' | 'EN';
+}
+
+const { url, lang } = Astro.props;
+
+const copy = lang === 'DE'
+  ? {
+      label: 'Teilen',
+      linkedin: 'Auf LinkedIn teilen',
+      mastodon: 'Für Mastodon: Link kopieren und auf social.bumbleflies.de posten',
+      copy: 'Link kopieren',
+      copied: 'Kopiert!',
+      mail: 'Per E-Mail teilen',
+      mailSubject: 'Lesenswert: ',
+    }
+  : {
+      label: 'Share',
+      linkedin: 'Share on LinkedIn',
+      mastodon: 'For Mastodon: copy the link and post it on social.bumbleflies.de',
+      copy: 'Copy link',
+      copied: 'Copied!',
+      mail: 'Share by email',
+      mailSubject: 'Worth reading: ',
+    };
+
+const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+const mailUrl = `mailto:?subject=${encodeURIComponent(copy.mailSubject)}&body=${encodeURIComponent(url)}`;
+---
+
+<div class="share">
+  <span class="share__label">{copy.label}</span>
+  <a class="share__link" href={linkedinUrl} target="_blank" rel="noopener noreferrer">{copy.linkedin}</a>
+  <button class="share__link share__link--button" type="button" data-share-copy data-url={url}>
+    <span data-share-copy-text>{copy.copy}</span>
+  </button>
+  <a class="share__link" href={mailUrl}>{copy.mail}</a>
+  <span class="share__mastodon">{copy.mastodon}</span>
+</div>
+
+<script define:vars={{ copiedText: copy.copied, defaultText: copy.copy }}>
+  document.querySelectorAll('[data-share-copy]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const url = button.getAttribute('data-url');
+      const label = button.querySelector('[data-share-copy-text]');
+      try {
+        await navigator.clipboard.writeText(url);
+        if (label) {
+          label.textContent = copiedText;
+          setTimeout(() => { label.textContent = defaultText; }, 2000);
+        }
+      } catch (e) {}
+    });
+  });
+</script>
+
+<style>
+  .share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm) var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .share__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wider);
+    color: var(--ink-soft);
+  }
+
+  .share__link {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--accent);
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .share__link:hover {
+    text-decoration: underline;
+  }
+
+  .share__mastodon {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 768px) {
+    .share__mastodon {
+      width: 100%;
+    }
+  }
+</style>
