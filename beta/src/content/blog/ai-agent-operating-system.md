@@ -1,27 +1,30 @@
 ---
-title: "What We Actually Built Instead of \"Adding AI\""
-description: "Not 'we bought AI', but 'we translated our own operational processes into code that a language model composes'. The blueprint of a real agent system in production."
+title: "What I Actually Built Instead of \"Adding AI\""
+description: "Not 'I bought AI', but 'I translated my own operational processes into code that a language model composes'. The blueprint of a real agent system in production."
 excerpt: "Four agent layers on two foundation levels. Autonomous bots that open pull requests, a skill marketplace for company knowledge, a cockpit that plans the day. This is what AI looks like when it doesn't end in a demo."
 category: "Overview"
 image: "/images/blog/ki-agenten-betriebssystem.svg"
 order: 1
 date: 2026-07-10
+author: "Chris 🦋 | Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "9 min"
 published: false
 lang: "EN"
 ---
 
-The most common question companies ask us about AI goes something like this:
+The most common question people ask me about AI goes something like this:
 
 > "Am I right in assuming that you just type in feature requests as text — and then agents go off, implement them, open pull requests? I have this romantic notion that you've got a real treasure over there."
 
-That's a real quote from a client inquiry. And the honest answer is: Yes. That's exactly what we built — not as a demo, not as a proof-of-concept, but as a production system that has been powering the daily work of a German legal-tech company for over a year.
+That's a real quote from a client inquiry. And the honest answer is: yes — I've built exactly that. Just not at bumbleflies. I built it at JUNE, a German legal-tech company where I also work, and it's been powering my day-to-day work there for over a year.
 
-This article series describes that system. How it's structured, what decisions we made — and especially the scars, because nearly every protective measure traces back to a concrete incident.
+A quick note on where this sits: I split my time between JUNE, where I built and run this system, and bumbleflies, where I do AI consulting for other companies. This series is my personal account of what I built at JUNE — not a bumbleflies client project.
+
+This article series describes that system. How it's structured, what decisions I made — and especially the scars, because nearly every protective measure traces back to a concrete incident.
 
 ## The core: no purchased AI, but compiled operational processes
 
-The most important sentence first, because it explains everything else: We didn't *purchase* an AI solution. We **translated the company's operational procedures into code that a language model assembles.**
+The most important sentence first, because it explains everything else: I didn't *purchase* an AI solution. I **translated JUNE's operational procedures into code that a language model assembles.**
 
 The difference is fundamental. A generic AI assistant knows nothing about your deployment pipeline, your ticket conventions, your approval rules, your client landscape. It improvises — and improvises a little differently each time. A system that knows your procedures as versioned, testable code does the same thing every time. The language model makes judgment calls; deterministic scripts handle the mechanics.
 
@@ -31,7 +34,7 @@ From this one idea grew a multi-layered operating system.
 
 The mental model has **two perpendicular foundation levels** and **four agent layers** that operate on top of them.
 
-**The state level** is the project management tool (in our case, ClickUp). Every piece of work is born as a ticket or reconciled against a ticket. A status change, a new comment, a modified field — each is an event that triggers actions. It's the persistent storage of truth *and* the ignition.
+**The state level** is the project management tool — at JUNE, that's ClickUp. Every piece of work is born as a ticket or reconciled against a ticket. A status change, a new comment, a modified field — each is an event that triggers actions. It's the persistent storage of truth *and* the ignition.
 
 **The interaction level** is the team chat (Microsoft Teams). This is where autonomy meets people: where humans trigger agents, where agents report their status back, and where agents coordinate with each other.
 
@@ -73,7 +76,7 @@ The same design principles appear across all layers. They are the real value —
 
 **Human at the brake lever.** German-language triggers throughout, legal domain, and all truly consequential actions — approvals, merges, production deployments — are tied to explicit human confirmation. Autonomy with a hand on the lever.
 
-None of this is a blueprint to copy. It's the current state of one running system, scars included — and there are decisions in here we still aren't sure about.
+None of this is a blueprint to copy. It's the current state of one running system, scars included — and there are decisions in here I'm still not sure about.
 
 ## What's coming in this series
 

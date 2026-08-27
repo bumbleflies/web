@@ -6,6 +6,7 @@ category: "Productivity"
 image: "/images/blog/cockpit-tag-mit-zehn-agenten.svg"
 order: 6
 date: 2026-07-25
+author: "Chris 🦋 | Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 min"
 published: false
 lang: "EN"
@@ -13,7 +14,7 @@ lang: "EN"
 
 The previous articles were about systems that work for many: the nervous system, the marketplace, the autonomous bots. This final part turns the perspective around. It's about a single human and the question every knowledge worker has every morning: *what's actually important today — and what did I forget?*
 
-The answer is a personal meta-agent we call the "cockpit". It pulls together every work context — email, chat, tickets, video calls, support inbox, calendar, activity log, local directories, the agent bus — and turns it into a prioritized daily plan and *one* next action.
+The answer is a personal meta-agent I call the "cockpit". It pulls together every work context — email, chat, tickets, video calls, support inbox, calendar, activity log, local directories, the agent bus — and turns it into a prioritized daily plan and *one* next action.
 
 ## Two promises carry the entire design
 
@@ -36,7 +37,7 @@ One detail sets the cockpit apart. One of the ten scanners reads the **conversat
 
 An agent reflecting on a human's work with other agents — that's perhaps the most unexpected, but logical, consequence of a system where human and AI constantly collaborate.
 
-The history scanner is the newest of the ten — and the honest answer is that we don't know yet whether it's a good idea or just a strange one. It surfaces commitments we'd otherwise forget, but it also surfaces noise. It's the scanner we're least sure about.
+The history scanner is the newest of the ten — and the honest answer is that I don't know yet whether it's a good idea or just a strange one. It surfaces commitments I'd otherwise forget, but it also surfaces noise. It's the scanner I'm least sure about.
 
 ## "Read doesn't mean done"
 
@@ -49,7 +50,7 @@ Behind it is a concrete regression: a sample email, read on a Monday, but only m
 The cockpit cleanly distinguishes three states that most people mix up in their heads:
 
 - **Blocked** — missing access, data, or a prerequisite. May be high priority, but can never be "next" up.
-- **Waiting** — we still owe follow-up, but someone else must act first.
+- **Waiting** — I still owe follow-up, but someone else must act first.
 - **Next action** — the single highest-scored thread that is *neither* blocked *nor* waiting.
 
 This distinction is why the "next action" is always genuinely doable. A blocked point doesn't push itself up as a to-do you can't tackle anyway.

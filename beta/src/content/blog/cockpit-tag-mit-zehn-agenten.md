@@ -6,6 +6,7 @@ category: "Produktivität"
 image: "/images/blog/cockpit-tag-mit-zehn-agenten.svg"
 order: 6
 date: 2026-07-25
+author: "Chris 🦋 | Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 Min."
 published: false
 lang: "DE"
@@ -13,7 +14,7 @@ lang: "DE"
 
 Die bisherigen Artikel handelten von Systemen, die für viele arbeiten: das Nervensystem, der Marktplatz, die autonomen Bots. Dieser letzte Teil dreht die Perspektive um. Er handelt von einem einzelnen Menschen und der Frage, die jeder Wissensarbeiter jeden Morgen hat: *Was ist heute eigentlich wichtig — und was habe ich vergessen?*
 
-Die Antwort ist ein persönlicher Meta-Agent, den wir „Cockpit" nennen. Er zieht jeden Arbeitskontext zusammen — Mail, Chat, Tickets, Video-Calls, Support-Postfach, Kalender, Aktivitätsprotokoll, lokale Verzeichnisse, den Agenten-Bus — und macht daraus einen priorisierten Tagesplan und *eine* nächste Handlung.
+Die Antwort ist ein persönlicher Meta-Agent, den ich „Cockpit" nenne. Er zieht jeden Arbeitskontext zusammen — Mail, Chat, Tickets, Video-Calls, Support-Postfach, Kalender, Aktivitätsprotokoll, lokale Verzeichnisse, den Agenten-Bus — und macht daraus einen priorisierten Tagesplan und *eine* nächste Handlung.
 
 ## Zwei Versprechen tragen das ganze Design
 
@@ -36,7 +37,7 @@ Ein Detail hebt das Cockpit heraus. Einer der zehn Scanner liest die **eigene Ge
 
 Ein Agent, der über die Arbeit eines Menschen mit anderen Agenten reflektiert — das ist die vielleicht unerwartetste, aber logischste Konsequenz eines Systems, in dem Mensch und KI ständig zusammenarbeiten.
 
-Der Historie-Scanner ist der neueste der zehn — und die ehrliche Antwort ist, dass wir noch nicht wissen, ob er eine gute Idee ist oder nur eine seltsame. Er holt Zusagen an die Oberfläche, die wir sonst vergessen würden — aber er holt auch Rauschen hoch. Es ist der Scanner, bei dem wir uns am wenigsten sicher sind.
+Der Historie-Scanner ist der neueste der zehn — und die ehrliche Antwort ist, dass ich noch nicht weiß, ob er eine gute Idee ist oder nur eine seltsame. Er holt Zusagen an die Oberfläche, die ich sonst vergessen würde — aber er holt auch Rauschen hoch. Es ist der Scanner, bei dem ich mir am wenigsten sicher bin.
 
 ## „Gelesen heißt nicht erledigt"
 
@@ -49,7 +50,7 @@ Dahinter steht eine konkrete Regression: eine Beispieldatei, gelesen an einem Mo
 Das Cockpit unterscheidet sauber drei Zustände, die die meisten Menschen im Kopf vermischen:
 
 - **Blockiert** — es fehlt Zugang, Daten oder eine Voraussetzung. Kann hoch priorisiert sein, aber nie „als Nächstes" dran sein.
-- **Wartend** — wir schulden noch eine Nachverfolgung, aber jemand anderes muss zuerst handeln.
+- **Wartend** — ich schulde noch eine Nachverfolgung, aber jemand anderes muss zuerst handeln.
 - **Nächste Handlung** — der einzige höchstbewertete Faden, der *weder* blockiert *noch* wartend ist.
 
 Diese Unterscheidung ist der Grund, warum die „nächste Handlung" immer wirklich machbar ist. Ein blockierter Punkt drängt sich nicht als To-do auf, das man sowieso nicht angehen kann.

@@ -6,6 +6,7 @@ category: "Autonomie"
 image: "/images/blog/bots-die-nachts-arbeiten.svg"
 order: 5
 date: 2026-07-22
+author: "Chris 🦋 | Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "10 Min."
 published: false
 lang: "DE"
@@ -13,7 +14,7 @@ lang: "DE"
 
 Das ist der Artikel, auf den die eingangs zitierte Kundenfrage wirklich zielte: *„Man gibt Feature-Requests textuell ein — und dann laufen Agents los, implementieren das, machen Pull-Requests?"*
 
-Ja. So funktioniert es. Und so haben wir es gebaut.
+Ja. So funktioniert es. Und so habe ich es bei JUNE gebaut.
 
 ## Die Grundidee: ein Bot ist Claude Code als Daemon
 
@@ -63,4 +64,4 @@ Autonome Agenten in Produktion sind kein Magie-Trick. Sie sind ein sehr gewöhnl
 
 Der schwierigste Teil ist nicht, den Bot zum Arbeiten zu bringen. Der schwierigste Teil ist, ihm die Grenzen zu geben, an denen man nachts ruhig schläft.
 
-Im letzten Teil der Serie drehen wir die Perspektive um: weg von den Maschinen, die autonom arbeiten, hin zu einem einzelnen Menschen — und dem Cockpit, das dessen Tag mit zehn Agenten orchestriert.
+Im letzten Teil der Serie drehe ich die Perspektive um: weg von den Maschinen, die autonom arbeiten, hin zu einem einzelnen Menschen — und dem Cockpit, das dessen Tag mit zehn Agenten orchestriert.

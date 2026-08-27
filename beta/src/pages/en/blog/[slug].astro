@@ -57,7 +57,7 @@ const jsonLd = {
   description: post.data.description,
   datePublished: post.data.date.toISOString(),
   ...(ogImage && { image: `https://bumbleflies.de${ogImage}` }),
-  author: { '@type': 'Organization', name: 'bumbleflies' },
+  author: { '@type': 'Person', name: 'Christian Dähn' },
   publisher: { '@type': 'Organization', name: 'bumbleflies' },
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
 };

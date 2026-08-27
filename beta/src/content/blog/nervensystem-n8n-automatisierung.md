@@ -6,6 +6,7 @@ category: "Automatisierung"
 image: "/images/blog/nervensystem-n8n-automatisierung.svg"
 order: 3
 date: 2026-07-15
+author: "Chris 🦋 | Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "9 Min."
 published: false
 lang: "DE"
@@ -13,7 +14,7 @@ lang: "DE"
 
 Wenn die zwei Fundament-Ebenen — Tickets und Chat — das Skelett des Systems sind, dann ist die Automatisierungsschicht das Nervensystem: immer wach, ereignisgetrieben, ohne Menschen in der Schleife. Sie reagiert auf jede Veränderung an einem Ticket und steuert daraus die anderen Systeme.
 
-Wir haben diese Schicht mit n8n gebaut, einer Open-Source-Automatisierungsplattform. 24 Workflows, knapp 700 Verarbeitungsschritte. Sie verwandelt eine Support-Mail in ein klassifiziertes Ticket, ein Call-Recording in eine strukturierte Aufgabenliste, einen Kommentar in fertige Release-Notes. Zwei dieser Workflows verdienen einen genaueren Blick, weil sie zwei Prinzipien verkörpern, die für jedes KI-System gelten.
+Ich habe diese Schicht bei JUNE mit n8n gebaut, einer Open-Source-Automatisierungsplattform. 24 Workflows, knapp 700 Verarbeitungsschritte. Sie verwandelt eine Support-Mail in ein klassifiziertes Ticket, ein Call-Recording in eine strukturierte Aufgabenliste, einen Kommentar in fertige Release-Notes. Zwei dieser Workflows verdienen einen genaueren Blick, weil sie zwei Prinzipien verkörpern, die für jedes KI-System gelten.
 
 ## Erstens: der Code ist die Wahrheit, nicht die Handarbeit
 
@@ -31,17 +32,17 @@ Der zweite Teil schließt den Kreis: Immer wenn ein *Mensch* ein Ticket manuell 
 
 **Die beste Trainingsquelle für Ihre KI ist die tägliche Korrektur durch Ihr Team.** Man muss sie nur einfangen.
 
-Eine Zahl darin ist ehrliches Raten: die 75-%-Schwelle. Wir haben sie nach Gefühl gewählt, nicht durch Tuning. Bisher hat sie gehalten — ob 75 richtig ist oder nur Glück, wissen wir bis heute nicht.
+Eine Zahl darin ist ehrliches Raten: die 75-%-Schwelle. Ich habe sie nach Gefühl gewählt, nicht durch Tuning. Bisher hat sie gehalten — ob 75 richtig ist oder nur Glück, weiß ich bis heute nicht.
 
 Und das Ganze ist an jeder Verzweigung fehlertolerant entworfen: Schlägt die Klassifikation fehl, wurde das Ticket ja bereits im Eingang angelegt — ein sicherer Rückfall. Nichts geht verloren, nur weil das Modell mal patzt.
 
 ## Das Musterbeispiel: der Datenschutz-Filter
 
-Jetzt zum wichtigsten Baustein — dem, den wir jedem zeigen, der fragt, wie man ein Sprachmodell in Produktion sicher macht.
+Jetzt zum wichtigsten Baustein — dem, den ich jedem zeige, der fragt, wie man ein Sprachmodell in Produktion sicher macht.
 
-Das Unternehmen generiert kundensichtbare Release-Notes automatisch aus internen Tickets. Diese Notes sind **für jeden Mandanten öffentlich sichtbar**. Ein Ticket kann aber Mandantennamen, Personennamen, E-Mail-Adressen, Fall-IDs enthalten. Ein Sprachmodell, das aus so einem Ticket eine Release-Note schreibt, könnte diese Daten durchlassen. Das darf nie passieren.
+JUNE generiert kundensichtbare Release-Notes automatisch aus internen Tickets. Diese Notes sind **für jeden Mandanten öffentlich sichtbar**. Ein Ticket kann aber Mandantennamen, Personennamen, E-Mail-Adressen, Fall-IDs enthalten. Ein Sprachmodell, das aus so einem Ticket eine Release-Note schreibt, könnte diese Daten durchlassen. Das darf nie passieren.
 
-Die naive Lösung wäre: dem Modell im Prompt sagen „nenne keine Namen". Wir tun das auch — der Prompt enthält ein hartes Verbot mit Beispielen. **Aber wir vertrauen dem Prompt nicht.** Der Ablauf ist ein Verteidigungswall in Tiefe:
+Die naive Lösung wäre: dem Modell im Prompt sagen „nenne keine Namen". Ich tue das auch — der Prompt enthält ein hartes Verbot mit Beispielen. **Aber ich vertraue dem Prompt nicht.** Der Ablauf ist ein Verteidigungswall in Tiefe:
 
 1. **Das Modell schreibt** die Release-Note — mit der Anweisung, alles zu generalisieren.
 2. **Ein deterministischer Filter prüft** das Ergebnis nach: Regex-Suchen nach E-Mails, URLs, Telefonnummern, IDs. Plus eine Heuristik, die groß geschriebene Wörter außerhalb des Satzanfangs, die nicht auf einer kleinen Erlaubnisliste stehen, als wahrscheinliche Namen markiert.

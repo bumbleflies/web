@@ -6,6 +6,7 @@ category: "Plattform"
 image: "/images/blog/skills-als-apps-plugin-marktplatz.svg"
 order: 4
 date: 2026-07-18
+author: "Chris 🦋 | Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 Min."
 published: false
 lang: "DE"
@@ -13,11 +14,11 @@ lang: "DE"
 
 Jedes Unternehmen hat Verfahren, die im Kopf einzelner Leute stecken. Wie man ein Feature von der Idee bis zum Pull-Request bringt. Wie man einen Kunden von einem Altsystem migriert. Wie man einen Hotfix ausrollt, ohne die Produktion umzuwerfen. Dieses Wissen wird normalerweise mündlich weitergegeben, in veralteten Wiki-Seiten begraben oder von Person zu Person kopiert — jedes Mal ein bisschen anders.
 
-Wir haben es stattdessen in einen **internen App-Store** verpackt. Die Metapher ist wörtlich gemeint: der Marktplatz ist der Store, jedes Plugin ist eine App, und jeder Skill darin ist ein Feature.
+Ich habe es bei JUNE stattdessen in einen **internen App-Store** verpackt. Die Metapher ist wörtlich gemeint: der Marktplatz ist der Store, jedes Plugin ist eine App, und jeder Skill darin ist ein Feature.
 
 ## Wie es sich anfühlt
 
-Ein Mitarbeiter fügt den Marktplatz einmal pro Rechner zu seinem Claude Code hinzu und installiert die Plugins, die er braucht. Danach aktivieren sich die Skills über **natürliche Sprache**: Man beschreibt, was man will, und Claude Code wählt den passenden Skill anhand seiner Beschreibung. Die Beschreibungen sind bewusst mit Trigger-Phrasen auf Deutsch *und* Englisch gefüllt — „deploy to prd" und „nach prd deployen" führen zum selben Skill. Es ist ein Legal-Tech-Unternehmen mit deutschsprachigem Team; die Sprache muss stimmen.
+Ein Mitarbeiter fügt den Marktplatz einmal pro Rechner zu seinem Claude Code hinzu und installiert die Plugins, die er braucht. Danach aktivieren sich die Skills über **natürliche Sprache**: Man beschreibt, was man will, und Claude Code wählt den passenden Skill anhand seiner Beschreibung. Die Beschreibungen sind bewusst mit Trigger-Phrasen auf Deutsch *und* Englisch gefüllt — „deploy to prd" und „nach prd deployen" führen zum selben Skill. JUNE ist ein Legal-Tech-Unternehmen mit deutschsprachigem Team; die Sprache muss stimmen.
 
 11 Plugins, 53 Skills. Sie reichen von der Feature-Entwicklung (Planen, Bauen, Reviewen, Testen) über Code-Review für drei verschiedene Technologie-Stacks bis zu Kunden-Onboarding, Support-Fixes und Zeiterfassung.
 
@@ -40,7 +41,7 @@ Jedes Skript liegt in zwei Varianten vor: einer für Linux/Mac (die Bot-Containe
 
 ## Ein Beispiel für die Raffinesse: der Deploy-Dreiklang
 
-Nehmen wir das Deployment. Drei Skills bilden zusammen einen Mini-Compiler:
+Ein Beispiel: das Deployment. Drei Skills bilden zusammen einen Mini-Compiler:
 
 Der erste nimmt eine Menge geänderter Dateien und ordnet jede ihrem Deployment-Ziel zu — erkennt neue Datenbank-Migrationen, bildet daraus einen strukturierten Deploy-Plan. Der zweite führt diesen Plan gegen eine Test-Umgebung aus. Der dritte zielt immer auf die Produktion, feuert die Datenbank-Migrationen zuerst als harte Sperre ab und danach die Services parallel.
 
@@ -52,7 +53,7 @@ Das schönste Muster im Marktplatz ist eine Lernschleife. Der Migrations-Playboo
 
 Das heißt: **Das Werkzeug verbessert das Dokument, das das nächste Werkzeug steuert.** Jede Migration macht das Playbook besser, statt ein Einzelfall zu bleiben. Wissen kompoundiert, statt zu verwittern.
 
-Ehrliche Einschränkung: Die Lernschleife läuft erst über eine Handvoll Migrationen. Wir glauben, dass sie kompoundiert — bewiesen haben wir das noch nicht.
+Ehrliche Einschränkung: Die Lernschleife läuft erst über eine Handvoll Migrationen. Ich glaube, dass sie kompoundiert — bewiesen habe ich das noch nicht.
 
 ## Analytics als erstklassiger Release-Schritt
 
@@ -62,6 +63,6 @@ Und die Qualitätssicherung? Jeder Skill, der geändert wird, durchläuft in der
 
 ## Was das ersetzt
 
-Wissen verteilt sich, driftet auseinander, geht verloren — und die übliche Antwort sind Dokumentationen, die niemand liest. Unsere Antwort: Firmenwissen als installierbare, versionierte, getestete Skills, benutzbar per natürlicher Sprache — von Menschen und von Maschinen, mit exakt demselben Code.
+Wissen verteilt sich, driftet auseinander, geht verloren — und die übliche Antwort sind Dokumentationen, die niemand liest. Meine Antwort: Firmenwissen als installierbare, versionierte, getestete Skills, benutzbar per natürlicher Sprache — von Menschen und von Maschinen, mit exakt demselben Code.
 
-Und genau dieser gemeinsame Code ist die Brücke zum nächsten Teil: Wenn ein Mensch und ein autonomer Bot dieselben Skills ausführen, dann ist ein Bot nur noch ein Container mit einem anderen Systemprompt. Wie das aussieht — und welche teuren Fehler uns dorthin geführt haben — im nächsten Artikel.
+Und genau dieser gemeinsame Code ist die Brücke zum nächsten Teil: Wenn ein Mensch und ein autonomer Bot dieselben Skills ausführen, dann ist ein Bot nur noch ein Container mit einem anderen Systemprompt. Wie das aussieht — und welche teuren Fehler mich dorthin geführt haben — im nächsten Artikel.

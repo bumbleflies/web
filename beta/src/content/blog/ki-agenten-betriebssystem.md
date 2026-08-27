@@ -1,27 +1,30 @@
 ---
-title: "Statt KI zu kaufen: Was wir wirklich gebaut haben"
-description: "Nicht 'wir haben KI gekauft', sondern 'wir haben unsere eigenen Betriebsabläufe in Code übersetzt, den ein Sprachmodell komponiert'. Die Landkarte eines echten Agenten-Systems in Produktion."
+title: "Statt KI zu kaufen: Was ich wirklich gebaut habe"
+description: "Nicht 'ich habe KI gekauft', sondern 'ich habe meine eigenen Betriebsabläufe in Code übersetzt, den ein Sprachmodell komponiert'. Die Landkarte eines echten Agenten-Systems in Produktion."
 excerpt: "Vier Agenten-Schichten auf zwei Fundament-Ebenen. Autonome Bots, die Pull-Requests öffnen, ein Skill-Marktplatz für Firmenwissen, ein Cockpit, das den Tag plant. So sieht KI aus, wenn sie nicht in der Demo endet."
 category: "Überblick"
 image: "/images/blog/ki-agenten-betriebssystem.svg"
 order: 1
 date: 2026-07-10
+author: "Chris 🦋 | Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "9 Min."
 published: false
 lang: "DE"
 ---
 
-Die häufigste Frage, die uns Unternehmen zum Thema KI stellen, klingt ungefähr so:
+Die häufigste Frage, die mir Leute zum Thema KI stellen, klingt ungefähr so:
 
 > „Gehe ich richtig in der Annahme, dass man Feature-Requests einfach textuell eingibt — und dann laufen Agents los, implementieren das, machen Pull-Requests? Ich habe die romantische Vorstellung, dass ihr da einen aktuellen Schatz habt."
 
-Das ist ein echtes Zitat aus einer Kundenanfrage. Und die ehrliche Antwort lautet: Ja. Genau das haben wir gebaut — nicht als Demo, nicht als Proof-of-Concept, sondern als produktives System, das seit über einem Jahr den Arbeitsalltag eines deutschen Legal-Tech-Unternehmens trägt.
+Das ist ein echtes Zitat aus einer Kundenanfrage. Und die ehrliche Antwort lautet: Ja — genau das habe ich gebaut. Nur nicht bei bumbleflies. Ich habe es bei JUNE gebaut, einem deutschen Legal-Tech-Unternehmen, bei dem ich ebenfalls arbeite, und es trägt dort seit über einem Jahr meinen Arbeitsalltag.
 
-Diese Artikelserie beschreibt dieses System. Wie es aufgebaut ist, welche Entscheidungen wir getroffen haben — und vor allem die Narben, denn fast jede Schutzmaßnahme darin lässt sich auf einen konkreten Vorfall zurückführen.
+Kurz zur Einordnung: Ich arbeite sowohl bei JUNE, wo ich dieses System gebaut habe und betreibe, als auch bei bumbleflies, wo ich andere Unternehmen in Sachen KI berate. Diese Serie ist mein persönlicher Erfahrungsbericht aus JUNE — kein bumbleflies-Kundenprojekt.
+
+Diese Artikelserie beschreibt dieses System. Wie es aufgebaut ist, welche Entscheidungen ich getroffen habe — und vor allem die Narben, denn fast jede Schutzmaßnahme darin lässt sich auf einen konkreten Vorfall zurückführen.
 
 ## Der Kern: keine gekaufte KI, sondern kompilierte Betriebsabläufe
 
-Der wichtigste Satz zuerst, weil er alles andere erklärt: Wir haben keine KI-Lösung *eingekauft*. Wir haben die **operativen Verfahren des Unternehmens in Code übersetzt, den ein Sprachmodell zusammensetzt.**
+Der wichtigste Satz zuerst, weil er alles andere erklärt: Ich habe keine KI-Lösung *eingekauft*. Ich habe die **operativen Verfahren von JUNE in Code übersetzt, den ein Sprachmodell zusammensetzt.**
 
 Der Unterschied ist fundamental. Ein generischer KI-Assistent weiß nichts über Ihre Deployment-Pipeline, Ihre Ticket-Konventionen, Ihre Freigabe-Regeln, Ihre Kundenlandschaft. Er improvisiert — und improvisiert jedes Mal ein bisschen anders. Ein System, das Ihre Verfahren als versionierten, testbaren Code kennt, tut jedes Mal dasselbe. Das Sprachmodell trifft die Urteilsentscheidungen; deterministische Skripte führen die Mechanik aus.
 
@@ -31,7 +34,7 @@ Aus dieser einen Idee ist ein mehrschichtiges Betriebssystem gewachsen.
 
 Das mentale Modell hat **zwei rechtwinklige Fundament-Ebenen** und **vier Agenten-Schichten**, die darauf operieren.
 
-**Die Zustandsebene** ist das Projektmanagement-Tool (in unserem Fall ClickUp). Jede Arbeit wird als Ticket geboren oder gegen ein Ticket abgeglichen. Ein Statuswechsel, ein neuer Kommentar, ein geändertes Feld — jedes ist ein Ereignis, das Aktionen auslöst. Das ist der dauerhafte Speicher der Wahrheit *und* die Zündung.
+**Die Zustandsebene** ist das Projektmanagement-Tool — bei JUNE ist das ClickUp. Jede Arbeit wird als Ticket geboren oder gegen ein Ticket abgeglichen. Ein Statuswechsel, ein neuer Kommentar, ein geändertes Feld — jedes ist ein Ereignis, das Aktionen auslöst. Das ist der dauerhafte Speicher der Wahrheit *und* die Zündung.
 
 **Die Interaktionsebene** ist der Team-Chat (Microsoft Teams). Hier trifft Autonomie auf Menschen: Hier lösen Menschen Agenten aus, hier melden Agenten ihren Status zurück, und hier koordinieren sich Agenten untereinander.
 
@@ -73,7 +76,7 @@ Vier Schichten, ein Arbeitsvorgang. Kein einziger Direktaufruf zwischen den Komp
 
 **Mensch am Bremshebel.** Deutschsprachige Trigger überall, Rechts-Domäne, und alle wirklich folgenreichen Aktionen — Freigaben, Merges, Produktiv-Deployments — sind an eine explizite menschliche Bestätigung gebunden. Autonomie mit der Hand am Hebel.
 
-Das ist kein Bauplan zum Kopieren. Es ist der aktuelle Zustand eines laufenden Systems, Narben inklusive — und manche Entscheidungen darin sind uns bis heute nicht ganz geheuer.
+Das ist kein Bauplan zum Kopieren. Es ist der aktuelle Zustand eines laufenden Systems, Narben inklusive — und manche Entscheidungen darin sind mir bis heute nicht ganz geheuer.
 
 ## Was in dieser Serie kommt
 

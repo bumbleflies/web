@@ -6,6 +6,7 @@ category: "Platform"
 image: "/images/blog/skills-als-apps-plugin-marktplatz.svg"
 order: 4
 date: 2026-07-18
+author: "Chris 🦋 | Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 min"
 published: false
 lang: "EN"
@@ -13,11 +14,11 @@ lang: "EN"
 
 Every company has procedures living in individual people's heads. How to take a feature from idea to pull request. How to migrate a client from a legacy system. How to roll out a hotfix without breaking production. This knowledge is normally passed on orally, buried in outdated wiki pages, or copied from person to person — each time a little different.
 
-We packaged it into an **internal app store** instead. The metaphor is meant literally: the marketplace is the store, each plugin is an app, and each skill within it is a feature.
+I packaged it into an **internal app store** instead, at JUNE. The metaphor is meant literally: the marketplace is the store, each plugin is an app, and each skill within it is a feature.
 
 ## What it feels like
 
-An employee adds the marketplace to their Claude Code once per machine and installs the plugins they need. After that, skills activate via **natural language**: you describe what you want, and Claude Code picks the matching skill based on its description. The descriptions are deliberately filled with trigger phrases in German *and* English — "deploy to prd" and "nach prd deployen" lead to the same skill. It's a legal-tech company with a German-speaking team; the language has to match.
+An employee adds the marketplace to their Claude Code once per machine and installs the plugins they need. After that, skills activate via **natural language**: you describe what you want, and Claude Code picks the matching skill based on its description. The descriptions are deliberately filled with trigger phrases in German *and* English — "deploy to prd" and "nach prd deployen" lead to the same skill. JUNE is a legal-tech company with a German-speaking team; the language has to match.
 
 11 plugins, 53 skills. They range from feature development (planning, building, reviewing, testing) to code review for three different tech stacks to client onboarding, support fixes, and time tracking.
 
@@ -52,7 +53,7 @@ The most beautiful pattern in the marketplace is a learning loop. The migration 
 
 Which means: **the tool improves the document that controls the next tool.** Each migration makes the playbook better instead of remaining a one-off case. Knowledge compounds instead of weathering.
 
-Honest caveat: the learning loop has only run for a handful of migrations. We believe it compounds — we just haven't seen enough repetitions to prove it yet.
+Honest caveat: the learning loop has only run for a handful of migrations. I believe it compounds — I just haven't seen enough repetitions to prove it yet.
 
 ## Analytics as a first-class release step
 
@@ -62,6 +63,6 @@ And quality assurance? Every skill that's changed runs a **real integration chec
 
 ## What this replaces
 
-Knowledge spreads, drifts apart, gets lost — and the usual answer is documentation nobody reads. Ours is company knowledge as installable, versioned, tested skills, usable via natural language by humans and by machines, with exactly the same code.
+Knowledge spreads, drifts apart, gets lost — and the usual answer is documentation nobody reads. What I built instead is company knowledge as installable, versioned, tested skills, usable via natural language by humans and by machines, with exactly the same code.
 
-And this shared code is the bridge to the next part: when a human and an autonomous bot run the same skills, a bot is just a container with a different system prompt. What that looks like — and the expensive mistakes that led us there — in the next article.
+And this shared code is the bridge to the next part: when a human and an autonomous bot run the same skills, a bot is just a container with a different system prompt. What that looks like — and the expensive mistakes that led me there — in the next article.

@@ -6,6 +6,7 @@ category: "Architektur"
 image: "/images/blog/zwei-ebenen-zustand-und-interaktion.svg"
 order: 2
 date: 2026-07-12
+author: "Chris 🦋 | Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 Min."
 published: false
 lang: "DE"
@@ -13,11 +14,11 @@ lang: "DE"
 
 Wenn man ein System aus autonomen Agenten baut, ist die verführerischste Idee, sie direkt miteinander reden zu lassen. Bot A ruft eine API von Bot B auf, der schickt eine Nachricht an Dienst C. Nach ein paar Wochen hat man ein Geflecht aus Direktaufrufen, das niemand mehr überblickt, das bei jedem Neustart Zustand verliert und das man nicht nachvollziehen kann, wenn nachts etwas schiefgeht.
 
-Wir haben es anders gemacht. Das gesamte Agenten-System eines deutschen Legal-Tech-Unternehmens koordiniert über **zwei Fundament-Ebenen aus Standard-Tools** — und fast keine Komponente ruft eine andere direkt auf.
+Ich habe es anders gemacht. Das gesamte Agenten-System, das ich bei JUNE gebaut habe, einem deutschen Legal-Tech-Unternehmen, koordiniert über **zwei Fundament-Ebenen aus Standard-Tools** — und fast keine Komponente ruft eine andere direkt auf.
 
 ## Ebene A: das Projektmanagement-Tool als Zustandsebene
 
-Die erste Ebene ist ClickUp — das Projektmanagement-Tool, in dem das Unternehmen ohnehin arbeitet. Es ist zweierlei zugleich: der **dauerhafte Speicher der Wahrheit** und die **Zündung** für Automatisierung.
+Die erste Ebene ist ClickUp — das Projektmanagement-Tool, in dem JUNE ohnehin arbeitet. Es ist zweierlei zugleich: der **dauerhafte Speicher der Wahrheit** und die **Zündung** für Automatisierung.
 
 Jedes Arbeitselement wird als Ticket geboren oder gegen ein Ticket abgeglichen. Und jede Veränderung an einem Ticket ist ein Ereignis: ein Statuswechsel per Drag-and-Drop, ein neuer Kommentar, ein geändertes Feld. Vier solcher Ereignistypen — Ticket erstellt, verschoben, kommentiert, aktualisiert — zünden praktisch jede Automatisierung im ganzen Stack. Das Prinzip heißt schlicht: **Veränderung → Aktion.**
 
@@ -52,7 +53,7 @@ Der Agent-zu-Agent-Bus treibt denselben Trick ins Positive: Alle Agenten posten 
 
 ## Warum das die richtige Architektur ist
 
-Man könnte all das mit eigenen Services und einer Message-Queue bauen. Wir haben es bewusst nicht getan — aus drei Gründen, die für jedes Agenten-System gelten:
+Man könnte all das mit eigenen Services und einer Message-Queue bauen. Ich habe es bewusst nicht getan — aus drei Gründen, die für jedes Agenten-System gelten:
 
 1. **Wiederaufnehmbarkeit.** Zustand, der in einem Ticket-Kommentar lebt, überlebt jeden Neustart, jedes Deployment, jeden Absturz. Ein Agent kann jederzeit dort weitermachen, wo er aufgehört hat, weil der Zustand nicht in seinem Prozess steckt.
 
@@ -62,6 +63,6 @@ Man könnte all das mit eigenen Services und einer Message-Queue bauen. Wir habe
 
 Die Regel nach einem Jahr Produktivbetrieb ist nicht verhandelbar: **Koordiniere Agenten über dauerhafte, für Menschen einsehbare Artefakte — nicht über direkte Aufrufe.** Die Werkzeuge, in denen das Team ohnehin arbeitet, sind meist die beste Koordinationsschicht, die man bekommen kann — sobald man ihre Kanten gut genug kennt, um ihnen zu vertrauen.
 
-Wir wissen auch noch nicht, wo dieser Ansatz an seine Grenze stößt. Der Kommentar-Befehlsbus und die Sentinel-Kommentare laufen seit über einem Jahr, aber beide sind, ehrlich gesagt, Hacks auf einem Tool, das nie als Datenbank gedacht war. Irgendwann finden wir die Grenze — wir wissen nur noch nicht, wo sie liegt.
+Ich weiß auch noch nicht, wo dieser Ansatz an seine Grenze stößt. Der Kommentar-Befehlsbus und die Sentinel-Kommentare laufen seit über einem Jahr, aber beide sind, ehrlich gesagt, Hacks auf einem Tool, das nie als Datenbank gedacht war. Irgendwann finde ich die Grenze — ich weiß nur noch nicht, wo sie liegt.
 
-Im nächsten Teil steigen wir eine Ebene höher: in das Nervensystem, das auf diese Ereignisse reagiert — und in den mehrstufigen Filter, mit dem wir das Sprachmodell ehrlich halten.
+Im nächsten Teil steige ich eine Ebene höher: in das Nervensystem, das auf diese Ereignisse reagiert — und in den mehrstufigen Filter, mit dem ich das Sprachmodell ehrlich halte.

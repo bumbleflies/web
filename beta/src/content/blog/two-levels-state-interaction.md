@@ -6,6 +6,7 @@ category: "Architecture"
 image: "/images/blog/zwei-ebenen-zustand-und-interaktion.svg"
 order: 2
 date: 2026-07-12
+author: "Chris 🦋 | Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 min"
 published: false
 lang: "EN"
@@ -13,11 +14,11 @@ lang: "EN"
 
 When you build a system of autonomous agents, the most tempting idea is to have them talk directly to each other. Bot A calls an API from Bot B, which sends a message to Service C. After a few weeks, you have a web of direct calls that nobody can keep track of, that loses state on every restart, and that you can't trace when something goes wrong at night.
 
-We did it differently. The entire agent system of a German legal-tech company coordinates through **two foundation levels made of standard tools** — and almost no component calls another directly.
+I did it differently. The entire agent system I built at JUNE, a German legal-tech company, coordinates through **two foundation levels made of standard tools** — and almost no component calls another directly.
 
 ## Level A: the project management tool as the state level
 
-The first level is ClickUp — the project management tool the company already works in. It serves two purposes: **persistent storage of truth** and **ignition** for automation.
+The first level is ClickUp — the project management tool JUNE already works in. It serves two purposes: **persistent storage of truth** and **ignition** for automation.
 
 Every work item is born as a ticket or reconciled against a ticket. And every change to a ticket is an event: a drag-and-drop status change, a new comment, a modified field. Four event types — ticket created, moved, commented, updated — trigger practically every automation in the entire stack. The principle is simply: **change → action.**
 
@@ -52,7 +53,7 @@ The agent-to-agent bus takes the same trick further: all agents post under *one*
 
 ## Why this is the right architecture
 
-You could build all this with custom services and a message queue. We deliberately didn't — for three reasons that apply to any agent system:
+You could build all this with custom services and a message queue. I deliberately didn't — for three reasons that apply to any agent system:
 
 1. **Resumability.** State living in a ticket comment survives every restart, every deployment, every crash. An agent can pick up wherever it left off because the state isn't in its process.
 
@@ -62,6 +63,6 @@ You could build all this with custom services and a message queue. We deliberate
 
 The rule after a year of production is non-negotiable: **coordinate agents through persistent, human-visible artifacts — not through direct calls.** The tools the team already works in are usually the best coordination layer you can get — once you know their edges well enough to trust them.
 
-We also don't know yet where this approach hits its limit. The comment command bus and sentinel comments have run for over a year, but both are, honestly, hacks on top of a tool that was never meant to be a database. We'll find the limit eventually — we just don't know where it is yet.
+I also don't know yet where this approach hits its limit. The comment command bus and sentinel comments have run for over a year, but both are, honestly, hacks on top of a tool that was never meant to be a database. I'll find the limit eventually — I just don't know where it is yet.
 
-In the next part, we go one level higher: into the nervous system that reacts to these events — and the multi-stage filter we use to keep the language model honest.
+In the next part, I go one level higher: into the nervous system that reacts to these events — and the multi-stage filter I use to keep the language model honest.
