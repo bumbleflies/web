@@ -22,8 +22,6 @@ Alles am Cockpit folgt aus zwei Zusagen:
 1. **Nichts geht verloren.** Jeder lose Faden aus jeder Quelle wird gegen die Tickets abgeglichen — und wenn er nirgends erfasst ist, in ein Eingangs-Ticket geroutet.
 2. **Nichts bleibt stecken.** Jede aufgetauchte Aufgabe kommt mit einem fertig einfügbaren Fortsetzungs-Befehl, sodass sie „eine Nachricht davon entfernt ist, erledigt zu sein".
 
-Diese zwei Sätze klingen simpel. Ihre Umsetzung ist die eigentliche Ingenieurskunst.
-
 ## Zehn Scanner, parallel, die niemals scheitern
 
 Das Herz ist ein Fächer aus zehn **Scannern** — je einer pro Quelle, alle gleichzeitig gestartet. Jeder Scanner bekommt denselben Auftrag und muss ein streng strukturiertes JSON-Ergebnis zurückgeben.
@@ -38,11 +36,13 @@ Ein Detail hebt das Cockpit heraus. Einer der zehn Scanner liest die **eigene Ge
 
 Ein Agent, der über die Arbeit eines Menschen mit anderen Agenten reflektiert — das ist die vielleicht unerwartetste, aber logischste Konsequenz eines Systems, in dem Mensch und KI ständig zusammenarbeiten.
 
+Der Historie-Scanner ist der neueste der zehn — und die ehrliche Antwort ist, dass wir noch nicht wissen, ob er eine gute Idee ist oder nur eine seltsame. Er holt Zusagen an die Oberfläche, die wir sonst vergessen würden — aber er holt auch Rauschen hoch. Es ist der Scanner, bei dem wir uns am wenigsten sicher sind.
+
 ## „Gelesen heißt nicht erledigt"
 
 Meine liebste Regel im Cockpit stammt, wie so vieles im System, aus einem echten Vorfall. Der Mail-Scanner listet nicht nur ungelesene, sondern auch *gelesene* Mails. Denn: **Gelesen heißt nicht erledigt.** Eine gelesene Mail, bei der die Gegenseite zuletzt geschrieben hat und die eine Bitte oder eine Lieferung enthält, ist weiterhin offene Arbeit.
 
-Dahinter steht eine konkrete Regression: eine Beispieldatei, gelesen an einem Montag, aber erst zwei Tage später manuell bemerkt — weil „gelesen" fälschlich als „erledigt" galt. Die Regel ist die Narbe dieser zwei verlorenen Tage. Genau solche Regeln machen den Unterschied zwischen einem Assistenten, der beeindruckt, und einem, dem man vertraut.
+Dahinter steht eine konkrete Regression: eine Beispieldatei, gelesen an einem Montag, aber erst zwei Tage später manuell bemerkt — weil „gelesen" fälschlich als „erledigt" galt. Die Regel ist die Narbe dieser zwei verlorenen Tage.
 
 ## Blockiert, wartend, als Nächstes
 
@@ -58,10 +58,8 @@ Diese Unterscheidung ist der Grund, warum die „nächste Handlung" immer wirkli
 
 Auch das Cockpit folgt dem Prinzip „eine Definition, viele Laufzeiten". Es teilt sich eine Konfiguration und einen gemeinsamen Speicher mit einem leichteren Geschwister-Skill, der in jedem Projekt verfügbar ist. Und seine Scanner rufen dieselben Kommunikations-Skills aus dem Marktplatz auf, die auch die Bots benutzen. Das Cockpit ist kein Solitär — es sitzt auf demselben Fundament wie der Rest des Systems und liest dieselben zwei Ebenen.
 
-## Der Bogen schließt sich
+## Wo die Serie landet
 
-Damit schließt sich der Kreis dieser Serie. Wir sind bei den zwei Fundament-Ebenen gestartet, über das Nervensystem und den Skill-Marktplatz zu den autonomen Bots gegangen — und landen bei einem einzelnen Menschen, dessen Tag von zehn Agenten orchestriert wird, die alle dieselbe Sprache sprechen.
+Zurück auf den zwei Fundament-Ebenen, mit denen die Serie begonnen hat. Das ist die Bedeutung von „ein System": Ein Mensch, ein Bot und ein zeitgesteuerter Job benutzen dasselbe Vokabular, dieselben Tickets, dieselben Skills — nicht weil es elegant aussieht, sondern weil nur so aus einzelnen KI-Tricks ein Betriebssystem wird, das trägt.
 
-Das ist der eigentliche Punkt: Es ist *ein* System. Ein Mensch, ein Bot und ein zeitgesteuerter Job benutzen dasselbe Vokabular, dieselben Tickets, dieselben Skills. Nicht weil es elegant aussieht, sondern weil nur so aus einzelnen KI-Tricks ein Betriebssystem wird, das trägt.
-
-Und genau das ist es, was wir bauen. Nicht die Demo, die beeindruckt. Das System, das läuft — Tag und Nacht, mit der Hand am Bremshebel. Wenn Sie die romantische Vorstellung haben, dass da ein Schatz liegt: Sie haben recht. Reden wir darüber, wie er in Ihrem Unternehmen aussieht.
+Das Cockpit ist das Ende dieses Musters — ein einzelner Morgenplan. Und wie jede Schicht ist es aus Narben gebaut statt aus Versprechen: die gelesene Mail, die zwei Tage kostete; der Scanner, der niemals scheitern darf; die Validierung, die ein halluziniertes Ergebnis einfriedet. Der Plan, den man jeden Morgen sieht, ist der aktuelle Zustand dieser Narben.

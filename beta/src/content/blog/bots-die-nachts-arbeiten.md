@@ -27,9 +27,7 @@ Das ist DRY-Prinzip auf Agenten-Ebene. Eine Verbesserung am gemeinsamen Bausatz 
 
 ## Der Auslöser: kein Webhook, ein simpler Poll
 
-Man würde erwarten, dass ein solches System über Webhooks getrieben wird. Tut es nicht. Jeder Bot ist eine **30-Sekunden-Poll-Schleife.** Alle 30 Sekunden fragt er den Chat ab: Gibt es eine neue Nachricht mit dem Triggerwort? Ist die Antwort ja, startet er das Sprachmodell. Ist sie nein, schläft er weiter — ohne einen einzigen Token zu verbrennen.
-
-Das klingt unelegant und ist genau deshalb robust: Es gibt keine Webhook-Registrierung, die stillschweigend kaputtgeht, keine nach außen offene Schnittstelle. Und um die gefühlte Latenz zu verstecken, gibt es einen hübschen UX-Trick: Noch bevor das Modell überhaupt startet, postet der Poll eine Vorab-Bestätigung — „Ich kümmere mich drum! 🐳" — die sich alle 15 Sekunden mit dem aktuellen Arbeitsschritt aktualisiert. Der Mensch sieht innerhalb einer Sekunde eine Reaktion, statt zwei Minuten auf den ersten Token zu warten.
+Man würde erwarten, dass ein solches System über Webhooks getrieben wird. Tut es nicht. Jeder Bot ist eine **30-Sekunden-Poll-Schleife.** Alle 30 Sekunden fragt er den Chat ab: Gibt es eine neue Nachricht mit dem Triggerwort? Ist die Antwort ja, startet er das Sprachmodell. Ist sie nein, schläft er weiter — ohne einen einzigen Token zu verbrennen. Keine Webhook-Registrierung, die stillschweigend kaputtgeht, keine nach außen offene Schnittstelle. Und um die gefühlte Latenz zu verstecken, gibt es einen hübschen UX-Trick: Noch bevor das Modell überhaupt startet, postet der Poll eine Vorab-Bestätigung — „Ich kümmere mich drum! 🐳" — die sich alle 15 Sekunden mit dem aktuellen Arbeitsschritt aktualisiert. Der Mensch sieht innerhalb einer Sekunde eine Reaktion, statt zwei Minuten auf den ersten Token zu warten.
 
 ## Wie es Claude Code kopflos ausführt
 
@@ -44,6 +42,8 @@ Der Bot darf pushen, darf Pull-Requests öffnen — aber der Merge in die Hauptl
 Jetzt zum ehrlichen Teil. Fast jede Schutzmaßnahme in diesem System lässt sich auf einen konkreten, datierten Vorfall zurückführen. Das ist keine Peinlichkeit, sondern die Methode: **Das System wächst, indem es seine eigenen Fehler in Code gießt.**
 
 **Die Nacht mit mehreren hundert Euro Tokens.** Der Chat-Token eines Bots war abgelaufen. Der Poll interpretierte das als „es gibt Arbeit" und feuerte alle 30 Sekunden das Sprachmodell, um das vermeintliche Problem zu „lösen" — die ganze Nacht. Am Morgen: mehrere hundert Euro Token-Kosten für nichts. Die Antwort waren *drei* unabhängige Ausgaben-Wächter: ein stiller Token-Refresh, der zuerst versucht, das Problem ohne Modell zu lösen; eine Fehler-Zustandsmaschine, die nach wiederholten Fehlschlägen auf einen Versuch pro Stunde drosselt; und eine Wochenlimit-Markierung. Seither feuert ein abgelaufener Token *nie* das Modell — er überspringt einfach den Tick.
+
+Die Wächter haben das Verbrennen gestoppt, aber sie haben einen eigenen Fehlermodus mitgebracht: Ein wirklich festgeklemmter Bot versucht jetzt höchstens einmal pro Stunde neu. Wenn der Bot wirklich kaputt ist, merkt man es nur noch langsam.
 
 **Die Konfiguration auf dem Netzlaufwerk.** Anfangs lag die Bot-Konfiguration auf einem persistenten Netzlaufwerk. Dort ging das Klonen und Zurücksetzen des Git-Repositorys immer wieder kaputt, korrumpierte Dateien, und der defekte Ordner ließ sich nicht mehr löschen — der Bot hing fest. Die Lektion: Konfiguration auf flüchtigen lokalen Speicher, der bei jedem Start frisch geklont wird; nur der *Zustand* liegt persistent. Und niemals ein `sleep infinity` im Fehlerfall — lieber sauber beenden und den Container einen frischen Prozess starten lassen.
 
@@ -61,6 +61,6 @@ Genau das ist der Grund, warum diese Bots über die Monate besser werden, statt 
 
 Autonome Agenten in Produktion sind kein Magie-Trick. Sie sind ein sehr gewöhnliches Werkzeug (Claude Code) in einer sehr disziplinierten Umgebung: ein billiger Poll statt fragiler Webhooks, harte Code-Grenzen um die riskanten Aktionen, drei unabhängige Kostenwächter, und eine Kultur, in der jeder Vorfall zu einer neuen Regel wird.
 
-Der schwierigste Teil ist nicht, den Bot zum Arbeiten zu bringen. Der schwierigste Teil ist, ihm die Grenzen zu geben, an denen man nachts ruhig schläft. Genau darin steckt die Erfahrung, die man nicht aus einem Tutorial bekommt — sondern nur aus einem Jahr Produktivbetrieb mit echten Narben.
+Der schwierigste Teil ist nicht, den Bot zum Arbeiten zu bringen. Der schwierigste Teil ist, ihm die Grenzen zu geben, an denen man nachts ruhig schläft.
 
 Im letzten Teil der Serie drehen wir die Perspektive um: weg von den Maschinen, die autonom arbeiten, hin zu einem einzelnen Menschen — und dem Cockpit, das dessen Tag mit zehn Agenten orchestriert.

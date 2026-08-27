@@ -60,6 +60,8 @@ You could build all this with custom services and a message queue. We deliberate
 
 3. **Humans and machines speak the same language.** A human, a bot, and a scheduled job use the same vocabulary: the same tickets, the same tags, the same control words. There's no "machine interface" alongside the "human interface".
 
-This is perhaps the most important insight from a year of production operation: **coordinate agents through persistent, human-visible artifacts — not through direct calls.** The tools your team already works in are often the best coordination layer you can have. You just have to take them seriously enough to know their edges.
+The rule after a year of production is non-negotiable: **coordinate agents through persistent, human-visible artifacts — not through direct calls.** The tools the team already works in are usually the best coordination layer you can get — once you know their edges well enough to trust them.
+
+We also don't know yet where this approach hits its limit. The comment command bus and sentinel comments have run for over a year, but both are, honestly, hacks on top of a tool that was never meant to be a database. We'll find the limit eventually — we just don't know where it is yet.
 
 In the next part, we go one level higher: into the nervous system that reacts to these events — and the multi-stage filter we use to keep the language model honest.

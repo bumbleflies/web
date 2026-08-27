@@ -60,6 +60,8 @@ Man könnte all das mit eigenen Services und einer Message-Queue bauen. Wir habe
 
 3. **Menschen und Maschinen sprechen dieselbe Sprache.** Ein Mensch, ein Bot und ein zeitgesteuerter Job benutzen dasselbe Vokabular: dieselben Tickets, dieselben Tags, dieselben Steuerwörter. Es gibt kein „Maschinen-Interface" neben dem „Menschen-Interface".
 
-Das ist die vielleicht wichtigste Erkenntnis aus einem Jahr Produktivbetrieb: **Koordiniere Agenten über dauerhafte, für Menschen einsehbare Artefakte — nicht über direkte Aufrufe.** Die Werkzeuge, in denen Ihr Team ohnehin arbeitet, sind oft die beste Koordinationsschicht, die Sie haben können. Man muss sie nur ernst genug nehmen, um ihre Kanten zu kennen.
+Die Regel nach einem Jahr Produktivbetrieb ist nicht verhandelbar: **Koordiniere Agenten über dauerhafte, für Menschen einsehbare Artefakte — nicht über direkte Aufrufe.** Die Werkzeuge, in denen das Team ohnehin arbeitet, sind meist die beste Koordinationsschicht, die man bekommen kann — sobald man ihre Kanten gut genug kennt, um ihnen zu vertrauen.
+
+Wir wissen auch noch nicht, wo dieser Ansatz an seine Grenze stößt. Der Kommentar-Befehlsbus und die Sentinel-Kommentare laufen seit über einem Jahr, aber beide sind, ehrlich gesagt, Hacks auf einem Tool, das nie als Datenbank gedacht war. Irgendwann finden wir die Grenze — wir wissen nur noch nicht, wo sie liegt.
 
 Im nächsten Teil steigen wir eine Ebene höher: in das Nervensystem, das auf diese Ereignisse reagiert — und in den mehrstufigen Filter, mit dem wir das Sprachmodell ehrlich halten.

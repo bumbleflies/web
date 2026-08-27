@@ -27,9 +27,7 @@ That's the DRY principle at the agent level. An improvement to the shared buildi
 
 ## The trigger: no webhook, a simple poll
 
-You'd expect such a system to be driven by webhooks. It isn't. Each bot is a **30-second poll loop.** Every 30 seconds it checks the chat: is there a new message with the trigger word? If yes, it starts the language model. If no, it keeps sleeping — without burning a single token.
-
-That sounds inelegant and is precisely why it's robust: no webhook registration that silently breaks, no externally exposed interface. And to hide the perceived latency, there's a neat UX trick: even before the model starts, the poll posts a pre-confirmation — "I'm on it! 🐳" — that updates every 15 seconds with the current work step. The human sees a reaction within a second instead of waiting two minutes for the first token.
+You'd expect such a system to be driven by webhooks. It isn't. Each bot is a **30-second poll loop.** Every 30 seconds it checks the chat: is there a new message with the trigger word? If yes, it starts the language model. If no, it keeps sleeping — without burning a single token. No webhook registration that silently breaks, no externally exposed interface. And to hide the perceived latency, there's a neat UX trick: even before the model starts, the poll posts a pre-confirmation — "I'm on it! 🐳" — that updates every 15 seconds with the current work step. The human sees a reaction within a second instead of waiting two minutes for the first token.
 
 ## How it runs Claude Code headless
 
@@ -44,6 +42,8 @@ The bot may push, may open pull requests — but merging into the main line rema
 Now to the honest part. Nearly every protective measure in this system traces back to a concrete, dated incident. That's not embarrassing, it's the method: **the system grows by pouring its own errors into code.**
 
 **The night with several hundred euros in tokens.** A bot's chat token had expired. The poll interpreted this as "there's work" and fired the language model every 30 seconds to "solve" the supposed problem — all night long. In the morning: several hundred euros in token costs for nothing. The answer was *three* independent cost guards: a silent token refresh that first tries to solve the problem without the model; an error state machine that throttles to one attempt per hour after repeated failures; and a weekly limit marker. Since then, an expired token *never* fires the model — it simply skips the tick.
+
+The cost guards stopped the burning, but they brought their own failure mode: a genuinely stuck bot now retries at most once an hour. When the bot is really broken, you find out slowly.
 
 **The configuration on the network drive.** Initially, bot configuration lived on a persistent network drive. There, cloning and resetting the Git repository kept breaking, corrupting files, and the broken folder couldn't be deleted — the bot got stuck. The lesson: configuration on volatile local storage, freshly cloned on each start; only the *state* lives persistently. And never `sleep infinity` on failure — better to exit cleanly and let the container start a fresh process.
 
@@ -61,6 +61,6 @@ That's exactly why these bots get better over months instead of staying equally 
 
 Autonomous agents in production aren't a magic trick. They're a very ordinary tool (Claude Code) in a very disciplined environment: a cheap poll instead of fragile webhooks, hard code boundaries around risky actions, three independent cost guards, and a culture where every incident becomes a new rule.
 
-The hardest part isn't getting the bot to work. The hardest part is giving it the boundaries that let you sleep at night. That's exactly where the experience lies that you can't get from a tutorial — only from a year of production operation with real scars.
+The hardest part isn't getting the bot to work. The hardest part is giving it the boundaries that let you sleep at night.
 
 In the final part of the series, we turn the perspective around: away from the machines working autonomously, toward a single human — and the cockpit that orchestrates their day with ten agents.

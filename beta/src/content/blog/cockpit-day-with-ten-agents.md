@@ -22,8 +22,6 @@ Everything about the cockpit follows from two commitments:
 1. **Nothing gets lost.** Every loose thread from every source is reconciled against tickets — and if it's not captured anywhere, routed to an inbox ticket.
 2. **Nothing gets stuck.** Every surfaced task comes with a ready-to-paste continuation command, so it's "one message away from being done".
 
-These two sentences sound simple. Their implementation is the actual engineering art.
-
 ## Ten scanners, parallel, that never fail
 
 The heart is a fan of ten **scanners** — one per source, all started simultaneously. Each scanner gets the same assignment and must return a strictly structured JSON result.
@@ -38,11 +36,13 @@ One detail sets the cockpit apart. One of the ten scanners reads the **conversat
 
 An agent reflecting on a human's work with other agents — that's perhaps the most unexpected, but logical, consequence of a system where human and AI constantly collaborate.
 
+The history scanner is the newest of the ten — and the honest answer is that we don't know yet whether it's a good idea or just a strange one. It surfaces commitments we'd otherwise forget, but it also surfaces noise. It's the scanner we're least sure about.
+
 ## "Read doesn't mean done"
 
 My favorite rule in the cockpit, like so much in the system, comes from a real incident. The email scanner lists not just unread but also *read* emails. Because: **read doesn't mean done.** A read email where the other party last wrote and that contains a request or a delivery is still open work.
 
-Behind it is a concrete regression: a sample email, read on a Monday, but only manually noticed two days later — because "read" was wrongly treated as "done". The rule is the scar of those two lost days. Exactly such rules make the difference between an assistant that impresses and one you trust.
+Behind it is a concrete regression: a sample email, read on a Monday, but only manually noticed two days later — because "read" was wrongly treated as "done". The rule is the scar of those two lost days.
 
 ## Blocked, waiting, next
 
@@ -58,10 +58,8 @@ This distinction is why the "next action" is always genuinely doable. A blocked 
 
 The cockpit also follows the "one definition, many runtimes" principle. It shares a configuration and a common store with a lighter sibling skill available in every project. And its scanners call the same communication skills from the marketplace that the bots use. The cockpit isn't a solo piece — it sits on the same foundation as the rest of the system and reads the same two levels.
 
-## The circle closes
+## Where the series lands
 
-This closes the circle of this series. We started with the two foundation levels, went through the nervous system and the skill marketplace to the autonomous bots — and land on a single human whose day is orchestrated by ten agents, all speaking the same language.
+Back on the two foundation levels the series started with. This is what "one system" means: a human, a bot, and a scheduled job use the same vocabulary, the same tickets, the same skills — not because it looks elegant, but because it's the only way individual AI tricks carry as an operating system.
 
-That's the actual point: it's *one* system. A human, a bot, and a scheduled job use the same vocabulary, the same tickets, the same skills. Not because it looks elegant, but because only that turns individual AI tricks into an operating system that carries.
-
-And that's exactly what we're building. Not the demo that impresses. The system that runs — day and night, with a hand on the brake lever. If you have the romantic notion that there's a treasure out there: you're right. Let's talk about what it looks like in your company.
+The cockpit is where that pattern ends — in a single morning plan. And like every layer, it's built from scars rather than promises: the read email that cost two days, the scanner that must never fail, the validation that fences a hallucinated result. The plan you see each morning is the current state of those scars.
