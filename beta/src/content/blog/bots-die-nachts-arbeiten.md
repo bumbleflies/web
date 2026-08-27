@@ -26,9 +26,7 @@ Das ist DRY-Prinzip auf Agenten-Ebene. Eine Verbesserung am gemeinsamen Bausatz 
 
 ## Der Auslöser: kein Webhook, ein simpler Poll
 
-Man würde erwarten, dass ein solches System über Webhooks getrieben wird. Tut es nicht. Jeder Bot ist eine **30-Sekunden-Poll-Schleife.** Alle 30 Sekunden fragt er den Chat ab: Gibt es eine neue Nachricht mit dem Triggerwort? Ist die Antwort ja, startet er das Sprachmodell. Ist sie nein, schläft er weiter — ohne einen einzigen Token zu verbrennen.
-
-Das klingt unelegant und ist genau deshalb robust: Es gibt keine Webhook-Registrierung, die stillschweigend kaputtgeht, keine nach außen offene Schnittstelle. Und um die gefühlte Latenz zu verstecken, gibt es einen hübschen UX-Trick: Noch bevor das Modell überhaupt startet, postet der Poll eine Vorab-Bestätigung — „Ich kümmere mich drum! 🐳" — die sich alle 15 Sekunden mit dem aktuellen Arbeitsschritt aktualisiert. Der Mensch sieht innerhalb einer Sekunde eine Reaktion, statt zwei Minuten auf den ersten Token zu warten.
+Man würde erwarten, dass ein solches System über Webhooks getrieben wird. Tut es nicht. Jeder Bot ist eine **30-Sekunden-Poll-Schleife.** Alle 30 Sekunden fragt er den Chat ab: Gibt es eine neue Nachricht mit dem Triggerwort? Ist die Antwort ja, startet er das Sprachmodell. Ist sie nein, schläft er weiter — ohne einen einzigen Token zu verbrennen. Keine Webhook-Registrierung, die stillschweigend kaputtgeht, keine nach außen offene Schnittstelle. Und um die gefühlte Latenz zu verstecken, gibt es einen hübschen UX-Trick: Noch bevor das Modell überhaupt startet, postet der Poll eine Vorab-Bestätigung — „Ich kümmere mich drum! 🐳" — die sich alle 15 Sekunden mit dem aktuellen Arbeitsschritt aktualisiert. Der Mensch sieht innerhalb einer Sekunde eine Reaktion, statt zwei Minuten auf den ersten Token zu warten.
 
 ## Wie es Claude Code kopflos ausführt
 
@@ -60,6 +58,6 @@ Genau das ist der Grund, warum diese Bots über die Monate besser werden, statt 
 
 Autonome Agenten in Produktion sind kein Magie-Trick. Sie sind ein sehr gewöhnliches Werkzeug (Claude Code) in einer sehr disziplinierten Umgebung: ein billiger Poll statt fragiler Webhooks, harte Code-Grenzen um die riskanten Aktionen, drei unabhängige Kostenwächter, und eine Kultur, in der jeder Vorfall zu einer neuen Regel wird.
 
-Der schwierigste Teil ist nicht, den Bot zum Arbeiten zu bringen. Der schwierigste Teil ist, ihm die Grenzen zu geben, an denen man nachts ruhig schläft. Genau darin steckt die Erfahrung, die man nicht aus einem Tutorial bekommt — sondern nur aus einem Jahr Produktivbetrieb mit echten Narben.
+Der schwierigste Teil ist nicht, den Bot zum Arbeiten zu bringen. Der schwierigste Teil ist, ihm die Grenzen zu geben, an denen man nachts ruhig schläft.
 
 Im letzten Teil der Serie drehen wir die Perspektive um: weg von den Maschinen, die autonom arbeiten, hin zu einem einzelnen Menschen — und dem Cockpit, das dessen Tag mit zehn Agenten orchestriert.

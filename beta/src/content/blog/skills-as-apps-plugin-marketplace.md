@@ -57,8 +57,8 @@ A detail that shows how seriously "internal product store" is meant: every new s
 
 And quality assurance? Every skill that's changed runs a **real integration check** in CI — it calls the skill end-to-end as a real subprocess and checks its structured output. No mocks. If a skill is broken, it's caught before it reaches anyone.
 
-## Why this matters to you
+## What this replaces
 
-The marketplace solves a problem every growing company has: knowledge spreads, drifts apart, gets lost. The usual answer is documentation nobody reads. Our answer: company knowledge as installable, versioned, tested skills usable via natural language — by humans and by machines, with exactly the same code.
+Knowledge spreads, drifts apart, gets lost — and the usual answer is documentation nobody reads. Ours is company knowledge as installable, versioned, tested skills, usable via natural language by humans and by machines, with exactly the same code.
 
 And this shared code is the bridge to the next part: when a human and an autonomous bot run the same skills, a bot is just a container with a different system prompt. What that looks like — and the expensive mistakes that led us there — in the next article.

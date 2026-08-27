@@ -28,7 +28,7 @@ Der erste Teil fängt jede neue Support-Konversation ab und legt daraus ein Tick
 
 Der zweite Teil schließt den Kreis: Immer wenn ein *Mensch* ein Ticket manuell aus dem Eingang verschiebt, wird genau diese Korrektur als neues Beispiel gespeichert. Die Trainingsdaten des Routers *sind* das Protokoll der menschlichen Korrekturen. Es gibt keinen separaten Labeling-Schritt. Am ersten Tag, mit leerer Beispiel-Tabelle, überspringt das System das Modell einfach und lässt alles im Eingang — und lernt ab der ersten manuellen Verschiebung.
 
-Das ist ein Muster, das sich verallgemeinern lässt: **Die beste Trainingsquelle für Ihre KI ist die tägliche Korrektur durch Ihr Team.** Man muss sie nur einfangen.
+**Die beste Trainingsquelle für Ihre KI ist die tägliche Korrektur durch Ihr Team.** Man muss sie nur einfangen.
 
 Und das Ganze ist an jeder Verzweigung fehlertolerant entworfen: Schlägt die Klassifikation fehl, wurde das Ticket ja bereits im Eingang angelegt — ein sicherer Rückfall. Nichts geht verloren, nur weil das Modell mal patzt.
 
@@ -52,8 +52,6 @@ Der Filter-Code ist übrigens bewusst an zwei Stellen wortgleich dupliziert — 
 
 ## Der rote Faden
 
-Wenn Sie aus dieser Schicht eine Sache mitnehmen, dann diese: Der Wert eines KI-Systems in Produktion liegt nicht darin, dem Modell mehr zuzutrauen. Er liegt darin, **präzise zu wissen, wo das Modell entscheiden darf — und wo ein deterministischer Zaun steht.**
-
-Das Nervensystem zeigt beide Muster: einen Router, der aus menschlichen Korrekturen klüger wird, und einen Filter, der dem Modell kein einziges Wort glaubt. Beides zusammen ergibt ein System, dem man nachts vertrauen kann.
+Der Router wird aus menschlichen Korrekturen klüger; der Filter glaubt dem Modell kein einziges Wort. Diese zwei Muster sind die ganze Schicht — und genau das lässt sie die ganze Nacht ohne Menschen in der Schleife laufen.
 
 Im nächsten Teil geht es um die Schicht darüber: den Marktplatz, der Firmenwissen in installierbare Skills verpackt — die „Apps", die Menschen *und* Bots benutzen.

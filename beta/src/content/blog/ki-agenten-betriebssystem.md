@@ -1,5 +1,5 @@
 ---
-title: "Ein KI-Agenten-Betriebssystem für ein Legal-Tech-Unternehmen"
+title: "Statt KI zu kaufen: Was wir wirklich gebaut haben"
 description: "Nicht 'wir haben KI gekauft', sondern 'wir haben unsere eigenen Betriebsabläufe in Code übersetzt, den ein Sprachmodell komponiert'. Die Landkarte eines echten Agenten-Systems in Produktion."
 excerpt: "Vier Agenten-Schichten auf zwei Fundament-Ebenen. Autonome Bots, die Pull-Requests öffnen, ein Skill-Marktplatz für Firmenwissen, ein Cockpit, das den Tag plant. So sieht KI aus, wenn sie nicht in der Demo endet."
 category: "Überblick"
@@ -46,7 +46,7 @@ Darauf sitzen die vier Schichten:
 
 ## Das Verbindungsgewebe
 
-Der eigentlich interessante Punkt: Das sind keine vier getrennten Projekte. Es ist ein **Netz mit benannten, tragenden Nähten** — und fast jede Verbindung läuft über die zwei Fundament-Ebenen. Komponenten stoßen sich gegenseitig über Chat-Nachrichten an und koordinieren sich über Tickets und Kommentare, statt sich direkt aufzurufen. Die Ebenen *sind* das gemeinsame Vokabular.
+Das sind keine vier getrennten Projekte. Es ist ein **Netz mit benannten, tragenden Nähten** — und fast jede Verbindung läuft über die zwei Fundament-Ebenen. Komponenten stoßen sich gegenseitig über Chat-Nachrichten an und koordinieren sich über Tickets und Kommentare, statt sich direkt aufzurufen. Die Ebenen *sind* das gemeinsame Vokabular.
 
 Ein durchgängiger Ablauf, wie er täglich passiert:
 
@@ -82,4 +82,4 @@ Die folgenden Artikel gehen je eine Ebene tief:
 - **Bots, die nachts arbeiten** — Claude Code als autonomer Daemon, und die Narben.
 - **Ein Cockpit für einen Menschen** — den eigenen Tag mit zehn Agenten orchestrieren.
 
-Das ist keine Zukunftsvision. Das läuft. Und der Grund, warum wir es aufschreiben, ist einfach: Weil die romantische Vorstellung, dass da irgendwo ein Schatz liegt, stimmt — und weil wir ihn für andere Unternehmen genauso heben können.
+Das ist keine Zukunftsvision. Das läuft. Und alles, was in dieser Serie folgt, ist ein Narben-Protokoll — die Schutzmaßnahme und der datierte Vorfall dahinter.

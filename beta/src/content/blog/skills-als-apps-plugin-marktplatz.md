@@ -57,8 +57,8 @@ Ein Detail, das zeigt, wie ernst „interner Produkt-Store" gemeint ist: Jeder n
 
 Und die Qualitätssicherung? Jeder Skill, der geändert wird, durchläuft in der CI eine **echte Integrations-Prüfung** — sie ruft den Skill end-to-end als echten Subprozess auf und prüft seine strukturierte Ausgabe. Keine Mocks. Wenn ein Skill kaputt ist, fällt das auf, bevor er jemanden erreicht.
 
-## Warum das für Sie relevant ist
+## Was das ersetzt
 
-Der Marktplatz löst ein Problem, das jedes wachsende Unternehmen hat: Wissen verteilt sich, driftet auseinander, geht verloren. Die übliche Antwort sind Dokumentationen, die niemand liest. Unsere Antwort: Firmenwissen als installierbare, versionierte, getestete Skills, die per natürlicher Sprache benutzbar sind — von Menschen und von Maschinen, mit exakt demselben Code.
+Wissen verteilt sich, driftet auseinander, geht verloren — und die übliche Antwort sind Dokumentationen, die niemand liest. Unsere Antwort: Firmenwissen als installierbare, versionierte, getestete Skills, benutzbar per natürlicher Sprache — von Menschen und von Maschinen, mit exakt demselben Code.
 
 Und genau dieser gemeinsame Code ist die Brücke zum nächsten Teil: Wenn ein Mensch und ein autonomer Bot dieselben Skills ausführen, dann ist ein Bot nur noch ein Container mit einem anderen Systemprompt. Wie das aussieht — und welche teuren Fehler uns dorthin geführt haben — im nächsten Artikel.

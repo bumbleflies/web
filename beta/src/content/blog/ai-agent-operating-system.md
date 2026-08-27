@@ -1,5 +1,5 @@
 ---
-title: "An AI Agent Operating System for a Legal-Tech Company"
+title: "What We Actually Built Instead of \"Adding AI\""
 description: "Not 'we bought AI', but 'we translated our own operational processes into code that a language model composes'. The blueprint of a real agent system in production."
 excerpt: "Four agent layers on two foundation levels. Autonomous bots that open pull requests, a skill marketplace for company knowledge, a cockpit that plans the day. This is what AI looks like when it doesn't end in a demo."
 category: "Overview"
@@ -46,7 +46,7 @@ Sitting on top are the four layers:
 
 ## The connective tissue
 
-The actually interesting point: these aren't four separate projects. It's a **network with named, load-bearing seams** — and nearly every connection runs through the two foundation levels. Components trigger each other via chat messages and coordinate through tickets and comments, rather than calling each other directly. The levels *are* the shared vocabulary.
+These aren't four separate projects. It's a **network with named, load-bearing seams** — and nearly every connection runs through the two foundation levels. Components trigger each other via chat messages and coordinate through tickets and comments, rather than calling each other directly. The levels *are* the shared vocabulary.
 
 A typical daily flow:
 
@@ -82,4 +82,4 @@ The following articles each go one level deep:
 - **Bots that work at night** — Claude Code as an autonomous daemon, and the scars.
 - **A cockpit for one human** — orchestrating your own day with ten agents.
 
-This isn't a vision of the future. This is running. And the reason we're writing it down is simple: because the romantic notion that there's a treasure somewhere is true — and because we can unearth it for other companies too.
+This isn't a vision of the future. This is running. And everything that follows in this series is a scar log — the protective measure, and the dated incident behind it.
