@@ -61,4 +61,6 @@ You could build all this with custom services and a message queue. We deliberate
 
 The rule after a year of production is non-negotiable: **coordinate agents through persistent, human-visible artifacts — not through direct calls.** The tools the team already works in are usually the best coordination layer you can get — once you know their edges well enough to trust them.
 
+We also don't know yet where this approach hits its limit. The comment command bus and sentinel comments have run for over a year, but both are, honestly, hacks on top of a tool that was never meant to be a database. We'll find the limit eventually — we just don't know where it is yet.
+
 In the next part, we go one level higher: into the nervous system that reacts to these events — and the multi-stage filter we use to keep the language model honest.

@@ -30,6 +30,8 @@ Der zweite Teil schließt den Kreis: Immer wenn ein *Mensch* ein Ticket manuell 
 
 **Die beste Trainingsquelle für Ihre KI ist die tägliche Korrektur durch Ihr Team.** Man muss sie nur einfangen.
 
+Eine Zahl darin ist ehrliches Raten: die 75-%-Schwelle. Wir haben sie nach Gefühl gewählt, nicht durch Tuning. Bisher hat sie gehalten — ob 75 richtig ist oder nur Glück, wissen wir bis heute nicht.
+
 Und das Ganze ist an jeder Verzweigung fehlertolerant entworfen: Schlägt die Klassifikation fehl, wurde das Ticket ja bereits im Eingang angelegt — ein sicherer Rückfall. Nichts geht verloren, nur weil das Modell mal patzt.
 
 ## Das Musterbeispiel: der Datenschutz-Filter

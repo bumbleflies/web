@@ -51,6 +51,8 @@ The most beautiful pattern in the marketplace is a learning loop. The migration 
 
 Which means: **the tool improves the document that controls the next tool.** Each migration makes the playbook better instead of remaining a one-off case. Knowledge compounds instead of weathering.
 
+Honest caveat: the learning loop has only run for a handful of migrations. We believe it compounds — we just haven't seen enough repetitions to prove it yet.
+
 ## Analytics as a first-class release step
 
 A detail that shows how seriously "internal product store" is meant: every new skill *must* be registered in the usage dashboard. Without this registration, the system collects no data about which skills are actually used — and without that data, you can't prioritize what to improve. Analytics isn't an afterthought, but a mandatory step of every release.

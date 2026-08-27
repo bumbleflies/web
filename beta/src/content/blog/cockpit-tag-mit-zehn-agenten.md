@@ -35,6 +35,8 @@ Ein Detail hebt das Cockpit heraus. Einer der zehn Scanner liest die **eigene Ge
 
 Ein Agent, der über die Arbeit eines Menschen mit anderen Agenten reflektiert — das ist die vielleicht unerwartetste, aber logischste Konsequenz eines Systems, in dem Mensch und KI ständig zusammenarbeiten.
 
+Der Historie-Scanner ist der neueste der zehn — und die ehrliche Antwort ist, dass wir noch nicht wissen, ob er eine gute Idee ist oder nur eine seltsame. Er holt Zusagen an die Oberfläche, die wir sonst vergessen würden — aber er holt auch Rauschen hoch. Es ist der Scanner, bei dem wir uns am wenigsten sicher sind.
+
 ## „Gelesen heißt nicht erledigt"
 
 Meine liebste Regel im Cockpit stammt, wie so vieles im System, aus einem echten Vorfall. Der Mail-Scanner listet nicht nur ungelesene, sondern auch *gelesene* Mails. Denn: **Gelesen heißt nicht erledigt.** Eine gelesene Mail, bei der die Gegenseite zuletzt geschrieben hat und die eine Bitte oder eine Lieferung enthält, ist weiterhin offene Arbeit.

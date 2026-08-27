@@ -72,6 +72,8 @@ The same design principles appear across all layers. They are the real value —
 
 **Human at the brake lever.** German-language triggers throughout, legal domain, and all truly consequential actions — approvals, merges, production deployments — are tied to explicit human confirmation. Autonomy with a hand on the lever.
 
+None of this is a blueprint to copy. It's the current state of one running system, scars included — and there are decisions in here we still aren't sure about.
+
 ## What's coming in this series
 
 The following articles each go one level deep:

@@ -35,6 +35,8 @@ One detail sets the cockpit apart. One of the ten scanners reads the **conversat
 
 An agent reflecting on a human's work with other agents — that's perhaps the most unexpected, but logical, consequence of a system where human and AI constantly collaborate.
 
+The history scanner is the newest of the ten — and the honest answer is that we don't know yet whether it's a good idea or just a strange one. It surfaces commitments we'd otherwise forget, but it also surfaces noise. It's the scanner we're least sure about.
+
 ## "Read doesn't mean done"
 
 My favorite rule in the cockpit, like so much in the system, comes from a real incident. The email scanner lists not just unread but also *read* emails. Because: **read doesn't mean done.** A read email where the other party last wrote and that contains a request or a delivery is still open work.

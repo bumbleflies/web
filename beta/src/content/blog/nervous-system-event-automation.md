@@ -30,6 +30,8 @@ The second part closes the loop: whenever a *human* manually moves a ticket from
 
 **The best training source for your AI is your team's daily corrections.** You just have to capture them.
 
+One number in there is honest guesswork: the 75% confidence threshold. We picked it by feel, not by tuning. It's held up so far — whether 75 is right or just lucky, we still don't know.
+
 And the whole thing is designed to be fault-tolerant at every branch: if classification fails, the ticket was already created in the inbox — a safe fallback. Nothing is lost just because the model makes a mistake.
 
 ## The prime example: the privacy filter

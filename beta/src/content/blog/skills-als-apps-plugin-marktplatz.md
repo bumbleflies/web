@@ -51,6 +51,8 @@ Das schönste Muster im Marktplatz ist eine Lernschleife. Der Migrations-Playboo
 
 Das heißt: **Das Werkzeug verbessert das Dokument, das das nächste Werkzeug steuert.** Jede Migration macht das Playbook besser, statt ein Einzelfall zu bleiben. Wissen kompoundiert, statt zu verwittern.
 
+Ehrliche Einschränkung: Die Lernschleife läuft erst über eine Handvoll Migrationen. Wir glauben, dass sie kompoundiert — bewiesen haben wir das noch nicht.
+
 ## Analytics als erstklassiger Release-Schritt
 
 Ein Detail, das zeigt, wie ernst „interner Produkt-Store" gemeint ist: Jeder neue Skill *muss* im Nutzungs-Dashboard registriert werden. Ohne diese Registrierung sammelt das System keine Daten darüber, welche Skills tatsächlich benutzt werden — und ohne diese Daten kann man nicht priorisieren, was man verbessert. Analytics ist kein Nachgedanke, sondern ein Pflicht-Schritt jeder Veröffentlichung.

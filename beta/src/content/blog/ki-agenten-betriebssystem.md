@@ -72,6 +72,8 @@ Vier Schichten, ein Arbeitsvorgang. Kein einziger Direktaufruf zwischen den Komp
 
 **Mensch am Bremshebel.** Deutschsprachige Trigger überall, Rechts-Domäne, und alle wirklich folgenreichen Aktionen — Freigaben, Merges, Produktiv-Deployments — sind an eine explizite menschliche Bestätigung gebunden. Autonomie mit der Hand am Hebel.
 
+Das ist kein Bauplan zum Kopieren. Es ist der aktuelle Zustand eines laufenden Systems, Narben inklusive — und manche Entscheidungen darin sind uns bis heute nicht ganz geheuer.
+
 ## Was in dieser Serie kommt
 
 Die folgenden Artikel gehen je eine Ebene tief:
