@@ -149,6 +149,8 @@ const jsonLd = {
         <p>Klingt nach einem Thema, das Sie auch bewegt?</p>
         <a href="mailto:info@bumbleflies.de" class="post__button">Erstes Gespräch buchen</a>
       </aside>
+
+      <p class="post__ai-note">Mit KI geschrieben. Na klar war das so. Schließlich geht es in dieser Serie genau darum.</p>
     </main>
   </article>
 
@@ -458,6 +460,15 @@ const jsonLd = {
   .post__button:hover {
     transform: translateY(-2px);
     background: var(--accent);
+  }
+
+  .post__ai-note {
+    text-align: center;
+    margin: var(--space-lg) 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-wide);
+    color: var(--ink-soft);
   }
 
   @media (max-width: 768px) {
