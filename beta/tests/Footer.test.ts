@@ -64,5 +64,19 @@ describe('Footer Component Logic', () => {
       );
       expect(item?.href).toBe('/en/open-space');
     });
+
+    it('should link to bumble:education for kids courses (DE)', () => {
+      const item = getFooterContent('DE').learn.items.find(
+        (i) => i.label === 'Kurse für Kinder',
+      );
+      expect(item?.href).toBe('https://edu.bumbleflies.de/');
+    });
+
+    it('should link to bumble:education for kids courses (EN)', () => {
+      const item = getFooterContent('EN').learn.items.find(
+        (i) => i.label === 'Coding for Kids',
+      );
+      expect(item?.href).toBe('https://edu.bumbleflies.de/');
+    });
   });
 });
