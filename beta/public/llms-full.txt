@@ -104,9 +104,36 @@ Digital strategist and organizational designer. Shapes how bumbleflies' services
 
 ---
 
+## Why We Exist
+
+The integrated model — why one team doing Talk + Decide + Build beats fragmented vendors. Most transformation services are relay races: a facilitator hands off to a strategist who hands off to a developer. Knowledge gets lost, nobody owns the outcome. bumbleflies does all three. One team, one conversation, one accountability. From the first workshop to the deployed software — we're there the whole way.
+
+Comparison: fragmented vs integrated approach — who leads, goals, learning between phases, adoption timeline.
+
+---
+
 ## About
 
 bumbleflies was founded in 2021 in Munich by three people who believed that organizations don't need more consultants — they need better conversations and better tools. We facilitate, we consult, and we build. Sometimes all three in the same engagement.
+
+---
+
+## English Pages
+
+All pages are available in English at /en/. Full content mirrors the German site:
+- [Home (EN)](https://bumbleflies.de/en/) — What we do and who we serve.
+- [Services (EN)](https://bumbleflies.de/en/services) — Four service pillars.
+- [AI Consulting (EN)](https://bumbleflies.de/en/ai-consulting) — Practical AI, no hype.
+- [How We Work (EN)](https://bumbleflies.de/en/how-we-work) — The bumbleflies method.
+- [Why bumbleflies (EN)](https://bumbleflies.de/en/why-bumbleflies) — Why teams choose us.
+- [Why We Exist (EN)](https://bumbleflies.de/en/why-we) — The integrated model.
+- [Risk Derisking (EN)](https://bumbleflies.de/en/risk-derisking) — Reducing risk in change.
+- [Open Space (EN)](https://bumbleflies.de/en/open-space) — Open Space principles.
+- [Case Studies (EN)](https://bumbleflies.de/en/case-studies) — Real results.
+- [About (EN)](https://bumbleflies.de/en/about) — Who we are.
+- [Blog (EN)](https://bumbleflies.de/en/blog) — Field Notes.
+- [Imprint (EN)](https://bumbleflies.de/en/imprint) — Legal info.
+- [Privacy (EN)](https://bumbleflies.de/en/privacy) — Privacy policy.
 
 ---
 

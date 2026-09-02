@@ -234,6 +234,20 @@ Content collections are defined in `src/content.config.ts` and provide type-safe
 - Built from `beta/` directory only (not the legacy Jekyll site)
 - nginx serves all files from `dist/` with health checks
 
+## Skills
+
+### sync-agent-content
+
+**Trigger:** After adding, removing, or modifying pages in `src/pages/` or content collections.
+
+Keeps machine-readable files in sync with the actual site:
+- `public/llms.txt` — LLM site summary
+- `public/llms-full.txt` — Full content for RAG
+- `public/agents.txt` — Machine-readable page directory
+- `public/robots.txt` — Crawler access rules
+
+See `.claude/skills/sync-agent-content/SKILL.md` for full workflow.
+
 ## Useful References
 
 - [Astro Docs](https://docs.astro.build/)

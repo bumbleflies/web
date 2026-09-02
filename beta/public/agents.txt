@@ -1,0 +1,54 @@
+# bumbleflies — Agent Directory
+# Machine-readable page index for AI crawlers and agents.
+# Updated: 2026-09-03
+
+# Site
+Homepage: https://bumbleflies.de/
+About: https://bumbleflies.de/about/
+Services: https://bumbleflies.de/services/
+AI Consulting: https://bumbleflies.de/ai-consulting/
+How We Work: https://bumbleflies.de/how-we-work/
+Why bumbleflies: https://bumbleflies.de/why-bumbleflies/
+Why We Exist: https://bumbleflies.de/why-we/
+Risk Derisking: https://bumbleflies.de/risk-derisking/
+Open Space: https://bumbleflies.de/open-space/
+
+# Case Studies
+Case Studies: https://bumbleflies.de/case-studies/
+Siemens AG: https://bumbleflies.de/case-studies/siemens/
+LeagueSphere: https://bumbleflies.de/case-studies/leaguesphere/
+Dialograum Geld: https://bumbleflies.de/case-studies/dialograum-geld/
+Wohnungshelden: https://bumbleflies.de/case-studies/wohnungshelden/
+UnternehmerTUM: https://bumbleflies.de/case-studies/unternehmertum/
+
+# Blog
+Blog: https://bumbleflies.de/blog/
+
+# Legal
+Impressum: https://bumbleflies.de/impressum/
+Datenschutz: https://bumbleflies.de/datenschutz/
+
+# English
+EN Home: https://bumbleflies.de/en/
+EN About: https://bumbleflies.de/en/about/
+EN Services: https://bumbleflies.de/en/services/
+EN AI Consulting: https://bumbleflies.de/en/ai-consulting/
+EN How We Work: https://bumbleflies.de/en/how-we-work/
+EN Why bumbleflies: https://bumbleflies.de/en/why-bumbleflies/
+EN Why We Exist: https://bumbleflies.de/en/why-we/
+EN Risk Derisking: https://bumbleflies.de/en/risk-derisking/
+EN Open Space: https://bumbleflies.de/en/open-space/
+EN Case Studies: https://bumbleflies.de/en/case-studies/
+EN Blog: https://bumbleflies.de/en/blog/
+EN Imprint: https://bumbleflies.de/en/imprint/
+EN Privacy: https://bumbleflies.de/en/privacy/
+
+# Machine-Readable Files
+llms.txt: https://bumbleflies.de/llms.txt
+llms-full.txt: https://bumbleflies.de/llms-full.txt
+facts.json: https://bumbleflies.de/facts.json
+Agent Card: https://bumbleflies.de/.well-known/agent-card.json
+robots.txt: https://bumbleflies.de/robots.txt
+Sitemap: https://bumbleflies.de/sitemap-index.xml
+RSS (DE): https://bumbleflies.de/rss.xml
+RSS (EN): https://bumbleflies.de/en/rss.xml

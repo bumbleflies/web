@@ -4,44 +4,84 @@
 # OpenAI / ChatGPT
 User-agent: GPTBot
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
+Allow: /facts.json
+Allow: /.well-known/agent-card.json
 
 User-agent: OAI-SearchBot
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
 
 User-agent: ChatGPT-User
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
 
 # Anthropic / Claude
 User-agent: ClaudeBot
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
+Allow: /facts.json
+Allow: /.well-known/agent-card.json
 
 User-agent: Claude-SearchBot
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
 
 User-agent: Claude-User
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
 
 User-agent: anthropic-ai
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
 
 # Perplexity
 User-agent: PerplexityBot
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
+Allow: /facts.json
 
 User-agent: Perplexity-User
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
 
 # Google AI
 User-agent: Google-Extended
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
 
 # Amazon
 User-agent: Amazonbot
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
 
 # Common Crawl (training data)
 User-agent: CCBot
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
 
 # Standard search engines
 User-agent: Googlebot
@@ -62,3 +102,11 @@ User-agent: *
 Allow: /
 
 Sitemap: https://bumbleflies.de/sitemap-index.xml
+
+# AI/Agent discovery files
+# These are designed for machine consumption:
+#   /llms.txt          — Site summary and navigation for LLMs
+#   /llms-full.txt     — Full content descriptions for RAG
+#   /agents.txt        — Machine-readable page directory
+#   /facts.json        — Structured brand facts
+#   /.well-known/agent-card.json — A2A agent capability manifest
