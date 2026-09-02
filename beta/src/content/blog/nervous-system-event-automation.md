@@ -1,6 +1,6 @@
 ---
 title: "The Nervous System: Event Automation, and How to Keep a Language Model Honest"
-description: "How an always-on automation layer turns support emails into classified tickets, and the multi-stage privacy filter that's the best example of 'don't trust the model, verify with code'."
+description: "How an always-on automation pillar turns support emails into classified tickets, and the multi-stage privacy filter that's the best example of 'don't trust the model, verify with code'."
 excerpt: "24 workflows, nearly 700 processing steps, no human in the loop. A self-learning ticket router and a privacy filter that lets the model write, but doesn't believe a single word."
 category: "Automation"
 image: "/images/blog/nervensystem-n8n-automatisierung.svg"
@@ -12,13 +12,13 @@ published: false
 lang: "EN"
 ---
 
-If the two foundation levels, tickets and chat, are the skeleton of the system, then the automation layer is the nervous system: always awake, event-driven, no human in the loop. It reacts to every change in a ticket and controls the other systems from there.
+If the two foundations, tickets and chat, are the skeleton of the system, then the automation pillar is the nervous system: always awake, event-driven, no human in the loop. It reacts to every change in a ticket and controls the other systems from there.
 
-I built this layer with n8n, an open-source automation platform, at JUNE. 24 workflows, nearly 700 processing steps. It turns a support email into a classified ticket, a call recording into a structured task list, a comment into finished release notes. Two of these workflows deserve a closer look because they embody two principles that apply to any AI system.
+I built this pillar with n8n, an open-source automation platform, at JUNE. 24 workflows, nearly 700 processing steps. It turns a support email into a classified ticket, a call recording into a structured task list, a comment into finished release notes. Two of these workflows deserve a closer look because they embody two principles that apply to any AI system.
 
 ## First: code is the truth, not manual work
 
-The defining decision of this layer: for every non-trivial workflow, the exported configuration is the source of truth, but it isn't written by hand. A small Python script *generates* it.
+The defining decision of this pillar: for every non-trivial workflow, the exported configuration is the source of truth, but it isn't written by hand. A small Python script *generates* it.
 
 Why? Because hand-editing large workflow definitions always produces the same errors: wrong node IDs, broken connection arrays, type mix-ups. A generator script doesn't make these mistakes. Both, generator and generated configuration, live in Git. It's the same philosophy running through the entire stack: **where something can be deterministic, it should be a script.**
 
@@ -56,6 +56,6 @@ The filter code is deliberately duplicated verbatim in two places, with the comm
 
 ## The thread
 
-The router gets smarter from human corrections; the filter doesn't believe a single word the model writes. Those two patterns are the whole layer, and they're what let it run all night without a human in the loop.
+The router gets smarter from human corrections; the filter doesn't believe a single word the model writes. Those two patterns are the whole pillar, and they're what let it run all night without a human in the loop.
 
-In the next part, I look at the layer above: the marketplace that packages company knowledge into installable skills, the "apps" that both humans *and* bots use.
+In the next part, I look at the pillar above: the marketplace that packages company knowledge into installable skills, the "apps" that both humans *and* agents use.

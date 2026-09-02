@@ -12,7 +12,7 @@ published: false
 lang: "DE"
 ---
 
-Die bisherigen Artikel handelten von Systemen, die für viele arbeiten: das Nervensystem, der Marktplatz, die autonomen Bots. Dieser letzte Teil dreht die Perspektive um. Er handelt von einem einzelnen Menschen und der Frage, die jeder Wissensarbeiter jeden Morgen hat: *Was ist heute eigentlich wichtig, und was habe ich vergessen?*
+Die bisherigen Artikel handelten von Systemen, die für viele arbeiten: das Nervensystem, der Marktplatz, die autonomen Agenten. Dieser letzte Teil dreht die Perspektive um. Er handelt von einem einzelnen Menschen und der Frage, die jeder Wissensarbeiter jeden Morgen hat: *Was ist heute eigentlich wichtig, und was habe ich vergessen?*
 
 Die Antwort ist ein persönlicher Meta-Agent, den ich „Cockpit" nenne. Er zieht jeden Arbeitskontext zusammen, Mail, Chat, Tickets, Video-Calls, Support-Postfach, Kalender, Aktivitätsprotokoll, lokale Verzeichnisse, den Agenten-Bus, und macht daraus einen priorisierten Tagesplan und *eine* nächste Handlung.
 
@@ -57,10 +57,10 @@ Diese Unterscheidung ist der Grund, warum die „nächste Handlung" immer wirkli
 
 ## DRY, sogar hier
 
-Auch das Cockpit folgt dem Prinzip „eine Definition, viele Laufzeiten". Es teilt sich eine Konfiguration und einen gemeinsamen Speicher mit einem leichteren Geschwister-Skill, der in jedem Projekt verfügbar ist. Und seine Scanner rufen dieselben Kommunikations-Skills aus dem Marktplatz auf, die auch die Bots benutzen. Das Cockpit ist kein Solitär, es sitzt auf demselben Fundament wie der Rest des Systems und liest dieselben zwei Ebenen.
+Auch das Cockpit folgt dem Prinzip „eine Definition, viele Laufzeiten". Es teilt sich eine Konfiguration und einen gemeinsamen Speicher mit einem leichteren Geschwister-Skill, der in jedem Projekt verfügbar ist. Und seine Scanner rufen dieselben Kommunikations-Skills aus dem Marktplatz auf, die auch die Agenten benutzen. Das Cockpit ist kein Solitär, es sitzt auf demselben Fundament wie der Rest des Systems und liest dieselben zwei Fundamente.
 
 ## Wo die Serie landet
 
-Zurück auf den zwei Fundament-Ebenen, mit denen die Serie begonnen hat. Das ist die Bedeutung von „ein System": Ein Mensch, ein Bot und ein zeitgesteuerter Job benutzen dasselbe Vokabular, dieselben Tickets, dieselben Skills, nicht weil es elegant aussieht, sondern weil nur so aus einzelnen KI-Tricks ein Betriebssystem wird, das trägt.
+Zurück auf den zwei Fundamenten, mit denen die Serie begonnen hat. Das ist die Bedeutung von „ein System": Ein Mensch, ein Agent und ein zeitgesteuerter Job benutzen dasselbe Vokabular, dieselben Tickets, dieselben Skills, nicht weil es elegant aussieht, sondern weil nur so aus einzelnen KI-Tricks ein Betriebssystem wird, das trägt.
 
-Das Cockpit ist das Ende dieses Musters, ein einzelner Morgenplan. Und wie jede Schicht ist es aus Narben gebaut statt aus Versprechen: die gelesene Mail, die zwei Tage kostete; der Scanner, der niemals scheitern darf; die Validierung, die ein halluziniertes Ergebnis einfriedet. Der Plan, den man jeden Morgen sieht, ist der aktuelle Zustand dieser Narben.
+Das Cockpit ist das Ende dieses Musters, ein einzelner Morgenplan. Und wie jede Säule ist es aus Narben gebaut statt aus Versprechen: die gelesene Mail, die zwei Tage kostete; der Scanner, der niemals scheitern darf; die Validierung, die ein halluziniertes Ergebnis einfriedet. Der Plan, den man jeden Morgen sieht, ist der aktuelle Zustand dieser Narben.
