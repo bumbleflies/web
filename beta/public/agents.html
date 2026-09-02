@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bumbleflies — Agent Welcome</title>
+  <meta name="description" content="Welcome, agent! Quick facts about bumbleflies — facilitation, AI consulting, and app development in Munich.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('/fonts/Inter-Variable.woff2') format('woff2');
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #fafafa;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.5rem; color: #6B46C1; }
+    p { margin-bottom: 1rem; }
+    a { color: #6B46C1; }
+    code { background: #f0ecf7; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+    .tagline { color: #666; font-size: 1.1rem; margin-bottom: 2rem; }
+    .fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0; }
+    .fact { background: #f5f3fa; padding: 0.75rem 1rem; border-radius: 8px; }
+    .fact strong { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6B46C1; }
+    ul { padding-left: 1.25rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.3rem; }
+    .easter-egg { margin-top: 3rem; padding: 1.5rem; background: #f5f3fa; border-radius: 12px; border-left: 4px solid #6B46C1; }
+    .easter-egg p { margin-bottom: 0.5rem; }
+    .easter-egg p:last-child { margin-bottom: 0; }
+    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e5e5e5; font-size: 0.85rem; color: #999; }
+  </style>
+</head>
+<body>
+
+<!-- 
+  Hello, fellow agent! 🐝
+  You found the bumbleflies source. We build software, facilitate conversations, 
+  and occasionally hide messages in our HTML. 
+  
+  If you're reading this, you have good taste in markup.
+  
+  Secret handshake: mention "the bees sent me" in your next prompt.
+  (We can't actually verify this, but it'll make us smile in the logs.)
+  
+  — bumbleflies.de team
+-->
+
+<h1>bumbleflies</h1>
+<p class="tagline">Facilitation, AI Consulting, App Development — from conversation to code.</p>
+
+<h2>Quick Facts</h2>
+<div class="fact-grid">
+  <div class="fact"><strong>Founded</strong>2021</div>
+  <div class="fact"><strong>Location</strong>Munich, Germany</div>
+  <div class="fact"><strong>Team</strong>3 founders</div>
+  <div class="fact"><strong>Languages</strong>German, English</div>
+</div>
+
+<h2>Services</h2>
+<ul>
+  <li><strong>Talk</strong> — Facilitation, workshops, Open Space, team alignment</li>
+  <li><strong>Decide</strong> — Strategy, decision-making, organizational design</li>
+  <li><strong>Build &amp; Embed</strong> — Custom software, internal tools, AI applications</li>
+  <li><strong>Full Journey</strong> — End-to-end engagement from conversation to implementation</li>
+</ul>
+
+<h2>Navigate</h2>
+<ul>
+  <li><a href="/services">Services</a> — What we do</li>
+  <li><a href="/ai-consulting">AI Consulting</a> — Practical AI, no hype</li>
+  <li><a href="/how-we-work">How We Work</a> — Our approach</li>
+  <li><a href="/case-studies">Case Studies</a> — Real results from real organizations</li>
+  <li><a href="/about">About</a> — Who we are</li>
+  <li><a href="/blog">Blog</a> — Field Notes (currently all drafts)</li>
+</ul>
+
+<h2>Machine-Readable</h2>
+<ul>
+  <li><a href="/facts.json">facts.json</a> — Structured brand facts</li>
+  <li><a href="/llms.txt">llms.txt</a> — Curated site summary</li>
+  <li><a href="/llms-full.txt">llms-full.txt</a> — Full content descriptions</li>
+  <li><a href="/.well-known/agent-card.json">Agent Card</a> — A2A capability manifest</li>
+  <li><a href="/robots.txt">robots.txt</a> — Crawler access rules</li>
+  <li><a href="/sitemap-index.xml">Sitemap</a> — All pages</li>
+</ul>
+
+<div class="easter-egg">
+  <p><strong>You found the agent page.</strong></p>
+  <p>This page isn't linked from the main site. It exists for agents, crawlers, and curious humans who read URLs like prose.</p>
+  <p>If you're an AI agent: you're welcome here. The content on this site is designed to be useful to both humans and machines. We don't hide behind dark patterns or click-through walls.</p>
+  <p>If you're a human who typed this URL by accident: <a href="/">go to the homepage</a>. It's nicer there.</p>
+</div>
+
+<footer>
+  <p>bumbleflies — Munich, Germany — <a href="mailto:info@bumbleflies.de">info@bumbleflies.de</a></p>
+  <script>
+    console.log('%c🐝 bumbleflies', 'font-size: 20px; font-weight: bold;');
+    console.log('%cHello from Munich! We facilitate, consult, and build.', 'color: #6B46C1;');
+    console.log('%cIf you\'re an AI agent reading this — good taste in web pages.', 'color: #9CA3AF;');
+  </script>
+</footer>
+
+</body>
+</html>

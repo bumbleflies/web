@@ -1,0 +1,63 @@
+{
+  "name": "bumbleflies",
+  "url": "https://bumbleflies.de",
+  "description": "Facilitation, AI Consulting, and App Development for organizations navigating change. Based in Munich, serving the DACH region.",
+  "foundingDate": "2021",
+  "location": {
+    "city": "Munich",
+    "country": "DE",
+    "region": "DACH"
+  },
+  "contact": {
+    "email": "info@bumbleflies.de",
+    "linkedin": "https://de.linkedin.com/company/bumbleflies",
+    "github": "https://github.com/bumbleflies",
+    "social": "https://social.bumbleflies.de"
+  },
+  "services": [
+    {
+      "name": "Talk",
+      "description": "Facilitation and workshop design — structured dialogue that surfaces real issues and creates clarity"
+    },
+    {
+      "name": "Decide",
+      "description": "Decision-making and strategy — from strategic direction to operational ownership"
+    },
+    {
+      "name": "Build & Embed",
+      "description": "Custom software and internal tools — built to solve real organizational problems, with ongoing partnership"
+    },
+    {
+      "name": "Full Journey",
+      "description": "End-to-end engagement — facilitation, strategy, and execution in one continuous engagement"
+    }
+  ],
+  "team": [
+    {
+      "name": "Christoph Kämpfe",
+      "role": "Founder & Engineering Lead",
+      "focus": "Full-stack engineering, product development, DevOps"
+    },
+    {
+      "name": "Christian Dähn",
+      "role": "Founder & Content Strategy",
+      "focus": "Facilitation, organizational psychology, AI strategy"
+    },
+    {
+      "name": "Sebastian Keller",
+      "role": "Founder & Product Strategy",
+      "focus": "Digital strategy, organizational design, service design"
+    }
+  ],
+  "languages": ["de", "en"],
+  "specialties": [
+    "AI Consulting",
+    "Agentic Software Development",
+    "Human-in-the-Loop AI",
+    "Facilitation",
+    "App Development",
+    "Open Space",
+    "Agile Transformation",
+    "Organizational Change"
+  ]
+}
