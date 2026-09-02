@@ -6,7 +6,7 @@ We help teams move from conversation to code. Our approach combines structured f
 
 ## Services
 
-- [Talk — Facilitation & Workshop Design](https://bumbleflies.de/services): Structured dialogue that surfaces real issues and creates clarity. Open Space, team alignment, sensitive topics.
+- [Talk — Facilitation & Workshop Design](https://bumbleflies.de/services): Structured dialogue that surfaces real issues and creates clarity. bumble:space (Open Space), team alignment, sensitive topics.
 - [Decide — Decision-Making & Strategy](https://bumbleflies.de/services): From strategic direction to operational ownership. Decisions that stick because the right people made them.
 - [Build & Embed — Software Development](https://bumbleflies.de/services): Custom software, internal tools, and AI applications built to solve real organizational problems. Not handoffs — partnerships.
 - [Full Journey — End-to-End Engagement](https://bumbleflies.de/services): From first conversation through implementation. When the problem doesn't fit a single box.

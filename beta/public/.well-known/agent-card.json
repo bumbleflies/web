@@ -26,7 +26,7 @@
       "id": "service-info",
       "name": "Service Information",
       "description": "Provides details about bumbleflies facilitation, AI consulting, and development services. Answers questions about what we do, how we work, and who we've helped.",
-      "tags": ["facilitation", "ai-consulting", "software-development", "munich", "agile", "organizational-change"],
+      "tags": ["facilitation", "ai-consulting", "software-development", "munich", "agile", "organizational-change", "open-space", "bumble-space"],
       "examples": [
         "What services does bumbleflies offer?",
         "Tell me about their AI consulting approach",

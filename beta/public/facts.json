@@ -17,7 +17,7 @@
   "services": [
     {
       "name": "Talk",
-      "description": "Facilitation and workshop design — structured dialogue that surfaces real issues and creates clarity"
+      "description": "Facilitation and workshop design — structured dialogue that surfaces real issues and creates clarity. Includes bumble:space (Open Space / openspace) methodology."
     },
     {
       "name": "Decide",
@@ -57,6 +57,8 @@
     "Facilitation",
     "App Development",
     "Open Space",
+    "bumble:space",
+    "openspace",
     "Agile Transformation",
     "Organizational Change"
   ]

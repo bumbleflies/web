@@ -24,7 +24,7 @@
 
 ## Services
 
-- **Talk** — Facilitation, workshops, Open Space, team alignment
+- **Talk** — Facilitation, workshops, bumble:space (Open Space), team alignment
 - **Decide** — Strategy, decision-making, organizational design
 - **Build & Embed** — Custom software, internal tools, AI applications
 - **Full Journey** — End-to-end engagement from conversation to implementation
