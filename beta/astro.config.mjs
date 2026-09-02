@@ -10,9 +10,7 @@ export default defineConfig({
     host: true,
   },
   integrations: [
-    sitemap({
-      filter: (page) => !page.includes('bzzzz'),
-    }),
+    sitemap(),
   ],
   vite: {
     ssr: {
