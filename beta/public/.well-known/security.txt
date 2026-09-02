@@ -1,0 +1,4 @@
+Contact: mailto:info+security@bumbleflies.de
+Expires: 2027-09-01T00:00:00.000Z
+Preferred-Languages: de en
+Policy: https://bumbleflies.de/datenschutz

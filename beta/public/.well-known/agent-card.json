@@ -1,0 +1,60 @@
+{
+  "name": "bumbleflies",
+  "description": "Facilitation, AI Consulting, and App Development for organizations navigating change. Based in Munich, serving the DACH region.",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "bumbleflies",
+    "url": "https://bumbleflies.de"
+  },
+  "documentationUrl": "https://bumbleflies.de/llms.txt",
+  "supportedInterfaces": [
+    {
+      "url": "https://bumbleflies.de",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extendedAgentCard": false
+  },
+  "defaultInputModes": ["text/plain", "text/markdown"],
+  "defaultOutputModes": ["text/plain", "text/markdown", "application/json"],
+  "skills": [
+    {
+      "id": "service-info",
+      "name": "Service Information",
+      "description": "Provides details about bumbleflies facilitation, AI consulting, and development services. Answers questions about what we do, how we work, and who we've helped.",
+      "tags": ["facilitation", "ai-consulting", "software-development", "munich", "agile", "organizational-change", "open-space", "bumble-space"],
+      "examples": [
+        "What services does bumbleflies offer?",
+        "Tell me about their AI consulting approach",
+        "What is Open Space facilitation?",
+        "How does bumbleflies help with agile transformation?"
+      ]
+    },
+    {
+      "id": "case-study-lookup",
+      "name": "Case Study Lookup",
+      "description": "Retrieves information about specific client engagements, outcomes, and results. Covers enterprise facilitation, SaaS development, community dialogue, and agile transformation.",
+      "tags": ["case-studies", "clients", "results", "siemens", "leaguesphere"],
+      "examples": [
+        "What results did bumbleflies achieve with Siemens?",
+        "Tell me about the LeagueSphere case study",
+        "How did bumbleflies help with agile transformation?"
+      ]
+    },
+    {
+      "id": "team-info",
+      "name": "Team Information",
+      "description": "Provides information about the three bumbleflies founders and their areas of expertise.",
+      "tags": ["team", "founders", "christoph", "christian", "sebastian"],
+      "examples": [
+        "Who are the founders of bumbleflies?",
+        "What does Christoph Kämpfe do?",
+        "What is Christian Dähn's background?"
+      ]
+    }
+  ]
+}

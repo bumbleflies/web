@@ -1,3 +1,63 @@
+# AI crawlers — training and search/retrieval allowed
+# bumbleflies wants to be visible in AI answers.
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# Common Crawl (training data)
+User-agent: CCBot
+Allow: /
+
+# Standard search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block known aggressive scrapers
+User-agent: Bytespider
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Default — allow all
 User-agent: *
 Allow: /
 
