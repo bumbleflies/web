@@ -10,7 +10,7 @@ We help teams move from conversation to code. Our approach combines structured f
 
 ### Talk — Facilitation & Workshop Design
 
-Structured dialogue that surfaces real issues and creates clarity. We design and facilitate workshops, team alignment sessions, and bumble:space (Open Space) events — from executive offsites to sensitive community conversations. Our facilitation creates safety, surfaces truth, and produces decisions that stick. Formats include: Gesamtmoderation (full-day facilitation), bumble:space / Open Space / openspace, structured dialogue, team retrospectives.
+Structured dialogue that surfaces real issues and creates clarity. We design and facilitate workshops, team alignment sessions, and bumble:space (Open Space) events — from executive offsites to sensitive community conversations. Our facilitation creates safety, surfaces truth, and produces decisions that stick. Formats include: Gesamtmoderation (full-day facilitation), bumble:space / Open Space, structured dialogue, team retrospectives.
 
 ### Decide — Decision-Making & Strategy
 
@@ -36,7 +36,7 @@ Key areas: AI strategy workshops, agentic software development, human-in-the-loo
 
 ## How We Work
 
-Our approach connects facilitation and development. We believe transformation happens through good conversation followed by concrete action. The bumbleflies method: talk to understand, decide to commit, build to sustain. We use bumble:space (Open Space / openspace) principles, structured dialogue, and iterative development to create change that sticks.
+Our approach connects facilitation and development. We believe transformation happens through good conversation followed by concrete action. The bumbleflies method: talk to understand, decide to commit, build to sustain. We use bumble:space (Open Space) principles, structured dialogue, and iterative development to create change that sticks.
 
 ---
 
