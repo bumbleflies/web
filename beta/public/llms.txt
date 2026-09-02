@@ -58,6 +58,6 @@ The site is available in German (default) and English. English pages are under /
 
 ## For Agents
 
-- Welcome page: https://bumbleflies.de/agents.html
+- Welcome page: https://bumbleflies.de/agents.md
 - Facts: https://bumbleflies.de/facts.json
 - Agent Card: https://bumbleflies.de/.well-known/agent-card.json
