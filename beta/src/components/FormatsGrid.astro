@@ -10,9 +10,10 @@ interface Props {
   eyebrow: string;
   formats: Format[];
   lang?: 'DE' | 'EN';
+  lede?: string;
 }
 
-const { heading, eyebrow, formats, lang = 'DE' } = Astro.props;
+const { heading, eyebrow, formats, lang = 'DE', lede } = Astro.props;
 ---
 
 <section style="border-top: 1px solid var(--rule); padding: var(--space-4xl) 0 0;">
@@ -23,6 +24,7 @@ const { heading, eyebrow, formats, lang = 'DE' } = Astro.props;
       </h2>
       <span class="bf-eyebrow">{eyebrow}</span>
     </div>
+    {lede && <p class="formats-lede">{lede}</p>}
   </div>
 </section>
 
@@ -34,7 +36,7 @@ const { heading, eyebrow, formats, lang = 'DE' } = Astro.props;
           <h3 style="font-family: var(--font-display); font-size: var(--text-3xl); letter-spacing: -0.02em; line-height: 1; margin: 0;">
             {fmt.name}
           </h3>
-          <span style="font-family: var(--font-display); font-size: var(--text-4xl); color: var(--accent); letter-spacing: -0.03em; line-height: 1;">
+          <span style="font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink-soft); letter-spacing: -0.02em; line-height: 1;">
             {fmt.percentage}
           </span>
         </div>
@@ -47,6 +49,16 @@ const { heading, eyebrow, formats, lang = 'DE' } = Astro.props;
 </div>
 
 <style>
+  .formats-lede {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-2xl);
+    line-height: var(--lh-loose);
+    color: var(--ink-soft);
+    max-width: 44ch;
+    margin: 0 0 var(--space-2xl);
+  }
+
   .formats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

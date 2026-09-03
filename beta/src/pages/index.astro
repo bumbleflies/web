@@ -2,9 +2,11 @@
 import Layout from '../components/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
+import DifferenceSection from '../components/DifferenceSection.astro';
 import ClientWall from '../components/ClientWall.astro';
 import StationFlow from '../components/StationFlow.astro';
 import Quote from '../components/Quote.astro';
+import FitSection from '../components/FitSection.astro';
 import CaseStudiesPreview from '../components/CaseStudiesPreview.astro';
 import FormatsGrid from '../components/FormatsGrid.astro';
 import CTAStrip from '../components/CTAStrip.astro';
@@ -61,6 +63,7 @@ const flow = {
 const formats = {
   heading: 'Remote-first.',
   eyebrow: 'Wo wir arbeiten',
+  lede: 'Wir arbeiten remote by default — und treffen uns persönlich, wenn es mehr Wert schafft.',
   items: [
     { name: 'Remote', percentage: '85%', description: 'Sessions, Coachings, Pilots — vollständig remote, asynchron-freundlich.' },
     { name: 'Hybrid', percentage: '10%', description: 'Workshops, in denen die einen im Raum sind und die anderen zugeschaltet. Ohne dass die Online-Leute zweite Klasse sind.' },
@@ -89,6 +92,7 @@ const ctaBody = 'Schreib uns zwei Sätze. Wir antworten innerhalb von 24h mit de
   <Nav slot="nav" lang={currentLang} />
 
   <Hero lang={currentLang} />
+  <DifferenceSection lang={currentLang} />
   <ClientWall lang={currentLang} />
   <StationFlow
     eyebrow={flow.eyebrow}
@@ -103,6 +107,7 @@ const ctaBody = 'Schreib uns zwei Sätze. Wir antworten innerhalb von 24h mit de
       lang={currentLang}
     />
   </section>
+  <FitSection lang={currentLang} />
   <CaseStudiesPreview
     eyebrow={caseStudies.eyebrow}
     heading={caseStudies.heading}
@@ -111,6 +116,7 @@ const ctaBody = 'Schreib uns zwei Sätze. Wir antworten innerhalb von 24h mit de
   <FormatsGrid
     heading={formats.heading}
     eyebrow={formats.eyebrow}
+    lede={formats.lede}
     formats={formats.items}
     lang={currentLang}
   />

@@ -10,6 +10,7 @@ const caseStudies = defineCollection({
     company: z.string(),
     duration: z.string().optional(),
     outcome: z.string(),
+    tagline: z.string().optional(),
     quote: z.string(),
     image: z.string().optional(),
     whyItWorked: z.string().optional(),

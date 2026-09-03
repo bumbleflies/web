@@ -41,7 +41,7 @@ const dePackages: EngagementPackage[] = [
   {
     num: '03',
     phase: 'BAUEN',
-    name: 'AI Adoption',
+    name: 'Prototype Sprint',
     timeline: '1–6 months',
     outcome: 'Funktionierender Prototyp',
     ctaText: 'Mehr erfahren',
@@ -49,7 +49,7 @@ const dePackages: EngagementPackage[] = [
   {
     num: '04',
     phase: 'BEGLEITEN',
-    name: 'Custom Program',
+    name: 'Adoption Program',
     timeline: 'Concept',
     outcome: 'Team trainiert & unabhängig',
     ctaText: 'Mehr erfahren',
@@ -77,7 +77,7 @@ const enPackages: EngagementPackage[] = [
   {
     num: '03',
     phase: 'BUILD',
-    name: 'AI Adoption',
+    name: 'Prototype Sprint',
     timeline: '1–6 months',
     outcome: 'Working prototype',
     ctaText: 'Learn more',
@@ -85,7 +85,7 @@ const enPackages: EngagementPackage[] = [
   {
     num: '04',
     phase: 'EMBED',
-    name: 'Custom Program',
+    name: 'Adoption Program',
     timeline: 'Concept',
     outcome: 'Team trained & independent',
     ctaText: 'Learn more',

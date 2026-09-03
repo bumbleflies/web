@@ -5,14 +5,20 @@ interface Props {
   service: string;
   quote: string;
   slug: string;
+  tagline?: string;
 }
 
-const { title, company, service, quote, slug } = Astro.props;
+const { title, company, service, quote, slug, tagline } = Astro.props;
 ---
 
 <article class="a-case-study-card">
-  <h3 class="a-case-study-card__title">{title}</h3>
   <p class="a-case-study-card__meta">{company} · {service}</p>
+  {tagline ? (
+    <p class="a-case-study-card__tagline">{tagline}</p>
+  ) : (
+    <h3 class="a-case-study-card__title">{title}</h3>
+  )}
+  {tagline && <p class="a-case-study-card__title--sub">{title}</p>}
   <blockquote class="a-case-study-card__quote">{quote}</blockquote>
   <a href={`/case-studies/${slug}`} class="bf-cta">
     Mehr erfahren <span aria-hidden="true">→</span>
@@ -43,6 +49,20 @@ const { title, company, service, quote, slug } = Astro.props;
     font-size: var(--text-lg);
     margin: 0;
     color: var(--ink);
+  }
+
+  .a-case-study-card__tagline {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: var(--lh-normal);
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .a-case-study-card__title--sub {
+    font-size: var(--text-xs);
+    color: var(--ink-soft);
+    margin: 0;
   }
 
   .a-case-study-card__meta {

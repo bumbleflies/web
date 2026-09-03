@@ -4,6 +4,7 @@ service: "Build & Embed"
 company: "LeagueSphere"
 duration: "2021–2026 (Ongoing)"
 outcome: "Live SaaS across 6+ regional German leagues, €900–€5,000+/season revenue per region, v3.19.5 current, recurring revenue"
+tagline: "Aus Excel-Chaos bei Terminplänen und Schiedsrichtern wurde eine SaaS-Plattform, die 6+ Regionalligen jede Saison nutzen."
 whyItWorked: "LeagueSphere proves the full journey. We didn't just build software — we understood the league operations deeply enough to build <em>exactly what they needed</em>. And we stayed through adoption, training, and scaling. That's the difference between a project and a product."
 realOutcome: "LeagueSphere isn't a feature-complete product that was handed over and forgotten. It's a living system that grows with the leagues it serves. That only happens when builder and customer are genuinely aligned on success."
 whatWeDid: |
