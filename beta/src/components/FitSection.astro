@@ -1,0 +1,92 @@
+---
+interface Props {
+  lang?: 'DE' | 'EN';
+}
+
+const { lang = 'DE' } = Astro.props;
+
+const content = lang === 'DE'
+  ? {
+      eyebrow: 'Für wen es passt',
+      heading: 'Sprich mit uns, wenn…',
+      items: [
+        'euer Team an einer wichtigen Entscheidung feststeckt.',
+        'alle über KI reden, aber niemand weiß, wo ihr anfangen sollt.',
+        'ihr eine Chance seht, aber einen echten Prototyp braucht, um sie zu testen.',
+        'ihr etwas gebaut habt — aber es wird nicht wirklich genutzt.',
+      ],
+    }
+  : {
+      eyebrow: 'Is this you?',
+      heading: 'Talk to us if…',
+      items: [
+        'your team is stuck on an important decision.',
+        'everyone talks about AI, but nobody knows where to start.',
+        'you see an opportunity but need a real prototype to test it.',
+        'you built something — but nobody really uses it.',
+      ],
+    };
+---
+
+<section class="a-fit">
+  <div class="bf-container">
+    <span class="bf-eyebrow">{content.eyebrow}</span>
+    <h2 class="a-fit__heading">{content.heading}</h2>
+    <ul class="a-fit__list">
+      {content.items.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .a-fit {
+    border-top: 1px solid var(--rule);
+    padding: var(--space-4xl) 0;
+  }
+
+  .a-fit__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-5xl);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-md) 0 0;
+    font-weight: 400;
+  }
+
+  .a-fit__list {
+    list-style: none;
+    margin: var(--space-2xl) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .a-fit__list li {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+    padding: var(--space-lg) var(--space-xs);
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: var(--lh-normal);
+  }
+
+  .a-fit__list li::before {
+    content: '—';
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .a-fit__heading {
+      font-size: var(--text-4xl);
+    }
+
+    .a-fit__list li {
+      font-size: var(--text-xl);
+    }
+  }
+</style>
