@@ -46,7 +46,7 @@ Darauf stehen die vier Säulen:
 
 - **Säule 2, der Skill-Marktplatz.** Das Firmenwissen als installierbare, versionierte „Apps". 11 Plugins, 53 Skills. Jeder Skill ist die Kombination aus Modell-Urteil und deterministischem Skript, und funktioniert identisch für einen Menschen am Laptop, einen Agenten im Container und die CI-Pipeline.
 
-- **Säule 3, die autonomen Agenten.** Claude Code, das rund um die Uhr als Daemon läuft — diese Serie nennt jeden KI-Prozess, der eine Rolle ausfüllt, einheitlich „Agent", auch die, die ohne Zutun autonom laufen. Ein Wort im Team-Chat weckt einen Agenten; er implementiert Code, öffnet Pull-Requests, adressiert Review-Kommentare, rollt Hotfixes aus, und meldet sich zurück. Vier Personas aus *einem* gemeinsamen Bausatz.
+- **Säule 3, die autonomen Agenten.** Claude Code, das rund um die Uhr als Daemon läuft. Diese Serie nennt jeden KI-Prozess, der eine Rolle ausfüllt, einheitlich „Agent", auch die, die ohne Zutun autonom laufen. Ein Wort im Team-Chat weckt einen Agenten; er implementiert Code, öffnet Pull-Requests, adressiert Review-Kommentare, rollt Hotfixes aus, und meldet sich zurück. Vier Personas aus *einem* gemeinsamen Bausatz.
 
 - **Säule 4, das persönliche Cockpit.** Ein Meta-Agent, der zehn Quellen parallel scannt und daraus den Tag eines Menschen plant. Er liest beide Fundamente, und sogar die eigene Gesprächshistorie der KI, um offene Fäden wiederzufinden.
 
@@ -56,7 +56,7 @@ Das sind keine vier getrennten Projekte. Es ist ein **Netz mit benannten, tragen
 
 Ein durchgängiger Ablauf, wie er täglich passiert:
 
-1. Ein Kunde schreibt an den Support. Das Nervensystem erzeugt daraus automatisch ein klassifiziertes Ticket — sobald ein Pull-Request das Ticket adressiert, verweisen beide aufeinander.
+1. Ein Kunde schreibt an den Support. Das Nervensystem erzeugt daraus automatisch ein klassifiziertes Ticket. Sobald ein Pull-Request das Ticket adressiert, verweisen beide aufeinander.
 2. Jemand tippt im Team-Chat ein Triggerwort. Der Agent wacht auf, sichtet die Pull-Requests, die zu offenen Tickets gehören, und triagiert sie.
 3. Nach expliziter menschlicher Freigabe rollt der Agent aus, erst die Datenbank-Migrationen, dann die Services.
 4. Der Agent hinterlässt einen Kommentar am zugehörigen Ticket; das Nervensystem generiert daraus automatisch die kundensichtbaren Release-Notes, durch einen mehrstufigen Datenschutz-Filter.
@@ -74,7 +74,7 @@ Vier Säulen, ein Arbeitsvorgang. Kein einziger Direktaufruf zwischen den Kompon
 
 **Koordination über dauerhafte Artefakte, nicht über RPC.** Agenten und Menschen sprechen über Tickets, Tags, Status und Chat-Nachrichten miteinander, nachvollziehbar, wiederaufnehmbar, für Menschen einsehbar.
 
-**Eine Definition, viele Laufzeiten.** Derselbe Skill läuft identisch für einen Menschen am Laptop, einen Agenten im Container und die CI-Pipeline — ein Skript, keine drei. Kein Copy-Paste.
+**Eine Definition, viele Laufzeiten.** Derselbe Skill läuft identisch für einen Menschen am Laptop, einen Agenten im Container und die CI-Pipeline. Ein Skript, keine drei. Kein Copy-Paste.
 
 **Mensch am Bremshebel.** Deutschsprachige Trigger überall, Rechts-Domäne, und alle wirklich folgenreichen Aktionen, Freigaben, Merges, Produktiv-Deployments, sind an eine explizite menschliche Bestätigung gebunden. Autonomie mit der Hand am Hebel.
 

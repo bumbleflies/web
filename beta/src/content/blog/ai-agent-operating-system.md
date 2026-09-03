@@ -46,7 +46,7 @@ Standing on them are the four pillars:
 
 - **Pillar 2, the skill marketplace.** Company knowledge as installable, versioned "apps". 11 plugins, 53 skills. Each skill is a combination of model judgment and deterministic script, and works identically for a human on a laptop, an agent in a container, and the CI pipeline.
 
-- **Pillar 3, the autonomous agents.** Claude Code running around the clock as a daemon — this series uses "agent" as the single term for any AI process filling a role, including the ones that run with nobody in the loop. A word in the team chat wakes an agent; it implements code, opens pull requests, addresses review comments, rolls out hotfixes, and reports back. Four personas from *one* shared building kit.
+- **Pillar 3, the autonomous agents.** Claude Code running around the clock as a daemon. This series uses "agent" as the single term for any AI process filling a role, including the ones that run with nobody in the loop. A word in the team chat wakes an agent; it implements code, opens pull requests, addresses review comments, rolls out hotfixes, and reports back. Four personas from *one* shared building kit.
 
 - **Pillar 4, the personal cockpit.** A meta-agent that scans ten sources in parallel and plans a human's day from them. It reads both foundations, and even the AI's own conversation history to rediscover open threads.
 
@@ -56,7 +56,7 @@ These aren't four separate projects. It's a **network with named, load-bearing s
 
 A typical daily flow:
 
-1. A customer writes to support. The nervous system automatically creates a classified ticket — once a pull request addresses the ticket, the two are linked.
+1. A customer writes to support. The nervous system automatically creates a classified ticket. Once a pull request addresses the ticket, the two are linked.
 2. Someone types a trigger word in the team chat. The agent wakes up, reviews the pull requests tied to open tickets, and triages them.
 3. After explicit human approval, the agent deploys, first the database migrations, then the services.
 4. The agent leaves a comment on the linked ticket; the nervous system automatically generates customer-facing release notes from it, through a multi-stage privacy filter.
@@ -74,7 +74,7 @@ The same design principles appear across all pillars. They are the real value, a
 
 **Coordination via persistent artifacts, not RPC.** Agents and humans speak to each other through tickets, tags, statuses, and chat messages, traceable, resumable, visible to humans.
 
-**One definition, many runtimes.** The same skill runs identically for a human on a laptop, an agent in a container, and the CI pipeline — one script, not three. No copy-paste.
+**One definition, many runtimes.** The same skill runs identically for a human on a laptop, an agent in a container, and the CI pipeline. One script, not three. No copy-paste.
 
 **Human at the brake lever.** German-language triggers throughout, legal domain, and all truly consequential actions, approvals, merges, production deployments, are tied to explicit human confirmation. Autonomy with a hand on the lever.
 
