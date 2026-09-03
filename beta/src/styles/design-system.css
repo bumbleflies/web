@@ -412,3 +412,24 @@ section {
     grid-template-columns: 1fr;
   }
 }
+
+/* Theme-aware inline architecture diagram, embedded via raw HTML inside a
+   blog post's markdown body. Same dark/light swap technique as BlogCover.astro,
+   but global since it lives outside that component's scoped styles. */
+.a-arch-diagram {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1200 / 620;
+  margin: var(--space-lg) 0;
+  border-radius: 12px;
+  background-color: #f3ecdb;
+  background-image: var(--diagram-light);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-theme='dark'] .a-arch-diagram {
+  background-color: #0e0b08;
+  background-image: var(--diagram-dark);
+}

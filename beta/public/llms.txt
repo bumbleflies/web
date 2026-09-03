@@ -22,6 +22,7 @@ We help teams move from conversation to code. Our approach combines structured f
 
 - [Our Approach](https://bumbleflies.de/how-we-work): How facilitation and development connect. The bumbleflies method.
 - [Why bumbleflies](https://bumbleflies.de/why-bumbleflies): Why teams choose us and keep coming back.
+- [Why We Exist](https://bumbleflies.de/why-we): The integrated model — why one team doing Talk + Decide + Build beats fragmented vendors.
 - [Risk Derisking](https://bumbleflies.de/risk-derisking): How we reduce risk in organizational change.
 - [Open Space](https://bumbleflies.de/open-space): Our Open Space facilitation principles.
 
@@ -50,6 +51,23 @@ We help teams move from conversation to code. Our approach combines structured f
 - [Impressum](https://bumbleflies.de/impressum): Legal imprint (German).
 - [Datenschutz](https://bumbleflies.de/datenschutz): Privacy policy (German).
 
+## English Pages
+
+All pages are also available in English under /en/:
+- [Home (EN)](https://bumbleflies.de/en/)
+- [Services (EN)](https://bumbleflies.de/en/services)
+- [AI Consulting (EN)](https://bumbleflies.de/en/ai-consulting)
+- [How We Work (EN)](https://bumbleflies.de/en/how-we-work)
+- [Why bumbleflies (EN)](https://bumbleflies.de/en/why-bumbleflies)
+- [Why We Exist (EN)](https://bumbleflies.de/en/why-we)
+- [Risk Derisking (EN)](https://bumbleflies.de/en/risk-derisking)
+- [Open Space (EN)](https://bumbleflies.de/en/open-space)
+- [Case Studies (EN)](https://bumbleflies.de/en/case-studies)
+- [About (EN)](https://bumbleflies.de/en/about)
+- [Blog (EN)](https://bumbleflies.de/en/blog)
+- [Imprint (EN)](https://bumbleflies.de/en/imprint)
+- [Privacy (EN)](https://bumbleflies.de/en/privacy)
+
 ## Contact
 
 - Email: info@bumbleflies.de
@@ -64,5 +82,6 @@ The site is available in German (default) and English. English pages are under /
 ## For Agents
 
 - Welcome page: https://bumbleflies.de/agents.md
+- Agent directory: https://bumbleflies.de/agents.txt
 - Facts: https://bumbleflies.de/facts.json
 - Agent Card: https://bumbleflies.de/.well-known/agent-card.json

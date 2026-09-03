@@ -1,7 +1,7 @@
 ---
 title: "Skills as Apps: A Plugin Marketplace for Company Knowledge"
 description: "An internal app store for AI tooling: the marketplace is the store, each plugin is an app, each skill is a feature. And the one rule that holds it all together: model judgment plus deterministic script."
-excerpt: "11 plugins, 53 skills, activated by natural language. The same code runs for the human on a laptop, the bot in a container, and the CI. How to version company knowledge instead of copying it."
+excerpt: "11 plugins, 53 skills, activated by natural language. The same code runs for the human on a laptop, the agent in a container, and the CI. How to version company knowledge instead of copying it."
 category: "Platform"
 image: "/images/blog/skills-als-apps-plugin-marktplatz.svg"
 order: 4
@@ -35,9 +35,9 @@ The reasoning is crystal clear:
 - **Determinism**, no "the model forgot step 4 this time".
 - **Auditability**, you diff the script, not an AI conversation log.
 - **Speed and cost**, a script runs in milliseconds and burns no tokens.
-- **Reusability**, human, bot, and CI call the same script.
+- **Reusability**, human, agent, and CI call the same script.
 
-Every script comes in two variants: one for Linux/Mac (bot containers, CI) and one for Windows (laptops). Same arguments, same exit code, same output. This means the *same* skill works identically for a human on Windows, a bot in a Linux container, and the CI pipeline. **One definition, many runtimes.**
+Every script comes in two variants: one for Linux/Mac (agent containers, CI) and one for Windows (laptops). Same arguments, same exit code, same output. This means the *same* skill works identically for a human on Windows, an agent in a Linux container, and the CI pipeline. **One definition, many runtimes.**
 
 ## An example of the sophistication: the deploy trio
 
@@ -45,7 +45,7 @@ Take deployment. Three skills together form a mini-compiler:
 
 The first takes a set of changed files and maps each to its deployment target, detects new database migrations, builds a structured deploy plan. The second executes this plan against a test environment. The third always targets production, fires database migrations first as a hard gate, then services in parallel.
 
-The clever part: the production deploy is **delivery-agnostic**. It doesn't know whether a human, a rollout script, or a bot called it. When a production approval is due, it emits a structured event, "approval needed", and leaves it to the caller to present this to the human. This exact design is why one and the same skill can serve a human, a rollout, and an autonomous bot identically.
+The clever part: the production deploy is **delivery-agnostic**. It doesn't know whether a human, a rollout script, or an agent called it. When a production approval is due, it emits a structured event, "approval needed", and leaves it to the caller to present this to the human. This exact design is why one and the same skill can serve a human, a rollout, and an autonomous agent identically.
 
 ## Knowledge that improves itself
 
@@ -65,4 +65,4 @@ And quality assurance? Every skill that's changed runs a **real integration chec
 
 Knowledge spreads, drifts apart, gets lost, and the usual answer is documentation nobody reads. What I built instead is company knowledge as installable, versioned, tested skills, usable via natural language by humans and by machines, with exactly the same code.
 
-And this shared code is the bridge to the next part: when a human and an autonomous bot run the same skills, a bot is just a container with a different system prompt. What that looks like, and the expensive mistakes that led me there, in the next article.
+And this shared code is the bridge to the next part: when a human and an autonomous agent run the same skills, an agent is just a container with a different system prompt. What that looks like, and the expensive mistakes that led me there, in the next article.

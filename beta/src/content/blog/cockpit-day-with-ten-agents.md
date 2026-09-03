@@ -12,7 +12,7 @@ published: false
 lang: "EN"
 ---
 
-The previous articles were about systems that work for many: the nervous system, the marketplace, the autonomous bots. This final part turns the perspective around. It's about a single human and the question every knowledge worker has every morning: *what's actually important today, and what did I forget?*
+The previous articles were about systems that work for many: the nervous system, the marketplace, the autonomous agents. This final part turns the perspective around. It's about a single human and the question every knowledge worker has every morning: *what's actually important today, and what did I forget?*
 
 The answer is a personal meta-agent I call the "cockpit". It pulls together every work context, email, chat, tickets, video calls, support inbox, calendar, activity log, local directories, the agent bus, and turns it into a prioritized daily plan and *one* next action.
 
@@ -57,10 +57,10 @@ This distinction is why the "next action" is always genuinely doable. A blocked 
 
 ## DRY, even here
 
-The cockpit also follows the "one definition, many runtimes" principle. It shares a configuration and a common store with a lighter sibling skill available in every project. And its scanners call the same communication skills from the marketplace that the bots use. The cockpit isn't a solo piece, it sits on the same foundation as the rest of the system and reads the same two levels.
+The cockpit also follows the "one definition, many runtimes" principle. It shares a configuration and a common store with a lighter sibling skill available in every project. And its scanners call the same communication skills from the marketplace that the agents use. The cockpit isn't a solo piece, it sits on the same foundation as the rest of the system and reads the same two foundations.
 
 ## Where the series lands
 
-Back on the two foundation levels the series started with. This is what "one system" means: a human, a bot, and a scheduled job use the same vocabulary, the same tickets, the same skills, not because it looks elegant, but because it's the only way individual AI tricks carry as an operating system.
+Back on the two foundations the series started with. This is what "one system" means: a human, an agent, and a scheduled job use the same vocabulary, the same tickets, the same skills, not because it looks elegant, but because it's the only way individual AI tricks carry as an operating system.
 
-The cockpit is where that pattern ends, in a single morning plan. And like every layer, it's built from scars rather than promises: the read email that cost two days, the scanner that must never fail, the validation that fences a hallucinated result. The plan you see each morning is the current state of those scars.
+The cockpit is where that pattern ends, in a single morning plan. And like every pillar, it's built from scars rather than promises: the read email that cost two days, the scanner that must never fail, the validation that fences a hallucinated result. The plan you see each morning is the current state of those scars.

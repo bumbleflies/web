@@ -1,7 +1,7 @@
 ---
 title: "Skills als Apps: ein Plugin-Marktplatz für Firmenwissen"
 description: "Ein interner App-Store für KI-Tooling: der Marktplatz ist der Store, jedes Plugin eine App, jeder Skill ein Feature. Und die eine Regel, die alles zusammenhält: Modell-Urteil plus deterministisches Skript."
-excerpt: "11 Plugins, 53 Skills, die per natürlicher Sprache aktiviert werden. Derselbe Code läuft für den Menschen am Laptop, den Bot im Container und die CI. Wie man Firmenwissen versioniert statt kopiert."
+excerpt: "11 Plugins, 53 Skills, die per natürlicher Sprache aktiviert werden. Derselbe Code läuft für den Menschen am Laptop, den Agenten im Container und die CI. Wie man Firmenwissen versioniert statt kopiert."
 category: "Plattform"
 image: "/images/blog/skills-als-apps-plugin-marktplatz.svg"
 order: 4
@@ -24,7 +24,7 @@ Ein Mitarbeiter fügt den Marktplatz einmal pro Rechner zu seinem Claude Code hi
 
 ## Die eine Regel: Modell-Urteil plus deterministisches Skript
 
-Wenn Sie sich aus diesem Artikel eine Sache merken, dann diese Regel. Sie ist das architektonische Herzstück des ganzen Systems:
+Wenn du dir aus diesem Artikel eine Sache merkst, dann diese Regel. Sie ist das architektonische Herzstück des ganzen Systems:
 
 > Jeder Teil eines Skills, der deterministisch gemacht werden kann, SOLL ein Skript sein. Das Sprachmodell komponiert nur den Aufruf.
 
@@ -35,9 +35,9 @@ Die Begründung ist glasklar:
 - **Determinismus**, kein „das Modell hat diesmal Schritt 4 vergessen".
 - **Auditierbarkeit**, man diffed das Skript, nicht einen KI-Gesprächsverlauf.
 - **Geschwindigkeit und Kosten**, ein Skript läuft in Millisekunden und verbrennt keine Tokens.
-- **Wiederverwendbarkeit**, Mensch, Bot und CI rufen dasselbe Skript auf.
+- **Wiederverwendbarkeit**, Mensch, Agent und CI rufen dasselbe Skript auf.
 
-Jedes Skript liegt in zwei Varianten vor: einer für Linux/Mac (die Bot-Container, die CI) und einer für Windows (die Laptops). Gleiche Argumente, gleicher Exit-Code, gleiche Ausgabe. Dadurch funktioniert *derselbe* Skill identisch für einen Menschen unter Windows, einen Bot im Linux-Container und die CI-Pipeline. **Eine Definition, viele Laufzeiten.**
+Jedes Skript liegt in zwei Varianten vor: einer für Linux/Mac (die Agenten-Container, die CI) und einer für Windows (die Laptops). Gleiche Argumente, gleicher Exit-Code, gleiche Ausgabe. Dadurch funktioniert *derselbe* Skill identisch für einen Menschen unter Windows, einen Agenten im Linux-Container und die CI-Pipeline. **Eine Definition, viele Laufzeiten.**
 
 ## Ein Beispiel für die Raffinesse: der Deploy-Dreiklang
 
@@ -45,7 +45,7 @@ Ein Beispiel: das Deployment. Drei Skills bilden zusammen einen Mini-Compiler:
 
 Der erste nimmt eine Menge geänderter Dateien und ordnet jede ihrem Deployment-Ziel zu, erkennt neue Datenbank-Migrationen, bildet daraus einen strukturierten Deploy-Plan. Der zweite führt diesen Plan gegen eine Test-Umgebung aus. Der dritte zielt immer auf die Produktion, feuert die Datenbank-Migrationen zuerst als harte Sperre ab und danach die Services parallel.
 
-Der clevere Teil: Der Produktiv-Deploy ist **auslieferungs-agnostisch**. Er weiß nicht, ob ihn ein Mensch, ein Rollout-Skript oder ein Bot aufgerufen hat. Er gibt in dem Moment, in dem eine Produktions-Freigabe ansteht, ein strukturiertes Ereignis aus, „Freigabe nötig", und überlässt es dem Aufrufer, das dem Menschen zu präsentieren. Genau dieses Design ist der Grund, warum ein und derselbe Skill einen Menschen, ein Rollout und einen autonomen Bot identisch bedienen kann.
+Der clevere Teil: Der Produktiv-Deploy ist **auslieferungs-agnostisch** (er weiß nicht, wer ihn ausgelöst hat). Er weiß nicht, ob ihn ein Mensch, ein Rollout-Skript oder ein Agent aufgerufen hat. Er gibt in dem Moment, in dem eine Produktions-Freigabe ansteht, ein strukturiertes Ereignis aus, „Freigabe nötig", und überlässt es dem Aufrufer, das dem Menschen zu präsentieren. Genau dieses Design ist der Grund, warum ein und derselbe Skill einen Menschen, ein Rollout und einen autonomen Agenten identisch bedienen kann.
 
 ## Wissen, das sich selbst verbessert
 
@@ -65,4 +65,4 @@ Und die Qualitätssicherung? Jeder Skill, der geändert wird, durchläuft in der
 
 Wissen verteilt sich, driftet auseinander, geht verloren, und die übliche Antwort sind Dokumentationen, die niemand liest. Meine Antwort: Firmenwissen als installierbare, versionierte, getestete Skills, benutzbar per natürlicher Sprache, von Menschen und von Maschinen, mit exakt demselben Code.
 
-Und genau dieser gemeinsame Code ist die Brücke zum nächsten Teil: Wenn ein Mensch und ein autonomer Bot dieselben Skills ausführen, dann ist ein Bot nur noch ein Container mit einem anderen Systemprompt. Wie das aussieht, und welche teuren Fehler mich dorthin geführt haben, im nächsten Artikel.
+Und genau dieser gemeinsame Code ist die Brücke zum nächsten Teil: Wenn ein Mensch und ein autonomer Agent dieselben Skills ausführen, dann ist ein Agent nur noch ein Container mit einem anderen Systemprompt. Wie das aussieht, und welche teuren Fehler mich dorthin geführt haben, im nächsten Artikel.
