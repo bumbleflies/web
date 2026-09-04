@@ -1,4 +1,6 @@
 ---
+import { getLanguageTogglePath } from '../lib/language-toggle';
+
 interface Props {
   lang: 'DE' | 'EN';
   id?: string;
@@ -25,29 +27,20 @@ const { lang, id = 'lang-toggle' } = Astro.props;
 </div>
 
 <script>
+  import { getLanguageTogglePath } from '../lib/language-toggle';
+
   const buttons = document.querySelectorAll('.lang-btn');
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.getAttribute('data-lang');
+      if (lang !== 'DE' && lang !== 'EN') return;
       const path = window.location.pathname;
-      const isEnglish = path.startsWith('/en');
-      const isActive = (lang === 'EN' && isEnglish) || (lang === 'DE' && !isEnglish);
-
-      if (isActive) {
-        // Active button: toggle to other language
-        if (isEnglish) {
-          window.location.href = path.replace(/^\/en/, '') || '/';
-        } else {
-          window.location.href = path === '/' ? '/en/' : '/en' + path;
-        }
-      } else {
-        // Inactive button: navigate to that language
-        if (lang === 'EN') {
-          window.location.href = path === '/' ? '/en/' : '/en' + path;
-        } else {
-          window.location.href = path.replace(/^\/en/, '') || '/';
-        }
-      }
+      window.location.href = getLanguageTogglePath({
+        clickedLanguage: lang,
+        currentPath: path,
+        dePath: document.documentElement.dataset.dePath,
+        enPath: document.documentElement.dataset.enPath,
+      });
     });
   });
 </script>
