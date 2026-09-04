@@ -6,6 +6,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import BlogCover from '../../components/BlogCover.astro';
 import ShareLinks from '../../components/ShareLinks.astro';
+import { getBlogAudioPath } from '../../lib/blog-audio';
 
 // Only draft articles when the preview key was NOT set at build time.
 // Set PUBLIC_PREVIEW_KEY=<key> in your deploy env to build draft pages
@@ -47,6 +48,7 @@ const dateLabel = post.data.date.toLocaleDateString('de-DE', {
 
 const lang: 'DE' | 'EN' = 'DE';
 const canonicalUrl = `https://bumbleflies.de/blog/${post.id}`;
+const audioSrc = getBlogAudioPath(lang, post.id);
 // Rasterized PNG twin of the SVG teaser cover — social crawlers don't render SVG og:images.
 const ogImage = post.data.image?.replace('/images/blog/', '/images/blog/og/').replace(/\.svg$/, '.png');
 
@@ -117,6 +119,27 @@ const jsonLd = {
             </>
           )}
         </div>
+        {audioSrc && (
+          <div class="post__audio">
+            <button
+              class="post__audio-toggle"
+              type="button"
+              aria-label="Artikel anhören"
+              title="Artikel anhören"
+              data-audio-toggle
+              data-audio-target={`audio-${post.id}`}
+            >
+              <span>Audio-Zusammenfassung</span>
+              <svg class="post__audio-icon post__audio-icon--play" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5.5v13l10-6.5z" fill="currentColor" />
+              </svg>
+              <svg class="post__audio-icon post__audio-icon--pause" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 5h3v14H7zm7 0h3v14h-3z" fill="currentColor" />
+              </svg>
+            </button>
+            <audio id={`audio-${post.id}`} preload="metadata" src={audioSrc}></audio>
+          </div>
+        )}
         <ShareLinks url={canonicalUrl} lang={lang} />
       </header>
 
@@ -156,6 +179,27 @@ const jsonLd = {
 
   <Footer slot="footer" />
 </Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-audio-toggle]').forEach((button) => {
+    const audio = document.getElementById(button.dataset.audioTarget ?? '') as HTMLAudioElement | null;
+    if (!audio) return;
+
+    const setPlaying = (playing: boolean) => {
+      button.dataset.playing = String(playing);
+      button.setAttribute('aria-label', playing ? 'Wiedergabe pausieren' : 'Artikel anhören');
+      button.setAttribute('title', playing ? 'Wiedergabe pausieren' : 'Artikel anhören');
+    };
+
+    button.addEventListener('click', () => {
+      if (audio.paused) audio.play();
+      else audio.pause();
+    });
+    audio.addEventListener('play', () => setPlaying(true));
+    audio.addEventListener('pause', () => setPlaying(false));
+    audio.addEventListener('ended', () => setPlaying(false));
+  });
+</script>
 
 <style>
   /* Draft gating — the article body shows only when the magic preview key has
@@ -254,7 +298,7 @@ const jsonLd = {
   }
 
   .post__meta {
-    display: flex;
+    display: inline-flex;
     gap: var(--space-sm);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
@@ -289,6 +333,48 @@ const jsonLd = {
     font-size: var(--text-xs);
     color: var(--ink-soft);
   }
+
+  .post__audio {
+    margin-top: var(--space-lg);
+  }
+
+  .post__audio-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    width: auto;
+    min-height: 48px;
+    padding: 0 var(--space-md);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    text-align: left;
+    transition: border-color var(--duration-fast) var(--easing-default),
+      background var(--duration-fast) var(--easing-default), color var(--duration-fast) var(--easing-default);
+  }
+
+  .post__audio-toggle:hover,
+  .post__audio-toggle:focus-visible {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .post__audio-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .post__audio-icon--pause { display: none; }
+  .post__audio-toggle[data-playing='true'] .post__audio-icon--play { display: none; }
+  .post__audio-toggle[data-playing='true'] .post__audio-icon--pause { display: block; }
 
   .post__cover {
     margin: 0 0 var(--space-3xl);

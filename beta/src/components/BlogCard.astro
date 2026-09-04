@@ -12,12 +12,15 @@ interface Props {
 }
 
 import BlogCover from './BlogCover.astro';
+import { getBlogAudioPath } from '../lib/blog-audio';
 
 const { title, excerpt, category, order, readingTime, slug, image, draft, lang = 'DE' } = Astro.props;
 const partLabel = lang === 'EN' ? `Part ${String(order).padStart(2, '0')}` : `Teil ${String(order).padStart(2, '0')}`;
 const blogPath = lang === 'EN' ? `/en/blog/${slug}` : `/blog/${slug}`;
 const draftLabel = lang === 'EN' ? 'Preview' : 'Vorschau';
 const readLabel = lang === 'EN' ? 'Read' : 'Lesen';
+const audioLabel = lang === 'EN' ? 'Audio-Summary' : 'Audio-Zusammenfassung';
+const audioSrc = getBlogAudioPath(lang, slug);
 ---
 
 <article class="a-blog-card" data-draft={draft ? '' : undefined}>
@@ -36,12 +39,55 @@ const readLabel = lang === 'EN' ? 'Read' : 'Lesen';
   </h3>
   <p class="a-blog-card__excerpt">{excerpt}</p>
   <div class="a-blog-card__footer">
-    <a href={blogPath} class="bf-cta">
-      {readLabel} <span aria-hidden="true">→</span>
-    </a>
+    <div class="a-blog-card__actions">
+      <a href={blogPath} class="bf-cta">
+        {readLabel} <span aria-hidden="true">→</span>
+      </a>
+      {audioSrc && (
+        <>
+          <button
+            class="a-blog-card__audio-toggle"
+            type="button"
+            aria-label={audioLabel}
+            title={audioLabel}
+            data-blog-card-audio-toggle
+            data-audio-target={`audio-card-${lang}-${slug}`}
+          >
+            <span>{audioLabel}</span>
+            <svg class="a-blog-card__audio-icon a-blog-card__audio-icon--play" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 5.5v13l10-6.5z" fill="currentColor" />
+            </svg>
+            <svg class="a-blog-card__audio-icon a-blog-card__audio-icon--pause" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 5h3v14H7zm7 0h3v14h-3z" fill="currentColor" />
+            </svg>
+          </button>
+          <audio id={`audio-card-${lang}-${slug}`} preload="metadata" src={audioSrc}></audio>
+        </>
+      )}
+    </div>
     {readingTime && <span class="a-blog-card__time">{readingTime}</span>}
   </div>
 </article>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-blog-card-audio-toggle]').forEach((button) => {
+    const audio = document.getElementById(button.dataset.audioTarget ?? '') as HTMLAudioElement | null;
+    if (!audio) return;
+
+    const setPlaying = (playing: boolean) => {
+      button.dataset.playing = String(playing);
+      button.setAttribute('aria-label', playing ? 'Pause playback' : button.title);
+    };
+
+    button.addEventListener('click', () => {
+      if (audio.paused) audio.play();
+      else audio.pause();
+    });
+    audio.addEventListener('play', () => setPlaying(true));
+    audio.addEventListener('pause', () => setPlaying(false));
+    audio.addEventListener('ended', () => setPlaying(false));
+  });
+</script>
 
 <style>
   .a-blog-card {
@@ -128,6 +174,48 @@ const readLabel = lang === 'EN' ? 'Read' : 'Lesen';
     gap: var(--space-md);
     margin-top: var(--space-sm);
   }
+
+  .a-blog-card__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .a-blog-card__audio-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    min-height: 44px;
+    padding: 0 var(--space-md);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    transition: border-color var(--duration-fast) var(--easing-default),
+      background var(--duration-fast) var(--easing-default), color var(--duration-fast) var(--easing-default);
+  }
+
+  .a-blog-card__audio-toggle:hover,
+  .a-blog-card__audio-toggle:focus-visible {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .a-blog-card__audio-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .a-blog-card__audio-icon--pause { display: none; }
+  .a-blog-card__audio-toggle[data-playing='true'] .a-blog-card__audio-icon--play { display: none; }
+  .a-blog-card__audio-toggle[data-playing='true'] .a-blog-card__audio-icon--pause { display: block; }
 
   .a-blog-card__time {
     font-family: var(--font-mono);
