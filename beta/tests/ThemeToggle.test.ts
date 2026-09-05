@@ -1,17 +1,12 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('ThemeToggle Logic', () => {
   beforeEach(() => {
-    // Mock localStorage and documentElement
-    const storage: Record<string, string> = {};
-    global.localStorage = {
-      getItem: (key: string) => storage[key] || null,
-      setItem: (key: string, value: string) => { storage[key] = value; },
-      removeItem: (key: string) => { delete storage[key]; },
-      clear: () => { Object.keys(storage).forEach(k => delete storage[k]); },
-      length: 0,
-      key: (index: number) => null,
-    } as any;
+    // Use the real happy-dom localStorage; just ensure isolation between tests.
+    // NOTE: Do not assign to `global.localStorage` — under Vitest 5 the global
+    // is a getter-only property on GlobalWindow and assignment throws
+    // "Cannot set property localStorage ... which has only a getter".
+    localStorage.clear();
 
     document.documentElement.removeAttribute('data-theme');
   });
