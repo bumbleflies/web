@@ -182,6 +182,6 @@ grep -oP '(?<=<loc>https://bumbleflies.de)[^<]+' dist/sitemap-0.xml | sort
 | Page renamed | Update URL in all 3 files |
 | Description changed | Update description in llms.txt + llms-full.txt |
 | New case study | Add to Case Studies section in all 3 files |
-| Blog post published | Add to Blog section (only if `published: true`) |
+| Blog post published | Add to Blog section (only if `published: true`) — full checklist: `src/content/blog/AGENTS.md` |
 | Team member added | Add to Team section in all 3 files |
 | Navigation changed | Verify llms.txt section order matches site nav |
