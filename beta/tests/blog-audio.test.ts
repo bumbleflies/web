@@ -38,4 +38,15 @@ describe('blog audio', () => {
     expect(blogCard).toContain('{audioSrc && (');
     expect(blogCard).toContain("lang === 'EN' ? 'Audio-Summary' : 'Audio-Zusammenfassung'");
   });
+
+  it('localises the card pause label instead of hardcoding English', () => {
+    expect(blogCard).toContain("lang === 'EN' ? 'Pause playback' : 'Wiedergabe pausieren'");
+    expect(blogCard).toContain('data-play-label');
+    expect(blogCard).toContain('data-pause-label');
+    expect(blogCard).not.toContain("playing ? 'Pause playback' : button.title");
+  });
+
+  it('guards card audio buttons against double-binding', () => {
+    expect(blogCard).toContain("button.dataset.audioInit === 'true'");
+  });
 });

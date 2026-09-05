@@ -20,6 +20,7 @@ const blogPath = lang === 'EN' ? `/en/blog/${slug}` : `/blog/${slug}`;
 const draftLabel = lang === 'EN' ? 'Preview' : 'Vorschau';
 const readLabel = lang === 'EN' ? 'Read' : 'Lesen';
 const audioLabel = lang === 'EN' ? 'Audio-Summary' : 'Audio-Zusammenfassung';
+const audioPauseLabel = lang === 'EN' ? 'Pause playback' : 'Wiedergabe pausieren';
 const audioSrc = getBlogAudioPath(lang, slug);
 ---
 
@@ -52,6 +53,8 @@ const audioSrc = getBlogAudioPath(lang, slug);
             title={audioLabel}
             data-blog-card-audio-toggle
             data-audio-target={`audio-card-${lang}-${slug}`}
+            data-play-label={audioLabel}
+            data-pause-label={audioPauseLabel}
           >
             <span>{audioLabel}</span>
             <svg class="a-blog-card__audio-icon a-blog-card__audio-icon--play" viewBox="0 0 24 24" aria-hidden="true">
@@ -71,12 +74,18 @@ const audioSrc = getBlogAudioPath(lang, slug);
 
 <script>
   document.querySelectorAll<HTMLButtonElement>('[data-blog-card-audio-toggle]').forEach((button) => {
+    // The card renders once per post, so this script runs once per card.
+    // Guard against double-binding when several cards share the page.
+    if (button.dataset.audioInit === 'true') return;
+    button.dataset.audioInit = 'true';
     const audio = document.getElementById(button.dataset.audioTarget ?? '') as HTMLAudioElement | null;
     if (!audio) return;
 
+    const playLabel = button.dataset.playLabel ?? button.title;
+    const pauseLabel = button.dataset.pauseLabel ?? 'Pause playback';
     const setPlaying = (playing: boolean) => {
       button.dataset.playing = String(playing);
-      button.setAttribute('aria-label', playing ? 'Pause playback' : button.title);
+      button.setAttribute('aria-label', playing ? pauseLabel : playLabel);
     };
 
     button.addEventListener('click', () => {
