@@ -12,12 +12,17 @@ interface Props {
 }
 
 import BlogCover from './BlogCover.astro';
+import AudioToggle from './AudioToggle.astro';
+import { getBlogAudioPath } from '../lib/blog-audio';
 
 const { title, excerpt, category, order, readingTime, slug, image, draft, lang = 'DE' } = Astro.props;
 const partLabel = lang === 'EN' ? `Part ${String(order).padStart(2, '0')}` : `Teil ${String(order).padStart(2, '0')}`;
 const blogPath = lang === 'EN' ? `/en/blog/${slug}` : `/blog/${slug}`;
 const draftLabel = lang === 'EN' ? 'Preview' : 'Vorschau';
 const readLabel = lang === 'EN' ? 'Read' : 'Lesen';
+const audioLabel = lang === 'EN' ? 'Audio-Summary' : 'Audio-Zusammenfassung';
+const audioPauseLabel = lang === 'EN' ? 'Pause playback' : 'Wiedergabe pausieren';
+const audioSrc = getBlogAudioPath(lang, slug);
 ---
 
 <article class="a-blog-card" data-draft={draft ? '' : undefined}>
@@ -36,9 +41,20 @@ const readLabel = lang === 'EN' ? 'Read' : 'Lesen';
   </h3>
   <p class="a-blog-card__excerpt">{excerpt}</p>
   <div class="a-blog-card__footer">
-    <a href={blogPath} class="bf-cta">
-      {readLabel} <span aria-hidden="true">→</span>
-    </a>
+    <div class="a-blog-card__actions">
+      <a href={blogPath} class="bf-cta">
+        {readLabel} <span aria-hidden="true">→</span>
+      </a>
+      {audioSrc && (
+        <AudioToggle
+          audioId={`audio-card-${lang}-${slug}`}
+          audioSrc={audioSrc}
+          playLabel={audioLabel}
+          pauseLabel={audioPauseLabel}
+          variant="card"
+        />
+      )}
+    </div>
     {readingTime && <span class="a-blog-card__time">{readingTime}</span>}
   </div>
 </article>
@@ -127,6 +143,13 @@ const readLabel = lang === 'EN' ? 'Read' : 'Lesen';
     justify-content: space-between;
     gap: var(--space-md);
     margin-top: var(--space-sm);
+  }
+
+  .a-blog-card__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
   }
 
   .a-blog-card__time {

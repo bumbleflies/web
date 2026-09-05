@@ -5,7 +5,9 @@ import Layout from '../../../components/Layout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import BlogCover from '../../../components/BlogCover.astro';
+import AudioToggle from '../../../components/AudioToggle.astro';
 import ShareLinks from '../../../components/ShareLinks.astro';
+import { getBlogAudioPath } from '../../../lib/blog-audio';
 
 // Only draft articles when the preview key was NOT set at build time.
 // Set PUBLIC_PREVIEW_KEY=<key> in your deploy env to build draft pages
@@ -47,6 +49,7 @@ const dateLabel = post.data.date.toLocaleDateString('en-US', {
 
 const lang: 'DE' | 'EN' = 'EN';
 const canonicalUrl = `https://bumbleflies.de/en/blog/${post.id}`;
+const audioSrc = getBlogAudioPath(lang, post.id);
 // Rasterized PNG twin of the SVG teaser cover — social crawlers don't render SVG og:images.
 const ogImage = post.data.image?.replace('/images/blog/', '/images/blog/og/').replace(/\.svg$/, '.png');
 
@@ -117,6 +120,15 @@ const jsonLd = {
             </>
           )}
         </div>
+        {audioSrc && (
+          <AudioToggle
+            audioId={`audio-${post.id}`}
+            audioSrc={audioSrc}
+            playLabel="Audio-Summary"
+            pauseLabel="Pause playback"
+            variant="post"
+          />
+        )}
         <ShareLinks url={canonicalUrl} lang={lang} />
       </header>
 
