@@ -44,6 +44,11 @@ We help teams move from conversation to code. Our approach combines structured f
 
 - [About bumbleflies](https://bumbleflies.de/about): Who we are, what we believe, and who we've worked with.
 
+## Blog
+
+- [Statt KI zu kaufen: Was ich wirklich gebaut habe](https://bumbleflies.de/blog/ki-agenten-betriebssystem): Field Notes #1 — a real agent system in production: autonomous agents opening pull requests, a skill marketplace for company knowledge, a cockpit planning the day. With audio summary.
+- [What I Actually Built Instead of "Adding AI" (EN)](https://bumbleflies.de/en/blog/ai-agent-operating-system): English version of Field Notes #1. With audio summary.
+
 ## Pages
 
 - [Homepage](https://bumbleflies.de): What we do and who we serve.
