@@ -118,6 +118,15 @@ bumbleflies was founded in 2021 in Munich by three people who believed that orga
 
 ---
 
+## Blog
+
+Field Notes — the bumbleflies article series on AI, facilitation, and organizational change. Each article ships in German and English, with an audio summary.
+
+- [Statt KI zu kaufen: Was ich wirklich gebaut habe](https://bumbleflies.de/blog/ki-agenten-betriebssystem) — Field Notes #1. Not "we bought AI" but "we translated our own operational processes into code a language model composes". Four agent pillars on two foundations: autonomous agents that open pull requests, a skill marketplace for company knowledge, and a cockpit that plans the day. Built at JUNE, a German legal-tech company, running in production for over a year.
+- [What I Actually Built Instead of "Adding AI"](https://bumbleflies.de/en/blog/ai-agent-operating-system) — English version of Field Notes #1, same content and audio summary in English.
+
+---
+
 ## English Pages
 
 All pages are available in English at /en/. Full content mirrors the German site:
