@@ -3,7 +3,10 @@ import { glob } from 'astro/loaders';
 import { nestedTextLoader, pagesSchemaCoerced } from '../lib/astro-loaders';
 
 const caseStudies = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/case-studies' }),
+  loader: glob({
+    pattern: ['**/*.md', '!**/AGENTS.md', '!**/README.md'],
+    base: './src/content/case-studies',
+  }),
   schema: z.object({
     title: z.string(),
     service: z.enum(['Talk', 'Decide', 'Build & Embed', 'Full Journey']),
@@ -22,7 +25,10 @@ const caseStudies = defineCollection({
 });
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  loader: glob({
+    pattern: ['**/*.md', '!**/AGENTS.md', '!**/README.md'],
+    base: './src/content/blog',
+  }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -43,7 +49,10 @@ const blog = defineCollection({
 });
 
 const testimonials = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/testimonials' }),
+  loader: glob({
+    pattern: ['**/*.md', '!**/AGENTS.md', '!**/README.md'],
+    base: './src/content/testimonials',
+  }),
   schema: z.object({
     author: z.string(),
     role: z.string(),
@@ -55,7 +64,10 @@ const testimonials = defineCollection({
 });
 
 const team = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/team' }),
+  loader: glob({
+    pattern: ['**/*.md', '!**/AGENTS.md', '!**/README.md'],
+    base: './src/content/team',
+  }),
   schema: z.object({
     name: z.string(),
     role: z.string(),

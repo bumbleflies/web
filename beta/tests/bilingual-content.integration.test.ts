@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { spawn, ChildProcess } from 'child_process';
+import { spawn, execSync, ChildProcess } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -120,7 +120,9 @@ function discoverPagePairs(): PageTest[] {
 // Get all page pairs
 const pagePairs = discoverPagePairs();
 
-// Start dev server
+// Start dev server (Astro 7 runs `astro dev` as a background daemon:
+// the spawned process prints "Dev server running at ..." and exits,
+// while "ready in" only appears in `astro dev logs`.)
 async function startDevServer(): Promise<void> {
   return new Promise((resolve, reject) => {
     // Astro's dev server skips registering its page-serving middleware when
@@ -130,7 +132,7 @@ async function startDevServer(): Promise<void> {
     const devServerEnv = { ...process.env };
     delete devServerEnv.VITEST;
 
-    devServer = spawn('npx', ['astro', 'dev'], {
+    devServer = spawn('npx', ['astro', 'dev', '--port', String(DEV_SERVER_PORT)], {
       cwd: path.join(__dirname, '..'),
       stdio: ['ignore', 'pipe', 'pipe'],
       env: devServerEnv,
@@ -138,8 +140,16 @@ async function startDevServer(): Promise<void> {
 
     const handleOutput = (data: Buffer) => {
       const output = data.toString();
-      // Watch for "ready in" message indicating server is ready
-      if (output.includes('ready in') || output.includes('Local')) {
+      // Astro 6: "ready in ... / Local http://...".
+      // Astro 7 daemon: "Dev server running at http://localhost:3000 ..." or
+      // "Dev server already running at http://localhost:3000 ...".
+      if (
+        output.includes('ready in') ||
+        output.includes('Local') ||
+        output.includes('Dev server running') ||
+        output.includes('already running') ||
+        output.includes(`localhost:${DEV_SERVER_PORT}`)
+      ) {
         if (!serverReady) {
           serverReady = true;
           resolve();
@@ -149,9 +159,39 @@ async function startDevServer(): Promise<void> {
 
     devServer!.stdout?.on('data', handleOutput);
     devServer!.stderr?.on('data', handleOutput);
+    devServer!.on('error', (err) => {
+      if (!serverReady) {
+        reject(err);
+      }
+    });
+    // The daemonizing child may exit(0) right after starting the background
+    // server — that is success, not failure. Fall through to HTTP polling.
+    devServer!.on('exit', () => {
+      pollHttp();
+    });
+
+    let pollTimer: NodeJS.Timeout | null = null;
+    const pollHttp = () => {
+      if (serverReady) return;
+      fetch(`${BASE_URL}/`)
+        .then((res) => {
+          if (res.ok && !serverReady) {
+            serverReady = true;
+            if (pollTimer) clearInterval(pollTimer);
+            resolve();
+          }
+        })
+        .catch(() => {
+          // Not up yet — keep polling until timeout below fires.
+        });
+    };
+    pollTimer = setInterval(pollHttp, 500);
+    // Kick off one immediate attempt in case the server is already up.
+    pollHttp();
 
     // Timeout after 60 seconds
     setTimeout(() => {
+      if (pollTimer) clearInterval(pollTimer);
       if (!serverReady) {
         reject(new Error('Dev server failed to start within 60 seconds'));
       }
@@ -204,6 +244,17 @@ describe('Bilingual Content Rendering', () => {
   afterAll(() => {
     if (devServer) {
       devServer.kill();
+      devServer = null;
+    }
+    // Astro 7 daemonizes `astro dev` — kill the background server too so
+    // subsequent runs (or CI steps) don't hit a stale :3000.
+    try {
+      execSync('npx astro dev stop', {
+        cwd: path.join(__dirname, '..'),
+        stdio: 'ignore',
+      });
+    } catch {
+      // Best-effort cleanup — a missing/stopped server is fine.
     }
   });
 
