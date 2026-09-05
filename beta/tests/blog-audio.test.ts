@@ -6,6 +6,7 @@ import { getBlogAudioPath } from '../src/lib/blog-audio';
 const germanBlogPage = readFileSync(join(process.cwd(), 'src/pages/blog/[slug].astro'), 'utf8');
 const englishBlogPage = readFileSync(join(process.cwd(), 'src/pages/en/blog/[slug].astro'), 'utf8');
 const blogCard = readFileSync(join(process.cwd(), 'src/components/BlogCard.astro'), 'utf8');
+const audioToggle = readFileSync(join(process.cwd(), 'src/components/AudioToggle.astro'), 'utf8');
 
 describe('blog audio', () => {
   it('exposes the German recording for the first blog article', () => {
@@ -23,30 +24,39 @@ describe('blog audio', () => {
   });
 
   it.each([
-    ['German', germanBlogPage, 'Audio-Zusammenfassung'],
-    ['English', englishBlogPage, 'Audio-Summary'],
-  ])('renders an accessible %s audio button with its label and play control', (_, page, label) => {
-    expect(page).toContain('data-audio-toggle');
-    expect(page).toContain('data-audio-target');
-    expect(page).toContain(`<span>${label}</span>`);
-    expect(page).toContain('audio.play()');
-    expect(page).toContain('border-radius: var(--radius-full)');
+    ['German', germanBlogPage, 'Audio-Zusammenfassung', 'Wiedergabe pausieren'],
+    ['English', englishBlogPage, 'Audio-Summary', 'Pause playback'],
+  ])('renders the shared %s audio toggle with localised labels', (_, page, playLabel, pauseLabel) => {
+    expect(page).toContain('<AudioToggle');
+    expect(page).toContain(`playLabel="${playLabel}"`);
+    expect(page).toContain(`pauseLabel="${pauseLabel}"`);
+    expect(page).toContain('{audioSrc && (');
   });
 
   it('renders the audio summary control on cards only when an audio file exists', () => {
     expect(blogCard).toContain("const audioSrc = getBlogAudioPath(lang, slug)");
+    expect(blogCard).toContain('<AudioToggle');
+    expect(blogCard).toContain('variant="card"');
     expect(blogCard).toContain('{audioSrc && (');
     expect(blogCard).toContain("lang === 'EN' ? 'Audio-Summary' : 'Audio-Zusammenfassung'");
-  });
-
-  it('localises the card pause label instead of hardcoding English', () => {
     expect(blogCard).toContain("lang === 'EN' ? 'Pause playback' : 'Wiedergabe pausieren'");
-    expect(blogCard).toContain('data-play-label');
-    expect(blogCard).toContain('data-pause-label');
-    expect(blogCard).not.toContain("playing ? 'Pause playback' : button.title");
   });
 
-  it('guards card audio buttons against double-binding', () => {
-    expect(blogCard).toContain("button.dataset.audioInit === 'true'");
+  it('keeps a single accessible player implementation in the shared component', () => {
+    expect(audioToggle).toContain('data-audio-toggle');
+    expect(audioToggle).toContain('data-audio-target');
+    expect(audioToggle).toContain('data-play-label');
+    expect(audioToggle).toContain('data-pause-label');
+    expect(audioToggle).toContain('audio.play()');
+    expect(audioToggle).toContain('border-radius: var(--radius-full)');
+  });
+
+  it('guards the shared toggle against double-binding', () => {
+    expect(audioToggle).toContain("button.dataset.audioInit === 'true'");
+  });
+
+  it('pauses other recordings when a new one starts', () => {
+    expect(audioToggle).toContain('data-audio-player');
+    expect(audioToggle).toContain('other.pause()');
   });
 });
