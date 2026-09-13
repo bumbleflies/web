@@ -5,10 +5,10 @@ excerpt: "The project management tool is the storage of truth and the ignition. 
 category: "Architecture"
 image: "/images/blog/zwei-ebenen-zustand-und-interaktion.svg"
 order: 2
-date: 2026-07-12
+date: 2026-09-15
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 min"
-published: false
+published: true
 lang: "EN"
 ---
 

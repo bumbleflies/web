@@ -5,10 +5,10 @@ excerpt: "Das Projektmanagement-Tool ist der Speicher der Wahrheit und die Zünd
 category: "Architektur"
 image: "/images/blog/zwei-ebenen-zustand-und-interaktion.svg"
 order: 2
-date: 2026-07-12
+date: 2026-09-15
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 Min."
-published: false
+published: true
 lang: "DE"
 ---
 
@@ -24,7 +24,7 @@ Jedes Arbeitselement wird als Ticket geboren oder gegen ein Ticket abgeglichen. 
 
 Ein paar Details, die aus der Praxis stammen und die zeigen, dass „ein Ticket-Tool als Datenbank benutzen" mehr Disziplin verlangt, als es klingt:
 
-- **Der Kommentar-Befehlsbus.** Kommentare, deren erstes Wort ein festes Steuerwort ist, werden zu Kommandos, also zu Steuerbefehlen, die per Chat-Kommentar ausgelöst werden. Ein Mensch kann sie tippen, ein Agent kann sie posten, und beide sind für immer im Ticket protokolliert. Die gesamte Release-Pipeline wird über diesen einen, auditierbaren Kanal gesteuert, kein separates Dashboard, keine versteckte API.
+- **Der Kommentar-Befehlsbus.** Kommentare, deren erstes Wort ein festes Steuerwort ist, werden zu Kommandos. Ein Mensch kann sie tippen, ein Agent kann sie posten, und beide sind für immer im Ticket protokolliert. Die gesamte Release-Pipeline wird über diesen einen, auditierbaren Kanal gesteuert, kein separates Dashboard, keine versteckte API.
 
 - **Sentinel-Kommentare als Zustand.** Maschinenlesbare Marker in Kommentaren tragen wiederaufnehmbaren Zustand über Sitzungsgrenzen hinweg. Wenn ein Agent mitten in einem mehrstündigen Rollout neu startet, liest er aus diesen Markern, wo er war. Der Zustand lebt im Ticket, nicht im Arbeitsspeicher eines Prozesses.
 
