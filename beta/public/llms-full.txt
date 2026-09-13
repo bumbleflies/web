@@ -124,6 +124,8 @@ Field Notes: the bumbleflies article series on AI, facilitation, and organizatio
 
 - [Statt KI zu kaufen: Was ich wirklich gebaut habe](https://bumbleflies.de/blog/ki-agenten-betriebssystem): Field Notes #1. Not "we bought AI" but "we translated our own operational processes into code a language model composes". Several agent pillars on shared foundations: autonomous agents that open pull requests, a skill marketplace for company knowledge, and a cockpit that plans the day. Built at JUNE, a German legal-tech company, running in production for over a year.
 - [What I Actually Built Instead of "Adding AI"](https://bumbleflies.de/en/blog/ai-agent-operating-system): English version of Field Notes #1, same content and audio summary in English.
+- [Die Fundamente, auf denen alles läuft: Zustand und Interaktion](https://bumbleflies.de/blog/zwei-ebenen-zustand-und-interaktion): Field Notes #2. Why the agent system built at JUNE coordinates through two standard tools instead of custom microservices: the project management tool as persistent state and ignition for automation, the team chat as the interaction layer where autonomy meets the human. Covers the identity problem of agents posting under a shared human account, and the resulting rule: coordinate through persistent, human-visible artifacts, not direct calls.
+- [The Foundations Everything Runs On: State and Interaction](https://bumbleflies.de/en/blog/two-levels-state-interaction): English version of Field Notes #2, same content and audio summary in English.
 
 ---
 

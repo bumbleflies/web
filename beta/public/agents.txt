@@ -1,6 +1,6 @@
 # bumbleflies: Agent Directory
 # Machine-readable page index for AI crawlers and agents.
-# Updated: 2026-09-07
+# Updated: 2026-09-13
 
 # Site
 Homepage: https://bumbleflies.de/
@@ -25,6 +25,8 @@ UnternehmerTUM: https://bumbleflies.de/case-studies/unternehmertum/
 Blog: https://bumbleflies.de/blog/
 Statt KI zu kaufen (Field Notes 01): https://bumbleflies.de/blog/ki-agenten-betriebssystem/
 What I Actually Built Instead of Adding AI (EN): https://bumbleflies.de/en/blog/ai-agent-operating-system/
+Die Fundamente, auf denen alles läuft (Field Notes 02): https://bumbleflies.de/blog/zwei-ebenen-zustand-und-interaktion/
+The Foundations Everything Runs On (EN): https://bumbleflies.de/en/blog/two-levels-state-interaction/
 
 # Legal
 Impressum: https://bumbleflies.de/impressum/
@@ -43,6 +45,7 @@ EN Open Space: https://bumbleflies.de/en/open-space/
 EN Case Studies: https://bumbleflies.de/en/case-studies/
 EN Blog: https://bumbleflies.de/en/blog/
 What I Actually Built Instead of Adding AI (EN): https://bumbleflies.de/en/blog/ai-agent-operating-system/
+The Foundations Everything Runs On (EN): https://bumbleflies.de/en/blog/two-levels-state-interaction/
 EN Imprint: https://bumbleflies.de/en/imprint/
 EN Privacy: https://bumbleflies.de/en/privacy/
 

@@ -48,6 +48,8 @@ We help teams move from conversation to code. Our approach combines structured f
 
 - [Statt KI zu kaufen: Was ich wirklich gebaut habe](https://bumbleflies.de/blog/ki-agenten-betriebssystem): Field Notes #1. A real agent system in production: autonomous agents opening pull requests, a skill marketplace for company knowledge, a cockpit planning the day. With audio summary.
 - [What I Actually Built Instead of "Adding AI" (EN)](https://bumbleflies.de/en/blog/ai-agent-operating-system): English version of Field Notes #1. With audio summary.
+- [Die Fundamente, auf denen alles läuft: Zustand und Interaktion](https://bumbleflies.de/blog/zwei-ebenen-zustand-und-interaktion): Field Notes #2. How a production agent system coordinates entirely through two existing SaaS tools, a project management tool as persistent state, a team chat as the interaction layer, instead of custom microservices. With audio summary.
+- [The Foundations Everything Runs On: State and Interaction (EN)](https://bumbleflies.de/en/blog/two-levels-state-interaction): English version of Field Notes #2. With audio summary.
 
 ## Pages
 
