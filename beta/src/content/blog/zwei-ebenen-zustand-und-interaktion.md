@@ -20,7 +20,7 @@ Wir haben es anders gemacht. Das gesamte Agenten-System, das ich mit meinen Koll
 
 Das erste Fundament ist ClickUp, das Projektmanagement-Tool, in dem JUNE ohnehin arbeitet. Es ist zweierlei zugleich: der **dauerhafte Speicher der Wahrheit** und die **Zündung** für Automatisierung.
 
-Jedes Arbeitselement wird als Ticket geboren oder gegen ein Ticket abgeglichen. Und jede Veränderung an einem Ticket ist ein Ereignis: ein Statuswechsel per Drag-and-Drop, ein neuer Kommentar, ein geändertes Feld. Diese Ereignistypen, Ticket erstellt, verschoben, kommentiert, aktualisiert, zünden praktisch jede Automatisierung im ganzen Stack. Das Prinzip heißt schlicht: **Veränderung → Aktion.**
+Jedes Arbeitselement wird als Ticket geboren oder gegen ein Ticket abgeglichen. Und jede Veränderung an einem Ticket ist ein Ereignis: ein Statuswechsel per Drag-and-Drop, ein neuer Kommentar, ein geändertes Feld. Diese Ereignistypen (Ticket erstellt, verschoben, kommentiert, aktualisiert) zünden praktisch jede Automatisierung im ganzen Stack. Das Prinzip heißt schlicht: **Veränderung → Aktion.**
 
 Ein paar Details, die aus der Praxis stammen und die zeigen, dass „ein Ticket-Tool als Datenbank benutzen" mehr Disziplin verlangt, als es klingt:
 
@@ -28,7 +28,7 @@ Ein paar Details, die aus der Praxis stammen und die zeigen, dass „ein Ticket-
 
 - **Sentinel-Kommentare als Zustand.** Maschinenlesbare Marker in Kommentaren tragen wiederaufnehmbaren Zustand über Sitzungsgrenzen hinweg. Wenn ein Agent mitten in einem mehrstündigen Rollout neu startet, liest er aus diesen Markern, wo er war. Der Zustand lebt im Ticket, nicht im Arbeitsspeicher eines Prozesses.
 
-- **Kein globales „erledigt".** Eine Lektion, die weh tat: Verschiedene Listen benutzen verschiedene Namen für den Abschluss-Status, mal „complete", mal „Closed", mal „resolved". Man kann nicht hart auf einen Namen prüfen. Jede Automatisierung fragt pro Liste ab, welcher Status als „geschlossen" gilt. Solche Kleinigkeiten trennen ein Demo-System von einem, das drei Jahre lang läuft.
+- **Kein globales „erledigt".** Eine Lektion, die weh tat: Verschiedene Listen benutzen verschiedene Namen für den Abschluss-Status, mal „complete", mal „Closed", mal „resolved". Man kann nicht auf einen hartcodierten Namen prüfen. Jede Automatisierung fragt pro Liste ab, welcher Status als „geschlossen" gilt. Solche Kleinigkeiten trennen ein Demo-System von einem, das drei Jahre lang läuft.
 
 Der Vorteil: Alles ist für Menschen einsehbar. Wenn ein Agent etwas tut, steht es als Kommentar oder Statuswechsel im Ticket, nicht in einem Log, das niemand liest.
 
