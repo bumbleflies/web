@@ -1,7 +1,7 @@
 ---
 title: "The Foundations Everything Runs On: State and Interaction"
 description: "Why an entire AI agent system coordinates through standard SaaS tools rather than custom microservices, and what that reveals about robust agent architecture."
-excerpt: "The project management tool is the storage of truth and the ignition. The team chat is the second foundation: interaction and transport. Agents coordinate through persistent artifacts, not direct calls."
+excerpt: "The project management tool is the source of truth and the ignition. The team chat is the second foundation: interaction and transport. Agents coordinate through persistent artifacts, not direct calls."
 category: "Architecture"
 image: "/images/blog/zwei-ebenen-zustand-und-interaktion.svg"
 order: 2
@@ -18,9 +18,9 @@ We did it differently. The entire agent system my colleagues and I built at JUNE
 
 ## Foundation 1: the project management tool as the state foundation
 
-The first foundation is ClickUp, the project management tool JUNE already works in. It serves two purposes: **persistent storage of truth** and **ignition** for automation.
+The first foundation is ClickUp, the project management tool JUNE already works in. It serves two purposes: **persistent source of truth** and **ignition** for automation.
 
-Every work item is born as a ticket or reconciled against a ticket. And every change to a ticket is an event: a drag-and-drop status change, a new comment, a modified field. These event types, ticket created, moved, commented, updated, trigger practically every automation in the entire stack. The principle is simply: **change → action.**
+Every work item is born as a ticket or reconciled against a ticket. And every change to a ticket is an event: a drag-and-drop status change, a new comment, a modified field. These event types (ticket created, moved, commented, updated) trigger practically every automation in the entire stack. The principle is simply: **change → action.**
 
 A few details from practice that show "using a ticket tool as a database" takes more discipline than it sounds:
 
