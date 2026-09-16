@@ -27,7 +27,7 @@ Alles am Cockpit folgt aus zwei Zusagen:
 
 Das Herz ist ein Fächer aus **Scannern**, je einer pro Quelle, alle gleichzeitig gestartet. Jeder Scanner bekommt denselben Auftrag und muss ein streng strukturiertes JSON-Ergebnis zurückgeben.
 
-Die wichtigste Regel dabei: Ein Scanner **scheitert nie.** Wenn eine Quelle nicht erreichbar ist, gibt er keinen Fehler zurück, sondern ein sauberes „nicht verfügbar, Grund: …". Damit kann eine tote Quelle niemals den ganzen Lauf abbrechen. Das ist dieselbe Fehlertoleranz-Philosophie wie im Nervensystem: Das System degradiert würdevoll, statt umzukippen.
+Ein Scanner **scheitert nie.** Wenn eine Quelle nicht erreichbar ist, gibt er keinen Fehler zurück, sondern ein sauberes „nicht verfügbar, Grund: …". Damit kann eine tote Quelle niemals den ganzen Lauf abbrechen. Das ist dieselbe Fehlertoleranz wie im Nervensystem: Das System degradiert würdevoll, statt umzukippen.
 
 Und weil das strukturierte Ergebnis strikt validiert wird, bevor irgendetwas ihm vertraut, kann ein einzelner Scanner, der halluziniert oder Müll liefert, den Plan nicht vergiften. **Vertraue dem Modell nicht, verifiziere mit Code**, auch hier.
 
@@ -35,7 +35,7 @@ Und weil das strukturierte Ergebnis strikt validiert wird, bevor irgendetwas ihm
 
 Ein Detail hebt das Cockpit heraus. Einer dieser Scanner liest die **eigene Gesprächshistorie von Claude Code**, die Protokolle der KI-Sitzungen des Menschen. Warum? Weil dort Verpflichtungen liegen, die man mündlich gegenüber der KI eingegangen ist („ich mache später X"), offene Fragen, angefangene Arbeitsschritte. Der Scanner holt diese in Arbeit befindlichen Zusagen zurück an die Oberfläche, damit sie nicht im Sitzungsverlauf versickern.
 
-Ein Agent, der über die Arbeit eines Menschen mit anderen Agenten reflektiert. Das ist die vielleicht unerwartetste, aber logischste Konsequenz eines Systems, in dem Mensch und KI ständig zusammenarbeiten.
+Ein Agent, der über die Arbeit eines Menschen mit anderen Agenten reflektiert.
 
 Der Historie-Scanner ist der neueste davon, und die ehrliche Antwort ist, dass ich noch nicht weiß, ob er eine gute Idee ist oder nur eine seltsame. Er holt Zusagen an die Oberfläche, die ich sonst vergessen würde, aber er holt auch Rauschen hoch. Es ist der Scanner, bei dem ich mir am wenigsten sicher bin.
 

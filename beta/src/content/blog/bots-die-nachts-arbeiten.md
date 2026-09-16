@@ -38,9 +38,9 @@ Im Kern ruft der Bootstrap Claude Code im **Headless-Modus** (ohne interaktive B
 
 Der Agent darf pushen, darf Pull-Requests öffnen, aber der Merge in die Hauptlinie bleibt eine menschliche Entscheidung. Das ist die „Hand am Bremshebel", von der sich das ganze System leiten lässt. Weil die Berechtigungen übersprungen sind, muss dieser Stopp ein *harter* Code-Stopp sein. Eine bloße Prompt-Regel wäre nur ein Ratschlag, den das Modell im Eifer ignorieren könnte.
 
-## Die Lektionen, und warum sie das Wertvollste sind
+## Die Lektionen
 
-Jetzt zum ehrlichen Teil. Fast jede Leitplanke in diesem System lässt sich auf eine konkrete Erfahrung aus dem Betrieb zurückführen. Das ist keine Peinlichkeit, sondern die Methode: **Das System wächst, indem es seine eigenen Fehler in Code gießt.**
+Fast jede Leitplanke in diesem System lässt sich auf eine konkrete Erfahrung aus dem Betrieb zurückführen. Das ist keine Peinlichkeit, sondern die Methode: **Das System wächst, indem es seine eigenen Fehler in Code gießt.**
 
 **Die Nacht im Leerlauf.** Der Chat-Token eines Agenten war abgelaufen. Der Poll interpretierte das als „es gibt Arbeit" und feuerte immer wieder das Sprachmodell, um das vermeintliche Problem zu „lösen", die ganze Nacht. Am Morgen: eine Menge Token-Kosten für nichts. Die Antwort waren *mehrere* unabhängige Ausgaben-Wächter: ein stiller Token-Refresh, der zuerst versucht, das Problem ohne Modell zu lösen; eine Fehler-Zustandsmaschine, die nach wiederholten Fehlschlägen stark drosselt; und eine Wochenlimit-Markierung. Seither feuert ein abgelaufener Token *nie* das Modell, er überspringt einfach den Tick.
 
@@ -52,11 +52,11 @@ Die Wächter haben das Verbrennen gestoppt, aber sie haben einen eigenen Fehlerm
 
 **„Verlasse dich nie auf die Absender-Identität."** Weil der Agent über den Token eines Menschen postet, teilen sich Agent und Mensch einen Anzeigenamen. Ein Fall, in dem der Agent auf seine eigene Statusnachricht reagierte, weil darin das Triggerwort vorkam, führte zur Regel: Alles macht sich an Nachrichten-IDs fest, nie an der Anzeige-Identität.
 
-**„Gemacht zählt erst als gelernt, wenn es geschrieben steht."** Der Test-Agent, der die Anwendung im Browser durchklickt, führt eine eigene Wissensbasis über die Oberfläche des Produkts. Der Leitsatz dahinter ist zugleich die vielleicht beste Zusammenfassung des ganzen Ansatzes: Erfahrung, die nirgends notiert wird, ist verloren. Also schreiben die Agenten ihre Lektionen auf und pushen sie, deploy-neutral, sofort für alle verfügbar.
+**„Gemacht zählt erst als gelernt, wenn es geschrieben steht."** Der Test-Agent, der die Anwendung im Browser durchklickt, führt eine eigene Wissensbasis über die Oberfläche des Produkts. Der Leitsatz dahinter: Erfahrung, die nirgends notiert wird, ist verloren. Also schreiben die Agenten ihre Lektionen auf und pushen sie, deploy-neutral, sofort für alle verfügbar.
 
 ## Die selbstlernende Säule
 
-Genau das ist der Grund, warum diese Agenten über die Monate besser werden, statt gleich schlecht zu bleiben: Sie schreiben nach jedem Review, nach jeder Korrektur generalisierbare Regeln in eine Wissensbasis und teilen sie. Der Entwickler-Agent lernt Konventionen des Frontends, der Support-Agent lernt die Choreografie eines Rollouts, der Test-Agent lernt die Eigenheiten der Oberfläche. **Die Werkzeuge verbessern die Dokumente, die die Werkzeuge steuern**, dasselbe Kompound-Muster wie im Marktplatz.
+Diese Agenten werden über die Monate besser, statt gleich schlecht zu bleiben: Sie schreiben nach jedem Review, nach jeder Korrektur generalisierbare Regeln in eine Wissensbasis und teilen sie. Der Entwickler-Agent lernt Konventionen des Frontends, der Support-Agent lernt die Choreografie eines Rollouts, der Test-Agent lernt die Eigenheiten der Oberfläche. **Die Werkzeuge verbessern die Dokumente, die die Werkzeuge steuern**, dasselbe Kompound-Muster wie im Marktplatz.
 
 ## Was man daraus mitnimmt
 

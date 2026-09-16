@@ -27,7 +27,7 @@ Everything about the cockpit follows from two commitments:
 
 The heart is a fan of **scanners**, one per source, all started simultaneously. Each scanner gets the same assignment and must return a strictly structured JSON result.
 
-The most important rule: a scanner **never fails.** If a source is unreachable, it doesn't return an error but a clean "not available, reason: …". This way a dead source can never abort the entire run. It's the same fault tolerance philosophy as in the nervous system: the system degrades gracefully instead of crashing.
+A scanner **never fails.** If a source is unreachable, it doesn't return an error but a clean "not available, reason: …". This way a dead source can never abort the entire run. It's the same fault tolerance as in the nervous system: the system degrades gracefully instead of crashing.
 
 And because the structured result is strictly validated before anything trusts it, a single scanner that hallucinates or delivers garbage can't poison the plan. **Don't trust the model, verify with code**, here too.
 
@@ -35,7 +35,7 @@ And because the structured result is strictly validated before anything trusts i
 
 One detail sets the cockpit apart. One of these scanners reads the **conversation history of Claude Code itself**, the logs of the human's AI sessions. Why? Because commitments live there that you've made orally to the AI ("I'll do X later"), open questions, started work steps. The scanner brings these in-progress commitments back to the surface so they don't sink in the session history.
 
-An agent reflecting on a human's work with other agents. That's perhaps the most unexpected, but logical, consequence of a system where human and AI constantly collaborate.
+An agent reflecting on a human's work with other agents.
 
 The history scanner is the newest of them, and the honest answer is that I don't know yet whether it's a good idea or just a strange one. It surfaces commitments I'd otherwise forget, but it also surfaces noise. It's the scanner I'm least sure about.
 

@@ -28,7 +28,7 @@ Ein paar Details, die aus der Praxis stammen und die zeigen, dass „ein Ticket-
 
 - **Sentinel-Kommentare als Zustand.** Maschinenlesbare Marker in Kommentaren tragen wiederaufnehmbaren Zustand über Sitzungsgrenzen hinweg. Wenn ein Agent mitten in einem mehrstündigen Rollout neu startet, liest er aus diesen Markern, wo er war. Der Zustand lebt im Ticket, nicht im Arbeitsspeicher eines Prozesses.
 
-- **Kein globales „erledigt".** Eine Lektion, die weh tat: Verschiedene Listen benutzen verschiedene Namen für den Abschluss-Status, mal „complete", mal „Closed", mal „resolved". Man kann nicht auf einen hartcodierten Namen prüfen. Jede Automatisierung fragt pro Liste ab, welcher Status als „geschlossen" gilt. Solche Kleinigkeiten trennen ein Demo-System von einem, das drei Jahre lang läuft.
+- **Kein globales „erledigt".** Eine Lektion, die weh tat: Verschiedene Listen benutzen verschiedene Namen für den Abschluss-Status, mal „complete", mal „Closed", mal „resolved". Man kann nicht auf einen hartcodierten Namen prüfen. Jede Automatisierung fragt pro Liste ab, welcher Status als „geschlossen" gilt.
 
 Der Vorteil: Alles ist für Menschen einsehbar. Wenn ein Agent etwas tut, steht es als Kommentar oder Statuswechsel im Ticket, nicht in einem Log, das niemand liest.
 
@@ -45,7 +45,7 @@ Der Chat ist mehrfach belastet:
 
 ## Das schwierigste Detail: Identität
 
-Der lehrreichste Teil dieses Fundaments ist die Identität, und er ist zugleich die Warnung an alle, die so etwas nachbauen.
+Am meisten gelernt habe ich an der Identität, und genau da liegt die Falle für alle, die so etwas nachbauen.
 
 Die Agenten posten über den OAuth-Token eines menschlichen Betreibers. Das heißt: In der Chat-Oberfläche teilen sich Agent und Mensch einen Anzeigenamen. Man kann sich also **niemals auf die `from.user`-Identität verlassen**, um zu erkennen, ob eine Nachricht von einem Menschen oder vom Agenten kam. Die gesamte Logik muss sich stattdessen an Nachrichten-IDs festmachen: „Diese Antwort habe *ich* gepostet, jene nicht."
 
@@ -53,7 +53,7 @@ Der Agent-zu-Agent-Bus treibt denselben Trick ins Positive: Alle Agenten posten 
 
 ## Warum das die richtige Architektur ist
 
-Man könnte all das mit eigenen Services und einer Message-Queue bauen. Ich habe es bewusst nicht getan, aus mehreren Gründen, die für jedes Agenten-System gelten:
+Man könnte all das mit eigenen Services und einer Message-Queue bauen. Ich habe es bewusst nicht getan, aus drei Gründen:
 
 1. **Wiederaufnehmbarkeit.** Zustand, der in einem Ticket-Kommentar lebt, überlebt jeden Neustart, jedes Deployment, jeden Absturz. Ein Agent kann jederzeit dort weitermachen, wo er aufgehört hat, weil der Zustand nicht in seinem Prozess steckt.
 
@@ -61,7 +61,7 @@ Man könnte all das mit eigenen Services und einer Message-Queue bauen. Ich habe
 
 3. **Menschen und Maschinen sprechen dieselbe Sprache.** Ein Mensch, ein Agent und ein zeitgesteuerter Job benutzen dasselbe Vokabular: dieselben Tickets, dieselben Tags, dieselben Steuerwörter. Es gibt kein „Maschinen-Interface" neben dem „Menschen-Interface".
 
-Die Regel nach einem Jahr Produktivbetrieb ist nicht verhandelbar: **Koordiniere Agenten über dauerhafte, für Menschen einsehbare Artefakte, nicht über direkte Aufrufe.** Die Werkzeuge, in denen das Team ohnehin arbeitet, sind meist die beste Koordinationsschicht, die man bekommen kann, sobald man ihre Kanten gut genug kennt, um ihnen zu vertrauen.
+**Agenten koordinieren sich über dauerhafte, für Menschen einsehbare Artefakte, nicht über direkte Aufrufe.** Nach einem Jahr Produktivbetrieb würde ich es nicht mehr anders bauen. Die Werkzeuge, in denen das Team ohnehin arbeitet, sind meist die beste Koordinationsschicht, die man bekommen kann, sobald man ihre Kanten gut genug kennt, um ihnen zu vertrauen.
 
 Ich weiß auch noch nicht, wo dieser Ansatz an seine Grenze stößt. Der Kommentar-Befehlsbus und die Sentinel-Kommentare laufen seit über einem Jahr, aber beide sind, ehrlich gesagt, Hacks auf einem Tool, das nie als Datenbank gedacht war. Irgendwann finde ich die Grenze, ich weiß nur noch nicht, wo sie liegt.
 

@@ -28,7 +28,7 @@ A few details from practice that show "using a ticket tool as a database" takes 
 
 - **Sentinel comments as state.** Machine-readable markers in comments carry resumable state across session boundaries. When an agent restarts mid-way through a multi-hour rollout, it reads from these markers to know where it was. The state lives in the ticket, not in a process's memory.
 
-- **No global "done".** A lesson that hurt: different lists use different names for completion status, sometimes "complete", sometimes "Closed", sometimes "resolved". You can't hard-check for one name. Every automation queries per list which status counts as "closed". These small things separate a demo system from one that runs for three years.
+- **No global "done".** A lesson that hurt: different lists use different names for completion status, sometimes "complete", sometimes "Closed", sometimes "resolved". You can't hard-check for one name. Every automation queries per list which status counts as "closed".
 
 The advantage: everything is visible to humans. When an agent does something, it appears as a comment or status change in the ticket, not in a log nobody reads.
 
@@ -45,7 +45,7 @@ The chat carries several loads simultaneously:
 
 ## The hardest detail: identity
 
-The most instructive part of this foundation is identity, and it's also the warning to anyone replicating this.
+Identity is where I learned the most, and it's where anyone replicating this is most likely to trip.
 
 The agents post via the OAuth token of a human operator. That means: in the chat interface, agent and human share a display name. So you can **never rely on `from.user` identity** to determine whether a message came from a human or the agent. All logic must instead anchor to message IDs: "This response *I* posted, that one I didn't."
 
@@ -53,7 +53,7 @@ The agent-to-agent bus takes the same trick further: all agents post under *one*
 
 ## Why this is the right architecture
 
-You could build all this with custom services and a message queue. I deliberately didn't, for several reasons that apply to any agent system:
+You could build all this with custom services and a message queue. I deliberately didn't, for three reasons:
 
 1. **Resumability.** State living in a ticket comment survives every restart, every deployment, every crash. An agent can pick up wherever it left off because the state isn't in its process.
 
@@ -61,7 +61,7 @@ You could build all this with custom services and a message queue. I deliberatel
 
 3. **Humans and machines speak the same language.** A human, an agent, and a scheduled job use the same vocabulary: the same tickets, the same tags, the same control words. There's no "machine interface" alongside the "human interface".
 
-The rule after a year of production is non-negotiable: **coordinate agents through persistent, human-visible artifacts, not through direct calls.** The tools the team already works in are usually the best coordination layer you can get, once you know their edges well enough to trust them.
+**Coordinate agents through persistent, human-visible artifacts, not through direct calls.** After a year in production, I wouldn't build it any other way. The tools the team already works in are usually the best coordination layer you can get, once you know their edges well enough to trust them.
 
 I also don't know yet where this approach hits its limit. The comment command bus and sentinel comments have run for over a year, but both are, honestly, hacks on top of a tool that was never meant to be a database. I'll find the limit eventually, I just don't know where it is yet.
 

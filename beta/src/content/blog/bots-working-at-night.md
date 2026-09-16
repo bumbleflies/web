@@ -38,9 +38,9 @@ At its core, the bootstrap calls Claude Code in headless mode, with permission p
 
 The agent may push, may open pull requests, but merging into the main line remains a human decision. That's the "hand on the brake lever" the entire system is guided by. Because permissions are skipped, this stop must be a *hard* code stop. A mere prompt rule would just be advice the model might ignore in the heat of the moment.
 
-## The lessons, and why they're the most valuable part
+## The lessons
 
-Now to the honest part. Nearly every guardrail in this system traces back to a concrete experience in day-to-day operation. That's not embarrassing, it's the method: **the system grows by pouring its own errors into code.**
+Nearly every guardrail in this system traces back to a concrete experience in day-to-day operation. That's not embarrassing, it's the method: **the system grows by pouring its own errors into code.**
 
 **The night in an idle loop.** An agent's chat token had expired. The poll interpreted this as "there's work" and fired the language model again and again to "solve" the supposed problem, all night long. In the morning: a lot of token cost for nothing. The answer was *several* independent cost guards: a silent token refresh that first tries to solve the problem without the model; an error state machine that throttles hard after repeated failures; and a weekly limit marker. Since then, an expired token *never* fires the model, it simply skips the tick.
 
@@ -52,11 +52,11 @@ The cost guards stopped the burning, but they brought their own failure mode: a 
 
 **"Never rely on sender identity."** Because the agent posts via a human's token, agent and human share a display name. A case where the agent reacted to its own status message, because it contained the trigger word, led to the rule: everything anchors to message IDs, never to the display identity.
 
-**"Done only counts as learned when it's written down."** The test agent, which clicks through the application in the browser, maintains its own knowledge base about the product's surface. The guiding principle behind it is also perhaps the best summary of the whole approach: experience that isn't recorded anywhere is lost. So the agents write down their lessons and push them, deploy-neutral, immediately available to all.
+**"Done only counts as learned when it's written down."** The test agent, which clicks through the application in the browser, maintains its own knowledge base about the product's surface. The guiding principle behind it: experience that isn't recorded anywhere is lost. So the agents write down their lessons and push them, deploy-neutral, immediately available to all.
 
 ## The self-learning pillar
 
-That's exactly why these agents get better over months instead of staying equally bad: after every review, every correction, they write generalizable rules to a knowledge base and share them. The developer agent learns frontend conventions, the support agent learns the choreography of a rollout, the test agent learns the quirks of the surface. **The tools improve the documents that control the tools**, the same compounding pattern as in the marketplace.
+These agents get better over months instead of staying equally bad: after every review, every correction, they write generalizable rules to a knowledge base and share them. The developer agent learns frontend conventions, the support agent learns the choreography of a rollout, the test agent learns the quirks of the surface. **The tools improve the documents that control the tools**, the same compounding pattern as in the marketplace.
 
 ## What to take from this
 

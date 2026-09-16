@@ -64,7 +64,7 @@ Mehrere Säulen, ein Arbeitsvorgang. Kein einziger Direktaufruf zwischen den Kom
 
 ## Die wiederkehrenden Prinzipien
 
-Über alle Säulen hinweg tauchen dieselben Entwurfsprinzipien auf, die sich durch alle Teile des Systems ziehen:
+Über alle Säulen hinweg tauchen dieselben Entwurfsprinzipien auf:
 
 **Vertraue dem Modell nicht, verifiziere mit Code.** Die durchgängige Antwort auf „Wie macht man ein Sprachmodell in Produktion sicher?" lautet: eine deterministische Grenze drumherum ziehen. Das Modell schreibt, ein Regex-Filter prüft, das Modell korrigiert, derselbe Filter prüft erneut, und blockiert im Zweifel.
 
@@ -76,7 +76,7 @@ Mehrere Säulen, ein Arbeitsvorgang. Kein einziger Direktaufruf zwischen den Kom
 
 **Mensch am Bremshebel.** Deutschsprachige Trigger, eine Rechts-Domäne und vor allem: Alle wirklich folgenreichen Aktionen (Freigaben, Merges, Produktiv-Deployments) brauchen eine explizite menschliche Bestätigung. Autonomie mit der Hand am Hebel.
 
-Es ist der aktuelle Zustand eines laufenden Systems, mit allen Lektionen, die darin stecken, und manche Entscheidungen darin sind mir bis heute nicht ganz geheuer.
+Das alles ist der aktuelle Zustand eines laufenden Systems, mit allen Lektionen, die darin stecken, und manche Entscheidungen darin sind mir bis heute nicht ganz geheuer.
 
 ## Was in dieser Serie kommt
 
