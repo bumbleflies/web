@@ -30,7 +30,7 @@ The rule that holds the entire marketplace together:
 
 So a skill is never "the model will figure it out". A skill is: the model makes the judgment call (which services are affected by the deployment? Is this review comment resolved or open?), and a deterministic script executes the mechanics.
 
-The reasoning is crystal clear:
+The reasons:
 
 - **Determinism**, no "the model forgot step 4 this time".
 - **Auditability**, you diff the script, not an AI conversation log.
@@ -39,17 +39,17 @@ The reasoning is crystal clear:
 
 Every script comes in two variants: one for Linux/Mac (agent containers, CI) and one for Windows (laptops). Same arguments, same exit code, same output. This means the *same* skill works identically for a human on Windows, an agent in a Linux container, and the CI pipeline. **One definition, many runtimes.**
 
-## An example of the sophistication: the deploy trio
+## The deploy trio
 
 Take deployment. Three skills together form a mini-compiler:
 
 The first takes a set of changed files and maps each to its deployment target, detects new database migrations, builds a structured deploy plan. The second executes this plan against a test environment. The third always targets production, fires database migrations first as a hard gate, then services in parallel.
 
-The clever part: the production deploy is **delivery-agnostic**. It doesn't know whether a human, a rollout script, or an agent called it. When a production approval is due, it emits a structured event, "approval needed", and leaves it to the caller to present this to the human. This exact design is why one and the same skill can serve a human, a rollout, and an autonomous agent identically.
+The production deploy is **delivery-agnostic**. It doesn't know whether a human, a rollout script, or an agent called it. When a production approval is due, it emits a structured event, "approval needed", and leaves it to the caller to present this to the human. That's why one and the same skill can serve a human, a rollout, and an autonomous agent identically.
 
 ## Knowledge that improves itself
 
-The most beautiful pattern in the marketplace is a learning loop. The migration playbook skill, which takes on clients from legacy systems, reads and writes a single canonical document. After each migration, a "capture learning" step appends the new insights to that exact document, and suggests changes to its own rules and effort tables.
+One pattern in the marketplace I particularly like: a learning loop. The migration playbook skill, which takes on clients from legacy systems, reads and writes a single canonical document. After each migration, a "capture learning" step appends the new insights to that exact document, and suggests changes to its own rules and effort tables.
 
 Which means: **the tool improves the document that controls the next tool.** Each migration makes the playbook better instead of remaining a one-off case. Knowledge compounds instead of weathering.
 

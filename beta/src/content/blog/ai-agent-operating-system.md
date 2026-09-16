@@ -64,7 +64,7 @@ Several pillars, one work process. Not a single direct call between components.
 
 ## The recurring principles
 
-The same design principles appear across all pillars, running through every part of the system:
+The same design principles appear across all pillars:
 
 **Don't trust the model, verify with code.** The consistent answer to "How do you make a language model safe in production?" is: draw a deterministic boundary around it. The model writes, a regex filter checks, the model corrects, the same filter checks again, and blocks if in doubt.
 
@@ -76,7 +76,7 @@ The same design principles appear across all pillars, running through every part
 
 **Human at the brake lever.** German-language triggers, a legal domain, and above all: every truly consequential action (approvals, merges, production deployments) requires explicit human confirmation. Autonomy with a hand on the lever.
 
-It's the current state of one running system, with every lesson that's baked into it, and there are decisions in here I'm still not sure about.
+All of it is the current state of one running system, with every lesson that's baked into it, and there are decisions in here I'm still not sure about.
 
 ## What's coming in this series
 

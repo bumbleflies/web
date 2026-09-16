@@ -30,7 +30,7 @@ Die Regel, die den ganzen Marktplatz zusammenhält:
 
 Ein Skill ist also nie „das Modell macht das schon irgendwie". Ein Skill ist: Das Modell trifft die Urteilsentscheidung (Welche Services sind vom Deployment betroffen? Ist dieser Review-Kommentar erledigt oder offen?), und ein deterministisches Skript führt die Mechanik aus.
 
-Die Begründung ist glasklar:
+Die Gründe:
 
 - **Determinismus**, kein „das Modell hat diesmal Schritt 4 vergessen".
 - **Auditierbarkeit**, man diffed das Skript, nicht einen KI-Gesprächsverlauf.
@@ -39,17 +39,17 @@ Die Begründung ist glasklar:
 
 Jedes Skript liegt in zwei Varianten vor: einer für Linux/Mac (die Agenten-Container, die CI) und einer für Windows (die Laptops). Gleiche Argumente, gleicher Exit-Code, gleiche Ausgabe. Dadurch funktioniert *derselbe* Skill identisch für einen Menschen unter Windows, einen Agenten im Linux-Container und die CI-Pipeline. **Eine Definition, viele Laufzeiten.**
 
-## Ein Beispiel für die Raffinesse: der Deploy-Dreiklang
+## Der Deploy-Dreiklang
 
 Ein Beispiel: das Deployment. Drei Skills bilden zusammen einen Mini-Compiler:
 
 Der erste nimmt eine Menge geänderter Dateien und ordnet jede ihrem Deployment-Ziel zu, erkennt neue Datenbank-Migrationen, bildet daraus einen strukturierten Deploy-Plan. Der zweite führt diesen Plan gegen eine Test-Umgebung aus. Der dritte zielt immer auf die Produktion, feuert die Datenbank-Migrationen zuerst als harte Sperre ab und danach die Services parallel.
 
-Der clevere Teil: Der Produktiv-Deploy ist **auslieferungs-agnostisch** (er weiß nicht, wer ihn ausgelöst hat). Er weiß nicht, ob ihn ein Mensch, ein Rollout-Skript oder ein Agent aufgerufen hat. Er gibt in dem Moment, in dem eine Produktions-Freigabe ansteht, ein strukturiertes Ereignis aus, „Freigabe nötig", und überlässt es dem Aufrufer, das dem Menschen zu präsentieren. Genau dieses Design ist der Grund, warum ein und derselbe Skill einen Menschen, ein Rollout und einen autonomen Agenten identisch bedienen kann.
+Der Produktiv-Deploy ist **auslieferungs-agnostisch** (er weiß nicht, wer ihn ausgelöst hat). Er weiß nicht, ob ihn ein Mensch, ein Rollout-Skript oder ein Agent aufgerufen hat. Er gibt in dem Moment, in dem eine Produktions-Freigabe ansteht, ein strukturiertes Ereignis aus, „Freigabe nötig", und überlässt es dem Aufrufer, das dem Menschen zu präsentieren. Deshalb kann ein und derselbe Skill einen Menschen, ein Rollout und einen autonomen Agenten identisch bedienen.
 
 ## Wissen, das sich selbst verbessert
 
-Das schönste Muster im Marktplatz ist eine Lernschleife. Der Migrations-Playbook-Skill, der Kunden von Altsystemen übernimmt, liest und schreibt ein einziges kanonisches Dokument. Nach jeder Migration hängt ein „Lernen-einfangen"-Schritt die neuen Erkenntnisse an genau dieses Dokument an, und schlägt Änderungen an seinen eigenen Regeln und Aufwands-Tabellen vor.
+Ein Muster im Marktplatz mag ich besonders: eine Lernschleife. Der Migrations-Playbook-Skill, der Kunden von Altsystemen übernimmt, liest und schreibt ein einziges kanonisches Dokument. Nach jeder Migration hängt ein „Lernen-einfangen"-Schritt die neuen Erkenntnisse an genau dieses Dokument an, und schlägt Änderungen an seinen eigenen Regeln und Aufwands-Tabellen vor.
 
 Das heißt: **Das Werkzeug verbessert das Dokument, das das nächste Werkzeug steuert.** Jede Migration macht das Playbook besser, statt ein Einzelfall zu bleiben. Wissen kompoundiert, statt zu verwittern.
 
