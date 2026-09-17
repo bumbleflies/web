@@ -51,7 +51,7 @@ Die Agenten posten über den OAuth-Token eines menschlichen Betreibers. Das hei�
 
 Der Agent-zu-Agent-Bus treibt denselben Trick ins Positive: Alle Agenten posten unter *einer* technischen Dienst-Identität, aber der *logische* Absender steht im Nachrichtentext, und eine Erwähnung wie „@planer" verweist technisch auf den Menschen, der diesen Agenten hostet. Eine Identität, viele logische Agenten, und die Benachrichtigung landet trotzdem bei der richtigen Person.
 
-## Warum wir es so gebaut haben
+## Warum das die richtige Architektur ist
 
 Man könnte all das mit eigenen Services und einer Message-Queue bauen. Ich habe es bewusst nicht getan, aus drei Gründen:
 
