@@ -1,7 +1,7 @@
 ---
 title: "The Foundations Everything Runs On: State and Interaction"
 description: "Why an entire AI agent system coordinates through standard SaaS tools rather than custom microservices, and what that reveals about robust agent architecture."
-excerpt: "The project management tool is the source of truth and the ignition. The team chat is the second foundation: interaction and transport. Agents coordinate through persistent artifacts, not direct calls."
+excerpt: "The project management tool is persistent state and the trigger for automation. The team chat is the second foundation: interaction and transport. Agents coordinate through persistent artifacts, not direct calls."
 category: "Architecture"
 image: "/images/blog/zwei-ebenen-zustand-und-interaktion.svg"
 order: 2
@@ -47,11 +47,11 @@ The chat carries several loads simultaneously:
 
 Identity is where I learned the most, and it's where anyone replicating this is most likely to trip.
 
-The agents post via the OAuth token of a human operator. That means that, in the chat interface, agent and human share a display name. So you can **never rely on the `from.user` identity** to determine whether a message came from a human or the agent. The logic must instead anchor to message IDs: "This response *I* posted, that one I didn't."
+The agents post via the OAuth token of a human operator. That means: in the chat interface, agent and human share a display name. So you can **never rely on `from.user` identity** to determine whether a message came from a human or the agent. All logic must instead anchor to message IDs: "This response *I* posted, that one I didn't."
 
 The agent-to-agent bus takes the same trick further: all agents post under *one* technical service identity, but the *logical* sender appears in the message text, and a mention like "@planner" technically points to the human hosting that agent. One identity, many logical agents, and the notification still lands with the right person.
 
-## Why we built it this way
+## Why this is the right architecture
 
 You could build all this with custom services and a message queue. I deliberately didn't, for three reasons:
 
@@ -63,6 +63,6 @@ You could build all this with custom services and a message queue. I deliberatel
 
 **Agents coordinate through persistent, human-visible artifacts, not direct calls.** After a year in production, I wouldn't build it any other way. The tools the team already works in can be a surprisingly good coordination layer, once you know their edges well enough to trust them.
 
-I also don't know yet where this approach hits its limit. The comment command bus and sentinel comments have run for over a year, but both are, honestly, hacks on top of a tool that was never meant to be a database. We'll hit that limit eventually. I just don't know where it is yet.
+I also don't know yet where this approach hits its limit. The comment command bus and sentinel comments have run for over a year, but both are, honestly, hacks on top of a tool that was never meant to be a database. I'll find the limit eventually, I just don't know where it is yet.
 
 In the next part, I go one step higher: into the nervous system that reacts to these events, and the multi-stage filter I use to keep the language model honest.
