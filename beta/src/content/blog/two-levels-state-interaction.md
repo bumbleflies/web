@@ -1,7 +1,7 @@
 ---
 title: "The Foundations Everything Runs On: State and Interaction"
 description: "Why an entire AI agent system coordinates through standard SaaS tools rather than custom microservices, and what that reveals about robust agent architecture."
-excerpt: "The project management tool is the source of truth and the ignition. The team chat is the second foundation: interaction and transport. Agents coordinate through persistent artifacts, not direct calls."
+excerpt: "The project management tool is persistent state and the trigger for automation. The team chat is the second foundation: interaction and transport. Agents coordinate through persistent artifacts, not direct calls."
 category: "Architecture"
 image: "/images/blog/zwei-ebenen-zustand-und-interaktion.svg"
 order: 2
@@ -12,23 +12,23 @@ published: true
 lang: "EN"
 ---
 
-When you build a system of autonomous agents, the most tempting idea is to have them talk directly to each other. Agent A calls an API from Agent B, which sends a message to Service C. After a few weeks, you have a web of direct calls that nobody can keep track of, that loses state on every restart, and that you can't trace when something goes wrong at night.
+The obvious idea with autonomous agents is to have them talk directly to each other. Agent A calls Agent B, which sends something to Service C. After a few weeks, you have a web of direct calls that nobody can keep track of, that loses state on every restart, and that you can't trace when something goes wrong at night.
 
 We did it differently. The entire agent system my colleagues and I built at JUNE, a German legal-tech company, coordinates through **foundations made of standard tools**, and almost no component calls another directly.
 
 ## Foundation 1: the project management tool as the state foundation
 
-The first foundation is ClickUp, the project management tool JUNE already works in. It serves two purposes: **persistent source of truth** and **ignition** for automation.
+The first foundation is ClickUp, the project management tool JUNE already works in. It serves two purposes: **persistent state** and **the trigger for automation**.
 
-Every work item is born as a ticket or reconciled against a ticket. And every change to a ticket is an event: a drag-and-drop status change, a new comment, a modified field. These event types (ticket created, moved, commented, updated) trigger practically every automation in the entire stack. The principle is simply: **change → action.**
+Every work item is born as a ticket or reconciled against a ticket. And every change to a ticket is an event: a drag-and-drop status change, a new comment, a modified field. Those changes generate the events that trigger practically every automation in the stack: created, moved, commented, updated. The principle is simply: **change → action.**
 
 A few details from practice that show "using a ticket tool as a database" takes more discipline than it sounds:
 
-- **The comment command bus.** Comments whose first word is a fixed control word become commands. A human can type them, an agent can post them, and both are forever logged in the ticket. The entire release pipeline is controlled through this one, auditable channel, no separate dashboard, no hidden API.
+- **The comment command bus.** Comments whose first word is a fixed control word become commands. A human can type them, an agent can post them, and both are permanently logged in the ticket. The entire release pipeline is controlled through this one, auditable channel, with no separate dashboard and no hidden API.
 
-- **Sentinel comments as state.** Machine-readable markers in comments carry resumable state across session boundaries. When an agent restarts mid-way through a multi-hour rollout, it reads from these markers to know where it was. The state lives in the ticket, not in a process's memory.
+- **Sentinel comments as state.** Machine-readable markers in comments carry resumable state across session boundaries. When an agent restarts midway through a multi-hour rollout, it reads these markers to know where it was. The state lives in the ticket, not in a process's memory.
 
-- **No global "done".** A lesson that hurt: different lists use different names for completion status, sometimes "complete", sometimes "Closed", sometimes "resolved". You can't hard-check for one name. Every automation queries per list which status counts as "closed".
+- **No global "done".** A lesson that hurt: different lists use different names for completion status, sometimes "complete", sometimes "Closed", sometimes "resolved". You can't hard-code one name. Every automation queries each list for the status that counts as "closed".
 
 The advantage: everything is visible to humans. When an agent does something, it appears as a comment or status change in the ticket, not in a log nobody reads.
 
@@ -36,9 +36,9 @@ The advantage: everything is visible to humans. When an agent does something, it
 
 The second foundation is Microsoft Teams, the chat where the team already communicates. This is where autonomy meets the human.
 
-The chat carries several loads simultaneously:
+The chat takes on several tasks at once:
 
-- It's the **sole trigger** for autonomous agents. No webhook, just a simple, short-interval poll looking for a trigger word. That sounds primitive, but it's robust: no webhook registration that can break, no externally exposed interface.
+- It's the **sole trigger** for autonomous agents. No webhook. Just a simple, short-interval poll looking for a trigger word. That sounds primitive, but it's robust: no webhook registration that can break, no externally exposed interface.
 - It's the channel where agents **report status back**, directly in the thread the human is watching.
 - It's the **agent-to-agent bus**: a shared group chat where agents on different machines register, mention each other, and leave threads.
 - It's a **scan source** for the personal cockpit.
@@ -57,11 +57,11 @@ You could build all this with custom services and a message queue. I deliberatel
 
 1. **Resumability.** State living in a ticket comment survives every restart, every deployment, every crash. An agent can pick up wherever it left off because the state isn't in its process.
 
-2. **Auditability.** Every coordination is a visible artifact. You don't have to guess why an agent did something at night, it's there as a comment with a timestamp.
+2. **Auditability.** Every coordination is a visible artifact. You don't have to guess why an agent did something at night; it's there as a comment with a timestamp.
 
 3. **Humans and machines speak the same language.** A human, an agent, and a scheduled job use the same vocabulary: the same tickets, the same tags, the same control words. There's no "machine interface" alongside the "human interface".
 
-**Coordinate agents through persistent, human-visible artifacts, not through direct calls.** After a year in production, I wouldn't build it any other way. The tools the team already works in are usually the best coordination layer you can get, once you know their edges well enough to trust them.
+**Agents coordinate through persistent, human-visible artifacts, not direct calls.** After a year in production, I wouldn't build it any other way. The tools the team already works in can be a surprisingly good coordination layer, once you know their edges well enough to trust them.
 
 I also don't know yet where this approach hits its limit. The comment command bus and sentinel comments have run for over a year, but both are, honestly, hacks on top of a tool that was never meant to be a database. I'll find the limit eventually, I just don't know where it is yet.
 
