@@ -1,7 +1,7 @@
 ---
 title: "Die Fundamente, auf denen alles läuft: Zustand und Interaktion"
 description: "Warum ein ganzes KI-Agenten-System über Standard-SaaS-Tools koordiniert statt über eigene Microservices, und was das über robuste Agenten-Architektur verrät."
-excerpt: "Das Projektmanagement-Tool ist der Speicher der Wahrheit und die Zündung. Der Team-Chat ist das zweite Fundament: Interaktion und Transport. Agenten koordinieren sich über dauerhafte Artefakte, nicht über direkte Aufrufe."
+excerpt: "Das Projektmanagement-Tool ist der dauerhafte Ort, an dem der Zustand liegt und der Auslöser für Automatisierung. Der Team-Chat ist das zweite Fundament: Interaktion und Transport. Agenten koordinieren sich über dauerhafte Artefakte, nicht über direkte Aufrufe."
 category: "Architektur"
 image: "/images/blog/zwei-ebenen-zustand-und-interaktion.svg"
 order: 2
@@ -24,11 +24,11 @@ Jedes Arbeitselement wird als Ticket geboren oder gegen ein Ticket abgeglichen. 
 
 Ein paar Details, die aus der Praxis stammen und die zeigen, dass „ein Ticket-Tool als Datenbank benutzen" mehr Disziplin verlangt, als es klingt:
 
-- **Der Kommentar-Befehlsbus.** Kommentare, deren erstes Wort ein festes Steuerwort ist, werden zu Kommandos. Ein Mensch kann sie tippen, ein Agent kann sie posten, und beide sind für immer im Ticket protokolliert. Die gesamte Release-Pipeline wird über diesen einen, auditierbaren Kanal gesteuert, kein separates Dashboard, keine versteckte API.
+- **Der Kommentar-Befehlsbus.** Kommentare, deren erstes Wort ein festes Steuerwort ist, werden zu Kommandos. Ein Mensch kann sie tippen, ein Agent kann sie posten, und beide sind dauerhaft im Ticket protokolliert. Die gesamte Release-Pipeline wird über diesen einen, auditierbaren Kanal gesteuert, ohne separates Dashboard und ohne versteckte API.
 
 - **Sentinel-Kommentare als Zustand.** Maschinenlesbare Marker in Kommentaren tragen wiederaufnehmbaren Zustand über Sitzungsgrenzen hinweg. Wenn ein Agent mitten in einem mehrstündigen Rollout neu startet, liest er aus diesen Markern, wo er war. Der Zustand lebt im Ticket, nicht im Arbeitsspeicher eines Prozesses.
 
-- **Kein globales „erledigt".** Eine Lektion, die weh tat: Verschiedene Listen benutzen verschiedene Namen für den Abschluss-Status, mal „complete", mal „Closed", mal „resolved". Auf einen fest codierten Namen kann man deshalb nicht prüfen. Jede Automatisierung fragt pro Liste ab, welcher Status als „geschlossen" gilt.
+- **Kein globales „erledigt".** Eine Lektion, die weh tat: Verschiedene Listen benutzen verschiedene Namen für den Abschluss-Status, mal „complete", mal „Closed", mal „resolved". Auf einen hartcodierten Namen kann man deshalb nicht prüfen. Jede Automatisierung fragt pro Liste ab, welcher Status als „geschlossen" gilt.
 
 Der Vorteil: Alles ist für Menschen einsehbar. Wenn ein Agent etwas tut, steht es als Kommentar oder Statuswechsel im Ticket, nicht in einem Log, das niemand liest.
 
@@ -57,12 +57,12 @@ Man könnte all das mit eigenen Services und einer Message-Queue bauen. Ich habe
 
 1. **Wiederaufnehmbarkeit.** Zustand, der in einem Ticket-Kommentar lebt, überlebt jeden Neustart, jedes Deployment, jeden Absturz. Ein Agent kann jederzeit dort weitermachen, wo er aufgehört hat, weil der Zustand nicht in seinem Prozess steckt.
 
-2. **Auditierbarkeit.** Jede Koordination ist ein sichtbares Artefakt. Man muss nicht raten, warum ein Agent nachts etwas getan hat, es steht als Kommentar da, mit Zeitstempel.
+2. **Auditierbarkeit.** Jede Koordination ist ein sichtbares Artefakt. Man muss nicht raten, warum ein Agent nachts etwas getan hat; es steht als Kommentar da, mit Zeitstempel.
 
 3. **Menschen und Maschinen sprechen dieselbe Sprache.** Ein Mensch, ein Agent und ein zeitgesteuerter Job benutzen dasselbe Vokabular: dieselben Tickets, dieselben Tags, dieselben Steuerwörter. Es gibt kein „Maschinen-Interface" neben dem „Menschen-Interface".
 
 **Agenten koordinieren sich über dauerhafte, für Menschen einsehbare Artefakte, nicht über direkte Aufrufe.** Nach einem Jahr Produktivbetrieb würde ich es nicht mehr anders bauen. Die Werkzeuge, in denen das Team ohnehin arbeitet, können eine erstaunlich gute Koordinationsschicht sein, wenn man ihre Kanten gut genug kennt, um ihnen zu vertrauen.
 
-Ich weiß auch noch nicht, wo dieser Ansatz an seine Grenze stößt. Der Kommentar-Befehlsbus und die Sentinel-Kommentare laufen seit über einem Jahr, aber beide sind, ehrlich gesagt, Hacks auf einem Tool, das nie als Datenbank gedacht war. Irgendwann stoßen wir an diese Grenze. Ich weiß nur noch nicht, wo sie liegt.
+Ich weiß auch noch nicht, wo dieser Ansatz an seine Grenze stößt. Der Kommentar-Befehlsbus und die Sentinel-Kommentare laufen seit über einem Jahr, aber beide sind, ehrlich gesagt, Hacks auf einem Tool, das nie als Datenbank gedacht war. Ich werde die Grenze irgendwann finden, ich weiß nur noch nicht, wo sie liegt.
 
 Im nächsten Teil geht es eine Stufe höher: in das Nervensystem, das auf diese Ereignisse reagiert, und in den mehrstufigen Filter, mit dem ich das Sprachmodell ehrlich halte.
