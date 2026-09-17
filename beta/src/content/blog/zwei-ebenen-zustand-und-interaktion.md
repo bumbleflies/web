@@ -12,15 +12,15 @@ published: true
 lang: "DE"
 ---
 
-Wenn man ein System aus autonomen Agenten baut, ist die verführerischste Idee, sie direkt miteinander reden zu lassen. Agent A ruft eine API von Agent B auf, der schickt eine Nachricht an Dienst C. Nach ein paar Wochen hat man ein Geflecht aus Direktaufrufen, das niemand mehr überblickt, das bei jedem Neustart Zustand verliert und das man nicht nachvollziehen kann, wenn nachts etwas schiefgeht.
+Die naheliegende Idee bei autonomen Agenten ist: Sie reden direkt miteinander. Agent A ruft Agent B auf, der schickt etwas an Dienst C. Nach ein paar Wochen hat man ein Geflecht aus Direktaufrufen, das niemand mehr überblickt, das bei jedem Neustart Zustand verliert und das man nicht nachvollziehen kann, wenn nachts etwas schiefgeht.
 
 Wir haben es anders gemacht. Das gesamte Agenten-System, das ich mit meinen Kolleg:innen bei JUNE gebaut habe, einem deutschen Legal-Tech-Unternehmen, koordiniert über **Fundamente aus Standard-Tools**, und fast keine Komponente ruft eine andere direkt auf.
 
 ## Fundament 1: das Projektmanagement-Tool als Zustandsfundament
 
-Das erste Fundament ist ClickUp, das Projektmanagement-Tool, in dem JUNE ohnehin arbeitet. Es ist zweierlei zugleich: der **dauerhafte Speicher der Wahrheit** und die **Zündung** für Automatisierung.
+Das erste Fundament ist ClickUp, das Projektmanagement-Tool, in dem JUNE ohnehin arbeitet. Es ist beides zugleich: der **dauerhafte Ort, an dem der Zustand liegt**, und der **Auslöser** für Automatisierung.
 
-Jedes Arbeitselement wird als Ticket geboren oder gegen ein Ticket abgeglichen. Und jede Veränderung an einem Ticket ist ein Ereignis: ein Statuswechsel per Drag-and-Drop, ein neuer Kommentar, ein geändertes Feld. Diese Ereignistypen (Ticket erstellt, verschoben, kommentiert, aktualisiert) zünden praktisch jede Automatisierung im ganzen Stack. Das Prinzip heißt schlicht: **Veränderung → Aktion.**
+Jedes Arbeitselement wird als Ticket geboren oder gegen ein Ticket abgeglichen. Und jede Veränderung an einem Ticket ist ein Ereignis: ein Statuswechsel per Drag-and-Drop, ein neuer Kommentar, ein geändertes Feld. Aus diesen Veränderungen entstehen die Ereignisse, die praktisch jede Automatisierung im Stack auslösen: erstellt, verschoben, kommentiert, aktualisiert. Das Prinzip heißt schlicht: **Veränderung → Aktion.**
 
 Ein paar Details, die aus der Praxis stammen und die zeigen, dass „ein Ticket-Tool als Datenbank benutzen" mehr Disziplin verlangt, als es klingt:
 
@@ -28,7 +28,7 @@ Ein paar Details, die aus der Praxis stammen und die zeigen, dass „ein Ticket-
 
 - **Sentinel-Kommentare als Zustand.** Maschinenlesbare Marker in Kommentaren tragen wiederaufnehmbaren Zustand über Sitzungsgrenzen hinweg. Wenn ein Agent mitten in einem mehrstündigen Rollout neu startet, liest er aus diesen Markern, wo er war. Der Zustand lebt im Ticket, nicht im Arbeitsspeicher eines Prozesses.
 
-- **Kein globales „erledigt".** Eine Lektion, die weh tat: Verschiedene Listen benutzen verschiedene Namen für den Abschluss-Status, mal „complete", mal „Closed", mal „resolved". Man kann nicht auf einen hartcodierten Namen prüfen. Jede Automatisierung fragt pro Liste ab, welcher Status als „geschlossen" gilt.
+- **Kein globales „erledigt".** Eine Lektion, die weh tat: Verschiedene Listen benutzen verschiedene Namen für den Abschluss-Status, mal „complete", mal „Closed", mal „resolved". Auf einen fest codierten Namen kann man deshalb nicht prüfen. Jede Automatisierung fragt pro Liste ab, welcher Status als „geschlossen" gilt.
 
 Der Vorteil: Alles ist für Menschen einsehbar. Wenn ein Agent etwas tut, steht es als Kommentar oder Statuswechsel im Ticket, nicht in einem Log, das niemand liest.
 
@@ -36,9 +36,9 @@ Der Vorteil: Alles ist für Menschen einsehbar. Wenn ein Agent etwas tut, steht 
 
 Das zweite Fundament ist Microsoft Teams, der Chat, in dem das Team ohnehin kommuniziert. Hier trifft Autonomie auf den Menschen.
 
-Der Chat ist mehrfach belastet:
+Der Chat übernimmt dabei gleich mehrere Aufgaben:
 
-- Er ist der **einzige Auslöser** für die autonomen Agenten. Kein Webhook, ein schlichter, kurz getakteter Poll, der nach einem Triggerwort sucht. Das klingt primitiv, ist aber robust: Es gibt keine Webhook-Registrierung, die kaputtgehen kann, keine offene Schnittstelle nach außen.
+- Er ist der **einzige Auslöser** für die autonomen Agenten. Kein Webhook. Stattdessen ein schlichter, kurz getakteter Poll, der nach einem Triggerwort sucht. Das klingt primitiv, ist aber robust: Es gibt keine Webhook-Registrierung, die kaputtgehen kann, keine offene Schnittstelle nach außen.
 - Er ist der Kanal, auf dem Agenten ihren **Status zurückmelden**, direkt im Thread, den der Mensch gerade sieht.
 - Er ist der **Agent-zu-Agent-Bus**: ein gemeinsamer Gruppenchat, in dem sich Agenten auf verschiedenen Rechnern registrieren, gegenseitig erwähnen und Fäden hinterlassen.
 - Er ist eine **Scan-Quelle** für das persönliche Cockpit.
@@ -47,11 +47,11 @@ Der Chat ist mehrfach belastet:
 
 Am meisten gelernt habe ich an der Identität, und genau da liegt die Falle für alle, die so etwas nachbauen.
 
-Die Agenten posten über den OAuth-Token eines menschlichen Betreibers. Das heißt: In der Chat-Oberfläche teilen sich Agent und Mensch einen Anzeigenamen. Man kann sich also **niemals auf die `from.user`-Identität verlassen**, um zu erkennen, ob eine Nachricht von einem Menschen oder vom Agenten kam. Die gesamte Logik muss sich stattdessen an Nachrichten-IDs festmachen: „Diese Antwort habe *ich* gepostet, jene nicht."
+Die Agenten posten über den OAuth-Token eines menschlichen Betreibers. Das heißt: In der Chat-Oberfläche teilen sich Agent und Mensch einen Anzeigenamen. Man kann sich also **niemals auf die `from.user`-Identität verlassen**, um zu erkennen, ob eine Nachricht von einem Menschen oder vom Agenten kam. Die Logik muss sich deshalb an Nachrichten-IDs festmachen: „Diese Antwort habe *ich* gepostet, jene nicht."
 
 Der Agent-zu-Agent-Bus treibt denselben Trick ins Positive: Alle Agenten posten unter *einer* technischen Dienst-Identität, aber der *logische* Absender steht im Nachrichtentext, und eine Erwähnung wie „@planer" verweist technisch auf den Menschen, der diesen Agenten hostet. Eine Identität, viele logische Agenten, und die Benachrichtigung landet trotzdem bei der richtigen Person.
 
-## Warum das die richtige Architektur ist
+## Warum wir es so gebaut haben
 
 Man könnte all das mit eigenen Services und einer Message-Queue bauen. Ich habe es bewusst nicht getan, aus drei Gründen:
 
@@ -61,8 +61,8 @@ Man könnte all das mit eigenen Services und einer Message-Queue bauen. Ich habe
 
 3. **Menschen und Maschinen sprechen dieselbe Sprache.** Ein Mensch, ein Agent und ein zeitgesteuerter Job benutzen dasselbe Vokabular: dieselben Tickets, dieselben Tags, dieselben Steuerwörter. Es gibt kein „Maschinen-Interface" neben dem „Menschen-Interface".
 
-**Agenten koordinieren sich über dauerhafte, für Menschen einsehbare Artefakte, nicht über direkte Aufrufe.** Nach einem Jahr Produktivbetrieb würde ich es nicht mehr anders bauen. Die Werkzeuge, in denen das Team ohnehin arbeitet, sind meist die beste Koordinationsschicht, die man bekommen kann, sobald man ihre Kanten gut genug kennt, um ihnen zu vertrauen.
+**Agenten koordinieren sich über dauerhafte, für Menschen einsehbare Artefakte, nicht über direkte Aufrufe.** Nach einem Jahr Produktivbetrieb würde ich es nicht mehr anders bauen. Die Werkzeuge, in denen das Team ohnehin arbeitet, können eine erstaunlich gute Koordinationsschicht sein, wenn man ihre Kanten gut genug kennt, um ihnen zu vertrauen.
 
-Ich weiß auch noch nicht, wo dieser Ansatz an seine Grenze stößt. Der Kommentar-Befehlsbus und die Sentinel-Kommentare laufen seit über einem Jahr, aber beide sind, ehrlich gesagt, Hacks auf einem Tool, das nie als Datenbank gedacht war. Irgendwann finde ich die Grenze, ich weiß nur noch nicht, wo sie liegt.
+Ich weiß auch noch nicht, wo dieser Ansatz an seine Grenze stößt. Der Kommentar-Befehlsbus und die Sentinel-Kommentare laufen seit über einem Jahr, aber beide sind, ehrlich gesagt, Hacks auf einem Tool, das nie als Datenbank gedacht war. Irgendwann stoßen wir an diese Grenze. Ich weiß nur noch nicht, wo sie liegt.
 
 Im nächsten Teil geht es eine Stufe höher: in das Nervensystem, das auf diese Ereignisse reagiert, und in den mehrstufigen Filter, mit dem ich das Sprachmodell ehrlich halte.
