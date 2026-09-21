@@ -116,7 +116,10 @@ const jsonLd = {
           {post.data.readingTime && (
             <>
               <span aria-hidden="true">·</span>
-              <span>{post.data.readingTime}</span>
+              <span class="post__reading-time">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10.5A3.5 3.5 0 0 1 19 8v11H8.5A3.5 3.5 0 0 0 5 22V4.5Zm0 0A3.5 3.5 0 0 0 1.5 8v11A3.5 3.5 0 0 1 5 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /></svg>
+                {post.data.readingTime} read
+              </span>
             </>
           )}
         </div>
@@ -126,6 +129,7 @@ const jsonLd = {
             audioSrc={audioSrc}
             playLabel="Audio-Summary"
             pauseLabel="Pause playback"
+            durationLabel="Audio duration"
             variant="post"
           />
         )}
@@ -300,6 +304,17 @@ const jsonLd = {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--ink-soft);
+  }
+
+  .post__reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .post__reading-time svg {
+    width: 14px;
+    height: 14px;
   }
 
   .post__cover {

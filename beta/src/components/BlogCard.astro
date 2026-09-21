@@ -22,6 +22,7 @@ const draftLabel = lang === 'EN' ? 'Preview' : 'Vorschau';
 const readLabel = lang === 'EN' ? 'Read' : 'Lesen';
 const audioLabel = lang === 'EN' ? 'Audio-Summary' : 'Audio-Zusammenfassung';
 const audioPauseLabel = lang === 'EN' ? 'Pause playback' : 'Wiedergabe pausieren';
+const audioDurationLabel = lang === 'EN' ? 'Audio duration' : 'Audiodauer';
 const audioSrc = getBlogAudioPath(lang, slug);
 ---
 
@@ -43,7 +44,9 @@ const audioSrc = getBlogAudioPath(lang, slug);
   <div class="a-blog-card__footer">
     <div class="a-blog-card__actions">
       <a href={blogPath} class="bf-cta">
-        {readLabel} <span aria-hidden="true">→</span>
+        <span>{readLabel}</span>
+        {readingTime && <span class="a-blog-card__read-time">· {readingTime}</span>}
+        <span aria-hidden="true">→</span>
       </a>
       {audioSrc && (
         <AudioToggle
@@ -51,11 +54,11 @@ const audioSrc = getBlogAudioPath(lang, slug);
           audioSrc={audioSrc}
           playLabel={audioLabel}
           pauseLabel={audioPauseLabel}
+          durationLabel={audioDurationLabel}
           variant="card"
         />
       )}
     </div>
-    {readingTime && <span class="a-blog-card__time">{readingTime}</span>}
   </div>
 </article>
 
@@ -152,9 +155,8 @@ const audioSrc = getBlogAudioPath(lang, slug);
     gap: var(--space-sm);
   }
 
-  .a-blog-card__time {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--ink-soft);
+  .a-blog-card__read-time {
+    white-space: nowrap;
   }
+
 </style>
