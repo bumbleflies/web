@@ -24,12 +24,13 @@ describe('blog audio', () => {
   });
 
   it.each([
-    ['German', germanBlogPage, 'Audio-Zusammenfassung', 'Wiedergabe pausieren'],
-    ['English', englishBlogPage, 'Audio-Summary', 'Pause playback'],
-  ])('renders the shared %s audio toggle with localised labels', (_, page, playLabel, pauseLabel) => {
+    ['German', germanBlogPage, 'Audio-Zusammenfassung', 'Wiedergabe pausieren', 'Audiodauer'],
+    ['English', englishBlogPage, 'Audio-Summary', 'Pause playback', 'Audio duration'],
+  ])('renders the shared %s audio toggle with localised labels', (_, page, playLabel, pauseLabel, durationLabel) => {
     expect(page).toContain('<AudioToggle');
     expect(page).toContain(`playLabel="${playLabel}"`);
     expect(page).toContain(`pauseLabel="${pauseLabel}"`);
+    expect(page).toContain(`durationLabel="${durationLabel}"`);
     expect(page).toContain('{audioSrc && (');
   });
 
@@ -40,6 +41,15 @@ describe('blog audio', () => {
     expect(blogCard).toContain('{audioSrc && (');
     expect(blogCard).toContain("lang === 'EN' ? 'Audio-Summary' : 'Audio-Zusammenfassung'");
     expect(blogCard).toContain("lang === 'EN' ? 'Pause playback' : 'Wiedergabe pausieren'");
+    expect(blogCard).toContain("lang === 'EN' ? 'Audio duration' : 'Audiodauer'");
+  });
+
+  it('shows reading time in the read control, separate from the audio control', () => {
+    expect(blogCard).toContain('<a href={blogPath} class="bf-cta">');
+    expect(blogCard).toContain('{readingTime && <span class="a-blog-card__read-time">· {readingTime}</span>}');
+    expect(blogCard).not.toContain('a-blog-card__reading-time');
+    expect(germanBlogPage).toContain('{post.data.readingTime} Lesezeit');
+    expect(englishBlogPage).toContain('{post.data.readingTime} read');
   });
 
   it('keeps a single accessible player implementation in the shared component', () => {
@@ -47,6 +57,8 @@ describe('blog audio', () => {
     expect(audioToggle).toContain('data-audio-target');
     expect(audioToggle).toContain('data-play-label');
     expect(audioToggle).toContain('data-pause-label');
+    expect(audioToggle).toContain('data-duration-label');
+    expect(audioToggle).toContain('data-audio-duration');
     expect(audioToggle).toContain('audio.play()');
     expect(audioToggle).toContain('border-radius: var(--radius-full)');
   });
@@ -58,5 +70,11 @@ describe('blog audio', () => {
   it('pauses other recordings when a new one starts', () => {
     expect(audioToggle).toContain('data-audio-player');
     expect(audioToggle).toContain('other.pause()');
+  });
+
+  it('derives and displays the audio duration from loaded metadata', () => {
+    expect(audioToggle).toContain("audio.addEventListener('loadedmetadata', setDuration)");
+    expect(audioToggle).toContain('const totalSeconds = Math.round(audio.duration)');
+    expect(audioToggle).toContain('durationElement.textContent = `· ${durationText}`');
   });
 });

@@ -6,11 +6,13 @@ interface Props {
   playLabel: string;
   /** Button label while playing, e.g. "Wiedergabe pausieren". */
   pauseLabel: string;
+  /** Accessible label for the recording duration. */
+  durationLabel: string;
   /** 'post' for article pages, 'card' for blog listing cards. */
   variant?: 'post' | 'card';
 }
 
-const { audioId, audioSrc, playLabel, pauseLabel, variant = 'post' } = Astro.props;
+const { audioId, audioSrc, playLabel, pauseLabel, durationLabel, variant = 'post' } = Astro.props;
 ---
 
 <div class={`audio-toggle audio-toggle--${variant}`}>
@@ -23,8 +25,10 @@ const { audioId, audioSrc, playLabel, pauseLabel, variant = 'post' } = Astro.pro
     data-audio-target={audioId}
     data-play-label={playLabel}
     data-pause-label={pauseLabel}
+    data-duration-label={durationLabel}
   >
-    <span>{playLabel}</span>
+    <span data-audio-label>{playLabel}</span>
+    <span class="audio-toggle__duration" data-audio-duration aria-hidden="true"></span>
     <svg class="audio-toggle__icon audio-toggle__icon--play" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M8 5.5v13l10-6.5z" fill="currentColor" />
     </svg>
@@ -48,11 +52,27 @@ const { audioId, audioSrc, playLabel, pauseLabel, variant = 'post' } = Astro.pro
 
     const playLabel = button.dataset.playLabel ?? button.title;
     const pauseLabel = button.dataset.pauseLabel ?? playLabel;
+    const durationLabel = button.dataset.durationLabel ?? 'Duration';
+    const durationElement = button.querySelector('[data-audio-duration]');
+    let durationText = '';
+    const setAccessibleLabel = (label: string) => {
+      const suffix = durationText ? `, ${durationLabel}: ${durationText}` : '';
+      button.setAttribute('aria-label', `${label}${suffix}`);
+      button.setAttribute('title', `${label}${suffix}`);
+    };
     const setPlaying = (playing: boolean) => {
       button.dataset.playing = String(playing);
       const label = playing ? pauseLabel : playLabel;
-      button.setAttribute('aria-label', label);
-      button.setAttribute('title', label);
+      setAccessibleLabel(label);
+    };
+    const setDuration = () => {
+      if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
+      const totalSeconds = Math.round(audio.duration);
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = String(totalSeconds % 60).padStart(2, '0');
+      durationText = `${minutes}:${seconds}`;
+      if (durationElement) durationElement.textContent = `· ${durationText}`;
+      setAccessibleLabel(button.dataset.playing === 'true' ? pauseLabel : playLabel);
     };
 
     button.addEventListener('click', () => {
@@ -69,6 +89,8 @@ const { audioId, audioSrc, playLabel, pauseLabel, variant = 'post' } = Astro.pro
     audio.addEventListener('play', () => setPlaying(true));
     audio.addEventListener('pause', () => setPlaying(false));
     audio.addEventListener('ended', () => setPlaying(false));
+    audio.addEventListener('loadedmetadata', setDuration);
+    if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) setDuration();
   });
 </script>
 
@@ -106,6 +128,16 @@ const { audioId, audioSrc, playLabel, pauseLabel, variant = 'post' } = Astro.pro
     display: inline-flex;
     align-items: center;
     line-height: 1;
+  }
+
+  .audio-toggle__duration {
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  .audio-toggle__button:hover .audio-toggle__duration,
+  .audio-toggle__button:focus-visible .audio-toggle__duration {
+    color: currentColor;
   }
 
   .audio-toggle--card .audio-toggle__button {
