@@ -20,7 +20,7 @@ describe('blog audio', () => {
   });
 
   it('does not expose an audio control when no recording exists', () => {
-    expect(getBlogAudioPath('EN', 'bots-working-at-night')).toBeUndefined();
+    expect(getBlogAudioPath('EN', 'future-post-without-recording')).toBeUndefined();
   });
 
   it.each([
