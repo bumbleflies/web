@@ -32,8 +32,6 @@ Zur Eskalation gehört eine Übergabe, kein bloßes Weiterleiten. Der Assistent 
 
 Hier passiert etwas Wichtiges: Der Chat fängt das Rauschen ab, bevor daraus Arbeit für das Team wird. Das Ticket bleibt für Arbeit reserviert, die wirklich ein Team braucht.
 
-Die Gegenrichtung ist die eigentliche Gefahr: ein Assistent, der überzeugt klingt und trotzdem falsch liegt. Deshalb zählt nicht nur seine eigene Einschätzung. Wenn die Kanzlei sagt, dass die Antwort nicht hilft, ist das ebenfalls ein Grund zu eskalieren. Und Menschen lesen regelmäßig abgeschlossene Chats quer, gerade die, die ohne Eskalation endeten.
-
 ## Wenig später: aus der Eskalation wird ein Ticket
 
 Die Eskalation ist ein Ereignis. Die Automatisierung reagiert darauf und legt genau ein Ticket im Projektmanagement-Tool an, mit der Anfrage, dem bisherigen Chat-Verlauf und einer ersten Einordnung.
@@ -109,7 +107,6 @@ Der Ablauf oben ist der gute Tag. Die Lektionen stecken in den anderen:
 - **Doppelte Ereignisse.** Ereignisse kommen manchmal doppelt an. Jeder Schritt prüft deshalb zuerst, ob er schon gelaufen ist, bevor er etwas anlegt.
 - **Der Bot, der nicht weiterkommt.** Auch Bots bleiben hängen, etwa weil eine Anmeldung abgelaufen ist oder ein angebundenes System nicht antwortet. Dafür gibt es im Team-Chat einen eigenen Bot-Kanal. Dort meldet der Bot, was ihn blockiert, statt still zu scheitern, und ein Mensch räumt das Hindernis aus dem Weg. Danach macht der Bot weiter, wo er stand, weil sein Zustand im Ticket liegt und nicht in ihm.
 - **Die Markierung, die verdeckt.** Ein als erwartet markierter Fehlschlag kann einen neuen Fehler an derselben Stelle verstecken. Jede Markierung braucht deshalb eine konkrete Begründung.
-- **Die freundliche Falschauskunft.** Ein Assistent, der sicher klingt und falsch liegt, erzeugt kein Ticket und damit auch kein Signal. Dagegen hilft nur, dass Menschen regelmäßig hinsehen.
 
 Keins davon ist exotisch, und die Leitplanke ist jedes Mal dieselbe: Ein Problem muss dort sichtbar werden, wo ein Mensch es sieht.
 

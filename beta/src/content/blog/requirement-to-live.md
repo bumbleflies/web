@@ -32,8 +32,6 @@ An escalation comes with a handover, not a bare forward. The assistant summarize
 
 Something important happens here: the chat absorbs the noise before it becomes work for the team. The ticket stays reserved for work that truly needs a team.
 
-The opposite direction is the real danger: an assistant that sounds confident and is still wrong. That is why its own judgment is not the only signal. When the firm says the answer does not help, that is also a reason to escalate. And humans regularly skim closed chats, especially the ones that ended without an escalation.
-
 ## Shortly after: the escalation becomes a ticket
 
 The escalation is an event. The automation reacts to it and creates exactly one ticket in the project management tool, with the request, the chat history so far, and a first classification.
@@ -109,7 +107,6 @@ The flow above is the good day. The lessons are in the other ones:
 - **Duplicate events.** Events sometimes arrive twice. So every step first checks whether it has already run before it creates anything.
 - **The bot that gets stuck.** Bots get stuck too, for example because a login has expired or a connected system does not respond. For that there is a dedicated bot channel in team chat. The bot reports there what is blocking it instead of failing silently, and a human clears the obstacle. Then the bot carries on where it stood, because its state lives in the ticket and not in the bot.
 - **The mark that hides.** A failure marked as expected can hide a new bug in the same spot. That is why every mark needs a specific reason.
-- **The friendly wrong answer.** An assistant that sounds certain and is wrong creates no ticket, and therefore no signal. The only remedy is humans looking regularly.
 
 None of this is exotic, and the guardrail is the same every time: a problem has to surface where a human will see it.
 
