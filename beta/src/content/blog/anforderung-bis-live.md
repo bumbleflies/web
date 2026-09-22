@@ -8,7 +8,7 @@ order: 2.5
 date: 2026-09-22
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "7 Min."
-published: false
+published: true
 lang: "DE"
 ---
 
