@@ -3,6 +3,7 @@ title: "Zwischenspiel: Von der Anforderung bis zum Livegang an einem Export"
 description: "Eine Support-Anfrage über eine fehlende Spalte im Export, vom KI-Assistenten über Ticket und Team-Chat bis zu Test, Rollout und Doku. So tragen die Fundamente aus Teil 02 einen echten Vorgang."
 excerpt: "Eine fehlende Spalte im Export wandert vom Support-Chat ins Ticket, durch Anreicherung, Test und Batch-Rollout bis zu Regression und Doku. Einmal konkret, ohne interne Details."
 category: "Beispiel"
+image: "/images/blog/anforderung-bis-live.svg"
 order: 2.5
 date: 2026-09-22
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
@@ -14,6 +15,10 @@ lang: "DE"
 Teil 02 war absichtlich abstrakt: Zustand und Interaktion als Fundamente, ohne ein einziges Beispiel von Anfang bis Ende. Dieses Zwischenspiel holt genau das nach, an einem kleinen, erfundenen, aber typischen Vorgang: Einer Kanzlei fehlt eine Spalte im Mandanten-Export.
 
 Namen, Werkzeuge und Details sind hier bewusst allgemein gehalten. Was zählt, ist der Weg der Anforderung, nicht das jeweilige Produkt dahinter.
+
+<div class="a-arch-diagram" role="img" aria-label="Diagramm: der Weg in sechs Stationen, Anfrage, Ticket, Anreicherung, Test und Rollout, Nachweis, Doku" style="--diagram-dark:url('/images/blog/anforderung-bis-live-journey.svg');--diagram-light:url('/images/blog/anforderung-bis-live-journey-light.svg')"></div>
+
+*Die Nummern im Diagramm folgen den Abschnitten unten. Die Bauzeit dazwischen bleibt bewusst ausgelassen.*
 
 ## Morgens: die Anfrage landet im Support-Chat
 

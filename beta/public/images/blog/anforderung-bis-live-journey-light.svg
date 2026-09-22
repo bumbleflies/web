@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" role="img" aria-label="Weg in sechs nummerierten Stationen (hell): Anfrage, Ticket, Anreicherung, Test und Rollout, Nachweis, Doku">
+<defs>
+<radialGradient id="jground" cx="50%" cy="50%" r="80%">
+  <stop offset="0%" stop-color="#f7efdc"/><stop offset="55%" stop-color="#f5ecd8"/>
+  <stop offset="100%" stop-color="#efe3c9"/>
+</radialGradient>
+<radialGradient id="jglow" cx="50%" cy="50%" r="50%">
+  <stop offset="0%" stop-color="#e0bd78" stop-opacity="0.35"/>
+  <stop offset="45%" stop-color="#e0bd78" stop-opacity="0.14"/>
+  <stop offset="100%" stop-color="#e0bd78" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="jvig" cx="50%" cy="48%" r="65%">
+  <stop offset="60%" stop-color="#cbb98f" stop-opacity="0"/>
+  <stop offset="100%" stop-color="#e2d3b4" stop-opacity="0.65"/>
+</radialGradient>
+<marker id="jarrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+  <path d="M0,0 L10,5 L0,10 z" fill="#8a6a35" fill-opacity="0.6"/>
+</marker>
+</defs>
+<rect width="1200" height="620" fill="#f3ecdb"/>
+<rect width="1200" height="620" fill="url(#jground)"/>
+<ellipse cx="600" cy="300" rx="520" ry="220" fill="url(#jglow)"/>
+<line x1="35" y1="300" x2="1175" y2="300" stroke="#8a6a35" stroke-opacity="0.30" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round" marker-end="url(#jarrow)"/>
+<ellipse cx="1090" cy="300" rx="80" ry="95" fill="url(#jglow)"/>
+<g fill="#fdf8ea" fill-opacity="0.95" stroke="#8a6a35" stroke-opacity="0.38" stroke-width="1.5">
+  <rect x="35" y="215" width="150" height="170" rx="14"/>
+  <rect x="231" y="215" width="150" height="170" rx="14"/>
+  <rect x="427" y="215" width="150" height="170" rx="14"/>
+  <rect x="623" y="215" width="150" height="170" rx="14"/>
+  <rect x="819" y="215" width="150" height="170" rx="14"/>
+  <rect x="1015" y="215" width="150" height="170" rx="14" stroke-opacity="0.65"/>
+</g>
+<g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="40" fill="#a5762f" fill-opacity="0.9">
+  <text x="57" y="264">1</text>
+  <text x="253" y="264">2</text>
+  <text x="449" y="264">3</text>
+  <text x="645" y="264">4</text>
+  <text x="841" y="264">5</text>
+  <text x="1037" y="264">6</text>
+</g>
+<g fill="none" stroke="#8a6a35" stroke-opacity="0.85" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="72" y="312" width="76" height="46" rx="13"/>
+  <polygon points="92,358 84,372 108,358"/>
+  <line x1="84" y1="328" x2="136" y2="328"/>
+  <line x1="84" y1="342" x2="120" y2="342"/>
+  <rect x="264" y="314" width="84" height="52" rx="8"/>
+  <line x1="292" y1="318" x2="292" y2="362" stroke-dasharray="4 5" stroke-width="3"/>
+  <line x1="302" y1="330" x2="336" y2="330"/>
+  <line x1="302" y1="344" x2="336" y2="344"/>
+  <circle cx="496" cy="334" r="21"/>
+  <line x1="511" y1="349" x2="528" y2="366"/>
+  <rect x="656" y="308" width="76" height="56" rx="8"/>
+  <rect x="704" y="336" width="44" height="36" rx="7"/>
+  <path d="M668,332 l8,8 l14,-16"/>
+  <rect x="854" y="310" width="80" height="20" rx="6"/>
+  <rect x="854" y="334" width="80" height="20" rx="6"/>
+  <rect x="854" y="358" width="80" height="20" rx="6"/>
+  <path d="M1060,306 h38 l22,22 v46 h-60 z"/>
+  <line x1="1098" y1="306" x2="1098" y2="328"/>
+  <line x1="1098" y1="328" x2="1120" y2="328"/>
+  <polygon points="1084,332 1084,354 1102,343" fill="#8a6a35" fill-opacity="0.85" stroke="none"/>
+</g>
+<rect width="1200" height="620" fill="url(#jvig)"/>
+<text x="60" y="572" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="20" letter-spacing="6" fill="#a5762f" fill-opacity="0.55">FIELD NOTES</text>
+<text x="1140" y="572" text-anchor="end" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="20" letter-spacing="3" fill="#a5762f" fill-opacity="0.40">02.5</text>
+</svg>

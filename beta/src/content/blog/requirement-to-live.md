@@ -3,6 +3,7 @@ title: "Interlude: From request to live, traced through one export"
 description: "A support request about a missing export column, from the AI assistant through ticket and team chat to testing, rollout, and docs. How the foundations from Part 02 carry a real workflow."
 excerpt: "A missing column in an export travels from support chat into a ticket, through enrichment, testing, and batch rollout to regression and docs. One concrete trace, no internal details."
 category: "Example"
+image: "/images/blog/anforderung-bis-live.svg"
 order: 2.5
 date: 2026-09-22
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
@@ -14,6 +15,10 @@ lang: "EN"
 Part 02 was abstract on purpose: state and interaction as foundations, without a single end-to-end example. This interlude fills exactly that gap with a small, fictional but typical workflow: a law firm is missing a column in its client export.
 
 Names, tools, and details stay deliberately generic here. What matters is the path of the request, not the specific product behind it.
+
+<div class="a-arch-diagram" role="img" aria-label="Diagram: the path in six stages, request, ticket, enrichment, testing and rollout, proof, docs" style="--diagram-dark:url('/images/blog/anforderung-bis-live-journey.svg');--diagram-light:url('/images/blog/anforderung-bis-live-journey-light.svg')"></div>
+
+*The numbers in the diagram follow the sections below. The build time in between stays deliberately skipped.*
 
 ## Morning: the request lands in support chat
 
