@@ -106,12 +106,12 @@ Nobody calls anybody directly. Ticket comments and status changes drive everythi
 
 The flow above is the good day. The lessons are in the other ones:
 
-- **Duplicate events.** A retried delivery must not create a second case. So every step first checks whether it has already run before it creates anything.
-- **One name for human and bot.** When bot and human appear in chat under the same display name, the bot cannot tell from the sender which message was its own. It remembers what it posted itself.
-- **The mark that hides.** A failure marked as expected can hide a new, entirely different bug in the same spot. That is why every mark has to carry a specific reason, and when in doubt the test runs once without it.
+- **Duplicate events.** Events sometimes arrive twice. So every step first checks whether it has already run before it creates anything.
+- **The bot that gets stuck.** Bots get stuck too, for example because a login has expired or a connected system does not respond. For that there is a dedicated bot channel in team chat. The bot reports there what is blocking it instead of failing silently, and a human clears the obstacle. Then the bot carries on where it stood, because its state lives in the ticket and not in the bot.
+- **The mark that hides.** A failure marked as expected can hide a new bug in the same spot. That is why every mark needs a specific reason.
 - **The friendly wrong answer.** An assistant that sounds certain and is wrong creates no ticket, and therefore no signal. The only remedy is humans looking regularly.
 
-None of this is exotic. Each one needs its guardrail, ideally before you miss it.
+None of this is exotic, and the guardrail is the same every time: a problem has to surface where a human will see it.
 
 ## The thread
 

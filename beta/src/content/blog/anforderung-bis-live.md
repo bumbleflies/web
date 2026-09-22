@@ -106,12 +106,12 @@ Niemand ruft dabei jemanden direkt auf. Ticket-Kommentare und Statuswechsel steu
 
 Der Ablauf oben ist der gute Tag. Die Lektionen stecken in den anderen:
 
-- **Doppelte Ereignisse.** Eine wiederholte Zustellung darf keinen zweiten Vorgang erzeugen. Jeder Schritt prüft deshalb zuerst, ob er schon gelaufen ist, bevor er etwas anlegt.
-- **Ein Name für Mensch und Bot.** Wenn Bot und Mensch im Chat unter demselben Anzeigenamen erscheinen, kann der Bot nicht am Absender erkennen, welche Nachricht seine war. Er merkt sich, was er selbst gepostet hat.
-- **Die Markierung, die verdeckt.** Ein als erwartet markierter Fehlschlag kann einen neuen, ganz anderen Fehler an derselben Stelle verstecken. Deshalb muss jede Markierung eine konkrete Begründung tragen, und im Zweifel läuft der Test einmal ohne sie.
+- **Doppelte Ereignisse.** Ereignisse kommen manchmal doppelt an. Jeder Schritt prüft deshalb zuerst, ob er schon gelaufen ist, bevor er etwas anlegt.
+- **Der Bot, der nicht weiterkommt.** Auch Bots bleiben hängen, etwa weil eine Anmeldung abgelaufen ist oder ein angebundenes System nicht antwortet. Dafür gibt es im Team-Chat einen eigenen Bot-Kanal. Dort meldet der Bot, was ihn blockiert, statt still zu scheitern, und ein Mensch räumt das Hindernis aus dem Weg. Danach macht der Bot weiter, wo er stand, weil sein Zustand im Ticket liegt und nicht in ihm.
+- **Die Markierung, die verdeckt.** Ein als erwartet markierter Fehlschlag kann einen neuen Fehler an derselben Stelle verstecken. Jede Markierung braucht deshalb eine konkrete Begründung.
 - **Die freundliche Falschauskunft.** Ein Assistent, der sicher klingt und falsch liegt, erzeugt kein Ticket und damit auch kein Signal. Dagegen hilft nur, dass Menschen regelmäßig hinsehen.
 
-Keins davon ist exotisch. Jedes braucht seine Leitplanke, am besten bevor man sie vermisst.
+Keins davon ist exotisch, und die Leitplanke ist jedes Mal dieselbe: Ein Problem muss dort sichtbar werden, wo ein Mensch es sieht.
 
 ## Der rote Faden
 
