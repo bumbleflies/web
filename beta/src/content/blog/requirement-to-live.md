@@ -26,7 +26,7 @@ The request does not start as a ticket. It starts as a conversation in support c
 
 In our example, the assistant asks first: which export, which column, and what exactly should be in it? Then it checks whether the column is merely hidden or can be switched on through a setting. Both are common, and both would be settled in a few messages. Neither applies here: the column simply does not exist in the export.
 
-Only when it finds no solid solution does it escalate the case to our team. That is a deliberate guardrail: a ticket is born only from a real escalation, not from every question.
+Only when it finds no solid solution does it escalate the case to our team. That is a deliberate boundary: a ticket is born only from a real escalation, not from every question.
 
 An escalation comes with a handover, not a bare forward. The assistant summarizes what the firm wanted, what it tried, and why that was not enough. And it tells the firm plainly that a human is taking over, instead of promising a solution it does not have.
 
@@ -78,9 +78,9 @@ The run follows a fixed sequence:
 - **Test plan.** The bot derives it from three sources: the acceptance criteria, the testing description from development, and the change itself. In the example that means: the column is there, it is filled correctly, it is empty where there is no value, and the other columns look as they did before.
 - **Two kinds of cases.** Whatever can be checked through the interface, the bot checks automatically. Whatever is only visible in the user interface, it clicks through and records as a short video.
 - **The human decides what the bot cannot judge.** Whether a video really shows what it is supposed to show is decided by a human. A bot that declares its own recording a pass ends up testing only itself.
-- **Every failure becomes its own bug ticket.** Written from the user's point of view: what she did, in what order, and what she would have noticed. Guesses about the cause go in a separate, labeled section.
+- **Every failure becomes its own bug ticket.** Written from the user's point of view: what the user did, in what order, and what they would have noticed. Guesses about the cause go in a separate, labeled section.
 
-The sub-ticket carries the plan as a table, with one status per case. If the ticket comes back into testing after a fix, the bot keeps writing into the same sub-ticket instead of creating a second one. A marker in the sub-ticket tells it that the sub-ticket is its own.
+The sub-ticket carries the plan as a table, with one status per case. If the ticket comes back into testing after a fix, the bot keeps writing into the same sub-ticket instead of creating a second one. A marker in the sub-ticket tells the bot which sub-ticket to reuse.
 
 Individual tickets do not go live one by one. When all tickets of a batch are done, the whole batch rolls out together.
 
@@ -102,13 +102,13 @@ Nobody calls anybody directly. Ticket comments and status changes drive everythi
 
 ## Where it snags, and how we notice
 
-The flow above is the good day. The lessons are in the other ones:
+The flow above shows the normal case. The interesting part is what happens when something goes wrong:
 
 - **Duplicate events.** Events sometimes arrive twice. So every step first checks whether it has already run before it creates anything.
 - **The bot that gets stuck.** Bots get stuck too, for example because a login has expired or a connected system does not respond. For that there is a dedicated bot channel in team chat. The bot reports there what is blocking it instead of failing silently, and a human clears the obstacle. Then the bot carries on where it stood, because its state lives in the ticket and not in the bot.
 - **The mark that hides.** A failure marked as expected can hide a new bug in the same spot. That is why every mark needs a specific reason.
 
-None of this is exotic, and the guardrail is the same every time: a problem has to surface where a human will see it.
+None of this is unusual. What matters is that a problem surfaces where a human will see it.
 
 ## The thread
 

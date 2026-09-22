@@ -26,7 +26,7 @@ Die Anfrage beginnt nicht als Ticket, sondern als Gespräch im Support-Chat. Dor
 
 In unserem Beispiel fragt der Assistent zuerst nach: Welcher Export, welche Spalte, und was genau soll darin stehen? Dann prüft er, ob die Spalte nur ausgeblendet ist oder sich über eine Einstellung zuschalten lässt. Beides ist häufig, und beides wäre in wenigen Nachrichten erledigt. Hier greift keins davon: Die Spalte gibt es im Export schlicht nicht.
 
-Erst wenn er keine belastbare Lösung findet, eskaliert er den Vorgang an unser Team. Das ist eine bewusste Leitplanke: Das Ticket entsteht nur aus einer echten Eskalation, nicht aus jeder Rückfrage.
+Erst wenn er keine belastbare Lösung findet, eskaliert er den Vorgang an unser Team. Das ist eine bewusste Grenze: Das Ticket entsteht nur aus einer echten Eskalation, nicht aus jeder Rückfrage.
 
 Zur Eskalation gehört eine Übergabe, kein bloßes Weiterleiten. Der Assistent fasst zusammen, was die Kanzlei wollte, was er versucht hat und warum es nicht gereicht hat. Und er sagt der Kanzlei offen, dass jetzt ein Mensch übernimmt, statt eine Lösung zu versprechen, die er nicht hat.
 
@@ -78,9 +78,9 @@ Der Durchlauf folgt einem festen Ablauf:
 - **Testplan.** Der Bot leitet ihn aus drei Quellen ab: den Akzeptanzkriterien, der Testbeschreibung aus der Entwicklung und der Änderung selbst. Im Beispiel heißt das: Die Spalte ist da, sie ist korrekt befüllt, sie ist leer, wo es keinen Wert gibt, und die übrigen Spalten sehen aus wie vorher.
 - **Zwei Arten von Fällen.** Was sich über die Schnittstelle prüfen lässt, prüft der Bot automatisch. Was man nur in der Oberfläche sieht, klickt er durch und zeichnet es als kurzes Video auf.
 - **Der Mensch entscheidet, was der Bot nicht beurteilen kann.** Ob ein Video wirklich zeigt, was es zeigen soll, entscheidet ein Mensch. Ein Bot, der seine eigene Aufnahme für bestanden erklärt, prüft am Ende nur sich selbst.
-- **Jeder Fehlschlag wird ein eigenes Fehler-Ticket.** Geschrieben aus Sicht der Nutzerin: was sie getan hat, in welcher Reihenfolge, und was ihr aufgefallen wäre. Vermutungen über die Ursache stehen in einem eigenen, markierten Abschnitt.
+- **Jeder Fehlschlag wird ein eigenes Fehler-Ticket.** Geschrieben aus Sicht der Person, die den Fehler meldet: was sie getan hat, in welcher Reihenfolge und was ihr aufgefallen wäre. Vermutungen über die Ursache stehen in einem eigenen, markierten Abschnitt.
 
-Das Unter-Ticket trägt den Plan als Tabelle, mit einem Status pro Fall. Geht das Ticket nach einer Korrektur erneut in den Test, schreibt der Bot in dasselbe Unter-Ticket weiter, statt ein zweites anzulegen. Ein Marker im Unter-Ticket sagt ihm, dass es seins ist.
+Das Unter-Ticket trägt den Plan als Tabelle, mit einem Status pro Fall. Geht das Ticket nach einer Korrektur erneut in den Test, schreibt der Bot in dasselbe Unter-Ticket weiter, statt ein zweites anzulegen. Ein Marker im Unter-Ticket zeigt dem Bot, welches Unter-Ticket er wiederverwenden soll.
 
 Einzelne Tickets gehen nicht einzeln live. Wenn alle Tickets eines Stapels fertig sind, wird der ganze Stapel ausgerollt.
 
@@ -102,13 +102,13 @@ Niemand ruft dabei jemanden direkt auf. Ticket-Kommentare und Statuswechsel steu
 
 ## Wo es hakt, und wie wir es merken
 
-Der Ablauf oben ist der gute Tag. Die Lektionen stecken in den anderen:
+Der Ablauf oben zeigt den Normalfall. Interessant wird es dort, wo etwas schiefläuft:
 
 - **Doppelte Ereignisse.** Ereignisse kommen manchmal doppelt an. Jeder Schritt prüft deshalb zuerst, ob er schon gelaufen ist, bevor er etwas anlegt.
 - **Der Bot, der nicht weiterkommt.** Auch Bots bleiben hängen, etwa weil eine Anmeldung abgelaufen ist oder ein angebundenes System nicht antwortet. Dafür gibt es im Team-Chat einen eigenen Bot-Kanal. Dort meldet der Bot, was ihn blockiert, statt still zu scheitern, und ein Mensch räumt das Hindernis aus dem Weg. Danach macht der Bot weiter, wo er stand, weil sein Zustand im Ticket liegt und nicht in ihm.
 - **Die Markierung, die verdeckt.** Ein als erwartet markierter Fehlschlag kann einen neuen Fehler an derselben Stelle verstecken. Jede Markierung braucht deshalb eine konkrete Begründung.
 
-Keins davon ist exotisch, und die Leitplanke ist jedes Mal dieselbe: Ein Problem muss dort sichtbar werden, wo ein Mensch es sieht.
+Nichts davon ist ungewöhnlich. Entscheidend ist, dass ein Problem dort sichtbar wird, wo ein Mensch es sieht.
 
 ## Der rote Faden
 
