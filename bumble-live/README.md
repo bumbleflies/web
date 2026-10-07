@@ -21,7 +21,7 @@ bumble-live/
 ├── CHECKLIST.md               One page checklist for 30 minutes before going live
 ├── OBS/
 │   ├── profiles/Bumbleflies-YouTube/   Importable OBS profile (1080p30, NVENC, CBR)
-│   └── scene-collections/Bumbleflies-Live.json  7 scenes, prewired
+│   └── scene-collections/Bumbleflies-Live.json  8 scenes, prewired
 ├── overlays/                  Branded 1920x1080 HTML overlays (local files in OBS)
 │   ├── starting.html
 │   ├── break.html
@@ -34,15 +34,20 @@ bumble-live/
 ## Operating procedure (the 12 steps)
 
 1. Create the YouTube event (Unlisted for rehearsal, then Public or Unlisted for real).
-2. Pick a VDO.Ninja room name and password. Example: `bumble-live-xxxx` plus a random password.
-3. Run `tools/generate-links.sh` to build 3 guest links plus 1 director link plus 3 OBS view links.
+2. Pick a VDO.Ninja room name and password. Room name must be alphanumeric only, no
+   hyphens or underscores (VDO.Ninja rewrites anything else and shows a warning popup).
+   Example: `bumbleLivexxxx` plus a random password.
+3. With OBS closed, run `tools/generate-links.sh <room> <password>` to build 3 guest
+   links plus 1 director link plus 3 OBS view links, and to patch the real `Nico`,
+   `Sebi`, `Chris`, `Screen` Browser Sources in your local scene collection directly.
 4. Send the 3 guest links privately. Never post the room password in a public issue or wiki.
 5. Open OBS with profile `Bumbleflies YouTube` and scene collection `Bumbleflies Live`.
-6. Replace the placeholder view URLs in the three browser sources with the real ones.
+6. Confirm the four Browser Sources already show live video (step 3 wired them up; see
+   "Replacing placeholder URLs" below if OBS was open when you ran the generator).
 7. Add overlays as Browser Sources with Local file checked, 1920x1080.
 8. Test audio: every person says check one two three, watch OBS meters, headphones on for all.
 9. Start streaming in OBS, then check the YouTube preview (never trust OBS alone).
-10. Produce with scenes: Starting, Three, Conversation, Speaker, Screen plus People, Break, End.
+10. Produce with scenes: Starting, Three, Nico, Sebi, Chris, Screen plus People, Break, End.
 11. End the YouTube stream in YouTube Studio, then Stop Streaming in OBS.
 12. Save the recording and note what to fix next time.
 
@@ -72,7 +77,17 @@ The scene collection ships with placeholder view URLs:
 https://vdo.ninja/?view=REPLACE_Nico&solo&room=REPLACE_ROOM
 ```
 
-Run the generator, then in OBS right click each source (Nico, Sebi, Chris), Properties, paste the real view URL. Width 1920, Height 1080.
+`tools/generate-links.sh` replaces these automatically: it finds `Nico`, `Sebi`,
+`Chris`, and `Screen` in your local scene collection
+(`~/.config/obs-studio/basic/scenes/Bumbleflies-Live.json` by default, override with
+`OBS_SCENE_FILE`) and writes the real view URL into each, backing up the file first
+with a timestamp.
+
+This only happens if OBS is closed when you run the script (it checks, and refuses to
+touch a file OBS might also be writing to). If OBS was open, or you're setting this up
+on a machine without that scene collection file yet, do it by hand instead: in OBS,
+right click each source (`Nico`, `Sebi`, `Chris`, `Screen`), Properties, paste the real
+view URL from the generator's output. Width 1920, Height 1080.
 
 ## Branding
 

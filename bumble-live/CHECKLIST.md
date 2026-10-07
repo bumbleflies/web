@@ -9,13 +9,15 @@ Print this. Check boxes with a pen. Host only.
 * [ ] Director link open in your browser (you only)
 * [ ] Guest links sent privately to Nico, Sebi, Chris
 * [ ] All three faces visible in director room
+* [ ] Each person manually enabled Background Blur (camera icon in VDO.Ninja's own
+      toolbar, bottom of the page, not automatic from the link)
 
 ## OBS (T-20)
 
 * [ ] Profile: `Bumbleflies YouTube`
 * [ ] Scene collection: `Bumbleflies Live`
 * [ ] Sources `Nico`, `Sebi`, `Chris` show live video (no placeholder URL left)
-* [ ] Scenes switch cleanly: 01 Starting, 02 Three, 03 Conversation, 04 Speaker, 05 Screen, 06 Break, 07 End
+* [ ] Scenes switch cleanly: 01 Starting, 02 Three, 03 Nico, 04 Sebi, 05 Chris, 06 Screen plus People, 07 Break, 08 End
 * [ ] Overlays render: starting, break, ending, lower thirds, bug
 
 ## Audio (T-15, most important)
@@ -36,12 +38,12 @@ Print this. Check boxes with a pen. Host only.
 
 * [ ] Scene: 01 Starting, hold 60 seconds
 * [ ] Switch to 02 Three, welcome, introduce Nico, Sebi, Chris
-* [ ] Produce: Three for discussion, Speaker for explanations, Screen for demos, Break only if needed
+* [ ] Produce: Three for discussion, Nico/Sebi/Chris for explanations, Screen for demos, Break only if needed
 * [ ] Keep Live Control Room health tab visible on second monitor
 
 ## End
 
-* [ ] Scene: 07 End, hold 30 seconds, say goodbye by name
+* [ ] Scene: 08 End, hold 30 seconds, say goodbye by name
 * [ ] YouTube Studio: End Stream
 * [ ] OBS: Stop Streaming, Stop Recording
 * [ ] Save recording, write one fix for next time here: ______________________

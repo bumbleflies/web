@@ -26,12 +26,14 @@ Treat the stream key like a password. Do not paste it into chat, issues, or shar
 
 ## 2. VDO.Ninja room
 
-Create a room with a random suffix and a password. Example: `bumble-live-7f42`.
+Create a room with a random suffix and a password. Room name must be alphanumeric only
+(no hyphens or underscores): VDO.Ninja rewrites other characters to underscores and
+shows a warning popup to whoever opens the link. Example: `bumbleLive7f42`.
 
 Run:
 
 ```bash
-./tools/generate-links.sh bumble-live-7f42 "YOUR-ROOM-PASSWORD"
+./tools/generate-links.sh bumbleLive7f42 "YOUR-ROOM-PASSWORD"
 ```
 
 It prints:
@@ -45,6 +47,12 @@ Why fixed push IDs: the OBS view link watches a stream ID. If the guest publishe
 Send each guest link privately. Keep the director link and the password to yourself.
 
 Guest join steps: open link, allow camera and microphone, pick the right devices, put headphones on, join.
+
+**Do not use the director page's own "INVITE A GUEST" quick-copy link.** It looks like
+a valid invite but assigns a random push id on every join (e.g. `push=6PZSAYr`), not
+the fixed `NicoCam`/`SebiCam`/`ChrisCam`. The guest's camera works fine either way, but
+OBS only watches the fixed id, so that source stays black with no error shown anywhere.
+The only links that work are the three the generator printed for this room.
 
 ## 3. OBS setup
 
@@ -61,15 +69,23 @@ Recording: same encoder or x264 fallback, mkv or mp4
 
 On a box with NVIDIA, you can switch the encoder to NVENC (preset P5, 9000 Kbps). That still works for 1080p30.
 
-Scene collection `Bumbleflies Live` ships 7 scenes:
+Scene collection `Bumbleflies Live` ships 8 scenes:
 
 1. `01 Starting`: full screen branded overlay plus room tone
 2. `02 Three`: Nico, Sebi, Chris side by side
-3. `03 Conversation`: one large plus two small (duplicate per speaker as needed)
-4. `04 Speaker`: one person full screen
-5. `05 Screen plus People`: screen share large left, three small faces right
-6. `06 Break`: branded pause card
-7. `07 End`: branded outro card
+3. `03 Nico`: Nico full screen
+4. `04 Sebi`: Sebi full screen
+5. `05 Chris`: Chris full screen
+6. `06 Screen plus People`: screen share large left, three small faces right
+7. `07 Break`: branded pause card
+8. `08 End`: branded outro card
+
+Background blur is available (client-side, no OBS filter needed) but does not reliably
+turn on via a `&backgroundblur` URL parameter, confirmed not working either bare or
+with an explicit value. Each person has to enable it themselves after joining: click
+the camera/video icon in VDO.Ninja's own toolbar at the bottom of the page and turn on
+Background Blur manually. Once set, it applies in every scene they appear in, not just
+their solo one, and it stays on for that room/push id.
 
 Browser sources: `Nico`, `Sebi`, `Chris`, each 1920x1080, 30 fps, with `Shutdown source when not visible` on to save CPU. Overlays are local HTML files from `overlays/`, added as Browser Source with Local file checked.
 
@@ -77,7 +93,21 @@ Audio: in OBS, watch the meters while each person counts. Aim for consistent pea
 
 ## 4. Screen share
 
-The presenter shares their screen through their VDO.Ninja guest link (Screenshare button). That creates a second feed. In OBS you add it as an extra browser source or it appears as a separate solo link in the director room. Switch to scene `05 Screen plus People` while presenting.
+The presenter does not touch their camera tab, it stays open and live exactly as is.
+Instead they open a **second, separate browser tab** with the generator's dedicated
+screen-share link (`push=ScreenShare`). In that new tab, when VDO.Ninja asks for a
+video source, they choose Screen, Window, or Tab, not webcam.
+
+OBS already has a `Screen` source watching `view=ScreenShare` for this room (the
+generator wires it automatically, same as the three camera sources), so it populates
+on its own once that tab is sharing. No OBS changes needed.
+
+Switch to scene `06 Screen plus People` while presenting. When done, switch to another
+scene and the presenter can close the screen-share tab; their camera keeps running
+unaffected in the other tab.
+
+Same rule as the camera links: it must be that exact `push=ScreenShare` link, not any
+other sharing option VDO.Ninja's UI offers.
 
 ## 5. Rehearsal (do not skip)
 
@@ -87,7 +117,7 @@ T minus 45: open OBS. Confirm Nico, Sebi, Chris video plus audio plus screen plu
 
 T minus 30: start the encoder to YouTube, stay Unlisted. Check the YouTube preview in a browser, not just OBS.
 
-T minus 20: run the full switch path: Starting, Three, Conversation, Speaker, Screen plus People, Break, Three, End.
+T minus 20: run the full switch path: Starting, Three, Nico, Sebi, Chris, Screen plus People, Break, Three, End.
 
 T minus 10: stop everything. Ask: could we rebuild this tomorrow without remembering? If not, simplify.
 
