@@ -30,7 +30,7 @@ Das ist das DRY-Prinzip auf Agenten-Ebene. Eine Verbesserung am gemeinsamen Baus
 
 Man würde erwarten, dass ein solches System über Webhooks getrieben wird. Tut es nicht. Jeder Agent ist eine **kurz getaktete Poll-Schleife.** Immer wieder fragt er den Chat ab: Gibt es eine neue Nachricht mit dem Triggerwort? Ist die Antwort ja, startet er das Sprachmodell. Ist sie nein, schläft er weiter, ohne einen einzigen Token zu verbrennen. Keine Webhook-Registrierung, die stillschweigend kaputtgeht, keine nach außen offene Schnittstelle. Und um die gefühlte Latenz zu verstecken, gibt es einen hübschen UX-Trick: Noch bevor das Modell überhaupt startet, postet der Poll eine Vorab-Bestätigung, „Ich kümmere mich drum! 🐳", die sich laufend mit dem aktuellen Arbeitsschritt aktualisiert. Der Mensch sieht sofort eine Reaktion, statt auf den ersten Token zu warten.
 
-## Wie es Claude Code kopflos ausführt
+## Wie der Agent Claude Code headless ausführt
 
 Im Kern ruft der Bootstrap Claude Code im **Headless-Modus** (ohne interaktive Bestätigungs-Dialoge) auf, mit übersprungenen Berechtigungs-Abfragen. Der Agent soll ja nicht bei jeder Datei nachfragen. Genau deshalb ist eine der wichtigsten Leitplanken ein **harter Stopp per Hook**: Ein Merge nach `master` oder `main` wird kategorisch verweigert.
 

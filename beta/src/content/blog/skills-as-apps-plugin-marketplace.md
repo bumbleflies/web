@@ -45,7 +45,7 @@ Take deployment. Three skills together form a mini-compiler:
 
 The first takes a set of changed files and maps each to its deployment target, detects new database migrations, and builds a structured deploy plan. The second executes this plan against a test environment. The third always targets production, fires the database migrations first, as a hard gate, then the services in parallel.
 
-The production deploy is **delivery-agnostic**: it doesn't know whether a human, a rollout script, or an agent called it. When a production approval is due, it emits a structured event, "approval needed", and leaves it to the caller to present this to the human. That's why one and the same skill can serve a human, a rollout, and an autonomous agent identically.
+The production deploy is **caller-agnostic**: it doesn't know whether a human, a rollout script, or an agent called it. When a production approval is due, it emits a structured event, "approval needed", and leaves it to the caller to present this to the human. That's why one and the same skill can serve a human, a rollout, and an autonomous agent identically.
 
 ## Knowledge that improves itself
 

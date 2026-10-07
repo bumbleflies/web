@@ -12,7 +12,7 @@ published: false
 lang: "DE"
 ---
 
-Die bisherigen Artikel handelten von Systemen, die für viele arbeiten: das Nervensystem, der Marktplatz, die autonomen Agenten. Dieser letzte Teil dreht die Perspektive um. Er handelt von einem einzelnen Menschen und der Frage, die sich jeder Wissensarbeiter jeden Morgen stellt: *Was ist heute eigentlich wichtig, und was habe ich vergessen?*
+Die bisherigen Artikel handelten von Systemen, die für viele arbeiten: das Nervensystem, der Marktplatz, die autonomen Agenten. Dieser letzte Teil dreht die Perspektive um. Er handelt von einem einzelnen Menschen und der Frage, die sich Wissensarbeiter:innen jeden Morgen stellen: *Was ist heute eigentlich wichtig, und was habe ich vergessen?*
 
 Die Antwort ist ein persönlicher Meta-Agent, den ich „Cockpit" nenne. Er zieht jeden Arbeitskontext zusammen (Mail, Chat, Tickets, Video-Calls, Support-Postfach, Kalender, Aktivitätsprotokoll, lokale Verzeichnisse, den Agenten-Bus) und macht daraus einen priorisierten Tagesplan und *eine* nächste Handlung.
 
@@ -33,7 +33,7 @@ Und weil das strukturierte Ergebnis strikt validiert wird, bevor irgendetwas ihm
 
 ## Der Scanner, der die eigene KI-Historie liest
 
-Ein Detail hebt das Cockpit heraus. Einer dieser Scanner liest die **eigene Gesprächshistorie von Claude Code**, die Protokolle der KI-Sitzungen des Menschen. Warum? Weil dort Verpflichtungen liegen, die man mündlich gegenüber der KI eingegangen ist („ich mache später X"), offene Fragen, angefangene Arbeitsschritte. Der Scanner holt diese in Arbeit befindlichen Zusagen zurück an die Oberfläche, damit sie nicht im Sitzungsverlauf versickern.
+Ein Detail hebt das Cockpit heraus. Einer dieser Scanner liest die **eigene Gesprächshistorie von Claude Code**, die Protokolle der KI-Sitzungen des Menschen. Warum? Weil dort Verpflichtungen liegen, die man im Gespräch mit der KI eingegangen ist („ich mache später X"), offene Fragen, angefangene Arbeitsschritte. Der Scanner holt diese in Arbeit befindlichen Zusagen zurück an die Oberfläche, damit sie nicht im Sitzungsverlauf versickern.
 
 Ein Agent, der über die Arbeit eines Menschen mit anderen Agenten reflektiert.
 
@@ -43,7 +43,7 @@ Der Historie-Scanner ist der neueste Scanner, und die ehrliche Antwort ist, dass
 
 Meine liebste Regel im Cockpit stammt, wie so vieles im System, aus einer echten Erfahrung. Der Mail-Scanner listet nicht nur ungelesene, sondern auch *gelesene* Mails. Denn: **Gelesen heißt nicht erledigt.** Eine gelesene Mail, bei der die Gegenseite zuletzt geschrieben hat und die eine Bitte oder eine Lieferung enthält, ist weiterhin offene Arbeit.
 
-Dahinter steht eine konkrete Regression: eine Beispieldatei, gelesen an einem Montag, aber erst Tage später manuell bemerkt, weil „gelesen" fälschlich als „erledigt" galt. Die Regel ist die Lektion aus diesen verlorenen Tagen.
+Dahinter steht eine konkrete Regression: eine Mail mit einer Beispieldatei, gelesen an einem Montag, aber erst Tage später manuell bemerkt, weil „gelesen" fälschlich als „erledigt" galt. Die Regel ist die Lektion aus diesen verlorenen Tagen.
 
 ## Blockiert, wartend, als Nächstes
 

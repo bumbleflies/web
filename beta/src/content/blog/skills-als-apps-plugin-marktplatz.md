@@ -18,7 +18,7 @@ Wir haben es bei JUNE stattdessen in einen **internen App-Store** verpackt. Die 
 
 ## Wie es sich anfühlt
 
-Ein Mitarbeiter fügt den Marktplatz einmal pro Rechner zu seinem Claude Code hinzu und installiert die Plugins, die er braucht. Danach aktivieren sich die Skills über **natürliche Sprache**: Man beschreibt, was man will, und Claude Code wählt den passenden Skill anhand seiner Beschreibung. Die Beschreibungen sind bewusst mit Trigger-Phrasen auf Deutsch *und* Englisch gefüllt: „deploy to prd" und „nach prd deployen" führen zum selben Skill. JUNE ist ein Legal-Tech-Unternehmen mit deutschsprachigem Team; die Sprache muss stimmen.
+Mitarbeiter:innen fügen den Marktplatz einmal pro Rechner zu ihrem Claude Code hinzu und installieren die Plugins, die sie brauchen. Danach aktivieren sich die Skills über **natürliche Sprache**: Man beschreibt, was man will, und Claude Code wählt den passenden Skill anhand seiner Beschreibung. Die Beschreibungen sind bewusst mit Trigger-Phrasen auf Deutsch *und* Englisch gefüllt: „deploy to prd" und „nach prd deployen" führen zum selben Skill. JUNE ist ein Legal-Tech-Unternehmen mit deutschsprachigem Team; die Sprache muss stimmen.
 
 Viele Plugins, noch mehr Skills. Sie reichen von der Feature-Entwicklung (Planen, Bauen, Reviewen, Testen) über Code-Review für mehrere Technologie-Stacks bis zu Kunden-Onboarding, Support-Fixes und Zeiterfassung.
 
@@ -45,7 +45,7 @@ Ein Beispiel: das Deployment. Drei Skills bilden zusammen einen Mini-Compiler:
 
 Der erste nimmt eine Menge geänderter Dateien und ordnet jede ihrem Deployment-Ziel zu, erkennt neue Datenbank-Migrationen und bildet daraus einen strukturierten Deploy-Plan. Der zweite führt diesen Plan gegen eine Test-Umgebung aus. Der dritte zielt immer auf die Produktion, feuert die Datenbank-Migrationen zuerst als harte Sperre ab und danach die Services parallel.
 
-Der Produktiv-Deploy ist **auslieferungs-agnostisch**: Er weiß nicht, ob ihn ein Mensch, ein Rollout-Skript oder ein Agent aufgerufen hat. Er gibt in dem Moment, in dem eine Produktions-Freigabe ansteht, ein strukturiertes Ereignis aus, „Freigabe nötig", und überlässt es dem Aufrufer, das dem Menschen zu präsentieren. Deshalb kann ein und derselbe Skill einen Menschen, ein Rollout und einen autonomen Agenten identisch bedienen.
+Der Produktiv-Deploy ist **aufrufer-agnostisch**: Er weiß nicht, ob ihn ein Mensch, ein Rollout-Skript oder ein Agent aufgerufen hat. Er gibt in dem Moment, in dem eine Produktions-Freigabe ansteht, ein strukturiertes Ereignis aus, „Freigabe nötig", und überlässt es dem Aufrufer, das dem Menschen zu präsentieren. Deshalb kann ein und derselbe Skill einen Menschen, ein Rollout und einen autonomen Agenten identisch bedienen.
 
 ## Wissen, das sich selbst verbessert
 
