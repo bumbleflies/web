@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920, height=1080">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; }
+  body {
+    background: #f5f1e8;
+    color: #1a1714;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .frame { position: absolute; inset: 48px; border: 2px solid rgba(26,23,20,.16); pointer-events: none; }
+  .card { text-align: center; max-width: 1300px; }
+  .kicker {
+    display: inline-block; font-size: 34px; letter-spacing: .28em; text-transform: uppercase;
+    color: #faf7f0; background: #1a1714; padding: 14px 30px 14px 38px; border-radius: 999px;
+    margin-bottom: 48px;
+  }
+  h1 {
+    font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
+    font-size: 210px; line-height: .95; letter-spacing: -.02em;
+  }
+  h1 em { font-style: italic; color: #a67c4d; }
+  .sub { margin-top: 28px; font-size: 44px; color: #5c554b; }
+  .names { margin-top: 56px; display: flex; gap: 24px; justify-content: center; }
+  .names span {
+    font-size: 38px; padding: 16px 34px; border-radius: 999px;
+    border: 2px solid #1a1714; background: #faf7f0;
+  }
+  .names span.live { background: #4a3f8f; border-color: #4a3f8f; color: #faf7f0; }
+  .foot { position: absolute; bottom: 90px; width: 100%; text-align: center; font-size: 30px; letter-spacing: .18em; text-transform: uppercase; color: #5c554b; }
+</style>
+</head>
+<body>
+  <div class="frame"></div>
+  <div class="card">
+    <div class="kicker">Bumbleflies live session</div>
+    <h1>bumble<em>:live</em></h1>
+    <div class="sub">Starting shortly. Audio check, headphones on.</div>
+    <div class="names"><span class="live">Nico</span><span>Sebi</span><span>Chris</span></div>
+  </div>
+  <div class="foot">youtube &middot; vdo.ninja &middot; obs</div>
+</body>
+</html>
