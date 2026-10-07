@@ -1,6 +1,6 @@
 # bumble:live host runbook
 
-You are the production host. Your laptop owns the YouTube stream. Nico, Sebi, and Chris are remote contributors over VDO.Ninja. This runbook is tailored to Linux with NVIDIA NVENC, 1080p30.
+You are the production host. Your laptop owns the YouTube stream. Nico, Sebi, and Chris are remote contributors over VDO.Ninja. This runbook is tailored to Linux, 1080p30, x264 software encoding (the host box is Intel-only).
 
 ## 0. What you need
 
@@ -53,13 +53,13 @@ Profile `Bumbleflies YouTube`:
 ```text
 Service: YouTube (RTMP, connect account or paste key)
 Base canvas: 1920x1080, Output: 1920x1080, FPS: 30 common
-Output: Advanced, Encoder: NVIDIA NVENC H.264, Rate control: CBR
-Bitrate: 8000 to 10000 Kbps, Keyframe interval: 2 s, Preset: P5 or Quality, B-frames: 2
+Output: Advanced, Encoder: x264, Rate control: CBR
+Bitrate: 8000 Kbps, Keyframe interval: 2 s, CPU preset: veryfast, Profile: high
 Audio: 160 Kbps, 48 kHz, stereo
 Recording: same encoder or x264 fallback, mkv or mp4
 ```
 
-If NVENC is missing, OBS falls back to x264 veryfast at 8000 Kbps. That still works for 1080p30.
+On a box with NVIDIA, you can switch the encoder to NVENC (preset P5, 9000 Kbps). That still works for 1080p30.
 
 Scene collection `Bumbleflies Live` ships 7 scenes:
 
