@@ -16,7 +16,7 @@ Conventions:
 ## Publishing checklist
 
 1. Set `published: true` in **both** language files.
-2. Preview a draft without publishing: dev server shows drafts; in production append `?preview=<key>` (`PUBLIC_PREVIEW_KEY` env, default `bumble-field-notes` — see `PREVIEW_KEY` in `beta/src/lib/blog.ts`).
+2. Preview a draft without publishing: dev server shows drafts; in production append `?preview=<key>` to the post URL (key `bumble-field-notes`, see `PREVIEW_KEY` in `beta/src/lib/blog.ts`). Draft pages are only built when `PUBLIC_PREVIEW_KEY` is set at build time; `beta/Dockerfile` sets it as a build arg. Drafts stay unlisted, `noindex`, and out of RSS and the sitemap.
 3. Run the `sync-agent-content` skill (`beta/.claude/skills/`): add the post to the Blog section of `public/llms.txt` / `public/llms-full.txt` (published posts only) and `public/agents.txt`.
 4. Verify: `npx vitest run --exclude tests/bilingual-content.integration.test.ts`, `npm run build`, then `grep` `dist/sitemap-0.xml` for both slugs and check `dist/rss.xml` + `dist/en/rss.xml`.
 5. PR to `master` — deploy is path-filtered on `beta/`.

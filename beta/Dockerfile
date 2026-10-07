@@ -14,6 +14,11 @@ RUN npm ci
 # Copy source
 COPY . .
 
+# Build the draft blog pages too, so the magic preview link
+# (?preview=<key>, see src/lib/blog.ts) works in production. Drafts stay
+# unlisted, noindex, out of RSS and out of the sitemap (astro.config.mjs).
+ARG PUBLIC_PREVIEW_KEY=bumble-field-notes
+
 # Build Astro
 RUN npm run build
 
