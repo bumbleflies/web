@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Hero from '../../components/Hero.astro';
 import ClientWall from '../../components/ClientWall.astro';
 import StationFlow from '../../components/StationFlow.astro';
+import PipelineDemo from '../../components/PipelineDemo.astro';
 import Quote from '../../components/Quote.astro';
 import CaseStudiesPreview from '../../components/CaseStudiesPreview.astro';
 import FormatsGrid from '../../components/FormatsGrid.astro';
@@ -47,6 +48,7 @@ const flow = {
       subtitle: 'App Development',
       description: 'Ideas that survive the workshop need a prototype. We build it: fast, simple, adaptable.',
       outputs: ['Clickable prototype in 2–4 weeks', 'MVP in 6–12 weeks', 'Clean handover to your team'],
+      modalTrigger: 'pipeline-demo-dialog',
     },
     {
       number: '04',
@@ -96,6 +98,7 @@ const ctaBody = 'Send us two sentences. We respond within 24h with the proposal 
     stations={flow.stations}
     lang={currentLang}
   />
+  <PipelineDemo lang={currentLang} />
   <Quote
     text={data.quote ?? ''}
     cite={data.quoteCite ?? ''}

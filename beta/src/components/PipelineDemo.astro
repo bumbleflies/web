@@ -1,0 +1,454 @@
+---
+interface Step {
+  marker: string;
+  label: string;
+  title: string;
+  detail: string;
+}
+
+interface Props {
+  lang?: 'DE' | 'EN';
+}
+
+const { lang = 'DE' } = Astro.props;
+
+// Real incident, not a mock: bumbleflies/web PR #232, 2026-10-07.
+// Created 10:40:52 UTC. Deploy workflow "Astro Build & Deploy" for the merge
+// commit completed 11:21:14 UTC (gh run list --commit <mergeCommit>) => 40:22
+// ticket-to-live, not ticket-to-merge (which would be 38:41).
+const TARGET_SECONDS = 40 * 60 + 22;
+const DIALOG_ID = 'pipeline-demo-dialog';
+
+const copy =
+  lang === 'DE'
+    ? {
+        kicker: 'So baut’s wirklich',
+        heading: 'Willst du’s in Aktion sehen?',
+        lede: 'Ein echter Vorfall von dieser Website, Schritt für Schritt, genau so wie er ablief.',
+        play: 'Ansehen',
+        replay: 'Noch mal ansehen',
+        close: 'Schließen',
+        timerLabel: 'von Ticket bis Live',
+        caption: 'So entsteht auch diese Seite: bumbleflies/web, Pull Request #232, 7. Oktober 2026.',
+        steps: [
+          {
+            marker: '\u{1F534}',
+            label: 'Problem',
+            title: 'Preview-Link tot in Produktion',
+            detail: 'Seit PR #104 unbemerkt: der Draft-Vorschau-Link zeigt nur die Startseite.',
+          },
+          {
+            marker: '\u{1F50E}',
+            label: 'Agent',
+            title: 'Ursache gefunden',
+            detail: 'PUBLIC_PREVIEW_KEY fehlt im Production-Build. Zwei betroffene Dateien.',
+          },
+          {
+            marker: '\u{1F527}',
+            label: 'PR #232',
+            title: 'Fix geöffnet, Tests grün',
+            detail: '+24/-2 Zeilen, 3 Dateien: Dockerfile und ein Sitemap-Filter.',
+          },
+          {
+            marker: '✅',
+            label: 'Deploy',
+            title: 'Live auf bumbleflies.de',
+            detail: 'Gemerged und ausgerollt. Der Vorschau-Link funktioniert wieder.',
+          },
+        ] satisfies Step[],
+      }
+    : {
+        kicker: 'How it really gets built',
+        heading: 'Wanna see it in action?',
+        lede: 'A real incident from this very website, step by step, exactly as it happened.',
+        play: 'Watch it',
+        replay: 'Watch again',
+        close: 'Close',
+        timerLabel: 'ticket to live',
+        caption: 'This is how this page ships too: bumbleflies/web, pull request #232, Oct 7 2026.',
+        steps: [
+          {
+            marker: '\u{1F534}',
+            label: 'Problem',
+            title: 'Preview link dead in production',
+            detail: 'Unnoticed since PR #104: the draft preview link just showed the homepage.',
+          },
+          {
+            marker: '\u{1F50E}',
+            label: 'Agent',
+            title: 'Root cause found',
+            detail: 'PUBLIC_PREVIEW_KEY missing from the production build. Two files affected.',
+          },
+          {
+            marker: '\u{1F527}',
+            label: 'PR #232',
+            title: 'Fix opened, tests green',
+            detail: '+24/-2 lines, 3 files: the Dockerfile and a sitemap filter.',
+          },
+          {
+            marker: '✅',
+            label: 'Deploy',
+            title: 'Live on bumbleflies.de',
+            detail: 'Merged and shipped. The preview link works again.',
+          },
+        ] satisfies Step[],
+      };
+---
+
+<dialog class="pd-dialog" id={DIALOG_ID} data-pipeline-dialog aria-label={copy.heading}>
+  <div class="pd-dialog__inner">
+    <button type="button" class="pd-dialog__close" data-pipeline-close aria-label={copy.close}>
+      <span aria-hidden="true">&#x2715;</span>
+    </button>
+
+    <span class="pd__eyebrow">{copy.kicker}</span>
+    <h2 class="pd__heading">{copy.heading}</h2>
+    <p class="pd__lede">{copy.lede}</p>
+
+    <div class="pd__panel" data-pipeline-demo data-target-seconds={TARGET_SECONDS}>
+      <ol class="pd__steps">
+        {copy.steps.map((step) => (
+          <li class="pd__step">
+            <span class="pd__step-marker" aria-hidden="true">{step.marker}</span>
+            <span class="pd__step-label">{step.label}</span>
+            <span class="pd__step-title">{step.title}</span>
+            <span class="pd__step-detail">{step.detail}</span>
+          </li>
+        ))}
+      </ol>
+
+      <div class="pd__footer">
+        <button
+          type="button"
+          class="bf-cta bf-cta--ghost pd__play"
+          data-pd-play
+          data-play-label={copy.play}
+          data-replay-label={copy.replay}
+        >
+          {copy.play}
+        </button>
+        <div class="pd__timer">
+          <span class="pd__timer-value" data-pd-timer-value>00:00</span>
+          <span class="pd__timer-label">{copy.timerLabel}</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="pd__caption">{copy.caption}</p>
+  </div>
+</dialog>
+
+<script>
+  const STEP_DELAY_MS = 900;
+  const STEP_FADE_MS = 450;
+
+  function formatTime(totalSeconds: number): string {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
+
+  document.querySelectorAll('[data-pipeline-dialog]').forEach((dialogEl) => {
+    if (!(dialogEl instanceof HTMLDialogElement)) return;
+    if (dialogEl.dataset.pdDialogInit === 'true') return;
+    dialogEl.dataset.pdDialogInit = 'true';
+
+    // Any trigger anywhere on the page that points at this dialog's id opens it.
+    // Keeps the trigger (e.g. a station in StationFlow) decoupled from this component.
+    document.querySelectorAll(`[data-open-modal="${dialogEl.id}"]`).forEach((trigger) => {
+      trigger.addEventListener('click', () => dialogEl.showModal());
+    });
+
+    const closeButton = dialogEl.querySelector('[data-pipeline-close]');
+    closeButton?.addEventListener('click', () => dialogEl.close());
+
+    // Native <dialog> does not close on backdrop click by default. A click whose
+    // target is the dialog element itself (not a descendant) landed on the backdrop.
+    dialogEl.addEventListener('click', (event) => {
+      if (event.target === dialogEl) dialogEl.close();
+    });
+
+    const panel = dialogEl.querySelector('[data-pipeline-demo]');
+    if (!(panel instanceof HTMLElement)) return;
+
+    const button = panel.querySelector('[data-pd-play]');
+    const timerValue = panel.querySelector('[data-pd-timer-value]');
+    const steps = Array.from(panel.querySelectorAll('.pd__step')).filter(
+      (el): el is HTMLElement => el instanceof HTMLElement
+    );
+
+    if (!(button instanceof HTMLButtonElement) || !(timerValue instanceof HTMLElement) || steps.length === 0) {
+      return;
+    }
+
+    const targetSeconds = Number(panel.dataset.targetSeconds ?? '0');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const playLabel = button.dataset.playLabel ?? button.textContent ?? '';
+    const replayLabel = button.dataset.replayLabel ?? playLabel;
+
+    let playing = false;
+
+    const setStepVisible = (index: number, visible: boolean) => {
+      steps[index]?.classList.toggle('is-visible', visible);
+    };
+
+    const resetState = () => {
+      steps.forEach((_, index) => setStepVisible(index, false));
+      timerValue.textContent = '00:00';
+    };
+
+    const showEndState = () => {
+      steps.forEach((_, index) => setStepVisible(index, true));
+      timerValue.textContent = formatTime(targetSeconds);
+    };
+
+    const animateTimer = (durationMs: number) => {
+      const start = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min(1, (now - start) / durationMs);
+        timerValue.textContent = formatTime(Math.round(progress * targetSeconds));
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const play = () => {
+      if (playing) return;
+      playing = true;
+      button.disabled = true;
+      resetState();
+
+      if (reduceMotion) {
+        showEndState();
+        button.disabled = false;
+        button.textContent = replayLabel;
+        playing = false;
+        return;
+      }
+
+      const totalMs = (steps.length - 1) * STEP_DELAY_MS + STEP_FADE_MS;
+      animateTimer(totalMs);
+      steps.forEach((_, index) => {
+        window.setTimeout(() => setStepVisible(index, true), index * STEP_DELAY_MS);
+      });
+      window.setTimeout(() => {
+        button.disabled = false;
+        button.textContent = replayLabel;
+        playing = false;
+      }, totalMs);
+    };
+
+    button.addEventListener('click', play);
+  });
+</script>
+
+<style>
+  .pd-dialog {
+    /* The site's global `* { margin: 0 }` reset (design-system.css) beats the
+       UA stylesheet's own `dialog[open] { margin: auto }`, so centering must
+       be re-asserted explicitly here or the dialog pins to the top-left. */
+    margin: auto;
+    width: min(1100px, 94vw);
+    max-width: 1100px;
+    max-height: 88vh;
+    overflow: auto;
+    padding: 0;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .pd-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .pd-dialog__inner {
+    position: relative;
+    padding: var(--space-2xl);
+  }
+
+  .pd-dialog__close {
+    position: absolute;
+    top: var(--space-lg);
+    right: var(--space-lg);
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--ink);
+    font-size: var(--text-base);
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color var(--duration-fast) var(--easing-default), color var(--duration-fast) var(--easing-default);
+  }
+
+  .pd-dialog__close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .pd__eyebrow {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    color: var(--ink-soft);
+    margin-bottom: var(--space-md);
+    font-weight: 600;
+  }
+
+  .pd__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    margin: 0 0 var(--space-sm);
+    color: var(--ink);
+    line-height: var(--lh-snug);
+    padding-right: var(--space-2xl);
+  }
+
+  .pd__lede {
+    color: var(--ink-soft);
+    line-height: var(--lh-body);
+    margin: 0 0 var(--space-xl);
+    max-width: 56ch;
+  }
+
+  .pd__panel {
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    padding: var(--space-xl);
+  }
+
+  .pd__steps {
+    list-style: none;
+    margin: 0 0 var(--space-xl);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .pd__step {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    background: var(--paper);
+    opacity: 0.25;
+    transform: translateY(6px);
+    transition: opacity 450ms var(--easing-default), transform 450ms var(--easing-default), border-color 450ms var(--easing-default);
+  }
+
+  .pd__step.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    border-color: var(--accent);
+  }
+
+  .pd__step-marker {
+    font-size: var(--text-lg);
+  }
+
+  .pd__step-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wider);
+    color: var(--accent);
+  }
+
+  .pd__step-title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    color: var(--ink);
+    line-height: var(--lh-snug);
+  }
+
+  .pd__step-detail {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    line-height: var(--lh-body);
+  }
+
+  .pd__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .pd__play:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .pd__timer {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    font-family: var(--font-mono);
+  }
+
+  .pd__timer-value {
+    font-size: var(--text-xl);
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .pd__timer-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wide);
+    color: var(--ink-soft);
+  }
+
+  .pd__caption {
+    margin: var(--space-lg) 0 0;
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+  }
+
+  @media (max-width: 1024px) {
+    .pd__steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pd-dialog {
+      margin: 0;
+      width: 100vw;
+      max-height: 100vh;
+      height: 100vh;
+      border-radius: 0;
+    }
+
+    .pd__heading {
+      font-size: var(--text-2xl);
+    }
+
+    .pd__steps {
+      grid-template-columns: 1fr;
+    }
+
+    .pd-dialog__inner {
+      padding: var(--space-lg);
+    }
+
+    .pd__panel {
+      padding: var(--space-lg);
+    }
+  }
+</style>
