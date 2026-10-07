@@ -6,6 +6,8 @@ interface Station {
   description: string;
   outputs: string[];
   href?: string;
+  /** Id of a <dialog data-pipeline-dialog> elsewhere on the page to open on click, instead of navigating. */
+  modalTrigger?: string;
 }
 
 interface Props {
@@ -33,14 +35,28 @@ const { eyebrow, heading, stations, lang = 'DE' } = Astro.props;
           <div class="a-flow-num">{station.number}</div>
           <div class="a-flow-title-block">
             <span class="a-flow-subtitle">
-              {station.href ? <a href={station.href} class="a-flow-subtitle-link">{station.subtitle}</a> : station.subtitle}
+              {station.href ? (
+                <a href={station.href} class="a-flow-subtitle-link">{station.subtitle}</a>
+              ) : station.modalTrigger ? (
+                <button type="button" class="a-flow-subtitle-link a-flow-trigger" data-open-modal={station.modalTrigger}>
+                  {station.subtitle}
+                </button>
+              ) : (
+                station.subtitle
+              )}
             </span>
             <h3 class="a-flow-title">
               {station.href ? (
                 <a href={station.href} class="a-flow-title-link">
                   {station.title}<span class="a-flow-title-arrow" aria-hidden="true">↗</span>
                 </a>
-              ) : station.title}
+              ) : station.modalTrigger ? (
+                <button type="button" class="a-flow-title-link a-flow-trigger" data-open-modal={station.modalTrigger}>
+                  {station.title}<span class="a-flow-title-arrow" aria-hidden="true">↗</span>
+                </button>
+              ) : (
+                station.title
+              )}
             </h3>
           </div>
           <div class="a-flow-desc">
@@ -172,6 +188,18 @@ const { eyebrow, heading, stations, lang = 'DE' } = Astro.props;
     color: inherit;
     text-decoration: none;
     transition: color var(--duration-fast);
+  }
+
+  button.a-flow-trigger {
+    appearance: none;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+    cursor: pointer;
   }
 
   .a-flow-subtitle-link:hover,

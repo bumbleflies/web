@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import DifferenceSection from '../components/DifferenceSection.astro';
 import ClientWall from '../components/ClientWall.astro';
 import StationFlow from '../components/StationFlow.astro';
+import PipelineDemo from '../components/PipelineDemo.astro';
 import Quote from '../components/Quote.astro';
 import FitSection from '../components/FitSection.astro';
 import CaseStudiesPreview from '../components/CaseStudiesPreview.astro';
@@ -49,6 +50,7 @@ const flow = {
       subtitle: 'App Development',
       description: 'Die Ideen, die den Workshop überlebt haben, brauchen einen Prototyp. Wir bauen ihn: schnell, schlicht, anpassbar.',
       outputs: ['Klickbarer Prototyp in 2–4 Wochen', 'MVP in 6–12 Wochen', 'Klare Übergabe an euer Team'],
+      modalTrigger: 'pipeline-demo-dialog',
     },
     {
       number: '04',
@@ -100,6 +102,7 @@ const ctaBody = 'Schreib uns zwei Sätze. Wir antworten innerhalb von 24h mit de
     stations={flow.stations}
     lang={currentLang}
   />
+  <PipelineDemo lang={currentLang} />
   <section class="a-quote-highlight">
     <Quote
       text={data.quote ?? ''}
