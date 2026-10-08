@@ -1,9 +1,0 @@
-[submodule "_forty-theme"]
-	path = _forty-theme
-	url = https://github.com/andrewbanchich/forty-jekyll-theme.git
-[submodule "_externals/flag-icons"]
-	path = _externals/flag-icons
-	url = https://github.com/lipis/flag-icons
-[submodule "_externals/agency-jekyll-theme"]
-	path = _externals/agency-jekyll-theme
-	url = https://github.com/raviriley/agency-jekyll-theme
