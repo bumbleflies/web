@@ -34,7 +34,7 @@ jobs:
       - name: Build image
         uses: docker/build-push-action@v7
         with:
-          context: beta
+          context: .
           push: false
           outputs: type=docker,dest=/tmp/image.tar
           tags: ${{ steps.meta.outputs.tags }}

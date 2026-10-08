@@ -59,7 +59,7 @@ Rate every hunk individually before approving or merging, the same way you'd pro
 - Short, punchy declarative sentences that land the thesis.
 - Self-aware or vulnerable admissions ("there are decisions in here I'm still not sure about").
 
-## House style (see also `beta/CLAUDE.md`)
+## House style (see also `CLAUDE.md`)
 
 - **No em dashes.** Use a period, comma, colon, semicolon, or parentheses instead.
 - **German quotes**: „ for the opening mark, a plain straight `"` for the closing mark, matching this series' existing body-text convention (not the typographically "correct" „…" pair).
