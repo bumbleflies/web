@@ -7,13 +7,23 @@ on:
     branches:
       - master
     paths:
-      - 'beta/**'
+      - 'src/**'
+      - 'public/**'
+      - 'package*.json'
+      - 'astro.config.mjs'
+      - 'Dockerfile'
+      - 'nginx.conf'
       - '.github/workflows/*.yml'
   pull_request:
     branches:
       - '*'
     paths:
-      - 'beta/**'
+      - 'src/**'
+      - 'public/**'
+      - 'package*.json'
+      - 'astro.config.mjs'
+      - 'Dockerfile'
+      - 'nginx.conf'
       - '.github/workflows/*.yml'
   workflow_dispatch:
 
