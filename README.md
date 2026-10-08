@@ -1,7 +1,7 @@
 # Bumbleflies Homepage
 
 Modern static site built with:
-- [Astro 6.x](https://astro.build/)
+- [Astro 7](https://astro.build/)
 - [React 19](https://react.dev/) components
 - [TypeScript](https://www.typescriptlang.org/)
 
@@ -12,8 +12,7 @@ Modern static site built with:
 ### Install dependencies
 
 ```bash
-cd beta
-npm install
+npm ci
 ```
 
 ### Development server
@@ -30,7 +29,7 @@ Runs at `http://localhost:3000` with hot module reloading.
 npm run build
 ```
 
-Outputs static site to `beta/dist/`.
+Outputs static site to `dist/`.
 
 ### Preview production build locally
 
@@ -41,7 +40,7 @@ npm run preview
 ## Project Structure
 
 ```
-beta/
+./
 ├── src/
 │   ├── components/          # Reusable Astro & React components
 │   │   ├── Layout.astro    # Main page layout wrapper
@@ -58,7 +57,7 @@ beta/
 │   │   └── ...
 │   ├── content/            # Content collections (structured data)
 │   │   ├── case-studies/   # Case study content & metadata
-│   │   └── config.ts       # Content collection schemas
+│   ├── content.config.ts  # Content collection schemas
 │   ├── styles/             # Global CSS and component styles
 │   └── layouts/            # Reusable page layouts
 ├── public/                 # Static assets (images, fonts, etc.)
@@ -151,7 +150,12 @@ Tests use [Vitest](https://vitest.dev/) with React Testing Library for component
 
 ## Deployment
 
-The site is deployed to production via GitHub Actions when changes are pushed to `main`.
+The site is deployed to production via GitHub Actions (`.github/workflows/astro-build-deploy.yml`) when changes are pushed to `master`.
+
+```bash
+docker build -t bumble-web .
+docker run -p 8080:80 bumble-web
+```
 
 See `.github/workflows/` for deployment configuration.
 

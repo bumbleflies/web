@@ -1,20 +1,15 @@
-_site
-_test_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
-_agency-jekyll-theme/
+node_modules/
+dist/
+.astro/
+.env
+.env.local
+.DS_Store
+npm-debug.log
 .idea/*
-/_tests/_test_site/
 *.zip
 venv/
 .lock
 __pycache__
-/_purge/node_modules/*
-/_purge/package*.json
-.DS_Store
-beta/.astro/
 
 # Playwright
 test-results/
