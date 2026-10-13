@@ -52,6 +52,8 @@ We help teams move from conversation to code. Our approach combines structured f
 - [The Foundations Everything Runs On: State and Interaction (EN)](https://bumbleflies.de/en/blog/two-levels-state-interaction): English version of Field Notes #2. With audio summary.
 - [Zwischenspiel: Von der Anforderung bis live an einem Export](https://bumbleflies.de/blog/anforderung-bis-live): Field Notes #2.5. One concrete requirement-to-live trace answering the "too abstract" feedback: a missing export column travels from support chat through ticket, enrichment, testing, and batch rollout to regression and docs.
 - [Interlude: From request to live, traced through one export (EN)](https://bumbleflies.de/en/blog/requirement-to-live): English version of Field Notes #2.5.
+- [Das Nervensystem: Event-Automatisierung und wie man ein Sprachmodell ehrlich hält](https://bumbleflies.de/blog/nervensystem-n8n-automatisierung): Field Notes #3. How an always-on n8n automation pillar turns support emails into classified tickets with a self-learning router trained on human corrections, plus a multi-stage privacy filter that shows what "don't trust the model, verify with code" looks like in practice. With audio summary.
+- [The Nervous System: Event Automation and How to Keep a Language Model Honest (EN)](https://bumbleflies.de/en/blog/nervous-system-event-automation): English version of Field Notes #3. With audio summary.
 
 ## Pages
 

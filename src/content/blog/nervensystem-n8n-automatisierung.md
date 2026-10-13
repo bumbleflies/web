@@ -1,6 +1,6 @@
 ---
 title: "Das Nervensystem: Event-Automatisierung und wie man ein Sprachmodell ehrlich hält"
-description: "Wie eine ständig laufende Automatisierungssäule aus Support-Mails klassifizierte Tickets macht und ein mehrstufiger Datenschutz-Filter, der zeigt, was „vertraue dem Modell nicht, verifiziere mit Code\" praktisch heißt."
+description: "Wie eine ständig laufende Automatisierungssäule aus Support-Mails klassifizierte Tickets macht und ein mehrstufiger Datenschutz-Filter, der zeigt, was 'vertraue dem Modell nicht, verifiziere mit Code' praktisch heißt."
 excerpt: "Viele Workflows, eine Menge Verarbeitungsschritte, kein Mensch in der Schleife. Ein selbstlernender Ticket-Router und ein Datenschutz-Filter, der das Sprachmodell schreiben lässt, aber ihm kein Wort glaubt."
 category: "Automatisierung"
 image: "/images/blog/nervensystem-n8n-automatisierung.svg"
@@ -8,7 +8,7 @@ order: 3
 date: 2026-07-15
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "9 Min."
-published: false
+published: true
 lang: "DE"
 ---
 
@@ -40,7 +40,7 @@ Und das Ganze ist an jeder Verzweigung fehlertolerant entworfen: Schlägt die Kl
 
 Wenn mich jemand fragt, wie man ein Sprachmodell in Produktion sicher macht, zeige ich diesen Workflow.
 
-JUNE generiert kundensichtbare Release-Notes automatisch aus internen Tickets. Interne Tickets sind für Kolleg:innen geschrieben, nicht für die Öffentlichkeit: Sie enthalten Details, die in einer Release-Note nichts zu suchen haben. Deshalb liegt zwischen Ticket und Note von Anfang an eine deterministische Grenze, und nicht bloß eine Anweisung im Prompt.
+JUNE generiert kundensichtbare Release-Notes automatisch aus internen Tickets. Interne Tickets sind für Kolleg:innen geschrieben, nicht für die Öffentlichkeit: Sie enthalten Details, die in einer Release-Note nichts zu suchen haben. Deshalb liegt zwischen Ticket und Note von Anfang an eine deterministische Grenze und nicht bloß eine Anweisung im Prompt.
 
 Die naive Lösung wäre: dem Modell im Prompt sagen „nenne keine Namen". Ich tue das auch: Der Prompt enthält ein hartes Verbot mit Beispielen. **Aber ich vertraue dem Prompt nicht.** Der Ablauf ist deshalb gestaffelt:
 
