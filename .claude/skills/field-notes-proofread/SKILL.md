@@ -18,7 +18,7 @@ A line-by-line editorial pass for the "Field Notes" blog series (the KI-Agenten-
 2. Apply edits to the language file you're proofreading.
 3. **Mirror every edit to the other language file.** DE and EN posts are paired by `order` (see `src/content/blog/AGENTS.md`); a fix in one that isn't ported to the other creates drift a reader or the next editor won't expect.
 4. Do a **final fresh read** of the whole post after all edits — not just the touched lines. Coordinated multi-step edits routinely produce new problems the line-level view can't see (see Cross-cutting checks below).
-5. Run `npm run build` (or `astro check`) before calling it done — a frontmatter quote fix can silently break YAML parsing (see Gotcha below).
+5. Run `npm run build` (or `npm run typecheck`) before calling it done — a frontmatter quote fix can silently break YAML parsing (see Gotcha below).
 
 ## Red flags — cut or rewrite on sight
 
@@ -71,7 +71,7 @@ Rate every hunk individually before approving or merging, the same way you'd pro
 - escape it as `\"`, or
 - keep the frontmatter convention of plain `'single quotes'` for embedded quotes (avoids the whole class of bug).
 
-Always run `npm run build` after touching frontmatter to catch this — `astro check`'s content-sync step will fail loudly if it's broken, silently succeed if it isn't.
+Always run `npm run build` after touching frontmatter to catch this — the content-sync step in `npm run typecheck` (`astro sync`) will fail loudly if it's broken, silently succeed if it isn't.
 
 ## Cross-cutting checks (do these on the final read, not per-line)
 
