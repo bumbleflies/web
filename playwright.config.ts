@@ -19,13 +19,15 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         headless: !process.env.HEADED,
-        launchArgs: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--disable-gpu',
-          '--disable-dev-shm-usage',
-        ],
-        executablePath: '/usr/bin/google-chrome',
+        launchOptions: {
+          executablePath: '/usr/bin/google-chrome',
+          args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-gpu',
+            '--disable-dev-shm-usage',
+          ],
+        },
       },
     },
   ],

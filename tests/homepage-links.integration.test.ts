@@ -142,9 +142,7 @@ describe('Homepage Links Validation', () => {
         }
       }
 
-      expect(invalidPages).toEqual([],
-        `The following links point to non-existent pages: ${invalidPages.join(', ')}`
-      );
+      expect(invalidPages, `The following links point to non-existent pages: ${invalidPages.join(', ')}`).toEqual([]);
     });
 
     it('should have valid case study links', async () => {
@@ -158,19 +156,15 @@ describe('Homepage Links Validation', () => {
         }
       }
 
-      expect(missingCaseStudies).toEqual([],
-        `Case study pages are missing for slugs: ${missingCaseStudies.join(', ')}`
-      );
+      expect(missingCaseStudies, `Case study pages are missing for slugs: ${missingCaseStudies.join(', ')}`).toEqual([]);
     });
 
     it('should have special handlers for email links', () => {
       const emailLinks = HOMEPAGE_LINKS.DE.filter(link => link.href.startsWith('mailto:'));
-      expect(emailLinks.length).toBeGreaterThan(0, 'Email links should be present on DE homepage');
+      expect(emailLinks.length, 'Email links should be present on DE homepage').toBeGreaterThan(0);
 
       emailLinks.forEach(link => {
-        expect(link.href).toMatch(/^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          `Invalid email format: ${link.href}`
-        );
+        expect(link.href, `Invalid email format: ${link.href}`).toMatch(/^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
       });
     });
 
@@ -205,9 +199,7 @@ describe('Homepage Links Validation', () => {
         }
       }
 
-      expect(invalidPages).toEqual([],
-        `The following links point to non-existent pages: ${invalidPages.join(', ')}`
-      );
+      expect(invalidPages, `The following links point to non-existent pages: ${invalidPages.join(', ')}`).toEqual([]);
     });
 
     it('should have valid case study links with /en/ prefix', async () => {
@@ -223,19 +215,15 @@ describe('Homepage Links Validation', () => {
         }
       }
 
-      expect(missingCaseStudies).toEqual([],
-        `Case study pages are missing for slugs: ${missingCaseStudies.join(', ')}`
-      );
+      expect(missingCaseStudies, `Case study pages are missing for slugs: ${missingCaseStudies.join(', ')}`).toEqual([]);
     });
 
     it('should have special handlers for email links', () => {
       const emailLinks = HOMEPAGE_LINKS.EN.filter(link => link.href.startsWith('mailto:'));
-      expect(emailLinks.length).toBeGreaterThan(0, 'Email links should be present on EN homepage');
+      expect(emailLinks.length, 'Email links should be present on EN homepage').toBeGreaterThan(0);
 
       emailLinks.forEach(link => {
-        expect(link.href).toMatch(/^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          `Invalid email format: ${link.href}`
-        );
+        expect(link.href, `Invalid email format: ${link.href}`).toMatch(/^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
       });
     });
   });
@@ -249,15 +237,11 @@ describe('Homepage Links Validation', () => {
         !EXTERNAL_URL_PATTERN.test(link.href)
       );
 
-      expect(invalidLinks).toEqual([],
-        `The following links have invalid format: ${invalidLinks.map(l => l.href).join(', ')}`
-      );
+      expect(invalidLinks, `The following links have invalid format: ${invalidLinks.map(l => l.href).join(', ')}`).toEqual([]);
     });
 
     it('should have documented case study links', async () => {
-      expect(caseStudySlugs.length).toBeGreaterThan(0,
-        'At least one published case study should exist for homepage to display case study cards'
-      );
+      expect(caseStudySlugs.length, 'At least one published case study should exist for homepage to display case study cards').toBeGreaterThan(0);
     });
   });
 });

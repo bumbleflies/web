@@ -8,13 +8,14 @@ interface Props {
   href?: string;
   ctaLabel?: string;
   footnoteLink?: { label: string; href: string };
+  'data-lang'?: string;
+  'data-service-id'?: string | number;
 }
 
-const { number, title, tag, description, bullets, href, ctaLabel, footnoteLink } = Astro.props;
-const attrs = Astro.props;
+const { number, title, tag, description, bullets, href, ctaLabel, footnoteLink, 'data-lang': dataLang, 'data-service-id': dataServiceId } = Astro.props;
 ---
 
-<article class="a-service-card" data-lang={attrs['data-lang']} data-service-id={attrs['data-service-id']}>
+<article class="a-service-card" data-lang={dataLang} data-service-id={dataServiceId}>
   {href && <a href={href} class="a-service-card__overlay" aria-label={title}></a>}
   <div class="a-service-card__header">
     <span class="a-service-card__number">{number}</span>

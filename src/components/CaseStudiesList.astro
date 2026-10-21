@@ -15,7 +15,7 @@ const caseStudies = await getCollection('case-studies', ({ data }) => data.publi
             company={study.data.company}
             service={study.data.service}
             quote={study.data.quote}
-            slug={study.id || study.slug}
+            slug={study.id}
           />
         ))
       ) : (

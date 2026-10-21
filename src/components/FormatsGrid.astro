@@ -31,7 +31,7 @@ const { heading, eyebrow, formats, lang = 'DE', lede } = Astro.props;
 <div class="bf-container">
   <div class="formats-grid">
     {formats.map((fmt, idx) => (
-      <div key={fmt.name} class="format-item" style={{ borderRight: idx < 2 ? '1px solid var(--rule)' : 'none' }}>
+      <div class="format-item" style={{ borderRight: idx < 2 ? '1px solid var(--rule)' : 'none' }}>
         <div class="format-header">
           <h3 style="font-family: var(--font-display); font-size: var(--text-3xl); letter-spacing: -0.02em; line-height: 1; margin: 0;">
             {fmt.name}

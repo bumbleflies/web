@@ -35,7 +35,7 @@ const useEnRows = enRows || rows || [];
     </thead>
     <tbody>
       {useDeRows.map((row, index) => (
-        <tr key={index}>
+        <tr>
           <td class="a-comparison-table__label" data-de={row.label} data-en={row.label}>
             {row.label}
           </td>
@@ -65,7 +65,7 @@ const useEnRows = enRows || rows || [];
     </thead>
     <tbody>
       {useEnRows.map((row, index) => (
-        <tr key={index}>
+        <tr>
           <td class="a-comparison-table__label" data-de={row.label} data-en={row.label}>
             {row.label}
           </td>

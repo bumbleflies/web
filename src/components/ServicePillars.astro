@@ -38,7 +38,6 @@ const learnMore = lang === 'DE' ? 'Mehr erfahren →' : 'Learn more →';
   <div class="a-services">
     {services.map((service) => (
       <ServicePillar
-        key={service.number}
         number={service.number}
         title={service.title}
         tag={service.tag}

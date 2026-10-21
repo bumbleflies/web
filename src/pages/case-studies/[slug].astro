@@ -3,7 +3,6 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../components/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import LangToggle from '../../components/LangToggle.astro';
 
 export async function getStaticPaths() {
   const caseStudies = await getCollection('case-studies', ({ data }) => data.published);
@@ -24,9 +23,7 @@ const { Content } = await render(study);
   lang="DE"
   dePath={`/case-studies/${study.id}`}
 >
-  <Nav slot="nav">
-    <LangToggle slot="lang" />
-  </Nav>
+  <Nav slot="nav" />
   <article class="cs-detail">
     <main class="cs-detail__page">
       <a href="/case-studies" class="cs-detail__breadcrumb">← Alle Fallstudien</a>

@@ -47,7 +47,7 @@ const lang: 'DE' | 'EN' = 'EN';
               {content.problemTitle}
             </h2>
             <ul class="a-how-we-work-bullets">
-              {content.problemBullets.map((bullet) => (
+              {(content.problemBullets ?? []).map((bullet) => (
                 <li>{bullet}</li>
               ))}
             </ul>
@@ -58,7 +58,7 @@ const lang: 'DE' | 'EN' = 'EN';
               {content.solutionTitle}
             </h2>
             <ul class="a-how-we-work-bullets">
-              {content.solutionBullets.map((bullet) => (
+              {(content.solutionBullets ?? []).map((bullet) => (
                 <li>{bullet}</li>
               ))}
             </ul>
@@ -68,10 +68,10 @@ const lang: 'DE' | 'EN' = 'EN';
     </section>
 
     <CTAStrip
-      heading={content.ctaHeading}
+      heading={content.ctaHeading ?? ''}
       headingEm={content.ctaHeading_em}
-      body={content.ctaBody}
-      ctaText={content.ctaText}
+      body={content.ctaBody ?? ''}
+      ctaText={content.ctaText ?? ''}
       lang={lang}
     />
 
