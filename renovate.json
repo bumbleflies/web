@@ -5,6 +5,11 @@
   ],
   "packageRules": [
     {
+      "description": "TypeScript 7.1+ is required by @astrojs/ts-content-mapper; skip nightly dev builds and hold the 7.1 line",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "/^7\\.1\\.\\d+(?:-beta)?$/"
+    },
+    {
       "description": "Automerge non-major updates",
       "matchUpdateTypes": [
         "minor",
