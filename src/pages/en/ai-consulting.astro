@@ -144,10 +144,10 @@ const faqSchema = {
   <FieldNotesTeaser lang={lang} />
 
   <CTAStrip
-    heading={content.ctaHeading}
+    heading={content.ctaHeading ?? ''}
     headingEm={content.ctaHeading_em}
-    body={content.ctaBody}
-    ctaText={content.ctaText}
+    body={content.ctaBody ?? ''}
+    ctaText={content.ctaText ?? ''}
     lang={lang}
   />
 

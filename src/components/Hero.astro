@@ -78,7 +78,7 @@ const content = lang === 'DE'
         <p class="a-hero__lede">{content.lede}</p>
         <div class="a-hero__process-flow">
           <svg class="a-hero__process-line" viewBox="0 0 1000 80">
-            <line x1="100" y1="40" x2="900" y2="40" stroke="#ddd" strokeWidth="2" />
+            <line x1="100" y1="40" x2="900" y2="40" stroke="#ddd" stroke-width="2" />
             {content.steps.map((step, idx) => {
               const x = 100 + (idx * 800) / (content.steps.length - 1);
               return <circle cx={x} cy="40" r="18" fill={step.color} />;

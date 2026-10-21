@@ -115,7 +115,7 @@ describe('Dead link detection', () => {
       }
     }
 
-    expect(dead).toEqual([], `Placeholder links (href="#") found in: ${dead.join(', ')}`);
+    expect(dead, `Placeholder links (href="#") found in: ${dead.join(', ')}`).toEqual([]);
   });
 
   it('should have no internal links pointing to non-existent routes', async () => {
@@ -141,6 +141,6 @@ describe('Dead link detection', () => {
       }
     }
 
-    expect(dead).toEqual([], `Dead internal links found:\n${dead.join('\n')}`);
+    expect(dead, `Dead internal links found:\n${dead.join('\n')}`).toEqual([]);
   });
 });

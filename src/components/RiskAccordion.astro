@@ -23,7 +23,7 @@ const useEnItems = enItems || items || [];
   <!-- DE Version -->
   <div class="a-risk-accordion-set a-risk-accordion-set--de">
     {useDeItems.map((item, index) => (
-      <div class="a-risk-accordion__item" key={index}>
+      <div class="a-risk-accordion__item">
         <button class="a-risk-accordion__trigger" data-index={index} aria-expanded="false">
           <span class="a-risk-accordion__title" data-de={item.title} data-en={item.title}>
             {item.title}
@@ -55,7 +55,7 @@ const useEnItems = enItems || items || [];
   <!-- EN Version (hidden by default) -->
   <div class="a-risk-accordion-set a-risk-accordion-set--en" style="display: none;">
     {useEnItems.map((item, index) => (
-      <div class="a-risk-accordion__item" key={index}>
+      <div class="a-risk-accordion__item">
         <button class="a-risk-accordion__trigger" data-index={index} aria-expanded="false">
           <span class="a-risk-accordion__title" data-de={item.title} data-en={item.title}>
             {item.title}

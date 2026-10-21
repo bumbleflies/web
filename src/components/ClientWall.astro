@@ -13,7 +13,7 @@ const label = lang === 'DE' ? 'Vertrauen von' : 'Trusted by';
     <div class="bf-eyebrow" style="padding: 0 0 var(--space-lg);">{label}</div>
     <div class="bf-clientwall">
       {clients.map((client) => (
-        <div class="bf-client" key={client}>{client}</div>
+        <div class="bf-client">{client}</div>
       ))}
     </div>
   </div>

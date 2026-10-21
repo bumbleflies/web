@@ -46,9 +46,9 @@ Runs Vitest suite with React Testing Library. Tests live in `tests/` (e.g., `Nav
 
 ### Type Checking
 ```bash
-astro check
+npm run typecheck
 ```
-Validates TypeScript and Astro component types. Uses Astro's strict tsconfig.
+Runs `astro sync` then `tsc --noEmit --runExternalCode`. TypeScript 7.1 checks `.astro` files through `@astrojs/ts-content-mapper` (registered in `tsconfig.json`); `astro check` does not support TypeScript 7.
 
 ## Project Architecture
 
@@ -227,7 +227,7 @@ Content collections are defined in `src/content.config.ts` and provide type-safe
 
 ### Content Collections
 - NestedText loader (`lib/nestedtext.ts`) supports custom page content format
-- Always run `astro check` before committing to catch type errors early
+- Always run `npm run typecheck` before committing to catch type errors early
 
 ### Language Support
 - Currently hardcoded to German (`currentLang: 'DE'`) in pages
