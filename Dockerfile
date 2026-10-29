@@ -1,7 +1,7 @@
 # Build stage
 # Use a glibc base (not Alpine/musl): Astro 7's Rust-based markdown engine
 # (satteri) only ships native bindings for linux-x64-gnu, not musl.
-FROM node:24-slim AS builder
+FROM node:26-slim AS builder
 
 WORKDIR /build
 
