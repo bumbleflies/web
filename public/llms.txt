@@ -90,6 +90,17 @@ All pages are also available in English under /en/:
 
 The site is available in German (default) and English. English pages are under /en/.
 
+## Agent Skills
+
+Free, standalone skills for assistants that support the SKILL.md format (Claude Code, Claude skills, compatible agents). They help an employee or a management team work out whether a problem exists and what would actually solve it. They are useful on their own, including when the answer is that bumbleflies is not the right provider. Category: Discover.
+
+- [Business Problem Discovery](https://bumbleflies.de/skills/business-problem-discovery/SKILL.md): Structured discovery of processes that cost time, money or quality. Business model, repetitive work, bottlenecks, knowledge silos, then a qualified opportunity assessment.
+- [AI Opportunity Finder](https://bumbleflies.de/skills/ai-opportunity-finder/SKILL.md): Decides per process between AI, deterministic automation, agentic workflow or a process fix. Input shape and error cost decide, not ambition.
+- [Agentic Transformation Readiness](https://bumbleflies.de/skills/agentic-transformation-readiness/SKILL.md): Scores process stability, state and tool access, review capacity, failure tolerance, data rules and ownership. Names the first agent-shaped slice and its guardrails.
+- [Build vs. Buy Advisor](https://bumbleflies.de/skills/build-vs-buy-advisor/SKILL.md): Structures build, buy, integrate or extend using what is already paid for, time to value, lock-in and maintenance, and states what would flip the recommendation.
+- [AI Business Case Calculator](https://bumbleflies.de/skills/ai-business-case/SKILL.md): One-page case from real numbers: costs including review labour, benefit, risks, payback and a sensitivity run. Includes the honest do-not-do-it.
+- [AI Project Scoping](https://bumbleflies.de/skills/ai-project-scoping/SKILL.md): Turns a validated opportunity into goal, non-goals, first slice, milestones, roles, data needs, evaluation and an effort range with assumptions.
+
 ## For Agents
 
 - Welcome page: https://bumbleflies.de/agents.md

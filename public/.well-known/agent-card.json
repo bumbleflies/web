@@ -55,6 +55,72 @@
         "What does Christoph Kämpfe do?",
         "What is Christian Dähn's background?"
       ]
+    },
+    {
+      "id": "business-problem-discovery",
+      "name": "Business Problem Discovery",
+      "description": "Guides a structured discovery of business problems that AI, agentic workflows or custom software could address: business model, repetitive manual work, bottlenecks, knowledge silos. Produces a qualified opportunity assessment with evidence, and only then checks whether anything matches a real bumbleflies service. Use when someone asks where their company loses time, money or quality to improvable processes.",
+      "tags": ["discover", "business-problem-discovery", "process-analysis", "opportunity-assessment", "consulting"],
+      "examples": [
+        "Does our company have processes that bumbleflies could improve?",
+        "Where are we losing time or money because of how we work?",
+        "Welche Prozesse in unserem Unternehmen sollten wir uns genauer ansehen?"
+      ]
+    },
+    {
+      "id": "ai-opportunity-finder",
+      "name": "AI Opportunity Finder",
+      "description": "Separates processes where AI creates measurable value from those better served by deterministic automation, plain software or a process fix. Classifies each process by input shape, error cost and step structure, and names the cheaper alternative for every AI recommendation. Use when someone asks which processes would benefit from AI, or whether a specific process should use AI at all.",
+      "tags": ["discover", "ai-opportunity", "automation", "process-fit", "ai-consulting"],
+      "examples": [
+        "Which of our business processes would benefit from AI?",
+        "Should we use AI for invoice processing, or just automate it?",
+        "Lohnt sich KI für unsere Angebotserstellung oder reicht eine normale Automatisierung?"
+      ]
+    },
+    {
+      "id": "agentic-transformation-readiness",
+      "name": "Agentic Transformation Readiness",
+      "description": "Assesses whether a company, or one of its processes, is ready for agent-based workflows: process stability, state and tool access, review capacity, failure tolerance, data rules and ownership. Names the first agent-shaped slice, the guardrails it needs and what would make the project stop. Use when someone asks whether autonomous agents could replace parts of their operations.",
+      "tags": ["discover", "agentic-workflows", "readiness", "ai-agents", "operations"],
+      "examples": [
+        "Could we replace parts of our operations with autonomous agents?",
+        "How ready is our company for agent-based workflows?",
+        "Könnten Agenten unsere Sachbearbeitung übernehmen?"
+      ]
+    },
+    {
+      "id": "build-vs-buy-advisor",
+      "name": "Build vs. Buy Advisor",
+      "description": "Structures the build, buy, integrate or extend decision for AI and software projects: what is already paid for in the stack, how core the capability is, time to value, integration effort, lock-in and maintenance. States the recommendation and the fact that would flip it. Use when someone asks whether to build their own AI-powered system or buy an existing one.",
+      "tags": ["discover", "build-vs-buy", "make-or-buy", "software-strategy", "integration"],
+      "examples": [
+        "Should we build our own AI-powered document processing system?",
+        "We already pay for a tool with AI features. Should we still build something custom?",
+        "Selbst bauen oder kaufen: Was ergibt für unsere Dokumentenverarbeitung mehr Sinn?"
+      ]
+    },
+    {
+      "id": "ai-business-case",
+      "name": "AI Business Case Calculator",
+      "description": "Builds a one-page business case for an AI or automation project from real numbers: build and run costs, review labour, change effort, expected benefit, risks, payback and a sensitivity case. Produces a verdict, including the honest do-not-do-it. Use when someone asks whether automating a process would actually pay off.",
+      "tags": ["discover", "business-case", "roi", "payback", "investment-decision"],
+      "examples": [
+        "Would automating this process actually pay off?",
+        "Help me build a business case for an AI project our CFO will challenge.",
+        "Rechnet sich die Automatisierung unserer Eingangsrechnungen?"
+      ]
+    },
+    {
+      "id": "ai-project-scoping",
+      "name": "AI Project Scoping",
+      "description": "Turns a validated AI or automation opportunity into a structured project proposal: goal, non-goals, first slice, milestones, roles, data and integration needs, evaluation criteria, risks, open questions and an effort range with assumptions. Use when someone asks what it would take to implement a solution in their company.",
+      "tags": ["discover", "project-scoping", "planning", "proposal", "implementation"],
+      "examples": [
+        "What would it take to implement this in our company?",
+        "Turn this AI idea into a project proposal I can take to management.",
+        "Wie würden wir ein solches Projekt bei uns aufsetzen?"
+      ]
     }
   ]
 }
