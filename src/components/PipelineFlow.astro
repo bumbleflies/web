@@ -153,14 +153,16 @@ const stages = [
     margin-bottom: 1.25rem;
   }
   .a-pipeline__stage.is-human .a-pipeline__node {
-    background: var(--accent);
-    border-color: var(--accent);
+    /* The stage number is paper-white on this fill, so the fill must carry
+       the contrast: 5.65:1 with --accent-text instead of 3.49:1 with --accent. */
+    background: var(--accent-text);
+    border-color: var(--accent-text);
   }
   .a-pipeline__num {
     font-family: var(--font-mono);
     font-size: var(--text-xl);
     font-weight: 600;
-    color: var(--accent);
+    color: var(--accent-text);
   }
   .a-pipeline__stage.is-human .a-pipeline__num {
     color: var(--paper);
@@ -172,7 +174,7 @@ const stages = [
     transform: translateX(-50%);
     font-size: 1.5rem;
     line-height: 1;
-    color: var(--accent);
+    color: var(--accent-text);
   }
   .a-pipeline__title {
     font-family: var(--font-display);

@@ -24,6 +24,7 @@ const useEnItems = enItems || items || [];
   <div class="a-risk-accordion-set a-risk-accordion-set--de">
     {useDeItems.map((item, index) => (
       <div class="a-risk-accordion__item">
+        <h2 class="a-risk-accordion__heading">
         <button class="a-risk-accordion__trigger" data-index={index} aria-expanded="false">
           <span class="a-risk-accordion__title" data-de={item.title} data-en={item.title}>
             {item.title}
@@ -32,16 +33,17 @@ const useEnItems = enItems || items || [];
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
+        </h2>
         <div class="a-risk-accordion__panel" data-index={index} hidden>
           <div class="a-risk-accordion__content">
             <div class="a-risk-accordion__section">
-              <h4 class="a-risk-accordion__label">Beschreibung</h4>
+              <h3 class="a-risk-accordion__label">Beschreibung</h3>
               <p class="a-risk-accordion__text" data-de={item.description} data-en={item.description}>
                 {item.description}
               </p>
             </div>
             <div class="a-risk-accordion__section">
-              <h4 class="a-risk-accordion__label">Unser Ansatz</h4>
+              <h3 class="a-risk-accordion__label">Unser Ansatz</h3>
               <p class="a-risk-accordion__text" data-de={item.mitigation} data-en={item.mitigation}>
                 {item.mitigation}
               </p>
@@ -56,6 +58,7 @@ const useEnItems = enItems || items || [];
   <div class="a-risk-accordion-set a-risk-accordion-set--en" style="display: none;">
     {useEnItems.map((item, index) => (
       <div class="a-risk-accordion__item">
+        <h2 class="a-risk-accordion__heading">
         <button class="a-risk-accordion__trigger" data-index={index} aria-expanded="false">
           <span class="a-risk-accordion__title" data-de={item.title} data-en={item.title}>
             {item.title}
@@ -64,16 +67,17 @@ const useEnItems = enItems || items || [];
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
+        </h2>
         <div class="a-risk-accordion__panel" data-index={index} hidden>
           <div class="a-risk-accordion__content">
             <div class="a-risk-accordion__section">
-              <h4 class="a-risk-accordion__label">Description</h4>
+              <h3 class="a-risk-accordion__label">Description</h3>
               <p class="a-risk-accordion__text" data-de={item.description} data-en={item.description}>
                 {item.description}
               </p>
             </div>
             <div class="a-risk-accordion__section">
-              <h4 class="a-risk-accordion__label">Our Approach</h4>
+              <h3 class="a-risk-accordion__label">Our Approach</h3>
               <p class="a-risk-accordion__text" data-de={item.mitigation} data-en={item.mitigation}>
                 {item.mitigation}
               </p>
@@ -153,6 +157,11 @@ const useEnItems = enItems || items || [];
     box-shadow: 0 4px 12px rgba(26, 23, 20, 0.08);
   }
 
+  .a-risk-accordion__heading {
+    margin: 0;
+    font: inherit;
+  }
+
   .a-risk-accordion__trigger {
     width: 100%;
     padding: 1.5rem;
@@ -184,7 +193,7 @@ const useEnItems = enItems || items || [];
 
   .a-risk-accordion__icon {
     flex-shrink: 0;
-    color: var(--accent);
+    color: var(--accent-text);
     transition: transform var(--duration-normal);
   }
 
@@ -217,7 +226,7 @@ const useEnItems = enItems || items || [];
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--accent);
+    color: var(--accent-text);
     margin: 0;
     font-weight: 600;
   }

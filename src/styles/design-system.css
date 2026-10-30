@@ -13,7 +13,8 @@
   --ink: #1a1714;
   --ink-soft: #5c554b;
   --rule: rgba(26, 23, 20, 0.12);
-  --accent: #a67c4d; /* honey amber (darkened for WCAG AA contrast on cream bg) */
+  --accent: #a67c4d; /* honey amber — graphics: rules, arrows, fills, borders */
+  --accent-text: #856034; /* same amber, dark enough for small text: 5.0:1 on --bg, 5.3:1 on --paper */
   --signal: #4a3f8f; /* deep blue — approximation of oklch(0.55 0.16 250) */
 
   /* Typography */
@@ -86,6 +87,7 @@
   --ink-soft: rgba(243, 241, 236, 0.62);
   --rule: rgba(243, 241, 236, 0.14);
   --accent: oklch(0.82 0.18 95);
+  --accent-text: oklch(0.82 0.18 95);
   --signal: oklch(0.7 0.18 30);
 }
 
@@ -148,6 +150,45 @@ a:focus-visible, button:focus-visible {
   outline: 2px solid var(--signal);
   outline-offset: 2px;
   transition: outline-offset var(--duration-fast) var(--easing-default);
+}
+
+/* ───── Skip link (first focusable element on every page) ─────── */
+.bf-skip-link {
+  position: fixed;
+  top: var(--space-md);
+  left: var(--space-md);
+  z-index: 1000;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+  transition: transform var(--duration-fast) var(--easing-default);
+}
+
+.bf-skip-link:focus-visible,
+.bf-skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* Utility: keep a heading in the outline for screen readers and crawlers
+   when the visible design carries the title typographically. */
+.bf-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ───── Section & Layout ──────────────────────────────────────── */

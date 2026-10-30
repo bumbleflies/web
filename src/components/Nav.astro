@@ -13,14 +13,14 @@ const { lang = 'DE', cta, ctaHref = 'mailto:info@bumbleflies.de' } = Astro.props
 
 const navItems = lang === 'DE'
   ? [
-      { label: 'Facilitation · AI · Software', href: '/services' },
-      { label: 'remote, hybrid & vor Ort', href: '/how-we-work' },
-      { label: 'Warum · Wir', href: '/why-we' },
+      { label: 'Facilitation · AI · Software', href: '/services/' },
+      { label: 'remote, hybrid & vor Ort', href: '/how-we-work/' },
+      { label: 'Warum · Wir', href: '/why-we/' },
     ]
   : [
-      { label: 'Facilitation · AI · Software', href: '/en/services' },
-      { label: 'remote, hybrid & on-site', href: '/en/how-we-work' },
-      { label: 'Why · We', href: '/en/why-we' },
+      { label: 'Facilitation · AI · Software', href: '/en/services/' },
+      { label: 'remote, hybrid & on-site', href: '/en/how-we-work/' },
+      { label: 'Why · We', href: '/en/why-we/' },
     ];
 
 const brandHref = lang === 'DE' ? '/' : '/en/';

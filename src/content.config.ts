@@ -34,6 +34,11 @@ const blog = defineCollection({
     description: z.string(),
     excerpt: z.string(),
     category: z.string(),
+    // SERP-only overrides. The visible <h1> and the card excerpt keep using
+    // `title`/`description`; these exist for posts whose editorial title or
+    // standfirst is longer than a search snippet shows (~60 / ~160 chars).
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
     // Teaser/cover image (concrete-scene SVG in /public/images/blog/<slug>.svg).
     image: z.string().optional(),
     // Series order — controls the reading sequence in the listing.

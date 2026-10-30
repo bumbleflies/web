@@ -1,6 +1,7 @@
 ---
 title: "Die Fundamente, auf denen alles läuft: Zustand und Interaktion"
 description: "Warum ein ganzes KI-Agenten-System über Standard-SaaS-Tools koordiniert statt über eigene Microservices, und was das über robuste Agenten-Architektur verrät."
+seoTitle: "Fundamente: Zustand und Interaktion"
 excerpt: "Das Projektmanagement-Tool ist der dauerhafte Ort, an dem der Zustand liegt und der Auslöser für Automatisierung. Der Team-Chat ist das zweite Fundament: Interaktion und Transport. Agenten koordinieren sich über dauerhafte Artefakte, nicht über direkte Aufrufe."
 category: "Architektur"
 image: "/images/blog/zwei-ebenen-zustand-und-interaktion.svg"

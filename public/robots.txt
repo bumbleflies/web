@@ -110,3 +110,5 @@ Sitemap: https://bumbleflies.de/sitemap-index.xml
 #   /agents.txt        — Machine-readable page directory
 #   /facts.json        — Structured brand facts
 #   /.well-known/agent-card.json — A2A agent capability manifest
+#   /.well-known/ard.json      — ARD entry manifest (agentic resource discovery)
+#   /.well-known/ai-catalog.json — predecessor ARD path, same entries

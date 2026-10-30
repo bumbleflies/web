@@ -1,6 +1,8 @@
 ---
 title: "Zwischenspiel: Von der Anforderung bis zum Livegang an einem Export"
 description: "Eine Support-Anfrage über eine fehlende Spalte im Export, vom KI-Assistenten über Ticket und Team-Chat bis zu Test, Rollout und Doku. So tragen die Fundamente aus Teil 02 einen echten Vorgang."
+seoTitle: "Zwischenspiel: Von der Anforderung bis zum Livegang"
+seoDescription: "Eine fehlende Spalte im Export, vom KI-Assistenten über Ticket und Team-Chat bis Test, Rollout und Doku: ein echter Vorgang durch alle Fundamente."
 excerpt: "Eine fehlende Spalte im Export wandert vom Support-Chat ins Ticket, durch Anreicherung, Test und Batch-Rollout bis zu Regression und Doku. Einmal konkret, ohne interne Details."
 category: "Beispiel"
 image: "/images/blog/anforderung-bis-live.svg"

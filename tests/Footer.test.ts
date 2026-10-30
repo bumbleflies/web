@@ -55,14 +55,14 @@ describe('Footer Component Logic', () => {
       const item = getFooterContent('DE').learn.items.find(
         (i) => i.label === 'Open Space Prinzipien',
       );
-      expect(item?.href).toBe('/open-space');
+      expect(item?.href).toBe('/open-space/');
     });
 
     it('should link to the Open Space principles page (EN)', () => {
       const item = getFooterContent('EN').learn.items.find(
         (i) => i.label === 'Open Space Principles',
       );
-      expect(item?.href).toBe('/en/open-space');
+      expect(item?.href).toBe('/en/open-space/');
     });
 
     it('should link to bumble:education for kids courses (DE)', () => {

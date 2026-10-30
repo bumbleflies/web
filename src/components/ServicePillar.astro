@@ -16,7 +16,7 @@ interface Props {
 
 const { number, title, tag, description, bullets, formats, learnMoreLabel, lang = 'DE' } = Astro.props;
 const label = learnMoreLabel || (lang === 'DE' ? 'Mehr erfahren →' : 'Learn more →');
-const learnMoreHref = lang === 'DE' ? '/services' : '/en/services';
+const learnMoreHref = lang === 'DE' ? '/services/' : '/en/services/';
 ---
 
 <article class="a-service">
@@ -124,7 +124,7 @@ const learnMoreHref = lang === 'DE' ? '/services' : '/en/services';
     font-size: var(--text-xs);
     letter-spacing: var(--ls-mono);
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-text);
     transition: color var(--duration-fast);
     font-weight: 500;
   }

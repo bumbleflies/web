@@ -29,7 +29,17 @@ const exitLabel = lang === 'DE' ? 'Sequenz schließen' : 'Close sequence';
           {eyebrowLabel} · {p.title} · {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
         </div>
         <div class="bf-principle-sequence__frame">
-          <img src={p.image} alt="" loading={index === 0 ? 'eager' : 'lazy'} />
+          <img
+            src={p.image}
+            srcset={`${p.image.replace(/\.webp$/, '-800.webp')} 800w, ${p.image} 1189w`}
+            sizes="(max-width: 768px) 90vw, 66vw"
+            alt=""
+            width="1189"
+            height="841"
+            loading={index === 0 ? 'eager' : 'lazy'}
+            fetchpriority={index === 0 ? 'high' : 'auto'}
+            decoding="async"
+          />
         </div>
         <p class="bf-principle-sequence__quote">{p.quote}</p>
       </div>
@@ -39,7 +49,7 @@ const exitLabel = lang === 'DE' ? 'Sequenz schließen' : 'Close sequence';
     <button type="button" class="bf-principle-sequence__next" aria-label={nextLabel}>›</button>
     <a href={exitHref} class="bf-principle-sequence__exit" aria-label={exitLabel}>✕</a>
 
-    <div class="bf-principle-sequence__dots" role="tablist">
+    <div class="bf-principle-sequence__dots">
       {principles.map((p, index) => (
         <button
           type="button"
@@ -85,7 +95,7 @@ const exitLabel = lang === 'DE' ? 'Sequenz schließen' : 'Close sequence';
     font-size: var(--text-xs);
     letter-spacing: var(--ls-widest);
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-text);
     text-align: center;
   }
 
@@ -135,7 +145,7 @@ const exitLabel = lang === 'DE' ? 'Sequenz schließen' : 'Close sequence';
 
   .bf-principle-sequence__prev:hover,
   .bf-principle-sequence__next:hover {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .bf-principle-sequence__exit {
@@ -150,7 +160,7 @@ const exitLabel = lang === 'DE' ? 'Sequenz schließen' : 'Close sequence';
   }
 
   .bf-principle-sequence__exit:hover {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .bf-principle-sequence__dots {
@@ -163,17 +173,28 @@ const exitLabel = lang === 'DE' ? 'Sequenz schließen' : 'Close sequence';
     z-index: 2;
   }
 
+  /* 24x24 hit area around a 6px visual dot (WCAG 2.5.8 target size). */
   .bf-principle-sequence__dot {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bf-principle-sequence__dot::before {
+    content: '';
     width: 6px;
     height: 6px;
     border-radius: 999px;
-    border: none;
     background: var(--rule);
-    cursor: pointer;
-    padding: 0;
   }
 
-  .bf-principle-sequence__dot[aria-current="true"] {
+  .bf-principle-sequence__dot[aria-current="true"]::before {
     background: var(--accent);
   }
 

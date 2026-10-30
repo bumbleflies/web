@@ -8,6 +8,7 @@ import BlogCover from '../../../components/BlogCover.astro';
 import AudioToggle from '../../../components/AudioToggle.astro';
 import ShareLinks from '../../../components/ShareLinks.astro';
 import { getBlogAudioPath } from '../../../lib/blog-audio';
+import { formatPageTitle } from '../../../lib/seo';
 
 // Only draft articles when the preview key was NOT set at build time.
 // Set PUBLIC_PREVIEW_KEY=<key> in your deploy env to build draft pages
@@ -67,8 +68,8 @@ const jsonLd = {
 ---
 
 <Layout
-  title={`${post.data.title} | bumbleflies`}
-  description={post.data.description}
+  title={formatPageTitle(post.data.seoTitle ?? post.data.title)}
+  description={post.data.seoDescription ?? post.data.description}
   ogImage={ogImage}
   ogImageWidth={1200}
   ogImageHeight={675}
@@ -94,12 +95,12 @@ const jsonLd = {
             It's part of the Field Notes series preview. Open the series with your
             preview link to read it.
           </p>
-          <a href="/en/blog" class="post__locked-link">← Back to overview</a>
+          <a href="/en/blog/" class="post__locked-link">← Back to overview</a>
         </div>
       </div>
     )}
     <main class="post__page">
-      <a href="/en/blog" class="post__breadcrumb">← All articles</a>
+      <a href="/en/blog/" class="post__breadcrumb">← All articles</a>
       {isDraft && <span class="post__preview-tag">Preview</span>}
 
       <header class="post__header">
@@ -148,13 +149,13 @@ const jsonLd = {
 
       <nav class="post__pager">
         {prev ? (
-          <a href={`/en/blog/${prev.id}`} class="post__pager-link post__pager-link--prev">
+          <a href={`/en/blog/${prev.id}/`} class="post__pager-link post__pager-link--prev">
             <span class="post__pager-dir">← Previous part</span>
             <span class="post__pager-title">{prev.data.title}</span>
           </a>
         ) : <span />}
         {next ? (
-          <a href={`/en/blog/${next.id}`} class="post__pager-link post__pager-link--next">
+          <a href={`/en/blog/${next.id}/`} class="post__pager-link post__pager-link--next">
             <span class="post__pager-dir">Next part →</span>
             <span class="post__pager-title">{next.data.title}</span>
           </a>
@@ -191,7 +192,7 @@ const jsonLd = {
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: var(--ls-widest);
-    color: var(--accent);
+    color: var(--accent-text);
     margin-bottom: var(--space-md);
   }
 
@@ -215,7 +216,7 @@ const jsonLd = {
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     letter-spacing: var(--ls-wide);
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration: none;
   }
 
@@ -229,7 +230,7 @@ const jsonLd = {
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: var(--ls-wide);
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .post__page {
@@ -250,7 +251,7 @@ const jsonLd = {
     gap: 8px;
     margin-top: 30px;
     margin-bottom: var(--space-xl);
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration: none;
     font-family: var(--font-mono);
     font-size: var(--text-xs);
@@ -279,7 +280,7 @@ const jsonLd = {
     margin-bottom: var(--space-md);
   }
 
-  .post__part { color: var(--accent); }
+  .post__part { color: var(--accent-text); }
   .post__category { color: var(--ink-soft); }
 
   .post__title {
@@ -352,7 +353,7 @@ const jsonLd = {
   }
 
   .post__content :global(a) {
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
@@ -447,7 +448,7 @@ const jsonLd = {
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: var(--ls-wider);
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .post__pager-title {

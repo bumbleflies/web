@@ -57,15 +57,15 @@ const year = new Date().getFullYear();
       <div class="bf-footer__legal">
         {lang === 'DE' ? (
           <>
-            <a href="/impressum">Impressum</a>
+            <a href="/impressum/">Impressum</a>
             <span>·</span>
-            <a href="/datenschutz">Datenschutz</a>
+            <a href="/datenschutz/">Datenschutz</a>
           </>
         ) : (
           <>
-            <a href="/en/imprint">Imprint</a>
+            <a href="/en/imprint/">Imprint</a>
             <span>·</span>
-            <a href="/en/privacy">Privacy</a>
+            <a href="/en/privacy/">Privacy</a>
           </>
         )}
       </div>
@@ -128,7 +128,7 @@ const year = new Date().getFullYear();
   }
 
   a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .bf-footer__meta {
@@ -154,7 +154,7 @@ const year = new Date().getFullYear();
   }
 
   .bf-footer__legal a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .bf-footer__legal span {

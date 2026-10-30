@@ -1,0 +1,89 @@
+---
+import Layout from '../components/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Seite nicht gefunden: bumbleflies"
+  description="Diese Seite gibt es nicht (mehr). Hier geht es zurück zu bumbleflies: Facilitation, AI Consulting und App Development."
+  canonical="https://bumbleflies.de/404.html"
+  noindex={true}
+  lang="DE"
+>
+  <Nav slot="nav" lang="DE" />
+
+  <section class="nf">
+    <div class="bf-container">
+      <p class="nf__eyebrow">404</p>
+      <h1 class="nf__heading">Diese Seite summt nicht mehr.</h1>
+      <p class="nf__body">
+        Die Adresse existiert nicht (mehr). Vielleicht hat sie sich bewegt: das Gesetz der
+        Mobilität gilt bei uns auch für URLs.
+      </p>
+      <h2 class="nf__subheading">Weiter zu</h2>
+      <ul class="nf__links">
+        <li><a href="/">Startseite</a></li>
+        <li><a href="/services/">Leistungen</a></li>
+        <li><a href="/blog/">Field Notes</a></li>
+        <li><a href="/case-studies/">Case Studies</a></li>
+      </ul>
+      <p class="nf__lang">
+        Looking for the English site? <a href="/en/">bumbleflies.de/en</a>
+      </p>
+    </div>
+  </section>
+
+  <Footer slot="footer" lang="DE" />
+</Layout>
+
+<style>
+  .nf {
+    padding: var(--space-6xl) 0;
+  }
+  .nf__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--accent-text);
+    margin-bottom: var(--space-md);
+  }
+  .nf__heading {
+    font-size: var(--text-4xl);
+    max-width: 18ch;
+    margin-bottom: var(--space-lg);
+  }
+  .nf__body {
+    max-width: 56ch;
+    margin-bottom: var(--space-md);
+    color: var(--ink-soft);
+  }
+  .nf__body a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .nf__subheading {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-md);
+  }
+  .nf__links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-xl);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md) var(--space-lg);
+  }
+  .nf__links a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .nf__lang {
+    margin-top: var(--space-xl);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+  }
+</style>

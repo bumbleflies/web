@@ -95,14 +95,26 @@ const content = lang === 'DE'
         </div>
         <div class="a-hero__ctas">
           <a class="bf-cta" href="mailto:info@bumbleflies.de">{content.ctaPrimary} →</a>
-          <a class="bf-cta bf-cta--ghost" href={lang === 'DE' ? '/how-we-work' : '/en/how-we-work'}>{content.ctaSecondary}</a>
+          <a class="bf-cta bf-cta--ghost" href={lang === 'DE' ? '/how-we-work/' : '/en/how-we-work/'}>{content.ctaSecondary}</a>
         </div>
       </div>
-      <img
-        src="/images/hero-open-space.png"
-        alt={lang === 'DE' ? 'Open Space Facilitation: Kreis von Teilnehmenden' : 'Open Space Facilitation: circle of participants'}
-        class="a-hero__image"
-      />
+      <picture>
+        <source
+          type="image/webp"
+          srcset="/images/hero-open-space-800.webp 800w, /images/hero-open-space-1400.webp 1400w"
+          sizes="(max-width: 768px) 100vw, 665px"
+        />
+        <img
+          src="/images/hero-open-space.png"
+          alt={lang === 'DE' ? 'Open Space Facilitation: Kreis von Teilnehmenden' : 'Open Space Facilitation: circle of participants'}
+          class="a-hero__image"
+          width="1672"
+          height="941"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
     </div>
 
     <div class="a-hero__engagement-packages">
@@ -115,10 +127,10 @@ const content = lang === 'DE'
               <span class="a-hero__package-num">{num}</span>
               <span class="a-hero__package-phase">{phase}</span>
             </div>
-            <h3 class="a-hero__package-name">{pkg.name}</h3>
+            <h2 class="a-hero__package-name">{pkg.name}</h2>
             <div class="a-hero__package-timeline">{pkg.timeline}</div>
             <p class="a-hero__package-outcome">{pkg.outcome}</p>
-            <a class="bf-cta bf-cta--ghost a-hero__package-cta" href={lang === 'DE' ? '/services' : '/en/services'}>{pkg.ctaText}</a>
+            <a class="bf-cta bf-cta--ghost a-hero__package-cta" href={lang === 'DE' ? '/services/' : '/en/services/'}>{pkg.ctaText}</a>
           </div>
         );
       })}
@@ -143,7 +155,7 @@ const content = lang === 'DE'
 
   .a-hero__h1 em {
     font-style: italic;
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .a-hero__content {
@@ -168,6 +180,10 @@ const content = lang === 'DE'
     max-width: 520px;
     color: var(--ink-soft);
     margin: 0;
+  }
+
+  .a-hero picture {
+    display: block;
   }
 
   .a-hero__image {

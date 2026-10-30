@@ -27,6 +27,8 @@ const currentLang: 'DE' | 'EN' = 'EN';
 >
   <Nav slot="nav" lang={currentLang} />
 
+  <h1 class="bf-visually-hidden">{page.data.heading}: Open Space principles</h1>
+
   <PrincipleSequence principles={principles} exitHref="#open-space-end" lang={currentLang} />
 
   <div id="open-space-end">

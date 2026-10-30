@@ -1,0 +1,19 @@
+{
+  "entries": [
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:bumbleflies.de:agent:bumbleflies",
+      "displayName": "bumbleflies",
+      "type": "application/a2a-agent-card+json",
+      "url": "https://bumbleflies.de/.well-known/agent-card.json",
+      "description": "Facilitation, AI Consulting, and App Development for organizations navigating change. Based in Munich, serving the DACH region.",
+      "capabilities": ["service-info", "case-study-lookup", "team-info"],
+      "tags": ["facilitation", "ai-consulting", "app-development", "open-space", "munich", "dach"],
+      "representativeQueries": [
+        "which company facilitates open space workshops in munich",
+        "who does AI consulting and software development for teams",
+        "tell me about bumbleflies case studies and results"
+      ]
+    }
+  ]
+}

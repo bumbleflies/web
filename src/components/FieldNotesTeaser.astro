@@ -43,10 +43,10 @@ const copy = lang === 'DE'
           <span class="fnt__kicker">{copy.kicker}</span>
           <h2 class="fnt__heading">{copy.heading}</h2>
           <p class="fnt__text">{copy.body}</p>
-          <a href={copy.blogPath} class="fnt__cta">{copy.cta} <span aria-hidden="true">→</span></a>
+          <a href={`${copy.blogPath}/`} class="fnt__cta">{copy.cta} <span aria-hidden="true">→</span></a>
         </div>
         {lead && (
-          <a class="fnt__lead" href={`${copy.blogPath}/${lead.id}`}>
+          <a class="fnt__lead" href={`${copy.blogPath}/${lead.id}/`}>
             {lead.data.image && (
               <span class="fnt__lead-cover">
                 <BlogCover image={lead.data.image} />
@@ -86,7 +86,7 @@ const copy = lang === 'DE'
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: var(--ls-widest);
-    color: var(--accent);
+    color: var(--accent-text);
     margin-bottom: var(--space-md);
   }
 
@@ -109,7 +109,7 @@ const copy = lang === 'DE'
     font-size: var(--text-sm);
     letter-spacing: var(--ls-wide);
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration: none;
   }
 
@@ -144,7 +144,7 @@ const copy = lang === 'DE'
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: var(--ls-wider);
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .fnt__lead-title {

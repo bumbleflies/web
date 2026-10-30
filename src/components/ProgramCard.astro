@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { name, description, ageGroup, duration, price, image, slug, lang = 'DE' } = Astro.props;
-const detailHref = lang === 'DE' ? '/services' : '/en/services';
+const detailHref = lang === 'DE' ? '/services/' : '/en/services/';
 ---
 
 <article class="bf-program-card">

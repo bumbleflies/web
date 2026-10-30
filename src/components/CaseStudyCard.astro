@@ -16,11 +16,11 @@ const { title, company, service, quote, slug, tagline } = Astro.props;
   {tagline ? (
     <p class="a-case-study-card__tagline">{tagline}</p>
   ) : (
-    <h3 class="a-case-study-card__title">{title}</h3>
+    <h2 class="a-case-study-card__title">{title}</h2>
   )}
   {tagline && <p class="a-case-study-card__title--sub">{title}</p>}
   <blockquote class="a-case-study-card__quote">{quote}</blockquote>
-  <a href={`/case-studies/${slug}`} class="bf-cta">
+  <a href={`/case-studies/${slug}/`} class="bf-cta">
     Mehr erfahren <span aria-hidden="true">→</span>
   </a>
 </article>

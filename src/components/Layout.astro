@@ -171,8 +171,9 @@ const jsonLd = JSON.stringify({
     </script>
   </head>
   <body class="bf-body">
+    <a class="bf-skip-link" href="#main">{lang === 'DE' ? 'Zum Inhalt springen' : 'Skip to content'}</a>
     <slot name="nav" />
-    <main class="bf-main">
+    <main class="bf-main" id="main" tabindex="-1">
       <slot />
     </main>
     <slot name="footer" />
@@ -184,6 +185,10 @@ const jsonLd = JSON.stringify({
       }
       .bf-main {
         flex-grow: 1;
+      }
+      /* The skip link focuses <main> programmatically; no visible ring for that. */
+      .bf-main:focus {
+        outline: none;
       }
     </style>
   </body>

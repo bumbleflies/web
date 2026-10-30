@@ -26,8 +26,8 @@ const contactItems: ContactItem[] = [
 ];
 
 export function getFooterContent(lang: Lang): FooterContent {
-  const aiConsultingHref = lang === 'DE' ? '/ai-consulting' : '/en/ai-consulting';
-const servicesHref = lang === 'DE' ? '/services' : '/en/services';
+  const aiConsultingHref = lang === 'DE' ? '/ai-consulting/' : '/en/ai-consulting/';
+const servicesHref = lang === 'DE' ? '/services/' : '/en/services/';
   return lang === 'DE'
     ? {
         about:
@@ -45,9 +45,9 @@ const servicesHref = lang === 'DE' ? '/services' : '/en/services';
           title: 'Lernen',
           items: [
             { label: 'FaST-Training', href: servicesHref },
-            { label: 'Field Notes (KI-Serie)', href: '/blog' },
+            { label: 'Field Notes (KI-Serie)', href: '/blog/' },
             { label: 'AI-Literacy', href: servicesHref },
-            { label: 'Open Space Prinzipien', href: '/open-space' },
+            { label: 'Open Space Prinzipien', href: '/open-space/' },
             { label: 'Open Space Checkliste', href: servicesHref },
             { label: 'Kurse für Kinder', href: 'https://edu.bumbleflies.de/' },
           ],
@@ -71,9 +71,9 @@ const servicesHref = lang === 'DE' ? '/services' : '/en/services';
           title: 'Learn',
           items: [
             { label: 'FaST Training', href: servicesHref },
-            { label: 'Field Notes (AI series)', href: '/en/blog' },
+            { label: 'Field Notes (AI series)', href: '/en/blog/' },
             { label: 'AI Literacy', href: servicesHref },
-            { label: 'Open Space Principles', href: '/en/open-space' },
+            { label: 'Open Space Principles', href: '/en/open-space/' },
             { label: 'Open Space Checklist', href: servicesHref },
             { label: 'Coding for Kids', href: 'https://edu.bumbleflies.de/' },
           ],

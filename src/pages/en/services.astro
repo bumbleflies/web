@@ -23,7 +23,7 @@ interface ContentSet {
 }
 
 const content: ContentSet = {
-  pageTitle: 'Services',
+  pageTitle: 'Services: facilitation, AI consulting, development',
   heroHeading: 'Our Services',
   heroSubheading:
     'Four ways we can help you: Talk, Decide, Build & Embed, or the full journey.',
@@ -120,9 +120,9 @@ const lang: 'DE' | 'EN' = 'EN';
               tag={service.tag}
               description={service.description}
               bullets={service.bullets}
-              href={service.number === '02' ? '/en/ai-consulting' : undefined}
+              href={service.number === '02' ? '/en/ai-consulting/' : undefined}
               ctaLabel="Learn more"
-              footnoteLink={service.number === '01' ? { label: 'See the philosophy →', href: '/en/open-space' } : undefined}
+              footnoteLink={service.number === '01' ? { label: 'See the philosophy →', href: '/en/open-space/' } : undefined}
             />
           ))}
         </div>

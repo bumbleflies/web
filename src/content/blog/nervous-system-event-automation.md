@@ -1,6 +1,8 @@
 ---
 title: "The Nervous System: Event Automation and How to Keep a Language Model Honest"
 description: "How an always-on automation pillar turns support emails into classified tickets and a multi-stage privacy filter that shows what 'don't trust the model, verify with code' looks like in practice."
+seoTitle: "The Nervous System: Event Automation That Holds"
+seoDescription: "How an always-on pillar turns support emails into classified tickets behind a multi-stage privacy filter: don't trust the model, verify with code."
 excerpt: "Many workflows, a lot of processing steps, no human in the loop. A self-learning ticket router and a privacy filter that lets the model write, but doesn't believe a single word."
 category: "Automation"
 image: "/images/blog/nervensystem-n8n-automatisierung.svg"

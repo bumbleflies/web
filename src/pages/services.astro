@@ -30,7 +30,7 @@ interface ServiceContent {
 
 const content: ServiceContent = {
   DE: {
-    pageTitle: 'Services',
+    pageTitle: 'Leistungen: Facilitation, KI-Beratung, Entwicklung',
     heroHeading: 'Unsere Services',
     heroSubheading: 'Vier Wege, wie wir euch helfen: Talk, Decide, Build & Embed oder der komplette Weg.',
     services: [
@@ -190,9 +190,9 @@ const enContent = content.EN;
               tag={service.tag}
               description={service.description}
               bullets={service.bullets}
-              href={service.number === '02' ? '/ai-consulting' : undefined}
+              href={service.number === '02' ? '/ai-consulting/' : undefined}
               ctaLabel="Mehr erfahren"
-              footnoteLink={service.number === '01' ? { label: 'Die Philosophie dahinter →', href: '/open-space' } : undefined}
+              footnoteLink={service.number === '01' ? { label: 'Die Philosophie dahinter →', href: '/open-space/' } : undefined}
               data-service-id={index}
             />
           ))}
@@ -243,7 +243,7 @@ const enContent = content.EN;
 
   .cta-emphasis {
     font-style: italic;
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   @media (max-width: 768px) {

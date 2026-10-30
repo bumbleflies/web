@@ -1,6 +1,7 @@
 ---
 title: "Interlude: From request to live, traced through one export"
 description: "A support request about a missing export column, from the AI assistant through ticket and team chat to testing, rollout, and docs. How the foundations from Part 02 carry a real workflow."
+seoDescription: "A missing export column, from the AI assistant through ticket and team chat to test, rollout and docs: one real workflow through every foundation."
 excerpt: "A missing column in an export travels from support chat into a ticket, through enrichment, testing, and batch rollout to regression and docs. One concrete trace, no internal details."
 category: "Example"
 image: "/images/blog/anforderung-bis-live.svg"

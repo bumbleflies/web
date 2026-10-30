@@ -1,6 +1,8 @@
 ---
 title: "Das Nervensystem: Event-Automatisierung und wie man ein Sprachmodell ehrlich hält"
 description: "Wie eine ständig laufende Automatisierungssäule aus Support-Mails klassifizierte Tickets macht und ein mehrstufiger Datenschutz-Filter, der zeigt, was 'vertraue dem Modell nicht, verifiziere mit Code' praktisch heißt."
+seoTitle: "Das Nervensystem: Event-Automatisierung im Betrieb"
+seoDescription: "Wie eine laufende Automatisierung aus Support-Mails klassifizierte Tickets macht, hinter einem mehrstufigen Datenschutz-Filter: vertraue nicht dem Modell."
 excerpt: "Viele Workflows, eine Menge Verarbeitungsschritte, kein Mensch in der Schleife. Ein selbstlernender Ticket-Router und ein Datenschutz-Filter, der das Sprachmodell schreiben lässt, aber ihm kein Wort glaubt."
 category: "Automatisierung"
 image: "/images/blog/nervensystem-n8n-automatisierung.svg"

@@ -3,7 +3,8 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('/fonts/geist-300.ttf') format('truetype');
+  src: url('/fonts/geist-300.woff2') format('woff2'),
+       url('/fonts/geist-300.ttf') format('truetype');
 }
 
 @font-face {
@@ -11,7 +12,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/geist-400.ttf') format('truetype');
+  src: url('/fonts/geist-400.woff2') format('woff2'),
+       url('/fonts/geist-400.ttf') format('truetype');
 }
 
 @font-face {
@@ -19,7 +21,8 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/fonts/geist-500.ttf') format('truetype');
+  src: url('/fonts/geist-500.woff2') format('woff2'),
+       url('/fonts/geist-500.ttf') format('truetype');
 }
 
 @font-face {
@@ -27,7 +30,8 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/fonts/geist-600.ttf') format('truetype');
+  src: url('/fonts/geist-600.woff2') format('woff2'),
+       url('/fonts/geist-600.ttf') format('truetype');
 }
 
 @font-face {
@@ -35,7 +39,8 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/geist-700.ttf') format('truetype');
+  src: url('/fonts/geist-700.woff2') format('woff2'),
+       url('/fonts/geist-700.ttf') format('truetype');
 }
 
 @font-face {
@@ -43,7 +48,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/geist-mono-400.ttf') format('truetype');
+  src: url('/fonts/geist-mono-400.woff2') format('woff2'),
+       url('/fonts/geist-mono-400.ttf') format('truetype');
 }
 
 @font-face {
@@ -51,7 +57,8 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/fonts/geist-mono-600.ttf') format('truetype');
+  src: url('/fonts/geist-mono-600.woff2') format('woff2'),
+       url('/fonts/geist-mono-600.ttf') format('truetype');
 }
 
 @font-face {
@@ -59,7 +66,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/instrument-serif-400.ttf') format('truetype');
+  src: url('/fonts/instrument-serif-400.woff2') format('woff2'),
+       url('/fonts/instrument-serif-400.ttf') format('truetype');
 }
 
 @font-face {
@@ -67,5 +75,6 @@
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/instrument-serif-400i.ttf') format('truetype');
+  src: url('/fonts/instrument-serif-400i.woff2') format('woff2'),
+       url('/fonts/instrument-serif-400i.ttf') format('truetype');
 }

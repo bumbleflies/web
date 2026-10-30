@@ -39,26 +39,34 @@ async function routeExists(path: string): Promise<boolean> {
 
   const parts = path.split('/').filter(Boolean);
 
-  let file: string;
+  // A route can be served either by a file (services.astro) or by a directory
+  // index (en/index.astro). Both forms must resolve, with or without the
+  // trailing slash, because the site links the canonical trailing-slash URL.
+  const candidates: string[] = [];
   if (parts.length === 0) {
-    file = 'index.astro'; // "/"
+    candidates.push('index.astro'); // "/"
   } else if (path.endsWith('/')) {
-    file = `${parts.join('/')}/index.astro`; // "/en/"
+    candidates.push(`${parts.join('/')}/index.astro`); // "/en/"
   } else {
-    file = `${parts.join('/')}.astro`;
+    candidates.push(`${parts.join('/')}.astro`);
+    candidates.push(`${parts.join('/')}/index.astro`);
   }
 
-  try {
-    await fs.access(join(PAGES_DIR, file));
-    return true;
-  } catch {
-    // Static assets live in public/ (e.g. /favicon.ico, /images/...).
+  for (const file of candidates) {
     try {
-      await fs.access(join(PUBLIC_DIR, path.replace(/^\/+/, '')));
+      await fs.access(join(PAGES_DIR, file));
       return true;
     } catch {
-      return false;
+      /* try the next candidate */
     }
+  }
+
+  // Static assets live in public/ (e.g. /favicon.ico, /images/...).
+  try {
+    await fs.access(join(PUBLIC_DIR, path.replace(/^\/+/, '')));
+    return true;
+  } catch {
+    return false;
   }
 }
 

@@ -1,6 +1,7 @@
 ---
 title: "Statt KI zu kaufen: Was ich wirklich gebaut habe"
 description: "Nicht „ich habe KI gekauft\", sondern „ich habe meine eigenen Betriebsabläufe in Code übersetzt, den ein Sprachmodell zusammensetzt\". Hier ist die Architektur dahinter."
+seoDescription: "Nicht KI gekauft, sondern Betriebsabläufe in Code übersetzt, den ein Sprachmodell zusammensetzt: die Architektur dahinter."
 excerpt: "Mehrere Agenten-Säulen auf gemeinsamen Fundamenten. Autonome Agenten, die Pull-Requests öffnen, ein Skill-Marktplatz für Firmenwissen, ein Cockpit, das den Tag plant. So sieht KI aus, wenn sie nicht in der Demo endet."
 category: "Überblick"
 image: "/images/blog/ki-agenten-betriebssystem.svg"
