@@ -24,7 +24,7 @@ We help teams move from conversation to code. Our approach combines structured f
 - [Why bumbleflies](https://bumbleflies.de/why-bumbleflies): Why teams choose us and keep coming back.
 - [Why We Exist](https://bumbleflies.de/why-we): The integrated model: why one team doing Talk + Decide + Build beats fragmented vendors.
 - [Risk Derisking](https://bumbleflies.de/risk-derisking): How we reduce risk in organizational change.
-- [Open Space](https://bumbleflies.de/open-space): Our Open Space facilitation principles.
+- [Open Space Moderation](https://bumbleflies.de/open-space): Open Space conferences for 8-500 people. We sharpen the question with you, facilitate the marketplace, and document decisions with named owners. Formats, references and process.
 
 ## Case Studies
 

@@ -1,6 +1,7 @@
 ---
 import Layout from '../components/Layout.astro';
 import Nav from '../components/Nav.astro';
+import OpenSpaceOffer from '../components/OpenSpaceOffer.astro';
 import PrincipleSequence from '../components/PrincipleSequence.astro';
 import CTAStrip from '../components/CTAStrip.astro';
 import Footer from '../components/Footer.astro';
@@ -15,11 +16,77 @@ if (!page) {
 
 const principles = page.data.principles ?? [];
 const currentLang: 'DE' | 'EN' = 'DE';
+
+// Commercial intent first (someone searching for a facilitator), the method
+// and principles second (someone checking whether we know what we are doing).
+const copy = {
+  eyebrow: 'Open Space Moderation',
+  h1: 'Open Space Moderation für 8 bis 500 Menschen',
+  lead: 'Ein Open Space ist keine Veranstaltung, sondern eine Entscheidung: eine Frage, die wirklich ansteht, ein Marktplatz mit den Themen der Teilnehmenden, Sessions, in denen gearbeitet wird. Wir schärfen die Frage mit euch, moderieren den Tag und halten am Ende Entscheidungen mit Namen fest. Remote, hybrid oder vor Ort.',
+  facts: ['8–500 Teilnehmende', 'München & DACH', 'Remote, hybrid oder vor Ort', 'Deutsch und Englisch'],
+  primaryCta: 'Erstes Gespräch vereinbaren',
+  secondaryCta: 'Formate ansehen',
+  formatsHeading: 'Formate',
+  formats: [
+    {
+      title: 'Open Space Konferenz',
+      body: 'Eine Frage für die ganze Organisation: Marktplatz, parallele Sessions, Ergebnisse, die nach dem Tag weiterleben.',
+      meta: 'Großgruppe · vor Ort',
+    },
+    {
+      title: 'Open Space Tag für Team oder Bereich',
+      body: 'Kleinere Gruppe, gleiche Logik: Prioritäten klären, Entscheidungen mit Owner benennen, nächste Schritte festlegen.',
+      meta: 'Team oder Bereich',
+    },
+    {
+      title: 'Online Open Space',
+      body: 'Verteiltes Team, gleiche Wirkung: Sessions in Breakouts, Marktplatz digital, Ergebnisse live dokumentiert.',
+      meta: 'Remote oder hybrid',
+    },
+  ],
+  referencesHeading: 'Referenzen',
+  references: [
+    {
+      company: 'Siemens AG',
+      outcome: 'Enterprise Team Alignment, Mai 2023: klare Entscheidungen mit benannten Ownern, weitere Sessions gebucht.',
+      href: '/case-studies/siemens/',
+    },
+    {
+      company: 'Wohnungshelden',
+      outcome: 'Jährliches Open Space als Jahresendretro: Team-Klarheit über Prioritäten, fortlaufende Zusammenarbeit.',
+      href: '/case-studies/wohnungshelden/',
+    },
+    {
+      company: 'Dialograum Geld',
+      outcome: 'Open Space zu einem Tabu-Thema: heikle Gespräche moderiert, Stimmen gehört, Tabu normalisiert.',
+      href: '/case-studies/dialograum-geld/',
+    },
+  ],
+  processHeading: 'Wie ein Open Space bei uns abläuft',
+  steps: [
+    {
+      title: 'Frage schärfen',
+      body: 'Ohne gute Frage kein guter Open Space. Wir arbeiten sie mit euch durch, bis sie wirklich offen ist.',
+    },
+    {
+      title: 'Einladen',
+      body: 'Wer im Raum sitzt, entscheidet über das Ergebnis mit. Wir helfen beim Zuschnitt der Gruppe.',
+    },
+    {
+      title: 'Marktplatz & Sessions',
+      body: 'Die Teilnehmenden setzen die Themen, das Gesetz der Mobilität gilt. Wir moderieren, dokumentieren und halten den Rahmen.',
+    },
+    {
+      title: 'Entscheidungen festhalten',
+      body: 'Ergebnisse, Entscheidungen und Verantwortliche werden festgehalten — sonst war es nur ein Event.',
+    },
+  ],
+};
 ---
 
 <Layout
-  title="Open Space Prinzipien: bumbleflies"
-  description="Die 5 Prinzipien und das Gesetz der Mobilität von Open Space Technology: die Philosophie hinter jeder Open Space Facilitation von bumbleflies."
+  title="Open Space Moderation München: bumbleflies"
+  description="Open Space Moderation für 8 bis 500 Menschen: Frage schärfen, Marktplatz moderieren, Entscheidungen mit Owner dokumentieren. Remote, hybrid oder vor Ort."
   canonical="https://bumbleflies.de/open-space"
   lang={currentLang}
   dePath="/open-space"
@@ -27,9 +94,18 @@ const currentLang: 'DE' | 'EN' = 'DE';
 >
   <Nav slot="nav" lang={currentLang} />
 
-  <h1 class="bf-visually-hidden">{page.data.heading}: Open Space Prinzipien</h1>
+  <OpenSpaceOffer copy={copy} />
 
-  <PrincipleSequence principles={principles} exitHref="#open-space-end" lang={currentLang} />
+  <section class="os-principles bf-section">
+    <div class="bf-container">
+      <h2 class="os-principles__heading">Die Prinzipien dahinter</h2>
+      <p class="os-principles__lead">
+        {page.data.heading} — und das Gesetz der Mobilität. Das ist die Methode, auf der jede
+        Open Space Moderation von bumbleflies beruht.
+      </p>
+    </div>
+    <PrincipleSequence principles={principles} exitHref="#open-space-end" lang={currentLang} />
+  </section>
 
   <div id="open-space-end">
     <CTAStrip
@@ -43,3 +119,23 @@ const currentLang: 'DE' | 'EN' = 'DE';
 
   <Footer slot="footer" lang={currentLang} />
 </Layout>
+
+<style>
+  .os-principles {
+    padding-bottom: 0;
+  }
+
+  .os-principles__heading {
+    font-size: var(--text-4xl);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-md);
+  }
+
+  .os-principles__lead {
+    font-size: var(--text-lg);
+    line-height: var(--lh-generous);
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin-bottom: var(--space-xl);
+  }
+</style>

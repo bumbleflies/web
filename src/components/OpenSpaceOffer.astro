@@ -1,0 +1,290 @@
+---
+/**
+ * Commercial block for the Open Space page.
+ *
+ * The page used to open with a full-bleed principle slideshow and a visually
+ * hidden <h1> ("5 Prinzipien und ein Gesetz") — beautiful, but it answers a
+ * question nobody googles. This block answers the commercial intent first:
+ * what we run, for whom, what it looks like, who has booked it. The principle
+ * sequence stays on the page, below, as the "why it works" section.
+ */
+export interface OpenSpaceOfferCopy {
+  eyebrow: string;
+  h1: string;
+  lead: string;
+  facts: string[];
+  primaryCta: string;
+  secondaryCta: string;
+  formatsHeading: string;
+  formats: { title: string; body: string; meta: string }[];
+  referencesHeading: string;
+  references: { company: string; outcome: string; href: string }[];
+  processHeading: string;
+  steps: { title: string; body: string }[];
+}
+
+interface Props {
+  copy: OpenSpaceOfferCopy;
+  /** Where the primary call to action goes. */
+  ctaHref?: string;
+}
+
+const { copy, ctaHref = 'mailto:info@bumbleflies.de' } = Astro.props;
+---
+
+<section class="os-hero">
+  <div class="bf-container">
+    <p class="os-hero__eyebrow">{copy.eyebrow}</p>
+    <h1 class="os-hero__h1">{copy.h1}</h1>
+    <p class="os-hero__lead">{copy.lead}</p>
+
+    <div class="os-hero__actions">
+      <a class="bf-cta" href={ctaHref}>
+        {copy.primaryCta}
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <path d="M2 11L11 2M11 2H4M11 2v7" />
+        </svg>
+      </a>
+      <a class="os-hero__secondary" href="#formate">{copy.secondaryCta}</a>
+    </div>
+
+    <ul class="os-hero__facts">
+      {copy.facts.map((fact) => (
+        <li>{fact}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="bf-section os-formats" id="formate">
+  <div class="bf-container">
+    <h2 class="os-section-heading">{copy.formatsHeading}</h2>
+    <div class="os-formats__grid">
+      {copy.formats.map((format, index) => (
+        <article class="os-format">
+          <span class="os-format__num">{String(index + 1).padStart(2, '0')}</span>
+          <h3 class="os-format__title">{format.title}</h3>
+          <p class="os-format__body">{format.body}</p>
+          <p class="os-format__meta">{format.meta}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="bf-section os-references">
+  <div class="bf-container">
+    <h2 class="os-section-heading">{copy.referencesHeading}</h2>
+    <ul class="os-references__list">
+      {copy.references.map((reference) => (
+        <li>
+          <a href={reference.href}>
+            <span class="os-reference__company">{reference.company}</span>
+            <span class="os-reference__outcome">{reference.outcome}</span>
+            <span class="os-reference__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="bf-section os-process">
+  <div class="bf-container">
+    <h2 class="os-section-heading">{copy.processHeading}</h2>
+    <ol class="os-process__list">
+      {copy.steps.map((step, index) => (
+        <li>
+          <span class="os-process__num">{String(index + 1).padStart(2, '0')}</span>
+          <h3 class="os-process__title">{step.title}</h3>
+          <p class="os-process__body">{step.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .os-hero {
+    padding: var(--space-6xl) 0 var(--space-2xl);
+  }
+
+  .os-hero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--accent-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .os-hero__h1 {
+    font-size: clamp(var(--text-4xl), 7vw, var(--text-6xl));
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    max-width: 18ch;
+    margin-bottom: var(--space-lg);
+  }
+
+  .os-hero__lead {
+    font-size: var(--text-lg);
+    line-height: var(--lh-generous);
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin-bottom: var(--space-xl);
+  }
+
+  .os-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  .os-hero__secondary {
+    font-size: var(--text-base);
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .os-hero__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-lg);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--rule);
+    padding-top: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+  }
+
+  .os-section-heading {
+    font-size: var(--text-4xl);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-xl);
+  }
+
+  .os-formats__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .os-format {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .os-format__num {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-mono);
+    color: var(--accent-text);
+  }
+
+  .os-format__title {
+    font-size: var(--text-xl);
+    margin: 0;
+  }
+
+  .os-format__body {
+    font-size: var(--text-base);
+    line-height: var(--lh-generous);
+    color: var(--ink-soft);
+  }
+
+  .os-format__meta {
+    margin-top: auto;
+    padding-top: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .os-references__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .os-references__list a {
+    display: grid;
+    grid-template-columns: minmax(120px, 200px) 1fr auto;
+    gap: var(--space-md);
+    align-items: baseline;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .os-references__list a:hover .os-reference__company {
+    color: var(--accent-text);
+  }
+
+  .os-reference__company {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    transition: color var(--duration-fast) var(--easing-default);
+  }
+
+  .os-reference__outcome {
+    font-size: var(--text-base);
+    color: var(--ink-soft);
+    line-height: var(--lh-body);
+  }
+
+  .os-reference__arrow {
+    color: var(--accent-text);
+    font-size: var(--text-lg);
+  }
+
+  .os-process__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-lg);
+    counter-reset: step;
+  }
+
+  .os-process__num {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-mono);
+    color: var(--accent-text);
+  }
+
+  .os-process__title {
+    font-size: var(--text-xl);
+    margin: var(--space-sm) 0;
+  }
+
+  .os-process__body {
+    font-size: var(--text-base);
+    line-height: var(--lh-generous);
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 768px) {
+    .os-references__list a {
+      grid-template-columns: 1fr auto;
+    }
+    .os-reference__outcome {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

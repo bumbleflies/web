@@ -143,7 +143,7 @@ All pages are available in English at /en/. Full content mirrors the German site
 - [Why bumbleflies (EN)](https://bumbleflies.de/en/why-bumbleflies): Why teams choose us.
 - [Why We Exist (EN)](https://bumbleflies.de/en/why-we): The integrated model.
 - [Risk Derisking (EN)](https://bumbleflies.de/en/risk-derisking): Reducing risk in change.
-- [Open Space (EN)](https://bumbleflies.de/en/open-space): Open Space principles.
+- [Open Space facilitation (EN)](https://bumbleflies.de/en/open-space): Open Space conferences for 8-500 people. We sharpen the question with you, facilitate the marketplace, and document decisions with named owners. Formats, references and process. The five principles and the law of mobility are on the same page.
 - [Case Studies (EN)](https://bumbleflies.de/en/case-studies): Real results.
 - [About (EN)](https://bumbleflies.de/en/about): Who we are.
 - [Blog (EN)](https://bumbleflies.de/en/blog): Field Notes.
