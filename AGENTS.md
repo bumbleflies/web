@@ -17,7 +17,7 @@ npm run test:integration               # only `bilingual-content.integration.tes
 
 - `package.json` says Astro `^7`. Trust the manifest.
 - Type checking is `npm run typecheck` (`astro sync` + `tsc --noEmit --runExternalCode`). It relies on TypeScript 7.1 and `@astrojs/ts-content-mapper` because `astro check` refuses TypeScript 7; keep both pinned and update them together. The mapper runs code from `node_modules`, hence the explicit flag.
-- If typecheck dies with `error TS5023: Unknown compiler option '--runExternalCode'`, your `node_modules` predates the TS 7.1 pin — run `npm ci` (CI always does, so a red typecheck locally and green in CI means a stale tree, not a code problem).
+- If typecheck dies with `error TS5023: Unknown compiler option '--runExternalCode'`, your `node_modules` predates the TS 7.1 pin — run `npm ci` (CI always does, so a red typecheck locally and green in CI means a stale tree, not a code problem). `lib/toolchain.mjs` now runs first and says exactly that instead of letting tsc fail cryptically.
 - Content config is `src/content.config.ts`.
 - Dockerfile builder must stay `node:24-slim` (glibc). Don't switch to Alpine: Astro 7's `satteri` markdown engine ships only `linux-x64-gnu` bindings.
 - `/health` is served by `nginx.conf` only — no source route exists, so don't add or test one in Astro.
