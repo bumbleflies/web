@@ -1,14 +1,15 @@
 ---
 title: "Skills als Apps: ein Plugin-Marktplatz für Firmenwissen"
 description: "Ein interner App-Store für KI-Tooling: der Marktplatz ist der Store, jedes Plugin eine App, jeder Skill ein Feature. Und die eine Regel, die alles zusammenhält: Modell-Urteil plus deterministisches Skript."
+seoDescription: "Ein interner App-Store für KI-Tooling: Firmenwissen als installierbare, versionierte und getestete Skills, für Menschen und Agenten."
 excerpt: "Viele Plugins, noch mehr Skills, die per natürlicher Sprache aktiviert werden. Derselbe Code läuft für den Menschen am Laptop, den Agenten im Container und die CI. Wie man Firmenwissen versioniert statt kopiert."
 category: "Plattform"
 image: "/images/blog/skills-als-apps-plugin-marktplatz.svg"
 order: 4
-date: 2026-07-18
+date: 2026-10-30
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 Min."
-published: false
+published: true
 lang: "DE"
 ---
 
@@ -49,7 +50,7 @@ Der Produktiv-Deploy ist **aufrufer-agnostisch**: Er weiß nicht, ob ihn ein Men
 
 ## Wissen, das sich selbst verbessert
 
-Ein Muster im Marktplatz mag ich besonders: eine Lernschleife. Der Migrations-Playbook-Skill, der Kunden von Altsystemen übernimmt, liest und schreibt ein einziges kanonisches Dokument. Nach jeder Migration hängt ein „Lernen-einfangen"-Schritt die neuen Erkenntnisse an genau dieses Dokument an, und schlägt Änderungen an seinen eigenen Regeln und Aufwands-Tabellen vor.
+Ein Muster im Marktplatz mag ich besonders: eine Lernschleife. Der Migrations-Playbook-Skill für die Ablösung von Altsystemen liest und schreibt ein einziges kanonisches Dokument. Nach jeder Migration hängt ein „Lernen-einfangen"-Schritt die neuen Erkenntnisse an genau dieses Dokument an, und schlägt Änderungen an seinen eigenen Regeln und Aufwands-Tabellen vor.
 
 Das heißt: **Das Werkzeug verbessert das Dokument, das das nächste Werkzeug steuert.** Jede Migration macht das Playbook besser, statt ein Einzelfall zu bleiben. Wissen wächst wie mit Zinseszins, statt zu verwittern.
 
@@ -63,6 +64,6 @@ Und die Qualitätssicherung? Jeder Skill, der geändert wird, durchläuft in der
 
 ## Was das ersetzt
 
-Wissen verteilt sich, driftet auseinander, geht verloren, und die übliche Antwort sind Dokumentationen, die niemand liest. Meine Antwort: Firmenwissen als installierbare, versionierte, getestete Skills, benutzbar per natürlicher Sprache, von Menschen und von Maschinen, mit exakt demselben Code.
+Wissen verteilt sich, driftet auseinander, geht verloren, und die übliche Antwort sind Dokumentationen, die niemand liest. Die Antwort: Firmenwissen als installierbare, versionierte, getestete Skills, benutzbar per natürlicher Sprache, von Menschen und von Maschinen, mit exakt demselben Code.
 
 Und genau dieser gemeinsame Code ist die Brücke zum nächsten Teil: Wenn ein Mensch und ein autonomer Agent dieselben Skills ausführen, dann ist ein Agent nur noch ein Container mit einem anderen Systemprompt. Wie das aussieht und welche teuren Fehler mich dorthin geführt haben, zeigt der nächste Artikel.

@@ -24,6 +24,7 @@ UnternehmerTUM: https://bumbleflies.de/case-studies/unternehmertum/
 # Blog
 Blog: https://bumbleflies.de/blog/
 Statt KI zu kaufen (Field Notes 01): https://bumbleflies.de/blog/ki-agenten-betriebssystem/
+Skills als Apps (Field Notes 04): https://bumbleflies.de/blog/skills-als-apps-plugin-marktplatz/
 What I Actually Built Instead of Adding AI (EN): https://bumbleflies.de/en/blog/ai-agent-operating-system/
 Die Fundamente, auf denen alles läuft (Field Notes 02): https://bumbleflies.de/blog/zwei-ebenen-zustand-und-interaktion/
 The Foundations Everything Runs On (EN): https://bumbleflies.de/en/blog/two-levels-state-interaction/

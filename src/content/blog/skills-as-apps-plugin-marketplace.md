@@ -1,14 +1,15 @@
 ---
 title: "Skills as Apps: A Plugin Marketplace for Company Knowledge"
 description: "An internal app store for AI tooling: the marketplace is the store, each plugin is an app, each skill is a feature. And the one rule that holds it all together: model judgment plus deterministic script."
+seoDescription: "An internal app store for AI tooling: company knowledge as installable, versioned and tested skills, for humans and for agents."
 excerpt: "Many plugins, even more skills, activated by natural language. The same code runs for the human on a laptop, the agent in a container, and the CI. How to version company knowledge instead of copying it."
 category: "Platform"
 image: "/images/blog/skills-als-apps-plugin-marktplatz.svg"
 order: 4
-date: 2026-07-18
+date: 2026-10-30
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 min"
-published: false
+published: true
 lang: "EN"
 ---
 
@@ -63,6 +64,6 @@ And quality assurance? Every skill that's changed runs a **real integration chec
 
 ## What this replaces
 
-Knowledge spreads, drifts apart, gets lost, and the usual answer is documentation nobody reads. What I built instead is company knowledge as installable, versioned, tested skills, usable via natural language by humans and by machines, with exactly the same code.
+Knowledge spreads, drifts apart, gets lost, and the usual answer is documentation nobody reads. The answer: company knowledge as installable, versioned, tested skills, usable via natural language by humans and by machines, with exactly the same code.
 
 And this shared code is the bridge to the next part: when a human and an autonomous agent run the same skills, an agent is just a container with a different system prompt. What that looks like, and the expensive mistakes that led me there, is the subject of the next article.
