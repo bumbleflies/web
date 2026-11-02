@@ -8,6 +8,8 @@ We help teams move from conversation to code. Our approach combines structured f
 
 ## Services
 
+Page: [Services](https://bumbleflies.de/services/)
+
 ### Talk: Facilitation & Workshop Design
 
 Structured dialogue that surfaces real issues and creates clarity. We design and facilitate workshops, team alignment sessions, and bumble:space (Open Space) events, from executive offsites to sensitive community conversations. Our facilitation creates safety, surfaces truth, and produces decisions that stick. Formats include: Gesamtmoderation (full-day facilitation), bumble:space / Open Space, structured dialogue, team retrospectives.
@@ -28,6 +30,8 @@ When the problem doesn't fit a single box. We accompany teams from first convers
 
 ## AI Consulting
 
+Page: [AI Consulting](https://bumbleflies.de/ai-consulting/)
+
 Practical AI for organizations, no hype, just results. We help teams understand what AI can actually do for their work, then implement it. Our approach: start with the problem, not the technology. We focus on human-in-the-loop AI, agentic systems, and practical automation: the kind that changes how teams work without requiring a PhD to operate.
 
 Key areas: AI strategy workshops, agentic software development, human-in-the-loop AI systems, process automation, AI literacy training.
@@ -36,15 +40,19 @@ Key areas: AI strategy workshops, agentic software development, human-in-the-loo
 
 ## How We Work
 
+Pages: [How We Work](https://bumbleflies.de/how-we-work/), [Why bumbleflies](https://bumbleflies.de/why-bumbleflies/), [Risk Derisking](https://bumbleflies.de/risk-derisking/), [Open Space Moderation](https://bumbleflies.de/open-space/)
+
 Our approach connects facilitation and development. We believe transformation happens through good conversation followed by concrete action. The bumbleflies method: talk to understand, decide to commit, build to sustain. We use bumble:space (Open Space) principles, structured dialogue, and iterative development to create change that sticks.
 
 ---
 
 ## Case Studies
 
+Page: [Case Studies](https://bumbleflies.de/case-studies/)
+
 ### Siemens AG: Enterprise Team Alignment
 
-**Service:** Talk | **Duration:** May 2023
+**Service:** Talk | **Duration:** May 2023 | **Page:** https://bumbleflies.de/case-studies/siemens/
 
 A large enterprise team walked in with competing priorities and unclear ownership. They walked out with clear decisions and named owners, and immediately booked follow-up sessions to sustain the momentum.
 
@@ -54,7 +62,7 @@ A large enterprise team walked in with competing priorities and unclear ownershi
 
 ### LeagueSphere: Building a Regional SaaS
 
-**Service:** Build & Embed | **Duration:** 2021–2026 (Ongoing)
+**Service:** Build & Embed | **Duration:** 2021–2026 (Ongoing) | **Page:** https://bumbleflies.de/case-studies/leaguesphere/
 
 American football leagues in Germany were drowning in spreadsheets. We took full ownership: deep understanding of league operations, MVP focused on core pain (scheduling + officials + results), iterative development with real leagues. From "someday we'll build this" to live product in 9 months.
 
@@ -64,7 +72,7 @@ American football leagues in Germany were drowning in spreadsheets. We took full
 
 ### Dialograum Geld: Values-Driven Community Dialogue
 
-**Service:** Talk | **Duration:** March 2021
+**Service:** Talk | **Duration:** March 2021 | **Page:** https://bumbleflies.de/case-studies/dialograum-geld/
 
 A community initiative dedicated to normalizing conversations about money. We designed and facilitated an Open Space dialogue for sensitive topics: safety first, diverse participation, structured openness, values alignment, normalization of taboo topics.
 
@@ -72,7 +80,7 @@ A community initiative dedicated to normalizing conversations about money. We de
 
 ### Wohnungshelden: Annual Team Alignment
 
-**Service:** Talk | **Duration:** Annual (Jahresendretro)
+**Service:** Talk | **Duration:** Annual (Jahresendretro) | **Page:** https://bumbleflies.de/case-studies/wohnungshelden/
 
 Full-day Open Space retrospective combining structured reflection with community building. Morning: welcome, Open Space overview, marketplace of self-organized sessions. Thematic sessions: multiple parallel tracks, deep reflection, cross-functional participation. Evening: celebration, team building (go-kart racing, gaming).
 
@@ -80,7 +88,7 @@ Full-day Open Space retrospective combining structured reflection with community
 
 ### UnternehmerTUM: Agile Transformation at Scale
 
-**Service:** Decide | **Duration:** 2025–2026 (Ongoing)
+**Service:** Decide | **Duration:** 2025–2026 (Ongoing) | **Page:** https://bumbleflies.de/case-studies/unternehmertum/
 
 Multi-modal training and coaching program for agile transformation. Core offerings: agile practices for projects and product development, in-house hybrid PM training, interactive practice workshops. The blended model: structured workshops + in-house customization + ongoing coaching + scalable delivery.
 
@@ -89,6 +97,8 @@ Multi-modal training and coaching program for agile transformation. Core offerin
 ---
 
 ## Team
+
+Page: [About](https://bumbleflies.de/about/)
 
 ### Christoph Kämpfe: Founder & Engineering Lead
 
@@ -106,6 +116,8 @@ Digital strategist and organizational designer. Shapes how bumbleflies' services
 
 ## Why We Exist
 
+Page: [Why We Exist](https://bumbleflies.de/why-we/)
+
 The integrated model: why one team doing Talk + Decide + Build beats fragmented vendors. Most transformation services are relay races: a facilitator hands off to a strategist who hands off to a developer. Knowledge gets lost, nobody owns the outcome. bumbleflies does all three. One team, one conversation, one accountability. From the first workshop to the deployed software, we're there the whole way.
 
 Comparison: fragmented vs integrated approach, who leads, goals, learning between phases, adoption timeline.
@@ -114,23 +126,48 @@ Comparison: fragmented vs integrated approach, who leads, goals, learning betwee
 
 ## About
 
+Page: [About](https://bumbleflies.de/about/)
+
 bumbleflies was founded in 2021 in Munich by three people who believed that organizations don't need more consultants; they need better conversations and better tools. We facilitate, we consult, and we build. Sometimes all three in the same engagement.
 
 ---
 
 ## Blog
 
+Page: [Blog](https://bumbleflies.de/blog/)
+
 Field Notes: the bumbleflies article series on AI, facilitation, and organizational change. Each article ships in German and English, with an audio summary.
 
-- [Statt KI zu kaufen: Was ich wirklich gebaut habe](https://bumbleflies.de/blog/ki-agenten-betriebssystem): Field Notes #1. Not "we bought AI" but "we translated our own operational processes into code a language model composes". Several agent pillars on shared foundations: autonomous agents that open pull requests, a skill marketplace for company knowledge, and a cockpit that plans the day. Built at JUNE, a German legal-tech company, running in production for over a year.
-- [Skills als Apps: ein Plugin-Marktplatz für Firmenwissen](https://bumbleflies.de/blog/skills-als-apps-plugin-marktplatz): Field Notes #4. How JUNE packaged its institutional knowledge into an internal app store that developers add to Claude Code once per machine. Skills activate through natural language, with trigger phrases in German and English. The governing rule: any part of a skill that can be deterministic SHOULD be a script, and the model only composes the call, which makes behaviour auditable and cheap. Every script ships in a Linux/Mac and a Windows variant, so the same skill runs for a human, an agent in a container and CI. The deploy trio forms a mini-compiler (plan, test, production with migrations as a hard gate) and is caller-agnostic. A migration playbook improves its own canonical document after each engagement, every skill must register in a usage dashboard, and CI runs a real end-to-end integration check with no mocks. With audio summary.
-- [What I Actually Built Instead of "Adding AI"](https://bumbleflies.de/en/blog/ai-agent-operating-system): English version of Field Notes #1, same content and audio summary in English.
-- [Die Fundamente, auf denen alles läuft: Zustand und Interaktion](https://bumbleflies.de/blog/zwei-ebenen-zustand-und-interaktion): Field Notes #2. Why the agent system built at JUNE coordinates through two standard tools instead of custom microservices: the project management tool as persistent state and ignition for automation, the team chat as the interaction layer where autonomy meets the human. Covers the identity problem of agents posting under a shared human account, and the resulting rule: coordinate through persistent, human-visible artifacts, not direct calls.
-- [The Foundations Everything Runs On: State and Interaction](https://bumbleflies.de/en/blog/two-levels-state-interaction): English version of Field Notes #2, same content and audio summary in English.
-- [Zwischenspiel: Von der Anforderung bis live an einem Export](https://bumbleflies.de/blog/anforderung-bis-live): Field Notes #2.5. The concrete companion to Field Notes #2: one fictional but typical workflow, a missing column in a client export, traced from the support chat AI assistant through escalation, ticket creation, investigate-bot enrichment, joint human and test-bot testing, batch rollout, regression proof, gap analysis backlog for the nightly bot, and doc bots producing documentation, demo video, and screenshots. Tooling stays deliberately generic, developer build work is explicitly left out as its own future series.
-- [Interlude: From request to live, traced through one export](https://bumbleflies.de/en/blog/requirement-to-live): English version of Field Notes #2.5, same content in English.
-- [Das Nervensystem: Event-Automatisierung und wie man ein Sprachmodell ehrlich hält](https://bumbleflies.de/blog/nervensystem-n8n-automatisierung): Field Notes #3. The automation pillar built with n8n at JUNE: an always-on, event-driven layer that reacts to every ticket change with no human in the loop. Covers two principles: generated workflow configs (a Python generator script is the source of truth, checked into Git, instead of hand-edited exports) and a self-improving support router whose training data is the log of human inbox corrections, with a confidence threshold picked by feel. The centerpiece is a multi-stage privacy filter for auto-generated release notes: the model writes, deterministic regex and heuristic code checks, a second model redacts, the filter runs again, and the workflow refuses hard if anything remains. With audio summary.
-- [The Nervous System: Event Automation and How to Keep a Language Model Honest](https://bumbleflies.de/en/blog/nervous-system-event-automation): English version of Field Notes #3, same content and audio summary in English.
+- [Statt KI zu kaufen: Was ich wirklich gebaut habe](https://bumbleflies.de/blog/ki-agenten-betriebssystem/): Field Notes #1. Not "we bought AI" but "we translated our own operational processes into code a language model composes". Several agent pillars on shared foundations: autonomous agents that open pull requests, a skill marketplace for company knowledge, and a cockpit that plans the day. Built at JUNE, a German legal-tech company, running in production for over a year.
+- [Skills als Apps: ein Plugin-Marktplatz für Firmenwissen](https://bumbleflies.de/blog/skills-als-apps-plugin-marktplatz/): Field Notes #4. How JUNE packaged its institutional knowledge into an internal app store that developers add to Claude Code once per machine. Skills activate through natural language, with trigger phrases in German and English. The governing rule: any part of a skill that can be deterministic SHOULD be a script, and the model only composes the call, which makes behaviour auditable and cheap. Every script ships in a Linux/Mac and a Windows variant, so the same skill runs for a human, an agent in a container and CI. The deploy trio forms a mini-compiler (plan, test, production with migrations as a hard gate) and is caller-agnostic. A migration playbook improves its own canonical document after each engagement, every skill must register in a usage dashboard, and CI runs a real end-to-end integration check with no mocks. With audio summary.
+- [Skills as Apps: A Plugin Marketplace for Company Knowledge](https://bumbleflies.de/en/blog/skills-as-apps-plugin-marketplace/): English version of Field Notes #4, same content and audio summary in English.
+- [What I Actually Built Instead of "Adding AI"](https://bumbleflies.de/en/blog/ai-agent-operating-system/): English version of Field Notes #1, same content and audio summary in English.
+- [Die Fundamente, auf denen alles läuft: Zustand und Interaktion](https://bumbleflies.de/blog/zwei-ebenen-zustand-und-interaktion/): Field Notes #2. Why the agent system built at JUNE coordinates through two standard tools instead of custom microservices: the project management tool as persistent state and ignition for automation, the team chat as the interaction layer where autonomy meets the human. Covers the identity problem of agents posting under a shared human account, and the resulting rule: coordinate through persistent, human-visible artifacts, not direct calls.
+- [The Foundations Everything Runs On: State and Interaction](https://bumbleflies.de/en/blog/two-levels-state-interaction/): English version of Field Notes #2, same content and audio summary in English.
+- [Zwischenspiel: Von der Anforderung bis live an einem Export](https://bumbleflies.de/blog/anforderung-bis-live/): Field Notes #2.5. The concrete companion to Field Notes #2: one fictional but typical workflow, a missing column in a client export, traced from the support chat AI assistant through escalation, ticket creation, investigate-bot enrichment, joint human and test-bot testing, batch rollout, regression proof, gap analysis backlog for the nightly bot, and doc bots producing documentation, demo video, and screenshots. Tooling stays deliberately generic, developer build work is explicitly left out as its own future series.
+- [Interlude: From request to live, traced through one export](https://bumbleflies.de/en/blog/requirement-to-live/): English version of Field Notes #2.5, same content in English.
+- [Das Nervensystem: Event-Automatisierung und wie man ein Sprachmodell ehrlich hält](https://bumbleflies.de/blog/nervensystem-n8n-automatisierung/): Field Notes #3. The automation pillar built with n8n at JUNE: an always-on, event-driven layer that reacts to every ticket change with no human in the loop. Covers two principles: generated workflow configs (a Python generator script is the source of truth, checked into Git, instead of hand-edited exports) and a self-improving support router whose training data is the log of human inbox corrections, with a confidence threshold picked by feel. The centerpiece is a multi-stage privacy filter for auto-generated release notes: the model writes, deterministic regex and heuristic code checks, a second model redacts, the filter runs again, and the workflow refuses hard if anything remains. With audio summary.
+- [The Nervous System: Event Automation and How to Keep a Language Model Honest](https://bumbleflies.de/en/blog/nervous-system-event-automation/): English version of Field Notes #3, same content and audio summary in English.
+
+---
+
+## Legal
+
+- [Impressum](https://bumbleflies.de/impressum/): Legal imprint (German).
+- [Datenschutz](https://bumbleflies.de/datenschutz/): Privacy policy (German).
+
+---
+
+## Agent Skills
+
+Free, standalone skills for assistants that support the SKILL.md format (Claude Code, Claude skills, compatible agents). They help an employee or a management team work out whether a problem exists and what would actually solve it. They are useful on their own, including when the answer is that bumbleflies is not the right provider. Category: Discover.
+
+- [Business Problem Discovery](https://bumbleflies.de/skills/business-problem-discovery/SKILL.md): Structured discovery of processes that cost time, money or quality. Business model, repetitive work, bottlenecks, knowledge silos, then a qualified opportunity assessment.
+- [AI Opportunity Finder](https://bumbleflies.de/skills/ai-opportunity-finder/SKILL.md): Decides per process between AI, deterministic automation, agentic workflow or a process fix. Input shape and error cost decide, not ambition.
+- [Agentic Transformation Readiness](https://bumbleflies.de/skills/agentic-transformation-readiness/SKILL.md): Scores process stability, state and tool access, review capacity, failure tolerance, data rules and ownership. Names the first agent-shaped slice and its guardrails.
+- [Build vs. Buy Advisor](https://bumbleflies.de/skills/build-vs-buy-advisor/SKILL.md): Structures build, buy, integrate or extend using what is already paid for, time to value, lock-in and maintenance, and states what would flip the recommendation.
+- [AI Business Case Calculator](https://bumbleflies.de/skills/ai-business-case/SKILL.md): One-page case from real numbers: costs including review labour, benefit, risks, payback and a sensitivity run. Includes the honest do-not-do-it.
+- [AI Project Scoping](https://bumbleflies.de/skills/ai-project-scoping/SKILL.md): Turns a validated opportunity into goal, non-goals, first slice, milestones, roles, data needs, evaluation and an effort range with assumptions.
 
 ---
 
@@ -138,18 +175,19 @@ Field Notes: the bumbleflies article series on AI, facilitation, and organizatio
 
 All pages are available in English at /en/. Full content mirrors the German site:
 - [Home (EN)](https://bumbleflies.de/en/): What we do and who we serve.
-- [Services (EN)](https://bumbleflies.de/en/services): Four service pillars.
-- [AI Consulting (EN)](https://bumbleflies.de/en/ai-consulting): Practical AI, no hype.
-- [How We Work (EN)](https://bumbleflies.de/en/how-we-work): The bumbleflies method.
-- [Why bumbleflies (EN)](https://bumbleflies.de/en/why-bumbleflies): Why teams choose us.
-- [Why We Exist (EN)](https://bumbleflies.de/en/why-we): The integrated model.
-- [Risk Derisking (EN)](https://bumbleflies.de/en/risk-derisking): Reducing risk in change.
-- [Open Space facilitation (EN)](https://bumbleflies.de/en/open-space): Open Space conferences for 8-500 people. We sharpen the question with you, facilitate the marketplace, and document decisions with named owners. Formats, references and process. The five principles and the law of mobility are on the same page.
-- [Case Studies (EN)](https://bumbleflies.de/en/case-studies): Real results.
-- [About (EN)](https://bumbleflies.de/en/about): Who we are.
-- [Blog (EN)](https://bumbleflies.de/en/blog): Field Notes.
-- [Imprint (EN)](https://bumbleflies.de/en/imprint): Legal info.
-- [Privacy (EN)](https://bumbleflies.de/en/privacy): Privacy policy.
+- [Services (EN)](https://bumbleflies.de/en/services/): Four service pillars.
+- [AI Consulting (EN)](https://bumbleflies.de/en/ai-consulting/): Practical AI, no hype.
+- [How We Work (EN)](https://bumbleflies.de/en/how-we-work/): The bumbleflies method.
+- [Why bumbleflies (EN)](https://bumbleflies.de/en/why-bumbleflies/): Why teams choose us.
+- [Why We Exist (EN)](https://bumbleflies.de/en/why-we/): The integrated model.
+- [Risk Derisking (EN)](https://bumbleflies.de/en/risk-derisking/): Reducing risk in change.
+- [Open Space facilitation (EN)](https://bumbleflies.de/en/open-space/): Open Space conferences for 8-500 people. We sharpen the question with you, facilitate the marketplace, and document decisions with named owners. Formats, references and process. The five principles and the law of mobility are on the same page.
+- [Case Studies (EN)](https://bumbleflies.de/en/case-studies/): Real results.
+- [About (EN)](https://bumbleflies.de/en/about/): Who we are.
+- [Blog (EN)](https://bumbleflies.de/en/blog/): Field Notes.
+- [Skills as Apps (EN)](https://bumbleflies.de/en/blog/skills-as-apps-plugin-marketplace/): Field Notes #4 in English.
+- [Imprint (EN)](https://bumbleflies.de/en/imprint/): Legal info.
+- [Privacy (EN)](https://bumbleflies.de/en/privacy/): Privacy policy.
 
 ---
 
@@ -163,5 +201,7 @@ All pages are available in English at /en/. Full content mirrors the German site
 ## For Agents
 
 - Welcome page: https://bumbleflies.de/agents.md
+- Site summary: https://bumbleflies.de/llms.txt
+- Agent directory: https://bumbleflies.de/agents.txt
 - Facts: https://bumbleflies.de/facts.json
-- Agent Card: https://bumbleflies.de/.well-known/agent-card.json
+- Skill manifest (ARD): https://bumbleflies.de/.well-known/ard.json

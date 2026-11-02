@@ -36,14 +36,15 @@
 - [How We Work](https://bumbleflies.de/how-we-work): Our approach
 - [Case Studies](https://bumbleflies.de/case-studies): Real results from real organizations
 - [About](https://bumbleflies.de/about): Who we are
-- [Blog](https://bumbleflies.de/blog): Field Notes (currently all drafts)
+- [Blog](https://bumbleflies.de/blog): Field Notes on AI agents in production, German and English
 
 ## Machine-Readable
 
 - [facts.json](https://bumbleflies.de/facts.json): Structured brand facts
 - [llms.txt](https://bumbleflies.de/llms.txt): Curated site summary
 - [llms-full.txt](https://bumbleflies.de/llms-full.txt): Full content descriptions
-- [Agent Card](https://bumbleflies.de/.well-known/agent-card.json): A2A capability manifest
+- [agents.txt](https://bumbleflies.de/agents.txt): Flat page directory
+- [ARD manifest](https://bumbleflies.de/.well-known/ard.json): Discovery manifest for the free Discover skills (SKILL.md files under /skills/)
 - [robots.txt](https://bumbleflies.de/robots.txt): Crawler access rules
 - [Sitemap](https://bumbleflies.de/sitemap-index.xml): All pages
 
