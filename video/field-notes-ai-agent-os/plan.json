@@ -1,0 +1,34 @@
+[
+  {
+    "scene": "hook",
+    "text": "People keep asking me: do you really type a feature request, and then agents just go and build it?"
+  },
+  {
+    "scene": "answer",
+    "text": "Honestly? Yes. But we didn't buy an AI solution. We compiled our operating processes into code."
+  },
+  {
+    "scene": "foundations",
+    "text": "Two foundations carry all of it. The ticket holds the state. The team chat is the interface."
+  },
+  {
+    "scene": "pillars",
+    "text": "Four pillars stand on them. A nervous system, a skill marketplace, autonomous agents. And a cockpit."
+  },
+  {
+    "scene": "agents",
+    "text": "A word in the chat wakes an agent. It implements the change, opens a pull request, and reports back."
+  },
+  {
+    "scene": "skills",
+    "text": "The same skill runs for a person, an agent, and the CI pipeline. One script, not three."
+  },
+  {
+    "scene": "guardrails",
+    "text": "Nearly every guardrail came from a mistake. Don't trust the model. Verify with code."
+  },
+  {
+    "scene": "outro",
+    "text": "Autonomy, with a hand on the brake lever."
+  }
+]

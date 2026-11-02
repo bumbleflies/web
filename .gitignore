@@ -18,3 +18,7 @@ blob-report/
 .auth/
 
 .superpowers/
+video/*/node_modules/
+video/*/.venv-kokoro/
+video/*/kokoro/
+video/*/whisper.cpp/

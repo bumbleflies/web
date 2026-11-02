@@ -38,4 +38,5 @@ npm run test:integration               # only `bilingual-content.integration.tes
 - i18n: German pages in `src/pages/`, English mirrors in `src/pages/en/`; language state is still hardcoded per page (`currentLang`), not a shared store.
 - After any page/content-collection/nav change, run the `sync-agent-content` skill (`.claude/skills/`) to regenerate `public/llms.txt`, `public/llms-full.txt`, `public/agents.txt`, `public/robots.txt`.
 - Publishing a blog post? Follow `src/content/blog/AGENTS.md` (frontmatter, DE↔EN `order` pairing, audio, verify, PR).
+- Video teasers are standalone Remotion projects under `video/` (own `package.json`, excluded from the Docker build, not imported by Astro) — see [video/AGENTS.md](video/AGENTS.md).
 - Playwright e2e (`tests/*.e2e.spec.ts`) expects Chrome at `/usr/bin/google-chrome` and auto-starts `npm run dev`; CI `test.yml` runs only Vitest, not Playwright.

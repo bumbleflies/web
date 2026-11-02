@@ -1,0 +1,34 @@
+[
+  {
+    "scene": "hook",
+    "startFrame": 0
+  },
+  {
+    "scene": "answer",
+    "startFrame": 202
+  },
+  {
+    "scene": "foundations",
+    "startFrame": 447
+  },
+  {
+    "scene": "pillars",
+    "startFrame": 650
+  },
+  {
+    "scene": "agents",
+    "startFrame": 878
+  },
+  {
+    "scene": "skills",
+    "startFrame": 1101
+  },
+  {
+    "scene": "guardrails",
+    "startFrame": 1299
+  },
+  {
+    "scene": "outro",
+    "startFrame": 1485
+  }
+]

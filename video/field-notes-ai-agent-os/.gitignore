@@ -1,0 +1,12 @@
+node_modules/
+.venv-kokoro/
+kokoro/
+whisper.cpp/
+build/
+.DS_Store
+
+# derived: regenerate with `npm run voice:16k`
+public/content/*/audio/*-16k.wav
+
+# scratch frames from `remotion still`
+out/still*.png
