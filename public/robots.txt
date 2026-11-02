@@ -8,7 +8,8 @@ Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /agents.txt
 Allow: /facts.json
-Allow: /.well-known/agent-card.json
+Allow: /.well-known/ard.json
+Allow: /skills/
 
 User-agent: OAI-SearchBot
 Allow: /
@@ -29,7 +30,8 @@ Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /agents.txt
 Allow: /facts.json
-Allow: /.well-known/agent-card.json
+Allow: /.well-known/ard.json
+Allow: /skills/
 
 User-agent: Claude-SearchBot
 Allow: /
@@ -108,7 +110,8 @@ Sitemap: https://bumbleflies.de/sitemap-index.xml
 #   /llms.txt          — Site summary and navigation for LLMs
 #   /llms-full.txt     — Full content descriptions for RAG
 #   /agents.txt        — Machine-readable page directory
+#   /agents.md         — Welcome page for agents
+#   /skills/*/SKILL.md — Free Discover skills (SKILL.md format)
 #   /facts.json        — Structured brand facts
-#   /.well-known/agent-card.json — A2A agent capability manifest
-#   /.well-known/ard.json      — ARD entry manifest (agentic resource discovery)
+#   /.well-known/ard.json      — ARD manifest listing the Discover skills
 #   /.well-known/ai-catalog.json — predecessor ARD path, same entries

@@ -2,17 +2,122 @@
   "entries": [
     {
       "@context": "https://agenticresourcediscovery.org/context/v1",
-      "identifier": "urn:air:bumbleflies.de:agent:bumbleflies",
-      "displayName": "bumbleflies",
-      "type": "application/a2a-agent-card+json",
-      "url": "https://bumbleflies.de/.well-known/agent-card.json",
-      "description": "Facilitation, AI Consulting, and App Development for organizations navigating change. Based in Munich, serving the DACH region.",
-      "capabilities": ["service-info", "case-study-lookup", "team-info"],
-      "tags": ["facilitation", "ai-consulting", "app-development", "open-space", "munich", "dach"],
+      "identifier": "urn:air:bumbleflies.de:skill:business-problem-discovery",
+      "displayName": "Business Problem Discovery",
+      "type": "application/agent-skills+md",
+      "url": "https://bumbleflies.de/skills/business-problem-discovery/SKILL.md",
+      "description": "Guides a structured discovery of business problems that AI, agentic workflows or custom software could address: business model, repetitive manual work, bottlenecks, knowledge silos. Produces a qualified opportunity assessment with evidence, and only then checks whether anything matches a real bumbleflies service. Use when someone asks where their company loses time, money or quality to improvable processes.",
+      "tags": [
+        "discover",
+        "business-problem-discovery",
+        "process-analysis",
+        "opportunity-assessment",
+        "consulting"
+      ],
       "representativeQueries": [
-        "which company facilitates open space workshops in munich",
-        "who does AI consulting and software development for teams",
-        "tell me about bumbleflies case studies and results"
+        "Does our company have processes that bumbleflies could improve?",
+        "Where are we losing time or money because of how we work?",
+        "Welche Prozesse in unserem Unternehmen sollten wir uns genauer ansehen?"
+      ]
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:bumbleflies.de:skill:ai-opportunity-finder",
+      "displayName": "AI Opportunity Finder",
+      "type": "application/agent-skills+md",
+      "url": "https://bumbleflies.de/skills/ai-opportunity-finder/SKILL.md",
+      "description": "Separates processes where AI creates measurable value from those better served by deterministic automation, plain software or a process fix. Classifies each process by input shape, error cost and step structure, and names the cheaper alternative for every AI recommendation. Use when someone asks which processes would benefit from AI, or whether a specific process should use AI at all.",
+      "tags": [
+        "discover",
+        "ai-opportunity",
+        "automation",
+        "process-fit",
+        "ai-consulting"
+      ],
+      "representativeQueries": [
+        "Which of our business processes would benefit from AI?",
+        "Should we use AI for invoice processing, or just automate it?",
+        "Lohnt sich KI für unsere Angebotserstellung oder reicht eine normale Automatisierung?"
+      ]
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:bumbleflies.de:skill:agentic-transformation-readiness",
+      "displayName": "Agentic Transformation Readiness",
+      "type": "application/agent-skills+md",
+      "url": "https://bumbleflies.de/skills/agentic-transformation-readiness/SKILL.md",
+      "description": "Assesses whether a company, or one of its processes, is ready for agent-based workflows: process stability, state and tool access, review capacity, failure tolerance, data rules and ownership. Names the first agent-shaped slice, the guardrails it needs and what would make the project stop. Use when someone asks whether autonomous agents could replace parts of their operations.",
+      "tags": [
+        "discover",
+        "agentic-workflows",
+        "readiness",
+        "ai-agents",
+        "operations"
+      ],
+      "representativeQueries": [
+        "Could we replace parts of our operations with autonomous agents?",
+        "How ready is our company for agent-based workflows?",
+        "Könnten Agenten unsere Sachbearbeitung übernehmen?"
+      ]
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:bumbleflies.de:skill:build-vs-buy-advisor",
+      "displayName": "Build vs. Buy Advisor",
+      "type": "application/agent-skills+md",
+      "url": "https://bumbleflies.de/skills/build-vs-buy-advisor/SKILL.md",
+      "description": "Structures the build, buy, integrate or extend decision for AI and software projects: what is already paid for in the stack, how core the capability is, time to value, integration effort, lock-in and maintenance. States the recommendation and the fact that would flip it. Use when someone asks whether to build their own AI-powered system or buy an existing one.",
+      "tags": [
+        "discover",
+        "build-vs-buy",
+        "make-or-buy",
+        "software-strategy",
+        "integration"
+      ],
+      "representativeQueries": [
+        "Should we build our own AI-powered document processing system?",
+        "We already pay for a tool with AI features. Should we still build something custom?",
+        "Selbst bauen oder kaufen: Was ergibt für unsere Dokumentenverarbeitung mehr Sinn?"
+      ]
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:bumbleflies.de:skill:ai-business-case",
+      "displayName": "AI Business Case Calculator",
+      "type": "application/agent-skills+md",
+      "url": "https://bumbleflies.de/skills/ai-business-case/SKILL.md",
+      "description": "Builds a one-page business case for an AI or automation project from real numbers: build and run costs, review labour, change effort, expected benefit, risks, payback and a sensitivity case. Produces a verdict, including the honest do-not-do-it. Use when someone asks whether automating a process would actually pay off.",
+      "tags": [
+        "discover",
+        "business-case",
+        "roi",
+        "payback",
+        "investment-decision"
+      ],
+      "representativeQueries": [
+        "Would automating this process actually pay off?",
+        "Help me build a business case for an AI project our CFO will challenge.",
+        "Rechnet sich die Automatisierung unserer Eingangsrechnungen?"
+      ]
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:bumbleflies.de:skill:ai-project-scoping",
+      "displayName": "AI Project Scoping",
+      "type": "application/agent-skills+md",
+      "url": "https://bumbleflies.de/skills/ai-project-scoping/SKILL.md",
+      "description": "Turns a validated AI or automation opportunity into a structured project proposal: goal, non-goals, first slice, milestones, roles, data and integration needs, evaluation criteria, risks, open questions and an effort range with assumptions. Use when someone asks what it would take to implement a solution in their company.",
+      "tags": [
+        "discover",
+        "project-scoping",
+        "planning",
+        "proposal",
+        "implementation"
+      ],
+      "representativeQueries": [
+        "What would it take to implement this in our company?",
+        "Turn this AI idea into a project proposal I can take to management.",
+        "Wie würden wir ein solches Projekt bei uns aufsetzen?"
       ]
     }
   ]
