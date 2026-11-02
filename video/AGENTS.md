@@ -8,8 +8,8 @@ Nothing here is imported by the Astro site and nothing here ships to production.
   `npm ci` inside the project, not at the repo root.
 - The pipeline is the [`remoguh`](../../AGENTS.md) skill: local Kokoro narration,
   whisper.cpp captions derived from that audio, SVG scenes, Remotion render.
-- Rendered output lives in `<project>/out/` and is committed — it is the deliverable
-  that gets published (YouTube/LinkedIn/tube), not a build artifact of the site.
+- Rendered output lives in `<project>/out/` and is **not** committed — regenerate it with
+  `npm run render`. Publishing (YouTube/LinkedIn/tube) consumes the local file.
 - Kokoro models (~340 MB) and the `whisper.cpp` build are **not** committed; each
   project's README documents how to recreate them.
 
@@ -26,4 +26,4 @@ Nothing here is imported by the Astro site and nothing here ships to production.
    language is shared; only `src/scenes/*` should differ.
 3. Keep narration at ~150 words/min and let measured audio drive scene length:
    `npm run voice` → `npm run timing` → `npm run captions`.
-4. Commit source plus the rendered `out/*.mp4`, `out/poster.png` and `out/*.srt`.
+4. Commit source only — `out/` is generated, so it stays untracked.

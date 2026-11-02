@@ -8,5 +8,5 @@ build/
 # derived: regenerate with `npm run voice:16k`
 public/content/*/audio/*-16k.wav
 
-# scratch frames from `remotion still`
-out/still*.png
+# rendered output — regenerate with `npm run render`
+out/
