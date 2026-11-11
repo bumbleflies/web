@@ -1,6 +1,6 @@
 ---
 title: "Agenten, die arbeiten, während du schläfst: Claude Code als autonomer Daemon"
-description: "Autonome Agenten, die einen Team-Chat beobachten, Code implementieren, Pull-Requests öffnen und Hotfixes ausrollen, und die Lektionen, die jede einzelne Leitplanke erklären."
+description: "Autonome Agenten, die einen Team-Chat beobachten, Code implementieren, Pull-Requests öffnen und Hotfixes ausrollen. Dazu die Lektionen, die jede einzelne Leitplanke erklären."
 excerpt: "Ein Wort im Chat weckt einen Agenten. Er implementiert, öffnet einen PR, meldet sich zurück. Mehrere Personas aus einem Bausatz. Und die Nacht, in der ein Agent im Leerlauf eine Menge Tokens verbrannte."
 category: "Autonomie"
 image: "/images/blog/bots-die-nachts-arbeiten.svg"
@@ -8,7 +8,7 @@ order: 5
 date: 2026-07-22
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "10 Min."
-published: false
+published: true
 lang: "DE"
 ---
 
@@ -42,7 +42,7 @@ Der Agent darf pushen, darf Pull-Requests öffnen, aber der Merge in die Hauptli
 
 Fast jede Leitplanke in diesem System lässt sich auf eine konkrete Erfahrung aus dem Betrieb zurückführen. Das ist keine Peinlichkeit, sondern die Methode: **Das System wächst, indem es seine eigenen Fehler in Code gießt.**
 
-**Die Nacht im Leerlauf.** Der Chat-Token eines Agenten war abgelaufen. Der Poll interpretierte das als „es gibt Arbeit" und feuerte immer wieder das Sprachmodell, um das vermeintliche Problem zu „lösen", die ganze Nacht. Am Morgen: eine Menge Token-Kosten für nichts. Die Antwort waren *mehrere* unabhängige Ausgaben-Wächter: ein stiller Token-Refresh, der zuerst versucht, das Problem ohne Modell zu lösen; eine Fehler-Zustandsmaschine, die nach wiederholten Fehlschlägen stark drosselt; und eine Wochenlimit-Markierung. Seither feuert ein abgelaufener Token *nie* das Modell; der Poll überspringt einfach den Tick.
+**Die Nacht im Leerlauf.** Der Chat-Token eines Agenten war abgelaufen. Der Poll interpretierte das als „es gibt Arbeit" und feuerte immer wieder das Sprachmodell, um das vermeintliche Problem zu „lösen", die ganze Nacht. Am Morgen: eine Menge Token-Kosten für nichts. Die Antwort waren *mehrere* unabhängige Kostenwächter: ein stiller Token-Refresh, der zuerst versucht, das Problem ohne Modell zu lösen; eine Fehler-Zustandsmaschine, die nach wiederholten Fehlschlägen stark drosselt; und eine Wochenlimit-Markierung. Seither feuert ein abgelaufener Token *nie* das Modell; der Poll überspringt einfach den Tick.
 
 Die Wächter haben das Verbrennen gestoppt, aber sie haben einen eigenen Fehlermodus mitgebracht: Ein Agent, der tatsächlich festhängt, versucht es jetzt nur noch selten erneut. Ist er wirklich kaputt, merkt man es entsprechend spät.
 

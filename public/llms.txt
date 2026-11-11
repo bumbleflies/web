@@ -46,6 +46,8 @@ We help teams move from conversation to code. Our approach combines structured f
 
 ## Blog
 
+- [Agenten, die arbeiten, während du schläfst: Claude Code als autonomer Daemon](https://bumbleflies.de/blog/bots-die-nachts-arbeiten/): Field Notes #5. Claude Code as a long-lived daemon in a container: one runtime and several personas from one building kit, a cheap poll instead of webhooks, and the guardrails that came out of real incidents, including the night an expired token burned tokens until morning. With audio summary.
+- [Agents That Work While You Sleep: Claude Code as an Autonomous Daemon (EN)](https://bumbleflies.de/en/blog/bots-working-at-night/): English version of Field Notes #5. With audio summary.
 - [Statt KI zu kaufen: Was ich wirklich gebaut habe](https://bumbleflies.de/blog/ki-agenten-betriebssystem/): Field Notes #1. A real agent system in production: autonomous agents opening pull requests, a skill marketplace for company knowledge, a cockpit planning the day. With audio summary.
 - [Skills als Apps: ein Plugin-Marktplatz für Firmenwissen](https://bumbleflies.de/blog/skills-als-apps-plugin-marktplatz/): Field Notes #4. Company knowledge as an internal app store: the marketplace is the store, each plugin an app, each skill a feature. The rule that holds it together is model judgment plus deterministic script, so humans, agents and CI run the same code. With audio summary.
 - [Skills as Apps: A Plugin Marketplace for Company Knowledge (EN)](https://bumbleflies.de/en/blog/skills-as-apps-plugin-marketplace/): English version of Field Notes #4. With audio summary.
