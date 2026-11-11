@@ -5,7 +5,7 @@ excerpt: "Ein Wort im Chat weckt einen Agenten. Er implementiert, öffnet einen 
 category: "Autonomie"
 image: "/images/blog/bots-die-nachts-arbeiten.svg"
 order: 5
-date: 2026-07-22
+date: 2026-11-11
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "10 Min."
 published: true

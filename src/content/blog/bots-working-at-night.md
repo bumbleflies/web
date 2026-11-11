@@ -5,7 +5,7 @@ excerpt: "A word in the chat wakes an agent. It implements, opens a PR, reports 
 category: "Autonomy"
 image: "/images/blog/bots-die-nachts-arbeiten.svg"
 order: 5
-date: 2026-07-22
+date: 2026-11-11
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "10 min"
 published: true
