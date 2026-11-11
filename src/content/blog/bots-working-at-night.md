@@ -1,6 +1,6 @@
 ---
 title: "Agents That Work While You Sleep: Claude Code as an Autonomous Daemon"
-description: "Autonomous agents watching a team chat, implementing code, opening pull requests, and rolling out hotfixes, and the lessons that explain every single guardrail."
+description: "Autonomous agents watching a team chat, implementing code, opening pull requests, and rolling out hotfixes. Plus the lessons that explain every single guardrail."
 excerpt: "A word in the chat wakes an agent. It implements, opens a PR, reports back. Several personas from one building kit. And the night an agent burned a lot of tokens in an idle loop."
 category: "Autonomy"
 image: "/images/blog/bots-die-nachts-arbeiten.svg"
@@ -8,7 +8,7 @@ order: 5
 date: 2026-07-22
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "10 min"
-published: false
+published: true
 lang: "EN"
 ---
 
@@ -50,7 +50,7 @@ The cost guards stopped the burning, but they brought their own failure mode: a 
 
 **The self-restart loop.** The agents learn: after a review comment, they write a new rule to their knowledge base and push it. Initially, the deployment automation interpreted this push as a configuration change, and restarted the agent mid-work. After the restart, the agent repeated the work, learned, committed, pushed, restarted … an infinite self-restart loop. The fix: explicitly exclude knowledge-base pushes from the restart logic.
 
-**"Never rely on sender identity."** Because the agent posts via a human's token, agent and human share a display name. A case where the agent reacted to its own status message, because it contained the trigger word, led to the rule: everything keys off message IDs, never to the display identity.
+**"Never rely on sender identity."** Because the agent posts via a human's token, agent and human share a display name. A case where the agent reacted to its own status message, because it contained the trigger word, led to the rule: everything keys off message IDs, never off the display identity.
 
 **"Done only counts as learned when it's written down."** The test agent, which clicks through the application in the browser, maintains its own knowledge base about the product's surface. The guiding principle behind it: experience that isn't recorded anywhere is lost. So the agents write down their lessons and push them, deploy-neutral, immediately available to all.
 
