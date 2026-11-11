@@ -1,5 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
+  "exclude": ["video", "dist", "node_modules"],
   "contentMappers": [
     {
       "package": "@astrojs/ts-content-mapper",
