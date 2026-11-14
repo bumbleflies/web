@@ -12,7 +12,7 @@
     "render": "remotion render AiOsSample out/ai-agent-os.mp4"
   },
   "dependencies": {
-    "@remotion/captions": "4.0.540",
+    "@remotion/captions": "4.0.543",
     "@remotion/cli": "4.0.540",
     "@remotion/fonts": "4.0.540",
     "@remotion/install-whisper-cpp": "4.0.540",
