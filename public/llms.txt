@@ -46,6 +46,8 @@ We help teams move from conversation to code. Our approach combines structured f
 
 ## Blog
 
+- [Ein Cockpit für einen Menschen: den eigenen Tag mit vielen Agenten orchestrieren](https://bumbleflies.de/blog/cockpit-tag-mit-zehn-agenten/): Field Notes #6. A personal meta-agent that fans parallel scanners out over email, chat, tickets, calendar, support inbox and even its own Claude Code session history, and turns them into one prioritized morning plan with a single next action. A scanner never fails, so a dead source cannot abort the run, and the rule that holds it together is: read does not mean done. With audio summary.
+- [A Cockpit for One Human: Orchestrating Your Day with Many Agents (EN)](https://bumbleflies.de/en/blog/cockpit-day-with-ten-agents/): English version of Field Notes #6. With audio summary.
 - [Agenten, die arbeiten, während du schläfst: Claude Code als autonomer Daemon](https://bumbleflies.de/blog/bots-die-nachts-arbeiten/): Field Notes #5. Claude Code as a long-lived daemon in a container: one runtime and several personas from one building kit, a cheap poll instead of webhooks, and the guardrails that came out of real incidents, including the night an expired token burned tokens until morning. With audio summary.
 - [Agents That Work While You Sleep: Claude Code as an Autonomous Daemon (EN)](https://bumbleflies.de/en/blog/bots-working-at-night/): English version of Field Notes #5. With audio summary.
 - [Statt KI zu kaufen: Was ich wirklich gebaut habe](https://bumbleflies.de/blog/ki-agenten-betriebssystem/): Field Notes #1. A real agent system in production: autonomous agents opening pull requests, a skill marketplace for company knowledge, a cockpit planning the day. With audio summary.
