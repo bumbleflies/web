@@ -5,10 +5,10 @@ excerpt: "The personal side of the stack. A meta-agent that scans many sources, 
 category: "Productivity"
 image: "/images/blog/cockpit-tag-mit-zehn-agenten.svg"
 order: 6
-date: 2026-07-25
+date: 2026-11-17
 author: "Chris 🦋 · Founder at bumbleflies / Senior Product Manager at JUNE"
 readingTime: "8 min"
-published: false
+published: true
 lang: "EN"
 ---
 
@@ -49,7 +49,7 @@ Behind it is a concrete regression: an email with a sample file, read on a Monda
 
 The cockpit cleanly distinguishes the states that most people mix up in their heads:
 
-- **Blocked:** missing access, data, or a prerequisite. May be high priority, but can never be "next" up.
+- **Blocked:** missing access, data, or a prerequisite. May be high priority, but can never be the next action.
 - **Waiting:** I still owe follow-up, but someone else must act first.
 - **Next action:** the single highest-scored thread that is *neither* blocked *nor* waiting.
 

@@ -1,6 +1,6 @@
 # bumbleflies: Agent Directory
 # Machine-readable page index for AI crawlers and agents.
-# Updated: 2026-11-11
+# Updated: 2026-11-17
 
 # Site
 Homepage: https://bumbleflies.de/
@@ -23,6 +23,8 @@ UnternehmerTUM: https://bumbleflies.de/case-studies/unternehmertum/
 
 # Blog
 Blog: https://bumbleflies.de/blog/
+Ein Cockpit für einen Menschen (Field Notes 06): https://bumbleflies.de/blog/cockpit-tag-mit-zehn-agenten/
+A Cockpit for One Human (EN): https://bumbleflies.de/en/blog/cockpit-day-with-ten-agents/
 Agenten, die arbeiten, während du schläfst (Field Notes 05): https://bumbleflies.de/blog/bots-die-nachts-arbeiten/
 Agents That Work While You Sleep (EN): https://bumbleflies.de/en/blog/bots-working-at-night/
 Statt KI zu kaufen (Field Notes 01): https://bumbleflies.de/blog/ki-agenten-betriebssystem/
