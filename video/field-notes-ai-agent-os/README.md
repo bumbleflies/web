@@ -59,3 +59,9 @@ poster is the end card.
 - Add `-af apad=pad_dur=0.5` before the 16 kHz conversion. whisper.cpp dropped the final
   words ("and a cockpit") on a hard-cut wav; padding the silence recovered them.
 - Kokoro v1.0 ships no German voice (`de_*`), so this is narrated from the English post.
+
+## CI
+
+`.github/workflows/video-ci.yml` installs this project (`npm ci`) and type checks
+it (`npx tsc --noEmit`) on PRs that touch `video/**`. Nothing is rendered in CI, so
+run the same two commands here before pushing to catch what the gate would catch.
