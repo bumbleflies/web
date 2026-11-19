@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 
-name: Astro Build & Deploy
+name: Astro CI & Deploy
 
 on:
   push:
@@ -84,13 +84,32 @@ jobs:
   test-image:
     name: Docker Image Health Check
     needs: [changes, build]
-    if: always() && needs.changes.outputs.app != 'false' && needs.build.result == 'success'
+    # This job's *context* is not what the ruleset requires: the required check
+    # is `Docker Image Health Check / test`, i.e. the job inside the reusable
+    # workflow. Skipping the call would never create that context at all (it
+    # shows up as "Expected — Waiting for status to be reported" forever), so
+    # the call always happens and the work inside is gated instead.
+    if: always()
     uses: ./.github/workflows/test-image.yml
+    with:
+      # Deliberately not AND-ed with build success: when the app changed but the
+      # image failed to build, the artifact is missing and the health check must
+      # fail loudly rather than report a green context.
+      run-health-check: ${{ needs.changes.outputs.app != 'false' }}
     secrets: inherit
 
   deploy-docker:
     name: Deploy to Docker Registry
     needs: [build, test-unit, test-image]
-    if: github.ref == 'refs/heads/master' && success()
+    # Explicit needs results instead of a bare `success()`: success() is false
+    # whenever a job anywhere above in the needs chain was skipped, and `changes`
+    # is skipped on push, which silently disabled deploys. `!cancelled()` is a
+    # status function, so it also replaces the implicit default success().
+    if: |
+      !cancelled()
+      && github.ref == 'refs/heads/master'
+      && needs.build.result == 'success'
+      && needs.test-unit.result == 'success'
+      && needs.test-image.result == 'success'
     secrets: inherit
     uses: ./.github/workflows/part_deploy_astro.yml

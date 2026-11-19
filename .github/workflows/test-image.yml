@@ -4,6 +4,12 @@ name: Test Docker Image
 
 on:
   workflow_call:
+    inputs:
+      run-health-check:
+        description: 'Run the image health check. Set false for changes that cannot affect the image.'
+        type: boolean
+        required: false
+        default: true
 
 env:
   IMAGE_NAME: bumblecode/web
@@ -15,16 +21,22 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      # Steps are gated rather than the job: this job's context
+      # (`Docker Image Health Check / test`) is a required status check, so it
+      # has to report on every PR, including ones that skip the image build.
       - name: Download image artifact
+        if: inputs.run-health-check
         uses: actions/download-artifact@v8
         with:
           name: docker-image
           path: /tmp
 
       - name: Load image
+        if: inputs.run-health-check
         run: docker load --input /tmp/image.tar
 
       - name: Test health
+        if: inputs.run-health-check
         run: |
           echo "Starting container..."
           docker run --rm --detach --name test_container \
@@ -51,6 +63,7 @@ jobs:
           fi
 
       - name: Test endpoints
+        if: inputs.run-health-check
         run: |
           echo "Testing endpoints..."
 
@@ -74,5 +87,5 @@ jobs:
           done
 
       - name: Cleanup
-        if: always()
+        if: always() && inputs.run-health-check
         run: docker stop test_container 2>/dev/null || true
