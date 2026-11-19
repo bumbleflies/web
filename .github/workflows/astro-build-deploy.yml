@@ -20,8 +20,11 @@ on:
       - '*'
   workflow_dispatch:
 
+# Per-ref group: pushes to master still serialize (one group for
+# refs/heads/master), while PR runs no longer queue behind each other now that
+# the workflow runs on every PR instead of a path-filtered subset.
 concurrency:
-  group: "astro-deploy"
+  group: "astro-deploy-${{ github.ref }}"
   cancel-in-progress: false
 
 jobs:
