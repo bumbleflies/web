@@ -12,6 +12,10 @@ Nothing here is imported by the Astro site and nothing here ships to production.
   `npm run render`. Publishing (YouTube/LinkedIn/tube) consumes the local file.
 - Kokoro models (~340 MB) and the `whisper.cpp` build are **not** committed; each
   project's README documents how to recreate them.
+- CI: `video-ci.yml` runs `npm ci` + `npx tsc --noEmit` for every project here on
+  PRs that touch `video/**`. Nothing is rendered in CI. Because `video/` cannot
+  affect the Astro app, `astro-build-deploy.yml` skips its Docker jobs for
+  video-only PRs while still reporting the required contexts.
 
 ## Projects
 
