@@ -18,15 +18,6 @@ on:
   pull_request:
     branches:
       - '*'
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package*.json'
-      - 'astro.config.mjs'
-      - 'tsconfig.json'
-      - 'Dockerfile'
-      - 'nginx.conf'
-      - '.github/workflows/*.yml'
   workflow_dispatch:
 
 concurrency:
@@ -34,18 +25,63 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Pull requests are no longer path-filtered at the trigger, because the ruleset
+  # requires `Unit Tests / test` and `Docker Image Health Check / test` on *every*
+  # PR. A filtered-out workflow leaves those contexts missing forever, which
+  # blocks the PR. Instead we always run, and decide inside the run which jobs
+  # have anything to verify. Changes under `video/` cannot affect the Astro app
+  # (the directory is in `.dockerignore`), so they only need the cheap checks.
+  changes:
+    name: Detect Changed Paths
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      app: ${{ steps.filter.outputs.app }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Filter changed paths
+        id: filter
+        uses: dorny/paths-filter@v4
+        with:
+          # 'some-with-excludes': a file counts when it matches '**' and is not
+          # excluded by '!video/**'; the output is true as soon as any changed
+          # file lives outside video/.
+          predicate-quantifier: 'some-with-excludes'
+          filters: |
+            app:
+              - '**'
+              - '!video/**'
+
   build:
     name: Build Docker Image
+    needs: changes
+    # `always()` keeps this job alive when `changes` produced no output (push,
+    # workflow_dispatch). The app build is skipped only when we positively know
+    # the PR touched nothing outside video/, so an unavailable detector fails
+    # open (build runs) instead of silently green-lighting an unverified change.
+    if: always() && needs.changes.outputs.app != 'false'
     uses: ./.github/workflows/build.yml
     secrets: inherit
 
   test-unit:
     name: Unit Tests
+    needs: changes
+    # Always runs: it carries a required status context and must report even for
+    # video-only PRs. The expensive steps inside are gated instead.
+    if: always()
     uses: ./.github/workflows/test.yml
+    with:
+      run-app-checks: ${{ needs.changes.outputs.app != 'false' }}
 
   test-image:
     name: Docker Image Health Check
-    needs: build
+    needs: [changes, build]
+    if: always() && needs.changes.outputs.app != 'false' && needs.build.result == 'success'
     uses: ./.github/workflows/test-image.yml
     secrets: inherit
 
