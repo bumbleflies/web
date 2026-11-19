@@ -4,6 +4,12 @@ name: Test
 
 on:
   workflow_call:
+    inputs:
+      run-app-checks:
+        description: 'Run typecheck and unit tests. Set false for changes that cannot affect the Astro app.'
+        type: boolean
+        required: false
+        default: true
 
 permissions:
   contents: read
@@ -22,11 +28,15 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'package-lock.json'
 
+      # Cheap lockfile sanity check, kept unconditional so the job does some
+      # real verification even when the app itself is untouched.
       - name: Install
         run: npm ci
 
       - name: Type check
+        if: inputs.run-app-checks
         run: npm run typecheck
 
       - name: Run tests
+        if: inputs.run-app-checks
         run: npm test

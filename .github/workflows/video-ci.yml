@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+# Light gate for the Remotion teaser projects under `video/`. They are
+# self-contained (own package.json, own lockfile) and never enter the Astro
+# build, so Astro Build & Deploy skips its expensive jobs for video-only PRs.
+# This workflow is deliberately NOT a required check: it verifies that each
+# project still installs and type checks, without rendering any video.
+name: Video Project Checks
+
+on:
+  pull_request:
+    paths:
+      - 'video/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: video-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  install-and-typecheck:
+    name: Install & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '26'
+          cache: 'npm'
+          cache-dependency-path: 'video/*/package-lock.json'
+
+      # One directory per teaser project; iterating keeps a newly copied project
+      # covered without editing this workflow.
+      - name: Install and type check each project
+        run: |
+          set -euo pipefail
+          for dir in video/*/; do
+            [ -f "${dir}package.json" ] || continue
+            echo "::group::${dir}"
+            ( cd "$dir" && npm ci )
+            if [ -f "${dir}tsconfig.json" ]; then
+              ( cd "$dir" && npx tsc --noEmit )
+            else
+              echo "No tsconfig.json in ${dir} - skipping type check."
+            fi
+            echo "::endgroup::"
+          done
