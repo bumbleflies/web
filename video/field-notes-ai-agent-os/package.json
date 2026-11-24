@@ -18,7 +18,7 @@
     "@remotion/install-whisper-cpp": "4.0.546",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "remotion": "4.0.545"
+    "remotion": "4.0.546"
   },
   "devDependencies": {
     "@types/react": "19.3.0",
